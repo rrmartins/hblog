@@ -8,7 +8,7 @@ publishdir = "public"
 builddrafts = false
 canonifyurls = true
 author = "Rodrigo Martins"
-copyright = "I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)"
+copyright = "I'm a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)"
 
 
 [indexes]
