@@ -1,4 +1,4 @@
-baseurl = "https://limitless-eyrie-46143.herokuapp.com"
+baseurl = "https://limitless-eyrie-46143.herokuapp.com/"
 languageCode = "en-us"
 title = "Rodrigo Martins"
 theme = "hugo-uno"
