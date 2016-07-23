@@ -3,7 +3,7 @@
   <channel>
       <title>Eloquent Ruby on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/eloquent-ruby/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/eloquent-ruby/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>expressoes regulares em ruby</title>
-      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
       <description>
 
 &lt;p&gt;Olá amigos,&lt;/p&gt;
@@ -119,10 +119,10 @@ end
     
     <item>
       <title>nao e bem uma string</title>
-      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</guid>
       <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
 que finaliza com a pergunta:&lt;/p&gt;
 

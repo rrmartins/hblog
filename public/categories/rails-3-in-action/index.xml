@@ -3,7 +3,7 @@
   <channel>
       <title>Rails 3 In Action on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/rails-3-in-action/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/rails-3-in-action/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>teste salva sua carne</title>
-      <link>http://rodij.me/post/2012/11/04/teste-salva-sua-carne/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/teste-salva-sua-carne/</link>
       <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/11/04/teste-salva-sua-carne/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/teste-salva-sua-carne/</guid>
       <description>
 
 &lt;p&gt;Galera estou lendo mais um livro, e vou passar para vocês um textículo do inicio do &lt;a href=&#34;http://www.amazon.com/Rails-3-Action-Ryan-Bigg/dp/1935182277&#34;&gt;Rails 3 in Action&lt;/a&gt;.&lt;/p&gt;

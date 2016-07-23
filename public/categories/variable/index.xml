@@ -3,7 +3,7 @@
   <channel>
       <title>Variable on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/variable/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/variable/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>unless number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
       <pubDate>Thu, 05 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -95,10 +95,10 @@ end
     
     <item>
       <title>demonstracoes e estruturas de controle</title>
-      <link>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
       <pubDate>Mon, 18 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle&lt;/p&gt;
@@ -268,10 +268,10 @@ name = if x == 1 then &amp;quot;um&amp;quot;
     
     <item>
       <title>atribuicao paralela number ruby</title>
-      <link>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
       <pubDate>Mon, 11 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições Paralelas&lt;/p&gt;
 
 &lt;h1&gt;Atribuições Paralelas&lt;/h1&gt;
@@ -421,10 +421,10 @@ a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
     
     <item>
       <title>atribuicoes</title>
-      <link>http://rodij.me/post/2012/06/03/atribuicoes/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/03/atribuicoes/</link>
       <pubDate>Sun, 03 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/06/03/atribuicoes/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/03/atribuicoes/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições&lt;/p&gt;
 
 &lt;h1&gt;Atribuições&lt;/h1&gt;
@@ -605,10 +605,10 @@ x &amp;gt;&amp;gt;= y                             x = x &amp;gt;&amp;gt; y
     
     <item>
       <title>invocacoes de metodo</title>
-      <link>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/invocacoes-de-metodo/</link>
       <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/invocacoes-de-metodo/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
 
 &lt;h1&gt;Invocações de método&lt;/h1&gt;
@@ -705,10 +705,10 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
     
     <item>
       <title>variaveis nao inicializadas</title>
-      <link>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/variaveis-nao-inicializadas/</link>
       <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/variaveis-nao-inicializadas/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
 
 &lt;h1&gt;Variáveis ​​não inicializadas&lt;/h1&gt;

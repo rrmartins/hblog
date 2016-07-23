@@ -3,7 +3,7 @@
   <channel>
       <title>Operator on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/operator/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/operator/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>aexpressoes e operadores o inicio</title>
-      <link>http://rodij.me/post/2012/05/23/aexpressoes-e-operadores-o-inicio/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/23/aexpressoes-e-operadores-o-inicio/</link>
       <pubDate>Wed, 23 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/05/23/aexpressoes-e-operadores-o-inicio/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/23/aexpressoes-e-operadores-o-inicio/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Expressões e Operadores&lt;/p&gt;
 
 &lt;h1&gt;Expressões e Operadores&lt;/h1&gt;

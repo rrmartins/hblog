@@ -3,7 +3,7 @@
   <channel>
       <title>If on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/if/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/if/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>demonstracoes e estruturas de controle</title>
-      <link>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
       <pubDate>Mon, 18 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle&lt;/p&gt;

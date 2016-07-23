@@ -3,7 +3,7 @@
   <channel>
       <title>Comparable on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/comparable/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/comparable/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>classe objects em ruby 1 dot 9 2 part iv</title>
-      <link>http://rodij.me/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/</link>
       <pubDate>Sun, 20 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Object.html&#34;&gt;Objects&lt;/a&gt;, é hora de nos aprofundar.&lt;/p&gt;
 
 &lt;h1&gt;Objetos&lt;/h1&gt;

@@ -3,7 +3,7 @@
   <channel>
       <title>&#43;&#43; on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/&#43;&#43;/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/&#43;&#43;/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>comparando auto increments ruby x golang</title>
-      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
       <description>&lt;p&gt;Æ,&lt;/p&gt;
 
 &lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;

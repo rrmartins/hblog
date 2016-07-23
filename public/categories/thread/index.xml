@@ -3,7 +3,7 @@
   <channel>
       <title>Thread on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/thread/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/thread/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>threads e concorrencia exemplos de threads part iv number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Exemplos de Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -140,10 +140,10 @@ h.each_pair.concurrently {|*pair| process(pair)}
     
     <item>
       <title>threads e concorrencia escalando threads part iii number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Escalando Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -193,10 +193,10 @@ programador para produzir a CPU para outra &lt;code&gt;thread&lt;/code&gt;.&lt;
     
     <item>
       <title>threads e concorrencia part i number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Thread Lifecycle&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -308,10 +308,10 @@ t.abort_on_exception = true
     
     <item>
       <title>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Threads e Variáveis&lt;/strong&gt;&amp;hellip;&lt;/p&gt;

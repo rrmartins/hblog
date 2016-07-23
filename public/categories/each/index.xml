@@ -3,7 +3,7 @@
   <channel>
       <title>Each on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/each/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/each/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>reflexao e metaprogramacao metodos number ruby 1 dot 9 part iv</title>
-      <link>http://rodij.me/post/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/</link>
       <pubDate>Fri, 31 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -265,10 +265,10 @@ String.class_eval { private :reverse }
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9 part ii</title>
-      <link>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
       <pubDate>Wed, 29 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -378,10 +378,10 @@ do exterior do objecto.&lt;/p&gt;
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9 part iii</title>
-      <link>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/</link>
       <pubDate>Wed, 29 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -490,10 +490,10 @@ Symbol::Test   # =&amp;gt;: Teste: constante indefinida avalia um símbolo
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 26 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de &lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -652,10 +652,10 @@ Hora de dar um &lt;code&gt;break&lt;/code&gt;&amp;hellip; :)&lt;/p&gt;
     
     <item>
       <title>blocos em number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 19 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -934,10 +934,10 @@ invocação do bloco. Lembre, no entanto, que a invocação &lt;code&gt;yield&lt
     
     <item>
       <title>escrevendo iteradores personalizados number ruby 1 dot 9 2</title>
-      <link>http://rodij.me/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</link>
       <pubDate>Sun, 05 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -1056,10 +1056,10 @@ end
     
     <item>
       <title>objetos enumeraveis number ruby 1 dot 9 2</title>
-      <link>http://rodij.me/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</link>
       <pubDate>Wed, 25 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
 
 &lt;h1&gt;Objetos Enumeráveis&lt;/h1&gt;

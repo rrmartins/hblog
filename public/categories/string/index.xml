@@ -3,7 +3,7 @@
   <channel>
       <title>String on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/string/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/string/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>as duas faces de string</title>
-      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</guid>
       <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
@@ -46,10 +46,10 @@ do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito 
     
     <item>
       <title>expressoes regulares em ruby</title>
-      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
       <description>
 
 &lt;p&gt;Olá amigos,&lt;/p&gt;
@@ -154,10 +154,10 @@ end
     
     <item>
       <title>nao e bem uma string</title>
-      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</guid>
       <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
 que finaliza com a pergunta:&lt;/p&gt;
 
@@ -193,10 +193,10 @@ esta é a forma rápida e confiável.&lt;/p&gt;
     
     <item>
       <title>threads e concorrencia exemplos de threads part iv number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Exemplos de Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -322,10 +322,10 @@ h.each_pair.concurrently {|*pair| process(pair)}
     
     <item>
       <title>threads e concorrencia escalando threads part iii number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Escalando Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -375,10 +375,10 @@ programador para produzir a CPU para outra &lt;code&gt;thread&lt;/code&gt;.&lt;
     
     <item>
       <title>threads e concorrencia part i number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Thread Lifecycle&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -490,10 +490,10 @@ t.abort_on_exception = true
     
     <item>
       <title>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Threads e Variáveis&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -608,10 +608,10 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
     
     <item>
       <title>encadeamento de alias number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</link>
       <pubDate>Tue, 18 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -923,10 +923,10 @@ end
     
     <item>
       <title>criando metodos dinamicamente number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</link>
       <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
 &lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Criando Métodos Dinamicamente&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
 
@@ -1062,10 +1062,10 @@ end
     
     <item>
       <title>missing methods e missing constants number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</link>
       <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -1262,10 +1262,10 @@ end
     
     <item>
       <title>estruturas de controle personalizados number ruby 1 dot 9</title>
-      <link>http://rodij.me/post/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/</link>
       <pubDate>Thu, 13 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -1421,10 +1421,10 @@ end&lt;/p&gt;
     
     <item>
       <title>reflexao e metaprogramacao objectspace e gc number ruby 1 dot 9 part vii</title>
-      <link>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/</link>
       <pubDate>Mon, 10 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -1466,10 +1466,10 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
     
     <item>
       <title>reflexao e metaprogramacao tracing number ruby 1 dot 9 part vi</title>
-      <link>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/</link>
       <pubDate>Mon, 10 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -1552,10 +1552,10 @@ seguinte exemplo, notar o uso de &lt;code&gt;caller[1]&lt;/code&gt;, para determ
     
     <item>
       <title>metodos de visibilidade public</title>
-      <link>http://rodij.me/post/2012/09/09/metodos-de-visibilidade-public/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/09/metodos-de-visibilidade-public/</link>
       <pubDate>Sun, 09 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/09/metodos-de-visibilidade-public/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/09/metodos-de-visibilidade-public/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
 &lt;b&gt;Metodos de Visibilidade: Public, Protected, Private&lt;/b&gt;...&lt;/p&gt;
 
@@ -1663,10 +1663,10 @@ específico.&lt;/p&gt;
     
     <item>
       <title>reflexao e metaprogramacao hooks number ruby 1 dot 9 part v</title>
-      <link>http://rodij.me/post/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/</link>
       <pubDate>Wed, 05 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de

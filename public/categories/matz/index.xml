@@ -3,7 +3,7 @@
   <channel>
       <title>Matz on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/matz/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/matz/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>a filosofia do number ruby 3</title>
-      <link>http://rodij.me/post/2012/08/08/a-filosofia-do-number-ruby-3/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/08/a-filosofia-do-number-ruby-3/</link>
       <pubDate>Wed, 08 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/08/08/a-filosofia-do-number-ruby-3/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/08/a-filosofia-do-number-ruby-3/</guid>
       <description>&lt;p&gt;Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(&lt;a href=&#34;http://www.artima.com/intv/ruby.html&#34;&gt;http://www.artima.com/intv/ruby.html&lt;/a&gt;), que já consegui a
 autorização para colocar aqui para vocês...&lt;/p&gt;
 

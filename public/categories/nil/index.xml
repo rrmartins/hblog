@@ -3,7 +3,7 @@
   <channel>
       <title>Nil on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/nil/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/nil/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>True, False e Nil</title>
-      <link>http://rodij.me/post/2012/05/18/true/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/18/true/</link>
       <pubDate>Fri, 18 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2012/05/18/true/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/18/true/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 
 &lt;p&gt;Hoje vamos continuar falando de True, False e Nil, é hora de nos aprofundar.&lt;/p&gt;

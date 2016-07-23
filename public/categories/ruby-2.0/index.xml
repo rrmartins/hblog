@@ -3,7 +3,7 @@
   <channel>
       <title>Ruby 2.0 on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://rodij.me/categories/ruby-2/index.0/</link>
+    <link>https://limitless-eyrie-46143.herokuapp.com/categories/ruby-2/index.0/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>as duas faces de string</title>
-      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</guid>
       <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
@@ -46,10 +46,10 @@ do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito 
     
     <item>
       <title>expressoes regulares em ruby</title>
-      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
       <description>
 
 &lt;p&gt;Olá amigos,&lt;/p&gt;
@@ -154,10 +154,10 @@ end
     
     <item>
       <title>nao e bem uma string</title>
-      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</guid>
       <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
 que finaliza com a pergunta:&lt;/p&gt;
 
@@ -193,10 +193,10 @@ esta é a forma rápida e confiável.&lt;/p&gt;
     
     <item>
       <title>traducao ruby 2 dot 0 por exemplos</title>
-      <link>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
+      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
       <pubDate>Tue, 26 Feb 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
+      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
       <description>&lt;p&gt;Olá amigos,&lt;/p&gt;
 
 &lt;p&gt;Tudo tranquilo?&lt;/p&gt;
