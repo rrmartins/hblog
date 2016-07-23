@@ -3,7 +3,7 @@
   <channel>
       <title>Posts on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/post/</link>
+    <link>http://rodij.me/post/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>go difference between map</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/go-difference-between-map/</link>
+      <link>http://rodij.me/post/2016/05/12/go-difference-between-map/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/go-difference-between-map/</guid>
+      <guid>http://rodij.me/post/2016/05/12/go-difference-between-map/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -195,10 +195,10 @@ len(arr)
     
     <item>
       <title>rss collector in ruby and go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -297,10 +297,10 @@ Benchmark: 2.20670856s
     
     <item>
       <title>go simple tests number testing number go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
+      <link>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
       <pubDate>Tue, 19 Apr 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
+      <guid>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -385,10 +385,10 @@ ok  	command-line-arguments	0.011s
     
     <item>
       <title>go what is goroutines</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/16/go-what-is-goroutines/</link>
+      <link>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</link>
       <pubDate>Sat, 16 Apr 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/16/go-what-is-goroutines/</guid>
+      <guid>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -582,10 +582,10 @@ And the output is:
     
     <item>
       <title>comparando auto increments ruby x golang</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
       <description>&lt;p&gt;Æ,&lt;/p&gt;
 
 &lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;
@@ -634,13 +634,13 @@ Em Go:
     
     <item>
       <title>expressao ternaria em go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
       <description>&lt;p&gt;Æ galera,&lt;/p&gt;
 
-&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;https://limitless-eyrie-46143.herokuapp.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
 
 &lt;p&gt;Tal erro:&lt;/p&gt;
 
@@ -668,10 +668,10 @@ Pois bem, no mundo ruby, seria algo assim:
     
     <item>
       <title>resolvendo problema com port com uma app golang no heroku</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
+      <link>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
       <pubDate>Mon, 28 Sep 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
+      <guid>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
       <description>
 
 &lt;p&gt;Æ,&lt;/p&gt;
@@ -787,10 +787,10 @@ Para não fazer um `if` deste modo:
     
     <item>
       <title>ser importante ou famoso</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/21/ser-importante-ou-famoso/</link>
+      <link>http://rodij.me/post/2015/09/21/ser-importante-ou-famoso/</link>
       <pubDate>Mon, 21 Sep 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/21/ser-importante-ou-famoso/</guid>
+      <guid>http://rodij.me/post/2015/09/21/ser-importante-ou-famoso/</guid>
       <description>&lt;p&gt;Este é um dos pensamentos mais legais que já vi sobre este tema. Em uma correria do nossos dias, vejo muitos querendo ser famoso e tal, quando em uma breve realização, e pronto. Mas, vejo que a importancia que damos ao ser famoso é em demasia grande. Quando podemos olhar e viver para ser simples e importante. Nesse sentido, transcrevo abaixo um texto muito bom para esta reflexão do filosofo brasileiro Mario Sergio Cortella.&lt;/p&gt;
 
 &lt;p&gt;Destaco para o inicio desta boa leitura:&lt;/p&gt;
@@ -869,10 +869,10 @@ vida que, sem dúvida, ela é curta, eu desejo que ela não seja pequena.
     
     <item>
       <title>ditado chines do pao</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2014/12/10/ditado-chines-do-pao/</link>
+      <link>http://rodij.me/post/2014/12/10/ditado-chines-do-pao/</link>
       <pubDate>Wed, 10 Dec 2014 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2014/12/10/ditado-chines-do-pao/</guid>
+      <guid>http://rodij.me/post/2014/12/10/ditado-chines-do-pao/</guid>
       <description>&lt;p&gt;Hoje, escutei de um amigo um ditado Chinês.
 Que achei muito massa ser repassado!&lt;/p&gt;
 
@@ -896,10 +896,10 @@ cada um vai embora com duas idéias.
     
     <item>
       <title>brincando com chicagoboss</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2014/05/18/brincando-com-chicagoboss/</link>
+      <link>http://rodij.me/post/2014/05/18/brincando-com-chicagoboss/</link>
       <pubDate>Sun, 18 May 2014 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2014/05/18/brincando-com-chicagoboss/</guid>
+      <guid>http://rodij.me/post/2014/05/18/brincando-com-chicagoboss/</guid>
       <description>&lt;p&gt;Uma pequena Introdução:&lt;/p&gt;
 
 &lt;p&gt;Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
@@ -954,10 +954,10 @@ e (com sorte) cumprir seus desejos.&lt;/p&gt;
     
     <item>
       <title>tenho sede</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2014/02/26/tenho-sede/</link>
+      <link>http://rodij.me/post/2014/02/26/tenho-sede/</link>
       <pubDate>Wed, 26 Feb 2014 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2014/02/26/tenho-sede/</guid>
+      <guid>http://rodij.me/post/2014/02/26/tenho-sede/</guid>
       <description>&lt;p&gt;Tenho Sede&lt;/p&gt;
 
 &lt;p&gt;
@@ -992,10 +992,10 @@ Rodrigo Martins
     
     <item>
       <title>as duas faces de string</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</link>
+      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
       <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
@@ -1027,10 +1027,10 @@ do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito 
     
     <item>
       <title>expressoes regulares em ruby</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
       <description>
 
 &lt;p&gt;Olá amigos,&lt;/p&gt;
@@ -1135,10 +1135,10 @@ end
     
     <item>
       <title>nao e bem uma string</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
       <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
 que finaliza com a pergunta:&lt;/p&gt;
 
@@ -1174,10 +1174,10 @@ esta é a forma rápida e confiável.&lt;/p&gt;
     
     <item>
       <title>traducao ruby 2 dot 0 por exemplos</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
+      <link>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
       <pubDate>Tue, 26 Feb 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
+      <guid>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
       <description>&lt;p&gt;Olá amigos,&lt;/p&gt;
 
 &lt;p&gt;Tudo tranquilo?&lt;/p&gt;

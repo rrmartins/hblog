@@ -3,7 +3,7 @@
   <channel>
       <title>Symbol on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/symbol/</link>
+    <link>http://rodij.me/categories/symbol/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>as duas faces de string</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</link>
+      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
       <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
@@ -46,10 +46,10 @@ do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito 
     
     <item>
       <title>symbols ruby 1 dot 9 2</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/16/symbols-ruby-1-dot-9-2/</link>
+      <link>http://rodij.me/post/2012/05/16/symbols-ruby-1-dot-9-2/</link>
       <pubDate>Wed, 16 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/16/symbols-ruby-1-dot-9-2/</guid>
+      <guid>http://rodij.me/post/2012/05/16/symbols-ruby-1-dot-9-2/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 
 &lt;p&gt;Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.&lt;/p&gt;

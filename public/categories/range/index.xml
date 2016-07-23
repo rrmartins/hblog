@@ -3,7 +3,7 @@
   <channel>
       <title>Range on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/range/</link>
+    <link>http://rodij.me/categories/range/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>testando associacoes em range</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/15/testando-associacoes-em-range/</link>
+      <link>http://rodij.me/post/2012/05/15/testando-associacoes-em-range/</link>
       <pubDate>Tue, 15 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/15/testando-associacoes-em-range/</guid>
+      <guid>http://rodij.me/post/2012/05/15/testando-associacoes-em-range/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 
 &lt;p&gt;Hoje vamos continuar falando de Range, é hora de nos aprofundar.&lt;/p&gt;
@@ -106,10 +106,10 @@ e 1.9 têm pouco impacto.&lt;/p&gt;
     
     <item>
       <title>ranges ruby 1 dot 9 2 part i</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/13/ranges-ruby-1-dot-9-2-part-i/</link>
+      <link>http://rodij.me/post/2012/05/13/ranges-ruby-1-dot-9-2-part-i/</link>
       <pubDate>Sun, 13 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/13/ranges-ruby-1-dot-9-2-part-i/</guid>
+      <guid>http://rodij.me/post/2012/05/13/ranges-ruby-1-dot-9-2-part-i/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 
 &lt;p&gt;Hoje vamos falar um pouco de Range, é hora de nos aprofundar.&lt;/p&gt;

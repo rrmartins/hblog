@@ -3,7 +3,7 @@
   <channel>
       <title>Ternary Expression on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/ternary-expression/</link>
+    <link>http://rodij.me/categories/ternary-expression/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,13 +11,13 @@
     
     <item>
       <title>expressao ternaria em go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
       <description>&lt;p&gt;Æ galera,&lt;/p&gt;
 
-&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;https://limitless-eyrie-46143.herokuapp.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
 
 &lt;p&gt;Tal erro:&lt;/p&gt;
 

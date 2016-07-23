@@ -3,7 +3,7 @@
   <channel>
       <title>Yaml on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/yaml/</link>
+    <link>http://rodij.me/categories/yaml/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>classe objects em ruby 1 dot 9 2 part vi</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/</link>
+      <link>http://rodij.me/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/</link>
       <pubDate>Sun, 20 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/</guid>
+      <guid>http://rodij.me/post/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Object.html&#34;&gt;Objects&lt;/a&gt;, é hora de nos aprofundar.&lt;/p&gt;
 
 &lt;h1&gt;Objetos&lt;/h1&gt;

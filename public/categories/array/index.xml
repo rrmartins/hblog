@@ -3,7 +3,7 @@
   <channel>
       <title>Array on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/array/</link>
+    <link>http://rodij.me/categories/array/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9 part ii</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
+      <link>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
       <pubDate>Wed, 29 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
+      <guid>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -124,10 +124,10 @@ do exterior do objecto.&lt;/p&gt;
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 26 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de &lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -286,10 +286,10 @@ Hora de dar um &lt;code&gt;break&lt;/code&gt;&amp;hellip; :)&lt;/p&gt;
     
     <item>
       <title>blocos em number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 19 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -568,10 +568,10 @@ invocação do bloco. Lembre, no entanto, que a invocação &lt;code&gt;yield&lt
     
     <item>
       <title>escrevendo iteradores personalizados number ruby 1 dot 9 2</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</link>
+      <link>http://rodij.me/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</link>
       <pubDate>Sun, 05 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</guid>
+      <guid>http://rodij.me/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -690,10 +690,10 @@ end
     
     <item>
       <title>objetos enumeraveis number ruby 1 dot 9 2</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</link>
+      <link>http://rodij.me/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</link>
       <pubDate>Wed, 25 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</guid>
+      <guid>http://rodij.me/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
 
 &lt;h1&gt;Objetos Enumeráveis&lt;/h1&gt;
@@ -771,10 +771,10 @@ max = data.inject{|m,x| m&amp;gt;x ? m : x }     # =&amp;gt; 5     (elemento mai
     
     <item>
       <title>iteradores numericos</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/14/iteradores-numericos/</link>
+      <link>http://rodij.me/post/2012/07/14/iteradores-numericos/</link>
       <pubDate>Sat, 14 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/14/iteradores-numericos/</guid>
+      <guid>http://rodij.me/post/2012/07/14/iteradores-numericos/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Iteradores Numéricos`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
 
 &lt;h1&gt;Iteradores Numéricos&lt;/h1&gt;
@@ -819,10 +819,10 @@ atingir &lt;code&gt;Math::PI&lt;/code&gt;:&lt;/p&gt;
     
     <item>
       <title>unless number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
       <pubDate>Thu, 05 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -903,10 +903,10 @@ end
     
     <item>
       <title>demonstracoes e estruturas de controle</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
+      <link>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
       <pubDate>Mon, 18 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
+      <guid>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle&lt;/p&gt;
@@ -1076,10 +1076,10 @@ name = if x == 1 then &amp;quot;um&amp;quot;
     
     <item>
       <title>atribuicao paralela number ruby</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
+      <link>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
       <pubDate>Mon, 11 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
+      <guid>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições Paralelas&lt;/p&gt;
 
 &lt;h1&gt;Atribuições Paralelas&lt;/h1&gt;
@@ -1229,10 +1229,10 @@ a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
     
     <item>
       <title>atribuicoes</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/03/atribuicoes/</link>
+      <link>http://rodij.me/post/2012/06/03/atribuicoes/</link>
       <pubDate>Sun, 03 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/03/atribuicoes/</guid>
+      <guid>http://rodij.me/post/2012/06/03/atribuicoes/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições&lt;/p&gt;
 
 &lt;h1&gt;Atribuições&lt;/h1&gt;
@@ -1413,10 +1413,10 @@ x &amp;gt;&amp;gt;= y                             x = x &amp;gt;&amp;gt; y
     
     <item>
       <title>invocacoes de metodo</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/invocacoes-de-metodo/</link>
+      <link>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</link>
       <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/invocacoes-de-metodo/</guid>
+      <guid>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
 
 &lt;h1&gt;Invocações de método&lt;/h1&gt;
@@ -1513,10 +1513,10 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
     
     <item>
       <title>variaveis nao inicializadas</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/variaveis-nao-inicializadas/</link>
+      <link>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</link>
       <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/variaveis-nao-inicializadas/</guid>
+      <guid>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
 
 &lt;h1&gt;Variáveis ​​não inicializadas&lt;/h1&gt;
@@ -1564,10 +1564,10 @@ puts b # NameError: nenhuma variável ou método chamado existe b
     
     <item>
       <title>variaveis de referencia</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/01/variaveis-de-referencia/</link>
+      <link>http://rodij.me/post/2012/06/01/variaveis-de-referencia/</link>
       <pubDate>Fri, 01 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/01/variaveis-de-referencia/</guid>
+      <guid>http://rodij.me/post/2012/06/01/variaveis-de-referencia/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis de Referência&lt;/p&gt;
 
 &lt;h1&gt;Variáveis de Referência&lt;/h1&gt;
@@ -1597,10 +1597,10 @@ item.preco é uma invocação do método chamado preco (preço) sobre o valor re
     
     <item>
       <title>literais e palavras chaves literais</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/27/literais-e-palavras-chaves-literais/</link>
+      <link>http://rodij.me/post/2012/05/27/literais-e-palavras-chaves-literais/</link>
       <pubDate>Sun, 27 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/27/literais-e-palavras-chaves-literais/</guid>
+      <guid>http://rodij.me/post/2012/05/27/literais-e-palavras-chaves-literais/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais&lt;/p&gt;
 
 &lt;h1&gt;Literais e Plavras-chaves literais&lt;/h1&gt;
@@ -1632,10 +1632,10 @@ __ENCODING__   -&amp;gt;   Avalia a um objeto Encoding que especifica a codifica
     
     <item>
       <title>um pouco de array no ruby</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/07/um-pouco-de-array-no-ruby/</link>
+      <link>http://rodij.me/post/2012/05/07/um-pouco-de-array-no-ruby/</link>
       <pubDate>Mon, 07 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/07/um-pouco-de-array-no-ruby/</guid>
+      <guid>http://rodij.me/post/2012/05/07/um-pouco-de-array-no-ruby/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 
 &lt;p&gt;Um Array é uma seqüência de valores que permite que os valores serem acessados por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último

@@ -3,7 +3,7 @@
   <channel>
       <title>Benchmark on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/benchmark/</link>
+    <link>http://rodij.me/categories/benchmark/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>rss collector in ruby and go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;

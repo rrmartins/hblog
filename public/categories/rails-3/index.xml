@@ -3,7 +3,7 @@
   <channel>
       <title>Rails 3 on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/rails-3/</link>
+    <link>http://rodij.me/categories/rails-3/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>criando combobox com rails 3</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/02/15/criando-combobox-com-rails-3/</link>
+      <link>http://rodij.me/post/2012/02/15/criando-combobox-com-rails-3/</link>
       <pubDate>Wed, 15 Feb 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/02/15/criando-combobox-com-rails-3/</guid>
+      <guid>http://rodij.me/post/2012/02/15/criando-combobox-com-rails-3/</guid>
       <description>&lt;p&gt;&lt;p&gt;
 Para todos aqueles que conhecem o &lt;a href=&#34;http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html&#34;&gt;Form_for&lt;/a&gt;,
  e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de &lt;a href=&#34;http://api.rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, e

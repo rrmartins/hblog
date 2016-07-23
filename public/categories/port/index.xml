@@ -3,7 +3,7 @@
   <channel>
       <title>Port on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/port/</link>
+    <link>http://rodij.me/categories/port/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>resolvendo problema com port com uma app golang no heroku</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
+      <link>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
       <pubDate>Mon, 28 Sep 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
+      <guid>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
       <description>
 
 &lt;p&gt;Æ,&lt;/p&gt;

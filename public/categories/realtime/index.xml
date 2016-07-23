@@ -3,7 +3,7 @@
   <channel>
       <title>Realtime on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/realtime/</link>
+    <link>http://rodij.me/categories/realtime/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>desenvolvendo um chat com nodejs</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/04/30/desenvolvendo-um-chat-com-nodejs/</link>
+      <link>http://rodij.me/post/2012/04/30/desenvolvendo-um-chat-com-nodejs/</link>
       <pubDate>Mon, 30 Apr 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/04/30/desenvolvendo-um-chat-com-nodejs/</guid>
+      <guid>http://rodij.me/post/2012/04/30/desenvolvendo-um-chat-com-nodejs/</guid>
       <description>&lt;p&gt;Olá Developers&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;Vamos desenvolver um pequeno Chat em NodeJS&amp;hellip; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim&amp;hellip;&lt;/p&gt;

@@ -3,7 +3,7 @@
   <channel>
       <title>Elabs on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/elabs/</link>
+    <link>http://rodij.me/categories/elabs/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>traducao trabalhando com time zones em ruby on rails</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</link>
+      <link>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</link>
       <pubDate>Sun, 02 Dec 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</guid>
+      <guid>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</guid>
       <description>
 
 &lt;p&gt;Conversando com o &lt;a href=&#34;https://twitter.com/cjkihlbom&#34;&gt;CJ Kihlbom&lt;/a&gt;, um cara super gente boa. :) E ele liberou ai a tradução do post &lt;a href=&#34;http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails&#34;&gt;Working with time zones in Ruby on Rails&lt;/a&gt;.&lt;/p&gt;

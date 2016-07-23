@@ -3,7 +3,7 @@
   <channel>
       <title>Enumerable on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/enumerable/</link>
+    <link>http://rodij.me/categories/enumerable/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>escrevendo iteradores personalizados number ruby 1 dot 9 2</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</link>
+      <link>http://rodij.me/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</link>
       <pubDate>Sun, 05 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</guid>
+      <guid>http://rodij.me/post/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -133,10 +133,10 @@ end
     
     <item>
       <title>objetos enumeraveis number ruby 1 dot 9 2</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</link>
+      <link>http://rodij.me/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</link>
       <pubDate>Wed, 25 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</guid>
+      <guid>http://rodij.me/post/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
 
 &lt;h1&gt;Objetos Enumeráveis&lt;/h1&gt;
@@ -214,10 +214,10 @@ max = data.inject{|m,x| m&amp;gt;x ? m : x }     # =&amp;gt; 5     (elemento mai
     
     <item>
       <title>unless number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
       <pubDate>Thu, 05 Jul 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -298,10 +298,10 @@ end
     
     <item>
       <title>atribuicao paralela number ruby</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
+      <link>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
       <pubDate>Mon, 11 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
+      <guid>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições Paralelas&lt;/p&gt;
 
 &lt;h1&gt;Atribuições Paralelas&lt;/h1&gt;

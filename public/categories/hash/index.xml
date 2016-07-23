@@ -3,7 +3,7 @@
   <channel>
       <title>Hash on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/hash/</link>
+    <link>http://rodij.me/categories/hash/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>threads e concorrencia exemplos de threads part iv number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Exemplos de Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -140,10 +140,10 @@ h.each_pair.concurrently {|*pair| process(pair)}
     
     <item>
       <title>threads e concorrencia escalando threads part iii number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Escalando Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -193,10 +193,10 @@ programador para produzir a CPU para outra &lt;code&gt;thread&lt;/code&gt;.&lt;
     
     <item>
       <title>threads e concorrencia part i number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Thread Lifecycle&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -308,10 +308,10 @@ t.abort_on_exception = true
     
     <item>
       <title>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Threads e Variáveis&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -426,10 +426,10 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9 part ii</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
+      <link>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
       <pubDate>Wed, 29 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
+      <guid>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -539,10 +539,10 @@ do exterior do objecto.&lt;/p&gt;
     
     <item>
       <title>reflexao e metaprogramacao number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 26 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de &lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -701,10 +701,10 @@ Hora de dar um &lt;code&gt;break&lt;/code&gt;&amp;hellip; :)&lt;/p&gt;
     
     <item>
       <title>blocos em number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 19 Aug 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
@@ -983,10 +983,10 @@ invocação do bloco. Lembre, no entanto, que a invocação &lt;code&gt;yield&lt
     
     <item>
       <title>invocacoes de metodo</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/invocacoes-de-metodo/</link>
+      <link>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</link>
       <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/invocacoes-de-metodo/</guid>
+      <guid>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
 
 &lt;h1&gt;Invocações de método&lt;/h1&gt;
@@ -1083,10 +1083,10 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
     
     <item>
       <title>variaveis nao inicializadas</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/variaveis-nao-inicializadas/</link>
+      <link>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</link>
       <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/02/variaveis-nao-inicializadas/</guid>
+      <guid>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
 
 &lt;h1&gt;Variáveis ​​não inicializadas&lt;/h1&gt;
@@ -1134,10 +1134,10 @@ puts b # NameError: nenhuma variável ou método chamado existe b
     
     <item>
       <title>variaveis de referencia</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/01/variaveis-de-referencia/</link>
+      <link>http://rodij.me/post/2012/06/01/variaveis-de-referencia/</link>
       <pubDate>Fri, 01 Jun 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/06/01/variaveis-de-referencia/</guid>
+      <guid>http://rodij.me/post/2012/06/01/variaveis-de-referencia/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis de Referência&lt;/p&gt;
 
 &lt;h1&gt;Variáveis de Referência&lt;/h1&gt;
@@ -1167,10 +1167,10 @@ item.preco é uma invocação do método chamado preco (preço) sobre o valor re
     
     <item>
       <title>literais e palavras chaves literais</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/27/literais-e-palavras-chaves-literais/</link>
+      <link>http://rodij.me/post/2012/05/27/literais-e-palavras-chaves-literais/</link>
       <pubDate>Sun, 27 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/27/literais-e-palavras-chaves-literais/</guid>
+      <guid>http://rodij.me/post/2012/05/27/literais-e-palavras-chaves-literais/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais&lt;/p&gt;
 
 &lt;h1&gt;Literais e Plavras-chaves literais&lt;/h1&gt;
@@ -1202,10 +1202,10 @@ __ENCODING__   -&amp;gt;   Avalia a um objeto Encoding que especifica a codifica
     
     <item>
       <title>o mundo hash no ruby 1 dot 9 2 parte iii hashs codes</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</link>
+      <link>http://rodij.me/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</link>
       <pubDate>Thu, 10 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</guid>
+      <guid>http://rodij.me/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 &lt;p&gt;Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.&lt;/p&gt;
 
@@ -1235,10 +1235,10 @@ Se você deve usar chaves de hash mutável, chame o método &lt;a href=&#34;http
     
     <item>
       <title>o mundo hash no ruby 1 dot 9 2</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</link>
+      <link>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</link>
       <pubDate>Tue, 08 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</guid>
+      <guid>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</guid>
       <description>
 
 &lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
@@ -1272,10 +1272,10 @@ Mais informações sobre a API definida pela classe Hash é fornecido em &lt;a h
     
     <item>
       <title>o mundo hash no ruby 1 dot 9 2 parte ii hashs literais</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/</link>
+      <link>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/</link>
       <pubDate>Tue, 08 May 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/</guid>
+      <guid>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/</guid>
       <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
 
 &lt;p&gt;Na primeira parte eu fiz uma introdução do Hash:

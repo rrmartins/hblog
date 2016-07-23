@@ -3,7 +3,7 @@
   <channel>
       <title>Ruby on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/ruby/</link>
+    <link>http://rodij.me/categories/ruby/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>rss collector in ruby and go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -113,10 +113,10 @@ Benchmark: 2.20670856s
     
     <item>
       <title>comparando auto increments ruby x golang</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
       <description>&lt;p&gt;Æ,&lt;/p&gt;
 
 &lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;
@@ -165,13 +165,13 @@ Em Go:
     
     <item>
       <title>expressao ternaria em go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
       <description>&lt;p&gt;Æ galera,&lt;/p&gt;
 
-&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;https://limitless-eyrie-46143.herokuapp.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
 
 &lt;p&gt;Tal erro:&lt;/p&gt;
 
@@ -199,10 +199,10 @@ Pois bem, no mundo ruby, seria algo assim:
     
     <item>
       <title>as duas faces de string</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</link>
+      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
       <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
@@ -234,10 +234,10 @@ do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito 
     
     <item>
       <title>expressoes regulares em ruby</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
       <description>
 
 &lt;p&gt;Olá amigos,&lt;/p&gt;
@@ -342,10 +342,10 @@ end
     
     <item>
       <title>nao e bem uma string</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
       <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
 que finaliza com a pergunta:&lt;/p&gt;
 
@@ -381,10 +381,10 @@ esta é a forma rápida e confiável.&lt;/p&gt;
     
     <item>
       <title>traducao ruby 2 dot 0 por exemplos</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
+      <link>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
       <pubDate>Tue, 26 Feb 2013 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
+      <guid>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
       <description>&lt;p&gt;Olá amigos,&lt;/p&gt;
 
 &lt;p&gt;Tudo tranquilo?&lt;/p&gt;
@@ -829,10 +829,10 @@ warn &amp;quot;Optimization only on 64 bit systems&amp;quot; unless 42.size * 8 
     
     <item>
       <title>traducao trabalhando com time zones em ruby on rails</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</link>
+      <link>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</link>
       <pubDate>Sun, 02 Dec 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</guid>
+      <guid>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</guid>
       <description>
 
 &lt;p&gt;Conversando com o &lt;a href=&#34;https://twitter.com/cjkihlbom&#34;&gt;CJ Kihlbom&lt;/a&gt;, um cara super gente boa. :) E ele liberou ai a tradução do post &lt;a href=&#34;http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails&#34;&gt;Working with time zones in Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
@@ -1044,10 +1044,10 @@ postar um comentário abaixo!&lt;/p&gt;
     
     <item>
       <title>threads e concorrencia exemplos de threads part iv number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Exemplos de Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -1173,10 +1173,10 @@ h.each_pair.concurrently {|*pair| process(pair)}
     
     <item>
       <title>threads e concorrencia escalando threads part iii number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Escalando Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -1226,10 +1226,10 @@ programador para produzir a CPU para outra &lt;code&gt;thread&lt;/code&gt;.&lt;
     
     <item>
       <title>threads e concorrencia part i number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Thread Lifecycle&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -1341,10 +1341,10 @@ t.abort_on_exception = true
     
     <item>
       <title>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
       <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Threads e Variáveis&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
@@ -1459,10 +1459,10 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
     
     <item>
       <title>encadeamento de alias number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</link>
       <pubDate>Tue, 18 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
@@ -1774,10 +1774,10 @@ end
     
     <item>
       <title>criando metodos dinamicamente number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</link>
       <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</guid>
       <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
 &lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Criando Métodos Dinamicamente&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
 
@@ -1913,10 +1913,10 @@ end
     
     <item>
       <title>missing methods e missing constants number ruby 1 dot 9</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</link>
+      <link>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</link>
       <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</guid>
+      <guid>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</guid>
       <description>
 
 &lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de

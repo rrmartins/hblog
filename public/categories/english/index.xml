@@ -3,7 +3,7 @@
   <channel>
       <title>English on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/english/</link>
+    <link>http://rodij.me/categories/english/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>go difference between map</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/go-difference-between-map/</link>
+      <link>http://rodij.me/post/2016/05/12/go-difference-between-map/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/go-difference-between-map/</guid>
+      <guid>http://rodij.me/post/2016/05/12/go-difference-between-map/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -195,10 +195,10 @@ len(arr)
     
     <item>
       <title>go simple tests number testing number go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
+      <link>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
       <pubDate>Tue, 19 Apr 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
+      <guid>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -283,10 +283,10 @@ ok  	command-line-arguments	0.011s
     
     <item>
       <title>go what is goroutines</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/16/go-what-is-goroutines/</link>
+      <link>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</link>
       <pubDate>Sat, 16 Apr 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/16/go-what-is-goroutines/</guid>
+      <guid>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;

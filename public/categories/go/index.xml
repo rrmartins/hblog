@@ -3,7 +3,7 @@
   <channel>
       <title>Go on Rodrigo Martins </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>https://limitless-eyrie-46143.herokuapp.com/categories/go/</link>
+    <link>http://rodij.me/categories/go/</link>
     <language>en-us</language>
     
     <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>go difference between map</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/go-difference-between-map/</link>
+      <link>http://rodij.me/post/2016/05/12/go-difference-between-map/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/go-difference-between-map/</guid>
+      <guid>http://rodij.me/post/2016/05/12/go-difference-between-map/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -195,10 +195,10 @@ len(arr)
     
     <item>
       <title>rss collector in ruby and go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
       <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -297,10 +297,10 @@ Benchmark: 2.20670856s
     
     <item>
       <title>go simple tests number testing number go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
+      <link>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
       <pubDate>Tue, 19 Apr 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
+      <guid>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -385,10 +385,10 @@ ok  	command-line-arguments	0.011s
     
     <item>
       <title>go what is goroutines</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/16/go-what-is-goroutines/</link>
+      <link>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</link>
       <pubDate>Sat, 16 Apr 2016 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2016/04/16/go-what-is-goroutines/</guid>
+      <guid>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</guid>
       <description>
 
 &lt;p&gt;Hi,&lt;/p&gt;
@@ -582,10 +582,10 @@ And the output is:
     
     <item>
       <title>comparando auto increments ruby x golang</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
       <description>&lt;p&gt;Æ,&lt;/p&gt;
 
 &lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;
@@ -634,13 +634,13 @@ Em Go:
     
     <item>
       <title>expressao ternaria em go</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
       <description>&lt;p&gt;Æ galera,&lt;/p&gt;
 
-&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;https://limitless-eyrie-46143.herokuapp.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
 
 &lt;p&gt;Tal erro:&lt;/p&gt;
 
@@ -668,10 +668,10 @@ Pois bem, no mundo ruby, seria algo assim:
     
     <item>
       <title>resolvendo problema com port com uma app golang no heroku</title>
-      <link>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
+      <link>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
       <pubDate>Mon, 28 Sep 2015 00:00:00 UTC</pubDate>
       
-      <guid>https://limitless-eyrie-46143.herokuapp.com/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
+      <guid>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
       <description>
 
 &lt;p&gt;Æ,&lt;/p&gt;
