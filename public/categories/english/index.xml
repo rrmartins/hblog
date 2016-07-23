@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>English on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/english/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 12 May 2016 00:00:00 UTC</updated>
+    
+    <item>
+      <title>go difference between map</title>
+      <link>http://rodij.me/post/2016/05/12/go-difference-between-map/</link>
+      <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/05/12/go-difference-between-map/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s talk a little about &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;slice&lt;/code&gt; and &lt;code&gt;array&lt;/code&gt; in &lt;a href=&#34;https://golang.org/&#34;&gt;Go language&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#map&#34;&gt;Map&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#slice&#34;&gt;Slice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#array&#34;&gt;Array&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I go start talk with &lt;a href=&#34;https://golang.org/pkg/go/types/#Map&#34;&gt;map&lt;/a&gt;:&lt;/p&gt;
+
+&lt;h2 id=&#34;a-name-map-maps-a&#34;&gt;&lt;a name=&#34;map&#34;&gt;Maps&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gobyexample.com/maps&#34;&gt;Maps are Go’s built-in associative data type (sometimes called hashes or dicts in other languages).&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go create a map empty, use the structure &lt;code&gt;make(map[key-type]val-type)&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` go map empty
+  m := make(map[string]int)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+By setting the key and value:
+
+``` go set key/value
+  m[&amp;quot;one&amp;quot;] = 12
+  m[&amp;quot;two&amp;quot;] = 05
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get a value of key:&lt;/p&gt;
+
+&lt;p&gt;``` go get valeu
+value := m[&amp;ldquo;one&amp;rdquo;]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Easy!
+
+To return size the map:
+
+``` go size map
+len := len(m)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Deleted a key:&lt;/p&gt;
+
+&lt;p&gt;``` go delete key
+delete(m, &amp;ldquo;two&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+If want get `m[&amp;quot;two&amp;quot;]` after delete key, the return is `0`, but can use `_` (blank identifier).
+
+``` go get value deleted
+_, can_valeu := m[&amp;quot;two&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then the value of &lt;code&gt;can_valeu&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create map with key type integer:&lt;/p&gt;
+
+&lt;p&gt;``` go key integer
+m := make(map[int]int)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+``` go set key/value of type integer
+  m[1] = 12
+  m[2] = 05
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using a map in a loop:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;for i := range m {
+    fmt.Println(&amp;quot;i:&amp;quot;, i)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/cefa8dc31c20f6face293846316ac9f3.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;a-name-slice-slice-a&#34;&gt;&lt;a name=&#34;slice&#34;&gt;Slice&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Go talk about &lt;a href=&#34;https://golang.org/pkg/go/types/#Slice&#34;&gt;Slice&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gobyexample.com/slices&#34;&gt;Slices are a key data type in Go, giving a more powerful interface to sequences than arrays.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a slice the values of string type and with the length 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;myslice := make([]string, 3)
+fmt.Println(&amp;quot;myslice:&amp;quot;, myslice)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;myslice&lt;/code&gt; slice is &lt;code&gt;[   ]&lt;/code&gt;, initially zero valued. Now go set values.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;myslice[0] = &amp;quot;a&amp;quot;
+myslice[1] = &amp;quot;b&amp;quot;
+myslice[2] = &amp;quot;c&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get value, use &lt;code&gt;slice[key]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;myslice[2]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When create a slice, the default type of key is integer.&lt;/p&gt;
+
+&lt;p&gt;Get length is equal the &lt;code&gt;map&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` go length slice
+len(myslice)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+To add new values in our slice, use `append(slice, value[s])`:
+
+``` go append
+myslice = append(myslice, &amp;quot;d&amp;quot;)
+myslice = append(myslice, &amp;quot;e&amp;quot;)
+myslice = append(myslice, &amp;quot;f&amp;quot;, &amp;quot;g&amp;quot;, &amp;quot;h&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can cut a slice from one location to another:&lt;/p&gt;
+
+&lt;p&gt;``` go cut a slice
+myslice[1:4] // from position 1 to the position 4
+myslice[1:] // from position 1 to the end
+myslice[:4] // from position 0 to the position 4&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+We have other ways of working with slice.
+
+&amp;lt;script src=&amp;quot;https://gist.github.com/rrmartins/359fba134ae3937efd802d36b0028f72.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+## &amp;lt;a name=&amp;quot;array&amp;quot;&amp;gt;Array&amp;lt;/a&amp;gt;
+Go talk about [Array](https://golang.org/pkg/go/types/#Array).
+
+[In Go, an array is a numbered sequence of elements of a specific length.](https://gobyexample.com/arrays)
+
+Array is most simple.
+
+Create a array with position 10, of type string:
+
+``` go create a array
+var arr [10]string
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The default valeu an array is zero-valued, which for string means &amp;ldquo;&amp;rdquo;, if the array were of type integer, then the default values would be 0.&lt;/p&gt;
+
+&lt;p&gt;To set value, is need speak key of array.&lt;/p&gt;
+
+&lt;p&gt;``` go set value
+arr[0] = &amp;ldquo;one str&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Get is equal `map` and `slice`:
+
+``` go get value
+arr[0] // easy! :)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get the length of array, &lt;code&gt;len()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;go len()
+len(arr)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/5d6a97199a631bcefc91e492d206e53e.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Many other functions of &lt;code&gt;array&lt;/code&gt; are similar of &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;slices&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gobyexample.com/&#34;&gt;gobyexample.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.golang.org/go-maps-in-action&#34;&gt;blog.golang.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://golang.org/pkg/go/types/&#34;&gt;golang.org/pkg/go/types/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>go simple tests number testing number go</title>
+      <link>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
+      <pubDate>Tue, 19 Apr 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s talk about simple tests using Go with &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; package.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s get a file &lt;code&gt;simplemath.go&lt;/code&gt; by my gist:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/237ce663485d7c961a74af61e95cc3a4.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;our-test&#34;&gt;Our test&lt;/h2&gt;
+
+&lt;p&gt;With this file basic, go to our test.&lt;/p&gt;
+
+&lt;p&gt;Create test folder, and simplemath_test.go in this folder.&lt;/p&gt;
+
+&lt;p&gt;We will need of &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; package.&lt;/p&gt;
+
+&lt;p&gt;``` go Import testing
+import (
+  &amp;ldquo;testing&amp;rdquo;
+)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And import the `simplemath` package.
+
+``` go Import simplemath package
+import (
+  &amp;quot;testing&amp;quot;
+  &amp;quot;imartins/modulesimple/simplemodule/simplemath&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember of put in this file the first line the code: &lt;code&gt;package simplemath&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;``` go Package simplemath in simplemath_test
+package simplemath&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+### Add()
+
+Let&#39;s test the `Add()` function.
+
+Under the import of packets add the func.
+
+``` go Test Add() function
+func TestAdd(t *testing.T) {
+	t.Log(&amp;quot;Called simplemath class and Add() method&amp;quot;)
+  c := simplemath.Add(5,8)
+
+	if c != 13 {
+		t.Errorf(&amp;quot;Expected c of 13, but it was %d instead.&amp;quot;, c)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running the test:
+``` bash running
+$ go test test/simplemath_test.go
+ok      command-line-arguments  0.013s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Running the verbose format:
+``` bash verbose
+$ go test -v test/simplemath_test.go
+=== RUN   TestAdd
+--- PASS: TestAdd (0.00s)
+	simplemath_test.go:9: Called simplemath class and Add() method
+PASS
+ok  	command-line-arguments	0.011s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;news-tests-with-multiply-and-subtract&#34;&gt;News tests with Multiply() and Subtract()&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;simplemath_test.go&lt;/code&gt; file completed this down with the other test functions&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/80384f827c799adaae2cc8c3beb706a5.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Thanks guys! To the next post!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>go what is goroutines</title>
+      <link>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;The first question is &lt;strong&gt;&lt;em&gt;What is goroutines?&lt;/em&gt;&lt;/strong&gt; Ok! Let&amp;rsquo;s go!&lt;/p&gt;
+
+&lt;p&gt;Goroutines is lightweight threads of execution, that is capable of running concurrently with other functions. More used in Concurrency Programming.&lt;/p&gt;
+
+&lt;h2 id=&#34;an-example-basic&#34;&gt;An example basic&lt;/h2&gt;
+
+&lt;h3 id=&#34;goroutines-in-the-main-body-of-the-main-func&#34;&gt;Goroutines in the main body of the main func&lt;/h3&gt;
+
+&lt;p&gt;Create a main.go file in your folder. We write the beginning:
+``` go Beginnig of main.go
+    package main&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;time&amp;quot;
+)
+
+func main() {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+This is the scope default of our file. How the gorotines run in background, let&#39;s put a break on progress. we will add the codes below at the end of the main function in the file.
+
+``` go Input a break
+  var input string
+  fmt.Scanln(&amp;amp;input)
+  fmt.Println(&amp;quot;done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok! We make a calculation and print anything every 500 milliseconds. Add the codes below after of &lt;code&gt;func main() {&lt;/code&gt;, called of main func.&lt;/p&gt;
+
+&lt;p&gt;``` go Call gorotines
+  index := 0&lt;/p&gt;
+
+&lt;p&gt;go func(){
+    for index &amp;lt; 10 {
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; index is %d\n&amp;rdquo;, index)
+      var result float64 = 2.5 * float64(index)
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; result is %.2f\n&amp;rdquo;, result)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  time.Sleep(500 * time.Millisecond)
+  index++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}()&lt;/p&gt;
+
+&lt;p&gt;go fmt.Printf(&amp;ldquo;print in the background\n&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+The end, our file `main.go` it&#39;s:
+
+``` go File complete
+  package main
+
+  import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+  )
+
+  func main() {
+    index := 0
+
+    go func(){
+      for index &amp;lt; 6 {
+        fmt.Printf(&amp;quot;&#39;go func()&#39; index %d\n&amp;quot;, index)
+        var result float64 = 2.5 * float64(index)
+        fmt.Printf(&amp;quot;&#39;go func()&#39; result %.2f\n&amp;quot;, result)
+
+        time.Sleep(500 * time.Millisecond)
+        index++
+      }
+    }()
+
+
+    go fmt.Printf(&amp;quot;print in the background\n&amp;quot;)
+
+    // press ENTER to exit
+    var input string
+    fmt.Scanln(&amp;amp;input)
+    fmt.Println(&amp;quot;done!&amp;quot;)
+  }
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now run in terminal and your folder of project:&lt;/p&gt;
+
+&lt;p&gt;``` bash run package
+  ❯ go run main.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And output is:
+
+``` bash Output in terminal
+  print in the background
+  &#39;go func()&#39; index 0
+  &#39;go func()&#39; result 0.00
+  &#39;go func()&#39; index 1
+  &#39;go func()&#39; result 2.50
+  &#39;go func()&#39; index 2
+  &#39;go func()&#39; result 5.00
+  &#39;go func()&#39; index 3
+  &#39;go func()&#39; result 7.50
+  &#39;go func()&#39; index 4
+  &#39;go func()&#39; result 10.00
+  &#39;go func()&#39; index 5
+  &#39;go func()&#39; result 12.50
+
+  done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;gorotines-with-functions&#34;&gt;Gorotines with functions&lt;/h3&gt;
+
+&lt;p&gt;The example with even above file.&lt;/p&gt;
+
+&lt;p&gt;To execute gorotines of other function, it is only pass &lt;code&gt;go &amp;lt;name_func&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We create an function, call &lt;code&gt;Add()&lt;/code&gt; in file.&lt;/p&gt;
+
+&lt;p&gt;``` go New function Add()
+  func Add(a, b int){
+    fmt.Printf(&amp;ldquo;Add() result is %d\n&amp;rdquo;, a + b)
+  }&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Then, we call `Add()` func, with `go Add(&amp;lt;number_1&amp;gt;, &amp;lt;number_2&amp;gt;)`, within the `main()` func.
+
+``` go Call Add() func
+  go Add(8,3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;main()&lt;/code&gt; func will look like this:&lt;/p&gt;
+
+&lt;p&gt;``` go main() func complete
+  go Add(8,3)&lt;/p&gt;
+
+&lt;p&gt;index := 0&lt;/p&gt;
+
+&lt;p&gt;go func(){
+    for index &amp;lt; 6 {
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; index %d\n&amp;rdquo;, index)
+      var result float64 = 2.5 * float64(index)
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; result %.2f\n&amp;rdquo;, result)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  time.Sleep(500 * time.Millisecond)
+  index++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}()&lt;/p&gt;
+
+&lt;p&gt;go fmt.Printf(&amp;ldquo;print in the background\n&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;// press ENTER to exit
+  var input string
+  fmt.Scanln(&amp;amp;input)
+  fmt.Println(&amp;ldquo;done!&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And the output is:
+
+``` bash
+  ❯ go run main.go
+  Add() result is 11
+  print in the background
+  &#39;go func()&#39; index 0
+  &#39;go func()&#39; result 0.00
+  &#39;go func()&#39; index 1
+  &#39;go func()&#39; result 2.50
+  &#39;go func()&#39; index 2
+  &#39;go func()&#39; result 5.00
+  &#39;go func()&#39; index 3
+  &#39;go func()&#39; result 7.50
+  &#39;go func()&#39; index 4
+  &#39;go func()&#39; result 10.00
+  &#39;go func()&#39; index 5
+  &#39;go func()&#39; result 12.50
+
+  done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

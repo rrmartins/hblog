@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>   on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/--/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 08 Oct 2015 00:00:00 UTC</updated>
+    
+    <item>
+      <title>comparando auto increments ruby x golang</title>
+      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <description>&lt;p&gt;Æ,&lt;/p&gt;
+
+&lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Enquanto em Ruby fazemos assim:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Auto Increment Ruby
+   &amp;gt; a = 0
+   =&amp;gt; 0
+   a += 1
+   =&amp;gt; 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em Go, fazemos de forma um pouco mais simplificado - não sei se era essa a intenção deles.
+
+``` go Auto Increment Golang
+   a := 0
+   a ++
+   fmt.Printf(&amp;quot;a = %d&amp;quot;,a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A saída será: &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;E em caso para decrementar:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Auto Decrement Ruby
+   &amp;gt; a = 0
+   =&amp;gt; 0
+   a -= 1
+   =&amp;gt; -1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em Go:
+
+``` go Auto Decrement Golang
+   a := 0
+   a --
+   fmt.Printf(&amp;quot;a = %d&amp;quot;,a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A saída será: &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Rapidinho né?! :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

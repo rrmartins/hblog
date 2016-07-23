@@ -1,0 +1,276 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> resolvendo problema com port com uma app golang no heroku &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>resolvendo problema com port com uma app golang no heroku</h1>
+          <span class="post-date">Mon, Sep 28, 2015</span>
+          
+
+<p>Æ,</p>
+
+<p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>
+
+<p>Porém ao seguir o seu <a href="https://devcenter.heroku.com/articles/getting-started-with-go#introduction">Getting Started with Go</a>, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.</p>
+
+<p>Como resolver?</p>
+
+<pre><code>Não vou entrar nos detalhes para colocar a app no ar, pois o 'passo-a-passo'
+do Heroku da uma boa ajuda quanto a isso.
+</code></pre>
+
+<p>Um dos <a href="https://golang.org/pkg/">packages</a> nativos de Go, que é bem útil para usar no
+Heroku, é o package <a href="https://golang.org/pkg/os/">os</a>.</p>
+
+<p>A <a href="https://golang.org/doc/effective_go.html#functions">func</a> que vamos usar aqui será a <a href="https://golang.org/pkg/os/#Getenv">Getenv</a> do pacote <code>os</code>, ela lê uma variavel de ambiente que é passada como parametro do tipo <code>string</code>.</p>
+
+<p>``` go e sua chamada será algo como:
+  os.Getenv(&ldquo;&rdquo;)</p>
+
+<pre><code>
+``` go A assinatura da func
+  func Getenv(key string) string
+</code></pre>
+
+<p>Ok! Bora para o problema.</p>
+
+<p>Sem a declaração desta chamada, para que a app possa saber qual será a porta que ela vai iniciar. Iremos observar nos logs do Heroku o seguinte erro:</p>
+
+<pre><code>  2015-09-28T21:57:58.411180+00:00 heroku[web.1]: Error R10 (Boot timeout) -&gt; \
+  Web process failed to bind to $PORT within 60 seconds of launch
+</code></pre>
+
+<p>Já se torna visivel que esta reclamando de algo com relação a variavel de ambiente <code>$PORT</code>, e por isso o processo <code>web</code> não foi iniciado, recebendo na cara um <code>SIGKILL</code>.</p>
+
+<p>Ao ler a app de apresentação que foi publicada para ajuda pelo Heroku, <a href="https://github.com/heroku/go-getting-started/">app Go Getting Started on Github</a> e ler mais afinco sobre este erro e sobre &lsquo;o como o Heroku Apps precisa desta declaração :)&lsquo;, saiu algo assim:</p>
+
+<p>``` go Declaração com a variavel de ambiente $PORT
+  os.Getenv(&ldquo;PORT&rdquo;)</p>
+
+<pre><code>
+Lembrem, como estamos usando o pacote `os`, temos que fazer seu `import`.
+
+``` go Importando pacote os
+   import &quot;os&quot;
+</code></pre>
+
+<p>Caso, não faça este <code>import</code>, verá um erro ao compilar o codigo, algo como:</p>
+
+<p>``` go Erro de compilação
+$ go build</p>
+
+<h1 id="heroku-com-rrmartins-rrtempo">heroku.com/rrmartins/rrtempo</h1>
+
+<p>./servidor.go:15: undefined: os
+./servidor.go:16: undefined: os</p>
+
+<pre><code>
+Então, faça o `import &quot;os&quot;`. :)
+
+Sabendo a declaração, podemos iniciar o server:
+
+``` go Levantando o server
+   port := os.Getenv(&quot;PORT&quot;)
+   http.ListenAndServe(fmt.Sprintf(&quot;:%s&quot;, port),nil)
+</code></pre>
+
+<p>Na segunda linha do codígo acima, vemos mais dois pacotes nativos Go, <code>http</code> e <code>fmt</code>, para fazer funcionar é importante tambem fazer o <code>import</code> deles, ficando algo parecido com isso:</p>
+
+<p>``` go Importando mais pacotes
+import (
+  &ldquo;fmt&rdquo;
+  &ldquo;os&rdquo;
+  &ldquo;net/http&rdquo;
+)</p>
+
+<pre><code>
+Mas, como o problema a ser resolvido não é 'o como levantar o servidor', mas sim 'o que é preciso para tal', então vamos voltar ao caso aqui. :)
+
+Declarando só com `port := os.Getenv(&quot;PORT&quot;)`, é obrigatório que nas configurações da app no Heroku tenha a variavel `$PORT` declarada, e se não tiver? Quem poderá nos defender?
+
+Para não fazer um `if` deste modo:
+
+``` go if desnecessario
+  if os.Getenv(&quot;PORT&quot;) != &quot;&quot; {
+    port = os.Getenv(&quot;PORT&quot;)
+  } else {
+    port = &quot;8080&quot;
+  }
+</code></pre>
+
+<p>Fazemos uma condicional de uma linha só: :)</p>
+
+<p><code>go Condicional lindão
+  port := map[bool]string{true: os.Getenv(&quot;PORT&quot;), \
+  false: &quot;8080&quot;}[ os.Getenv(&quot;PORT&quot;) != &quot;&quot;]
+  http.ListenAndServe(fmt.Sprintf(&quot;:%s&quot;, port),nil)
+</code></p>
+
+<p>Vejam só, se não tem a declaração da variavel <code>$PORT</code>, assumo a porta <code>8080</code>.</p>
+
+<p>É isso ai.</p>
+
+<p>O codígo deste post esta em <a href="https://github.com/rrmartins/rrtime">Github rrtime</a>, e rodando no Heroku <a href="https://rrtime.herokuapp.com/tempo">Heroku rrtime</a>.</p>
+
+<p>Creditos pela ajuda da condicional mais simples ao <a href="https://twitter.com/iamvsouza">Vinicius Souza Twitter</a> | <a href="https://github.com/vsouza">Vinicius Souza Github</a> contribuidor da comunidade brasileira <a href="http://www.golangbr.org/">Golang BR</a>.</p>
+
+<p>Valeu!</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=resolvendo%20problema%20com%20port%20com%20uma%20app%20golang%20no%20heroku-http%3a%2f%2frodij.me%2fpost%2f2015%2f09%2f28%2fresolvendo-problema-com-port-com-uma-app-golang-no-heroku%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2015%2f09%2f28%2fresolvendo-problema-com-port-com-uma-app-golang-no-heroku%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2015%2f09%2f28%2fresolvendo-problema-com-port-com-uma-app-golang-no-heroku%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2015%2f09%2f28%2fresolvendo-problema-com-port-com-uma-app-golang-no-heroku%2f&title=resolvendo%20problema%20com%20port%20com%20uma%20app%20golang%20no%20heroku" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2015%2f09%2f28%2fresolvendo-problema-com-port-com-uma-app-golang-no-heroku%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2015%2f09%2f28%2fresolvendo-problema-com-port-com-uma-app-golang-no-heroku%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

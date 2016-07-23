@@ -1,0 +1,269 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> reflexao e metaprogramacao number ruby 1 dot 9 part iii &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>reflexao e metaprogramacao number ruby 1 dot 9 part iii</h1>
+          <span class="post-date">Wed, Aug 29, 2012</span>
+          
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Variáveis e constantes</b>... Estranho para alguns, mas, veremos que é simples!</p>
+
+<h1>Variáveis e Constantes</h1>
+
+<p><code>Kernel</code>, <code>Object</code>, <code>Module</code> definem métodos reflexivos para listar os nomes (como <code>strings</code>) de todas as variáveis definidas globais, atualmente
+variáveis locais definidas, todas as variáveis de instância de um objeto, todas as variáveis de classe de uma classe ou módulo, e todas as constantes
+de uma classe ou módulo:</p>
+
+<p>``` ruby Variaveis e Constantes
+global_variables   # =&gt; [&ldquo;$DEBUG&rdquo;, &ldquo;$SAFE&rdquo;, &hellip;]
+x = 1              # Define uma variável local
+local_variables    # =&gt; [&ldquo;x&rdquo;]</p>
+
+<h1 id="define-uma-classe-simples">Define uma classe simples</h1>
+
+<p>class Point
+  def initialize(x,y); @x,@y = x,y; end # define variáveis de instância
+  @@classvar = 1                        # Define uma variável de classe
+  ORIGIN = Point.new(0,0)               # Define uma constante
+end</p>
+
+<p>Point::ORIGIN.instance_variables # =&gt; [&ldquo;@y&rdquo;, &ldquo;@x&rdquo;]
+Point.class_variables            # =&gt; [&ldquo;@@classvar&rdquo;]
+Point.constants                  # =&gt; [&ldquo;ORIGIN&rdquo;]</p>
+
+<pre><code>
+Os `global_variables`, `local_variables`, `instance_variables`, `class_variables` e métodos constantes retornam `arrays` de `strings` em Ruby 1.8 e
+`arrays` de símbolos no Ruby 1.9.
+
+&lt;h3&gt;Consultando, Configuração e testando Variáveis&lt;/h3&gt;
+
+Além das variáveis listadas definidos e constantes, `object` e `Module` em Ruby também definem métodos de reflexão para consultas, a criação e
+remoção de variáveis de instância, variáveis de classe e constantes. Não há métodos de propósito específico para consultar ou definir as variáveis
+locais ou variáveis globais, mas você pode usar o método `eval` para esta finalidade:
+
+``` ruby Configurando Variavel
+x = 1
+varname = &quot;x&quot;
+eval(varname)           # =&gt; 1
+eval(&quot;varname = '$g'&quot;)  # Ajuste o &quot;$g&quot;
+eval(&quot;#{varname} = x&quot;)  # Seta $g a 1
+eval(varname)
+</code></pre>
+
+<p>Note que <code>eval</code> avalia o seu código em um âmbito temporário. <code>eval</code> pode alterar o valor das variáveis locais que já existem. Mas qualquer nova
+variável local definida pelo código avaliado, são locais para a invocação do <code>eval</code> e deixam de existir quando ele retorna. (É como se o código
+avaliado é executado no corpo de um bloco de variáveis-locais para um bloco não existem fora do bloco.)</p>
+
+<p>Você pode consultar, definir e testar a existência de variáveis de instância em qualquer objeto e de variáveis de classe e constantes em qualquer
+classe ou módulo:</p>
+
+<p>``` ruby Consultar Variavel
+o = Object.new
+o.instance_variable_set(:@x, 0)   # Nota exigido o prefixo @
+o.instance_variable_get(:@x)      # =&gt; 0
+o.instance_variable_defined?(:@x) # =&gt; true</p>
+
+<p>Object.class_variable_set(:@@x, 1)   # Privado no Ruby 1.8
+Object.class_variable_get(:@@x)      # Privado no Ruby 1.8
+Object.class_variable_defined?(:@@x) # =&gt; true; Ruby 1.9 e versões mais novas</p>
+
+<p>Math.const_set(:EPI, Math::E*Math::PI)
+Math.const_get(:EPI)             # =&gt; 8,53973422267357
+Math.const_defined? :EPI         # =&gt; true</p>
+
+<pre><code>
+No Ruby 1.9, você pode passar `false` como o segundo argumento para `const_get` e `const_defined?` para especificar que esses métodos devem olhar
+apenas para a classe atual ou módulo e não deve considerar constantes herdadas.
+
+Os métodos para consultar e configurar as variáveis de classe são privadas no Ruby 1.8. Nessa versão, você pode invocá-las com `class_eval`:
+
+``` ruby class_eval
+String.class_eval { class_variable_set(:@@x, 1) }  # Seta @@x em String
+String.class_eval { class_variable_get(:@@x) }     # =&gt; 1
+</code></pre>
+
+<p><code>Object</code> e <code>Module</code> definem métodos privados para variáveis de instância indefinidas, variáveis de classe e constantes. Todos eles retornam o valor
+da variável ou constante removida. Como esses métodos são privados, não pode invocá-los diretamente em um objeto, classe ou módulo, e você deve usar
+um método eval ou o método de envio:</p>
+
+<p>``` ruby instance_eval
+o.instance_eval { remove_instance_variable :@x }
+String.class_eval { remove_class_variable(:@@x) }
+Math.send :remove_const, :EPI  # Usa send para chamar o método privado</p>
+
+<pre><code>
+O método `const_missing` de um módulo é invocado, se houver um, quando uma referência é feita a uma constante indefinida. Você pode definir este
+método para retornar o valor da constante chamada. (Esta característica pode ser usada, por exemplo, para implementar uma facilidade autoload em que
+as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais simples:
+
+``` ruby cons_missing
+def Symbol.const_missing(name)
+  name # Retorna o nome da constante como um símbolo
+end
+Symbol::Test   # =&gt;: Teste: constante indefinida avalia um símbolo
+</code></pre>
+
+<p>É isso ai amigos&hellip; Bora continuar estudando!</p>
+
+<p>Em breve, irei postar um pouco sobre Engenharia! :)</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=reflexao%20e%20metaprogramacao%20number%20ruby%201%20dot%209%20part%20iii-http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f29%2freflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f29%2freflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f29%2freflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f29%2freflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii%2f&title=reflexao%20e%20metaprogramacao%20number%20ruby%201%20dot%209%20part%20iii" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f29%2freflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f29%2freflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

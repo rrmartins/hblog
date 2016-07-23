@@ -1,0 +1,411 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> reflexao e metaprogramacao metodos number ruby 1 dot 9 part iv &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>reflexao e metaprogramacao metodos number ruby 1 dot 9 part iv</h1>
+          <span class="post-date">Fri, Aug 31, 2012</span>
+          
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Métodos</b>... Estranho para alguns, mas, veremos que é simples!</p>
+
+<h1>Métodos</h1>
+
+<p>As classes de <code>Object</code> e <code>Module</code> de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar
+cada categoria, por sua vez.</p>
+
+<h3>Listagem e Teste para Métodos</h3>
+
+<p><code>Object</code> define métodos para listar os nomes dos métodos definidos no objeto. Estes métodos retornam <code>arrays</code> de nomes de métodos. Aqueles nomes são
+<code>strings</code> em <code>Ruby 1.8</code> e <code>symbols</code> no <code>Ruby 1.9</code>:</p>
+
+<p>``` ruby Listagem de Metodos
+o = &ldquo;a string&rdquo;
+o.methods                # =&gt; [nomes de todos os métodos públicos]
+o.public_methods         # =&gt; é a mesma coisa
+o.public_methods(false)  # Excluir métodos herdados
+o.protected_methods      # =&gt; []: não há qualquer
+o.private_methods        # =&gt; array de todos os métodos privados
+o.private_methods(false) # Excluir herdados métodos privados
+def o.single; 1; end     # Definir um método singleton
+o.singleton_methods      # =&gt; <a href="ou: em 1,9 [único]">&ldquo;single&rdquo;</a></p>
+
+<pre><code>
+Também é possível consultar uma classe para os métodos que ele define em vez de consultar uma instância da classe. A seguir os métodos são definidos
+por módulo. Como os métodos de objeto, eles retornam `arrays` de `strings` em `Ruby 1.8` e `arrays` de `symbols` em `Ruby 1.9`:
+
+``` ruby Consultando uma Class
+String.instance_methods == &quot;s&quot;.public_methods                # =&gt; true
+String.instance_methods(false) == &quot;s&quot;.public_methods(false)  # =&gt; true
+String.public_instance_methods == String.instance_methods    # =&gt; true
+String.protected_instance_methods       										 # =&gt; []
+String.private_instance_methods(false)  										 # =&gt; [:initialize, :initialize_copy]
+</code></pre>
+
+<p>Lembre-se que os métodos de classe de uma <code>class</code> ou <code>module</code> são métodos <code>singleton</code> do objeto de <code>class</code> ou <code>module</code>. Então, para listar métodos de
+classe, usa <code>Object.singleton_methods</code>:</p>
+
+<p>``` ruby Singleton
+Math.singleton_methods # =&gt; [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,
+                                                         :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt,
+                                                         :cbrt, :frexp, :ldexp, :hypot, :erf, :erfc, :gamma, :lgamma]</p>
+
+<pre><code>
+Para além destes métodos de listagem, a classe `Module` define alguns predicados para testar se uma classe especificada ou módulo define um método de
+instância nomeada:
+
+``` ruby Testando metodo de classe
+String.public_method_defined? :reverse     # =&gt; true
+String.protected_method_defined? :reverse  # =&gt; false
+String.private_method_defined? :initialize # =&gt; true
+String.method_defined? :upcase!            # =&gt; true
+</code></pre>
+
+<p><code>Module.method_defined?</code> verifica se o método chamado é definido como um método público ou protegido. Ele serve, essencialmente, com mesma finalidade
+que <code>Object.respond_to?</code>. No <code>Ruby 1.9</code>, você pode passar <code>false</code> como o segundo argumento para especificar que os métodos herdados não deve ser
+considerados.</p>
+
+<h3>Obtenção de método de objetos</h3>
+
+<p>Para consultar um método específico nomeado, chamar o método em qualquer objeto ou <code>instance_method</code> em qualquer módulo. O primeiro retorna um
+objeto do Método exigído pelo receptor, e o último retorna um <code>UnboundMethod</code>. No <code>Ruby 1.9</code>, você pode limitar sua pesquisa aos métodos públicos
+métodos chamando <code>public_method</code> e <code>public_instance_method</code>. Nós cobrimos esses métodos e os objetos que eles voltam no Método do Objeto:</p>
+
+<pre><code class="language-ruby">&quot;s&quot;.method(:reverse)             # =&gt; objeto Método
+String.instance_method(:reverse) # =&gt; objeto UnboundMethod
+</code></pre>
+
+<h3>Invocando Métodos</h3>
+
+<p>Como observado anteriormente, e em métodos de objetos, você pode usar o método <code>method</code> de qualquer objeto para obter um objeto que representa
+<code>Method</code> de objeto. Objetos <code>Method</code> têm um método <code>call</code> assim como objetos <code>Proc</code> fazem, você pode usá-lo para chamar o método.</p>
+
+<p>Normalmente, é mais simples para invocar um método chamado de um objeto especificado com <code>send</code>:</p>
+
+<p>``` ruby Send
+&ldquo;hello&rdquo;.send :upcase        # =&gt; &ldquo;hello&rdquo;: invocar um método de instância
+Math.send(:sin, Math::PI/2) # =&gt; 1.0: invocar um método de classe</p>
+
+<pre><code>
+`send` invoca em seu receptor o método nomeado pelo seu primeiro argumento, passando quaisquer argumentos restantes a esse método. O nome `send`
+deriva da linguagem orientada a objetos em que invocando um método é chamado, enviando uma mensagem, a um objeto.
+
+`send` pode invocar qualquer método chamando um objeto, incluindo métodos privados e protegidos. Vimos `send` utilizado anteriormente para invocar o
+método privado `remove_const` de um objeto `Module`. Porque funções globais são realmente métodos privados de `Object`, podemos usar `send` para
+chamar esses métodos em qualquer objeto (embora isso não é algo que nós, nunca realmente queremos fazer):
+
+``` ruby Send
+&quot;hello&quot;.send :puts, &quot;world&quot;         # imprime &quot;world&quot;
+</code></pre>
+
+<p>Ruby 1.9 define <code>public_send</code> como uma alternativa para <code>send</code>. Este método funciona como <code>send</code>, mas só irá chamar os métodos públicos, não
+métodos privados ou protegidos:</p>
+
+<p>``` ruby public<em>send</em>
+&ldquo;hello&rdquo;.public_send :puts, &ldquo;world&rdquo;  # raises NoMethodError</p>
+
+<pre><code>
+`send` é um método fundamental do objeto, mas tem um nome comum que pode ser substituído em subclasses. Portanto, Ruby
+define `__send__` como um sinônimo, e emite um aviso se você tentar excluir ou redefinir `__send__`.
+
+
+&lt;h3&gt;Definindo, Indefinindo e Métodos Alias&lt;/h3&gt;
+
+Se você quiser definir um novo método de instância de uma classe ou módulo, utilize `define_method`. Este método de instância de `Module` leva o
+nome do novo método (como um `symbol`), como seu primeiro argumento. O corpo do método é fornecido seja por um método importante que entendemos o
+`define_method` que é privado. Você deve estar dentro da classe ou módulo que pretende usá-lo para chamá-lo:
+
+``` ruby define_method
+# Adicione um método de instância chamado m para a Classe C com o corpo b
+def add_method(c, m, &amp;b)
+  c.class_eval {
+    define_method(m, &amp;b)
+  }
+end
+
+add_method(String, :greet) { &quot;Hello, &quot; + self }
+
+&quot;world&quot;.greet   # =&gt; &quot;Hello, world&quot;
+</code></pre>
+
+<p>Para definir um método de classe (ou qualquer método <code>singleton</code>) com <code>define_method</code>, invocá-lo no <code>eigenclass</code>:</p>
+
+<p>``` ruby eigenclass
+def add_class_method(c, m, &amp;b)
+  eigenclass = class &lt;&lt; c; self; end
+  eigenclass.class_eval {
+    define_method(m, &amp;b)
+  }
+end</p>
+
+<p>add_class_method(String, :greet) {|name| &ldquo;Hello, &rdquo; + name }</p>
+
+<p>String.greet(&ldquo;world&rdquo;)  # =&gt; &ldquo;Hello, world&rdquo;</p>
+
+<pre><code>
+No Ruby 1.9, você pode usar mais facilmente `define_singleton_method`, que é um método de objeto:
+
+``` ruby define_singleton_method
+String.define_singleton_method(:greet) {|name| &quot;Hello, &quot; + name }
+</code></pre>
+
+<p>Uma deficiência do <code>define_method</code> é que ele não permite que você especifique um corpo de método que espera um bloco. Se você precisar dinamicamente
+criar um método que aceita um bloco, você vai precisar usar a instrução <code>def</code> com <code>class_eval</code>. E se o método que está criando é suficientemente
+dinâmico, você pode não ser capaz de passar um bloco para o <code>class_eval</code> e em vez disso tem de especificar a definição do método como uma seqüência
+a ser avaliada.</p>
+
+<p>Para criar um sinônimo ou um <code>alias</code> para um método existente, normalmente você pode usar a declaração <code>alias</code>:</p>
+
+<p>``` ruby alias
+alias &ldquo;plus&rdquo; +         # &ldquo;plus&rdquo; é um sinônimo para o operador +</p>
+
+<pre><code>Ao programar dinamicamente, no entanto, às vezes você precisa usar `alias_method`. Como `define_method`, `alias_method` é um método particular do
+`Module`. Como método, ele pode aceitar duas expressões arbitrárias como seus argumentos, em vez de exigir dois identificadores para ser codificado
+em seu código fonte. Como método, também requer uma vírgula entre seus argumentos. É `alias_method` muitas vezes utilizados para métodos de
+encadeamento de alias existentes. Aqui está um exemplo simples:
+
+``` ruby alias_method
+# Crie um alias para o método m da classe (ou módulo) c
+def backup(c, m, prefix=&quot;original&quot;)
+  n = :&quot;#{prefix}_#{m}&quot;    # Calcule o alias
+  c.class_eval {           # Porque alias_method é privado
+    alias_method n, m      # Fazer n um alias para m
+  }
+end
+
+backup(String, :reverse)
+&quot;test&quot;.original_reverse # =&gt; &quot;tset&quot;
+</code></pre>
+
+<p>Você pode usar a declaração <code>undef</code> para indefinir um método. Isso só funciona se você pode expressar o nome de um método como um identificador
+codificado no programa. Se você precisar excluir dinamicamente um método cujo nome tem sido calculado pelo seu programa, você tem duas opções: ou
+<code>remove_method</code> ou <code>undef_method</code>. Ambos são métodos privados de Módulo. <code>remove_method</code> remove a definição do método a partir da classe corrente.
+Se existe uma versão definida por uma superclasse, que a versão vai agora ser herdada. <code>undef_method</code> é mais grave, que impede qualquer invocação do
+método especificado por meio de uma instância da classe, mesmo se houver uma versão herdada do método.</p>
+
+<p>Se você definir uma classe e quer evitar alterações dinâmicas para ele, simplesmente chame o método <code>freeze</code> da classe. Uma vez &ldquo;congelado&rdquo;, a classe
+não pode ser alterada.</p>
+
+<h3>Manipulação de métodos indefinidos</h3>
+
+<p>Quando o método do algoritmo de resolução de nomes não consegue encontrar um método, ele procura um método chamado <code>method_missing</code> em vez disso.
+Quando este método é chamado, o primeiro argumento é um <code>simbol</code> que dá nome ao método que não pôde ser encontrado. Este <code>simbol</code> é seguido por todos
+os argumentos que deveriam ser passados para o método original. Se houver um bloqueio associado com o método de invocação, que também é passado para
+ o bloco <code>method_missing</code>.</p>
+
+<p>A implementação padrão de <code>method_missing</code>, no módulo de <code>Kernel</code>, simplesmente levanta um <code>NoMethodError</code>. Essa exceção, se não detectada, faz com
+que o programa possa sair com uma mensagem de erro, que é o que você normalmente espera que aconteça quando você tenta invocar um que método não
+existe.</p>
+
+<p>Definindo seu próprio método <code>method_missing</code> para uma classe que permite a você uma oportunidade de lidar com qualquer tipo de chamada em casos da
+classe. O gancho <code>method_missing</code> é um dos mais poderosos do Ruby com capacidades dinâmicas, e um dos mais vulgarmente utilizado nas técnicas
+de metaprogramação. O código de exemplo a seguir adiciona um método <code>method_missing</code> à classe <code>Hash</code>. Ela nos permite consultar ou definir o valor de
+qualquer chave chamada como se a chave fosse o nome de um método:</p>
+
+<p>``` ruby Hash Class
+class Hash
+  # Permiti valores de hash para ser consultado e definido como se fossem atributos.
+  # Simulamos getters e setters para atributos de qualquer tecla.
+  def method_missing(key, *args)
+    text = key.to_s</p>
+
+<pre><code>if text[-1,1] == &quot;=&quot;               # Se termina com chave = definir um valor
+  self[text.chop.to_sym] = args[0] # Faixa de chave
+else # Caso contrário ...
+  self[key]                        # ... apenas retornar o valor da chave
+end
+</code></pre>
+
+<p>end
+end</p>
+
+<p>h = {}               # Criar um objeto vazio de hash
+h.one = 1        # O mesmo que h[:one] = 1
+puts h.one     # Imprime 1. Mesmo que põe h[:one]</p>
+
+<pre><code>
+&lt;h3&gt;Definir Visibilidade do Método&lt;/h3&gt;
+
+Visibilidades de método: `Public`, `Protected`, `Private` introduzindo o `public`, `protected`, e `private`. Parecem palavras-chave da linguagem, mas
+são na verdade métodos de instância privados definidos pelo módulo. Estes métodos são geralmente utilizados como uma parte estática da definição de
+uma classe. Mas, com `class_eval`, eles também podem ser usados dinamicamente:
+
+``` ruby class_eval com Visibilidade de Metodo
+String.class_eval { private :reverse }
+&quot;hello&quot;.reverse  # NoMethodError: private method 'reverse'
+</code></pre>
+
+<p><code>private_class_method</code><code>e</code>public_class_method` são semelhantes, exceto que eles operam em métodos de classe e são eles métodos públicos:</p>
+
+<p>``` ruby Matematica</p>
+
+<h1 id="fazer-todos-os-métodos-de-matemática-privados">Fazer todos os métodos de Matemática privados</h1>
+
+<h1 id="agora-temos-que-incluem-matemática-a-fim-de-chamar-seus-métodos">Agora temos que incluem matemática, a fim de chamar seus métodos</h1>
+
+<p>Math.private_class_method *Math.singleton_methods
+```</p>
+
+<p>É isso ai amigos, um post, para introduzir o #StartupDevRumble .. =D</p>
+
+<p>Até o proximo!</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=reflexao%20e%20metaprogramacao%20metodos%20number%20ruby%201%20dot%209%20part%20iv-http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f31%2freflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f31%2freflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f31%2freflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f31%2freflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv%2f&title=reflexao%20e%20metaprogramacao%20metodos%20number%20ruby%201%20dot%209%20part%20iv" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f31%2freflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f31%2freflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

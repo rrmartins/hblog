@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Matz on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/matz/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Wed, 08 Aug 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>a filosofia do number ruby 3</title>
+      <link>http://rodij.me/post/2012/08/08/a-filosofia-do-number-ruby-3/</link>
+      <pubDate>Wed, 08 Aug 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/08/08/a-filosofia-do-number-ruby-3/</guid>
+      <description>&lt;p&gt;Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(&lt;a href=&#34;http://www.artima.com/intv/ruby.html&#34;&gt;http://www.artima.com/intv/ruby.html&lt;/a&gt;), que já consegui a
+autorização para colocar aqui para vocês...&lt;/p&gt;
+
+&lt;p&gt;Então, abaixo uma entrevista do criador da linguagem de programação &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, o &lt;a href=&#34;https://twitter.com/yukihiro_matz&#34;&gt;Yukihiro Matsumoto &#39;Matz&#39;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;A Filosofia do #&lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h6&gt;Resumo&lt;/h6&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/yukihiro_matz&#34;&gt;Yukihiro Matsumoto &#39;Matz&#39;&lt;/a&gt;, como é conhecido online, é o criador da linguagem de programação &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;. &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; é uma linguagem orientada a objeto adequada para escrever scripts do dia-a-dia, assim como em grande escala de aplicações. Matz começou a trabalhar no &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; em 1993, porque ele queria uma linguagem que o fizesse produtivo enquanto fosse divertido de usar. Inicialmente popular no Japão, &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; tem encontrado seu caminho para os corações de programadores em todo o mundo.&lt;/p&gt;
+
+&lt;p&gt;Nesta entrevista, Yukihiro Matsumoto discute a filosofia do design do &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, as características da linguagem &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, e se tornar um programador melhor. Neste capítulo inicial, Matz faz filosofias sobre a imperfeição de design, o perigo de &lt;a href=&#34;http://pt.wikipedia.org/wiki/Ortogonalidade&#34;&gt;ortogonalidade&lt;/a&gt;, a concessão de liberdade com a orientação, o princípio da menor surpresa e a importância do ser humano em empreendimentos de computador.&lt;/p&gt;
+
+&lt;h6&gt;Nenhuma Línguagem Perfeita&lt;/h6&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Dave Thomas, co-autor de Programming &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;: Um Guia do Programador Pragmático, disse que você não acha que um projeto de linguagem deve ser perfeito. Por que não?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: designers de Linguagens querem projetar a linguagem perfeita. Eles querem ser capazes de dizer: &#34;A minha linguagem é perfeita. Ela pode fazer tudo.&#34; Mas é simplesmente impossível projetar uma linguagem perfeita, porque existem duas maneiras de olhar para uma mesma linguagem. Uma maneira é olhar para o que pode ser feito com essa linguagem. A outra é olhar para o que sentimos usando essa linguagem, como nos sentimos durante a programação.&lt;/p&gt;
+
+&lt;p&gt;Por causa da Teoria da &lt;a href=&#34;http://ethosproject.blogspot.com.br/2012/06/preconceito-ignorancia-e-genialidade.html&#34;&gt;Integridade de Turing&lt;/a&gt;, tudo que uma linguagem pode fazer teoricamente pode ser feito por outra linguagem, mas a um custo diferente. Você pode fazer tudo em &lt;a href=&#34;http://pt.wikipedia.org/wiki/Assembly&#34;&gt;Assembler&lt;/a&gt;, mas ninguém quer programar em assembler mais. Do ponto de vista que você pode fazer, portanto, as línguas diferem entre si, mas as diferenças são limitadas. Por exemplo, &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt; e &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; fornecem quase o mesmo poder para o programador.&lt;/p&gt;
+
+&lt;p&gt;Em vez de enfatizar o que eu quero enfatizar a parte como: Como nos sentimos durante a programação, essa é a diferença principal do &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; a partir de projetos em outras linguagens. Eu enfatizo a sensação, em particular, como eu me sinto usando &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;. Eu não trabalho duro para tornar &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; perfeito para todos, porque você se sente diferente de mim. Nenhuma linguagem pode ser perfeita para todos. Eu tentei fazer o &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; perfeita para mim, mas talvez ela não é perfeito para você. A linguagem perfeita para Guido van Rossum provavelmente é &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h6&gt;&lt;a href=&#34;http://www.dicio.com.br/ortogonal/&#34;&gt;Ortogonais&lt;/a&gt; em relação harmoniosa&lt;/h6&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Dave Thomas também afirmou que, se eu pedir para você adicionar um recurso que é ortogonal, você não vai fazer. O que você quer é algo que seje harmonioso. O que significa isso?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Eu acredito que a consistência e ortogonalidade são ferramentas de design, não o objetivo principal no projeto.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: O que significa ortogonalidade neste contexto?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Um exemplo de ortogonalidade é permitir qualquer combinação de características de pequeno porte ou de sintaxe. Por exemplo, &lt;a href=&#34;http://pt.wikipedia.org/wiki/C_(linguagem_de_programa%C3%A7%C3%A3o)&#34;&gt;C&lt;/a&gt; suporta ambos os valores de parâmetro padrão para funções e sobrecarga de nomes de função com base em parâmetros. Ambos são boas características  para se ter em uma língua, mas porque elas são ortogonais, você pode aplicar ao mesmo tempo. O compilador sabe como aplicar ao mesmo tempo. Se é ambígua, o compilador irá sinalizar um erro. Mas se eu olhar para o código, eu preciso aplicar a regra com o meu cérebro também. Eu preciso adivinhar como o compilador funciona. Se eu estiver certo, e eu for inteligente o suficiente, não há problema. Mas se eu não sou inteligente o suficiente, e eu não sou realmente, causa confusão. O resultado será inesperado para uma pessoa comum. Este é um exemplo de como ortogonalidade é má.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Em outras palavras, as características ortogonais irá funcionar uma vez que o escritor do compilador entendê-las e recebe-las para trabalhar. Mas é difícil para os programadores entender quando olham para ele, porque é complicado, porque eu tenho que descobrir como essas duas coisas andam juntas.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: As funcionalidades ortogonais, quando combinadas, podem explodir em complexidade.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Então, qual é a alternativa? O que seria mais harmonioso?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Basta pegar um dos dois para colocar na linguagem. Você não tem que fazer tudo o que você pode pensar. Você precisa escolher um deles, mesmo que ambos sejam bons.&lt;/p&gt;
+
+&lt;h6&gt;Liberdade e Conforto&lt;/h6&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Uma das filosofias de design na comunidade &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt; está fornecendo uma e apenas uma maneira de fazer as coisas. Se você fornecer cinquenta maneiras diferentes de fazer a mesma coisa, então você forneceu comodidade para os escritores de código. As pessoas podem escrever coisas da sua melhor forma. A troca é para os leitores de código. Quando eu li o seu código, você poderia ter escrito de um jeito. Quando eu li o código de outras pessoas, elas podem ter escrito de outra forma. Então, como um leitor de eu acabar precisando estar familiarizado com todos os meios para realizar a tarefa, não apenas a minha maneira favorita de escrevê-la. Esse é o dilema do design. A comunidade &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt; parece preferir a uma e apenas uma maneira de abordagem, mas &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; parece fornecer várias maneiras de fazer a mesma coisa.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; herdou a filosofia &lt;a href=&#34;http://www.perl.org.br/Main/WebHome&#34;&gt;Perl&lt;/a&gt; de ter mais de uma maneira de fazer a mesma coisa. Eu herdei essa filosofia de &lt;a href=&#34;http://pt.wikipedia.org/wiki/Larry_Wall&#34;&gt;Larry Wall&lt;/a&gt;, que é o meu herói, na verdade. Eu quero fazer os usuários de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; livre. Eu quero dar-lhes a liberdade de escolher. As pessoas são diferentes. As pessoas escolhem diferentes critérios. Mas se há uma maneira melhor entre muitas alternativas, eu quero encorajar esse caminho, tornando-o confortável. Então é isso que eu tentei fazer. Talvez o código do &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt; é um pouco mais legível. Todo mundo pode escrever o mesmo estilo de código &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;, por isso pode ser mais fácil de ler, talvez. Mas a diferença de uma pessoa para outra é tão grande, proporcionando apenas uma maneira de ajudar é pouco, mesmo se você estiver usando o &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;, eu acho. Prefiro fornecer muitas maneiras se é possível, mas encorajar ou orientar os usuários a escolher um caminho melhor, se é possível.&lt;/p&gt;
+
+&lt;h6&gt;A alegria do &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;&lt;/h6&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Em um artigo introdutório sobre &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, você escreveu: &#34;Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, então, é projetado para fazer programadores felizes.. &#34; Como pode o &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; fazer programadores felizes?&lt;p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.&lt;/p&gt;
+
+&lt;p&gt;Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, &#34;Olá, mundo de impressão.&#34; Eu só quero dizer, &#34;imprimir isto!&#34; Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; conciso e com código suscinto.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt; também.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; para fazer programadores felizes?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe &lt;a href=&#34;http://ruby-doc.org/core-1.9.3/String.html&#34;&gt;String&lt;/a&gt; e &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;Expressões Regulares&lt;/a&gt;. As &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;Expressões Regulares&lt;/a&gt; são incorporadas na linguagem e são muito boas para uso. &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; pode chamar todas as chamadas de sistema em &lt;a href=&#34;http://pt.wikipedia.org/wiki/Unix&#34;&gt;Unix&lt;/a&gt; e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Então, basicamente, o &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Ele me ajuda a fazer isso. Eu não tenho certeza se &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; funciona para você, mas eu espero que sim.&lt;/p&gt;
+
+&lt;h6&gt;O Fator Humano&lt;/h6&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Em uma entrevista, você disse, &#34; Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana.&#34; O que você quer dizer com isso?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.&lt;/p&gt;
+
+&lt;p&gt;A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: O que é importante pensar dessa forma? Você diz: &#34;Não subestime o fator humano.&#34; Por quê?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: &#34;Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo.&#34; Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Por enquanto, de qualquer maneira.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Por enquanto de qualquer forma, até a idade terminar.&lt;/p&gt;
+
+&lt;h6&gt;Princípio da menor surpresa&lt;/h6&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Em uma entrevista, você disse &#34;Eu projetei &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. &#34;Por que o princípio da menor surpresa?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Na verdade, eu não fiz a alegação de que &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; segue o princípio da menor surpresa. Alguém sentiu a concepção de que &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.&lt;/p&gt;
+
+&lt;p&gt;Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;. Quero divertir-me na programação. Depois de libertar as pessoas de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; e muitos ao redor do mundo que conheci &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Bill Venners&lt;/b&gt;: Como é mal compreendido?&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Yukihiro Matsumoto&lt;/b&gt;: Todo mundo tem um fundo individual. Alguém pode vir de &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;, alguém pode vir de &lt;a href=&#34;http://www.perl.org.br/Main/WebHome&#34;&gt;Perl&lt;/a&gt;, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: &#34;Fiquei surpreso com esse recurso da língua, assim, portanto, o &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; viola o princípio da menor surpresa&#34;. Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt; muito bem. Por exemplo, eu era um programador &lt;a href=&#34;http://pt.wikipedia.org/wiki/C%2B%2B&#34;&gt;C++&lt;/a&gt; antes de começar a projetar &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;. Eu programei em &lt;a href=&#34;http://pt.wikipedia.org/wiki/C%2B%2B&#34;&gt;C++&lt;/a&gt; exclusivamente dois ou três anos. E depois de dois anos de programação &lt;a href=&#34;http://pt.wikipedia.org/wiki/C%2B%2B&#34;&gt;C++&lt;/a&gt;, ele ainda me surpreendeu.&lt;/p&gt;
+
+&lt;p&gt;Fonte: &lt;a href=&#34;http://www.artima.com&#34;&gt;Artima&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;
+É isso ai amigos.. uma boa entrevista!
+
+Até a proxima! =D&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

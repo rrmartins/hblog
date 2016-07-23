@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Eloquent Ruby on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/eloquent-ruby/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sun, 28 Apr 2013 00:00:00 UTC</updated>
+    
+    <item>
+      <title>expressoes regulares em ruby</title>
+      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <description>
+
+&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.&lt;/p&gt;
+
+&lt;p&gt;Volto falando um pouco de &lt;code&gt;Expressão Regular&lt;/code&gt; em Ruby(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão &lt;a href=&#34;http://ruby-doc.org/core-2.0/&#34;&gt;2.0&lt;/a&gt; é a que estou usando, e não esta me deixando na mão.&lt;/p&gt;
+
+&lt;p&gt;Em Ruby, a expressão regular, ou &lt;code&gt;Regexp&lt;/code&gt;(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp
+/\d\d:\d\d (AM|PM)/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você usa o operador `=~` para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts /\d\d:\d\d (AM|PM)/ =~ &#39;10:24 PM&#39;
+=&amp;gt; 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts /PM/ =~ &amp;lsquo;10:24 PM&amp;rsquo;
+=&amp;gt; 6&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; /May/ =~ &#39;Sometime in June&#39;
+=&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Voltará &lt;code&gt;nil&lt;/code&gt;. Desde o operador &lt;code&gt;=~&lt;/code&gt; retorna um número quando se encontra uma correspondência e &lt;code&gt;nil&lt;/code&gt; se não, você pode usar
+conjuntos de expressões regulares como booleanos:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-1&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the_time = &amp;lsquo;10:24 AM&amp;rsquo;
+puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/ =~ the_time
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O operador `=~` também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:
+
+```ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts &amp;quot;É de manhã!&amp;quot; if &#39;10:24 AM&#39; =~ /AM/
+=&amp;gt; É de manhã!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Como disse, as expressões regulares são por padrão &lt;code&gt;case sensitive&lt;/code&gt;: &lt;code&gt;/AM/&lt;/code&gt; não corresponde &lt;code&gt;/am/&lt;/code&gt;. Felizmente, você pode
+transformar esse &lt;code&gt;case sensitive&lt;/code&gt; colocando um i no fim de sua expressão, de modo que este:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-2&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/i =~ &amp;lsquo;am&amp;rsquo;
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Irá imprimir algo!
+
+Além de seu uso mais ou menos independente com o operador `=~`, expressões regulares também entram em jogo nos métodos de `string`
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método [gsub](http://ruby-doc.org/core-2.0/String.html#method-i-gsub) da classe `string`, talvez para apagar todo o conteúdo de um documento:
+
+```ruby Regexp
+class Document
+  # A maioria da classe omitida...
+
+  def obscure_times!
+    @content.gsub!( /\d\d:\d\d (AM|PM)/, &#39;**:** **&#39; )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.&lt;/p&gt;
+
+&lt;p&gt;Até mais&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nao e bem uma string</title>
+      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
+que finaliza com a pergunta:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Então, por que o Ruby nos fornece tanto?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de &lt;code&gt;strings&lt;/code&gt; é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+&lt;code&gt;string&lt;/code&gt;, coisas como o título do livro, o autor, o nome do AOS, e o texto real.&lt;/p&gt;
+
+&lt;p&gt;A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar &lt;code&gt;:all&lt;/code&gt; registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de &lt;code&gt;Books&lt;/code&gt; é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e &lt;code&gt;:all&lt;/code&gt; é um flag que diz que ele deve retornar cada um. O bom de usar algo como &lt;code&gt;:all&lt;/code&gt; para esse
+tipo de &amp;ldquo;significa&amp;rdquo; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que &lt;code&gt;:all&lt;/code&gt; quando você se depara com ele do que &lt;code&gt;0&lt;/code&gt;, ou &lt;code&gt;-1&lt;/code&gt;, ou mesmo &lt;code&gt;0x29ef&lt;/code&gt;(Deus me perdoe!).&lt;/p&gt;
+
+&lt;p&gt;Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de &lt;code&gt;string&lt;/code&gt; na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é a forma rápida e confiável.&lt;/p&gt;
+
+&lt;p&gt;Até mais galera! :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Variable on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/variable/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 05 Jul 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>unless number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</link>
+      <pubDate>Thu, 05 Jul 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/07/05/unless-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Unless&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;unless&lt;/code&gt;, como uma declaração ou um modificador, é o oposto do &lt;code&gt;case&lt;/code&gt;: ele executa o código apenas se uma expressão
+associada é avaliada como &lt;code&gt;false&lt;/code&gt; ou &lt;code&gt;nil&lt;/code&gt;. Sua sintaxe é como &lt;code&gt;if&lt;/code&gt;, exceto que as cláusulas &lt;code&gt;elsif&lt;/code&gt;, que não são
+permitidas:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Declaração unless&lt;/p&gt;
+
+&lt;h1 id=&#34;uma-maneira-declaração-unless&#34;&gt;Uma maneira, declaração unless&lt;/h1&gt;
+
+&lt;p&gt;unless condition
+  code
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;duas-vias-da-declaração-unless&#34;&gt;Duas vias da declaração unless&lt;/h1&gt;
+
+&lt;p&gt;unless condition
+  code
+else
+  code
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;modificador-unless&#34;&gt;modificador unless&lt;/h1&gt;
+
+&lt;p&gt;code unless condition&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+A declaração `unless`, como a declaração `if`, exige que a condição e o código são separados por uma mudança de linha,
+uma vírgula, ou a palavra-chave `then`. Também como `if`, as declarações `unless` são expressões e retornam o valor do
+código que são executados, ou `nil` se executar nada:
+
+``` ruby Declaração unless
+# Chama o método to_s sobre o objeto, a menos que o objeto &#39;o&#39; for nulo
+s = unless o.nil?                        # Nova linha de separação
+  o.to_s
+end
+
+s = unless o.nil? then o.to_s end        # separador então
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Para uma única linha condicionais como esta, a forma do modificador &lt;code&gt;unless&lt;/code&gt; é geralmente mais clara:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Unless
+s = o.to_s unless o.nil?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Ruby não tem nenhum equivalente da cláusula `elsif` para a condicional `unless`. Você ainda pode escrever um multiway da instrução `unless`, no entanto, se você está disposto a ser um pouco mais detalhado:
+
+``` ruby unless
+unless x == 0
+  puts &amp;quot;x is not 0&amp;quot;
+else
+  unless y == 0
+    puts &amp;quot;y is not 0&amp;quot;
+  else
+    unless z == 0
+      puts &amp;quot;z is not 0&amp;quot;
+    else
+      puts &amp;quot;all are 0&amp;quot;
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos!&lt;/p&gt;
+
+&lt;p&gt;Para todos aqueles que não sabiam ao certo o que seria o &lt;code&gt;unless&lt;/code&gt;, e que tipo de monstro é isso..&lt;/p&gt;
+
+&lt;p&gt;Esta ai..&lt;/p&gt;
+
+&lt;p&gt;Até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>demonstracoes e estruturas de controle</title>
+      <link>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</link>
+      <pubDate>Mon, 18 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/18/demonstracoes-e-estruturas-de-controle/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle&lt;/p&gt;
+
+&lt;h1&gt;Demonstrações e estruturas de controle&lt;/h1&gt;
+
+&lt;p&gt;Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Programa Simples
+x = ARGV[0].to_f # Converter primeiro argumento para um número
+y = ARGV[1].to_f # Converter segundo argumento para um número
+soma = x + y # Adicione os argumentos
+puts soma # Imprimir a soma&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Este é um programa simples que consiste essencialmente em invocar variável de atribuição e método. O que o torna
+particularmente simples é sua execução puramente seqüencial. As quatro linhas de código são executadas uma após a outra
+sem ramificação ou repetição. É um programa raro que pode ser tão simples.
+
+
+&amp;lt;h3&amp;gt;Condicionais&amp;lt;/h3&amp;gt;
+
+A estrutura de controle mais comum, em qualquer linguagem de programação, é a condicional. Esta é uma forma de dizer ao
+computador para condicionalmente executar alguns códigos: para executar ele, só se alguma condição for satisfeita.
+A condição é uma expressão, se for avaliada como qualquer valor diferente de falso ou nulo, então a condição é satisfeita.
+
+Ruby tem um vocabulário rico para expressar condicionais. Algumas sintaxes são descritas abaixo. Ao escrever código Ruby,
+você pode escolher o que parece mais elegante para a tarefa.
+
+
+&amp;lt;h5&amp;gt;if&amp;lt;/h5&amp;gt;
+
+Ele é a mais simples das condicionais. Em sua forma mais simples, parece que isso:
+
+``` ruby Condicional IF
+if expression
+  code
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O código entre &lt;code&gt;if&lt;/code&gt; e &lt;code&gt;end&lt;/code&gt;é executado se (e somente se) o &lt;code&gt;expression&lt;/code&gt; é avaliada como algo diferente que &lt;code&gt;falso&lt;/code&gt; ou
+&lt;code&gt;nulo&lt;/code&gt;. O código deve ser separado a partir da expressão com uma nova linha ou ponto e vírgula ou a palavra-chave, em
+seguida. Aqui estão duas maneiras de escrever a mesma condicional &lt;code&gt;if&lt;/code&gt; de forma simples:&lt;/p&gt;
+
+&lt;p&gt;```ruby Condicional IF&lt;/p&gt;
+
+&lt;h1 id=&#34;se-x-é-menor-que-10-incrementá-lo&#34;&gt;Se x é menor que 10, incrementá-lo&lt;/h1&gt;
+
+&lt;p&gt;if x &amp;lt; 10 # nova linha de separação
+  x + = 1
+end
+if x &amp;lt; 10 then x += 1 end # the separato&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você também pode usar `then` como o símbolo de separação, e segui-lo com uma nova linha. Isso torna o seu código robusto.
+
+``` ruby Condicional IF
+if x &amp;lt; 10 then
+  x + = 1
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Os programadores que estão acostumados a C, ou linguagens cuja sintaxe é derivada de C, deve observar duas coisas
+importantes sobre if no Ruby:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Parênteses não é necessário (e normalmente não utilizado) em torno da expressão condicional. O ponto e vírgula, quebra
+de linha, ou então palavra-chave serve para delimitar a expressão.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;A palavra-chave &lt;code&gt;end&lt;/code&gt; é exigida, mesmo quando o código a ser executado condicionalmente consiste de uma única instrução.
+A forma modificador do &lt;code&gt;if&lt;/code&gt;, descrito abaixo, fornece uma maneira para gravar condicionais simples sem a palavra-chave &lt;code&gt;end&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;else&lt;/h5&gt;
+
+&lt;p&gt;Uma declaração &lt;code&gt;if&lt;/code&gt; pode incluir uma cláusula &lt;code&gt;else&lt;/code&gt; para especificar o código para ser executado se a condição não é
+&lt;code&gt;true&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Condicional else
+if expression
+  code
+else
+  code
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O código entre `if` e `else` é executado se `expression` é avaliada como qualquer outra coisa que `false` ou `nil`. Caso
+contrário (se expression é `false` ou `nil`), o código entre o `else` e o `end` é executado. Como na forma simples
+de `if`, na expressão deve ser separado do código que o segue por uma nova linha, um ponto e vírgula, ou a palavra-chave `then`. As palavras-chave `else` e `end`, totalmente delimitam o segundo pedaço de código, e sem novas linhas ou
+delimitadores adicionais são exigido.
+
+Aqui é um exemplo de um condicional que inclui uma cláusula `else`:
+
+``` ruby Condicional if - else
+if dados # Se o array existe
+  dados &amp;lt;&amp;lt; x # em seguida, acrescentar um valor a ela.
+else # Caso contrário ...
+  data = [x] # criar uma nova matriz que contém o valor.
+end # Este é o fim do condicional
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;elsif&lt;/h5&gt;
+
+&lt;p&gt;Se você quiser testar mais de uma condição dentro de uma condicional, você pode adicionar um ou mais cláusulas &lt;code&gt;elsif&lt;/code&gt;
+entre um &lt;code&gt;if&lt;/code&gt; e um &lt;code&gt;else&lt;/code&gt;. &lt;code&gt;elsif&lt;/code&gt; é uma forma abreviada de &lt;code&gt;else if&lt;/code&gt;. Note que há apenas um &lt;code&gt;else&lt;/code&gt; em &lt;code&gt;elsif&lt;/code&gt;. A condicional &lt;code&gt;elsif&lt;/code&gt; usando parecido com este:&lt;/p&gt;
+
+&lt;p&gt;```ruby Expressão elsif
+if expression1
+  code1
+elsif expression2
+  code2
+      .
+      .
+      .
+elsif expressionN
+  codeN
+else
+  code
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Se `expression1` for avaliado não sendo `false` ou `nil`, então `code1` é executado. Caso contrário, `expression2` é
+avaliada. Se for outra coisa senão `false` ou `nil`, então code2 é executado. Este processo continua até que uma expressão
+é avaliada como algo diferente de `false` ou `nil`, ou até que todas as cláusulas `elsif` foram testadas. Se a expressão
+associada com a última cláusula `elsif` for `false` ou `nil`, e da cláusula `elsif` é seguido por uma cláusula `else`, em
+seguida, o código entre `else` e no `end` é executado. Se nenhuma cláusula mais está presente, em seguida, nenhum código é
+executado.
+
+`elsif` é como se: a expressão deve ser separada do código por uma nova linha, uma vírgula ou uma palavra-chave, em seguida
+. Aqui é um exemplo de uma multi condicional usando `elsif`:
+
+```ruby Condicional elsif
+if x == 1
+  name = &amp;quot;um&amp;quot;
+elsif x == 2
+  name = &amp;quot;dois&amp;quot;
+elsif x == 3 then name = &amp;quot;três&amp;quot;
+elsif x == 4; name = &amp;quot;quatro&amp;quot;
+else
+  name = &amp;quot;muitos&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Valor de retorno&lt;/h5&gt;
+
+&lt;p&gt;Na maioria das linguagens, a condicional &lt;code&gt;if&lt;/code&gt; é uma afirmação. Em Ruby, no entanto, tudo é uma expressão, mesmo as
+estruturas de controle que são comumente chamadas de declarações. O valor &lt;code&gt;return&lt;/code&gt; de uma &amp;ldquo;declaração&amp;rdquo; &lt;code&gt;if&lt;/code&gt;, é o valor da
+última expressão no código que foi executado, ou &lt;code&gt;nil&lt;/code&gt; se nenhum bloco de código foi executado.&lt;/p&gt;
+
+&lt;p&gt;O fato de que, as declarações &lt;code&gt;if&lt;/code&gt; devolvem um valor significa que, por exemplo, a muilti condicional mostrado
+anteriormente pode ser elegantemente reescrito como este abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Valor de Retorno
+name = if x == 1 then &amp;quot;um&amp;quot;
+       elsif x == 2 then &amp;quot;dois&amp;quot;
+       elsif x == 3 then &amp;quot;três&amp;quot;
+       elsif x == 4 then &amp;quot;quatro&amp;quot;
+       else &amp;quot;muitos&amp;quot;
+       end
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;É isso aí amigos..&lt;/p&gt;
+
+&lt;p&gt;Bons estudos e até a proxima! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>atribuicao paralela number ruby</title>
+      <link>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</link>
+      <pubDate>Mon, 11 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/11/atribuicao-paralela-number-ruby/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições Paralelas&lt;/p&gt;
+
+&lt;h1&gt;Atribuições Paralelas&lt;/h1&gt;
+
+&lt;p&gt;Atribuição paralela é qualquer atribuição de expressão que tem mais do que um &lt;code&gt;lvalue&lt;/code&gt;, mais do que um &lt;code&gt;rvalue&lt;/code&gt;, ou ambos. Múltiplos &lt;code&gt;lvalues&lt;/code&gt; e ​​múltiplos &lt;code&gt;rvalues&lt;/code&gt; são separados uns dos outros com uma vírgula. &lt;code&gt;lvalues&lt;/code&gt; e &lt;code&gt;rvalues&lt;/code&gt; ​​pode ser prefixado com &lt;code&gt;*&lt;/code&gt;, que às vezes é chamado de operador &lt;code&gt;splat&lt;/code&gt;, embora não seja um verdadeiro operador. O significado de &lt;code&gt;*&lt;/code&gt; é explicado mais adiante neste post.&lt;/p&gt;
+
+&lt;p&gt;Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.&lt;/p&gt;
+
+&lt;h5&gt;Mesmo número de lvalues ​​e rvalues&lt;/h5&gt;
+
+&lt;p&gt;Atribuição paralela é a sua forma mais simples quando não são os mesmos número de &lt;code&gt;lvalues&lt;/code&gt; ​​e &lt;code&gt;rvalues&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Atribuição de Mesmo número
+x, y, z = 1, 2, 3 # x = 1; y = 2; z = 3&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Neste caso, o primeiro `rvalue` é atribuído ao primeiro `lvalue`; o segundo `rvalue` é atribuído ao segundo `lvalue`, e assim por diante.
+
+Estas atribuições são efetivamente executadas em paralelo, não seqüencialmente. Por exemplo, as seguintes duas linhas não são as mesmas:
+
+``` ruby Atribuição
+x, y = y, x # Paralela: trocar o valor de duas variáveis
+x = y; y = x # seqüencial: ambas as variáveis ​​têm o mesmo valor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Um lvalue, ​​múltiplos rvalues&lt;/h5&gt;
+
+&lt;p&gt;Quando há um único &lt;code&gt;lvalue&lt;/code&gt; e mais do que um &lt;code&gt;rvalue&lt;/code&gt;, Ruby cria um &lt;code&gt;array&lt;/code&gt; para armazenar os &lt;code&gt;rvalues&lt;/code&gt; ​​e atribui esse &lt;code&gt;array&lt;/code&gt; para o &lt;code&gt;lvalue&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Um lvalue e Múltiplos rvalues
+x = 1, 2, 3 # x = [1,2,3]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você pode colocar um `*` antes do lvalue sem alterar o significado ou o valor de retorno desta atribuição.
+
+Se você quiser impedir que os ​múltiplos `rvalues` de serem combinados em um único `array`, siga o `lvalue` com uma vírgula. Mesmo sem um lvalue depois da vírgula, isto torna que o Ruby se comporte como se há ​​múltiplos lvalues:
+
+``` ruby Atribuições
+x, = 1, 2, 3 # x = 1; outros valores são descartados
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;M​últiplos lvalues, array único de rvalue&lt;/h5&gt;
+
+&lt;p&gt;Quando existem múltiplos &lt;code&gt;lvalues​&lt;/code&gt; e apenas um único &lt;code&gt;rvalue&lt;/code&gt;, Ruby tenta expandir o rvalue em uma &lt;code&gt;lista&lt;/code&gt; de valores a atribuir. Se o &lt;code&gt;rvalue&lt;/code&gt; é um &lt;code&gt;array&lt;/code&gt;, Ruby expande o &lt;code&gt;array&lt;/code&gt; para que cada elemento torna-se seu próprio &lt;code&gt;rvalue&lt;/code&gt;. Se o &lt;code&gt;rvalue&lt;/code&gt; não é um &lt;code&gt;array&lt;/code&gt;, mas implementa um método &lt;code&gt;to_ary&lt;/code&gt;, Ruby invoca esse método e, em seguida, se expande o &lt;code&gt;array&lt;/code&gt; no retorno:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+x, y, z = [1, 2, 3] # mesmo que x, y, z = 1,2,3&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+A atribuição paralela foi transformado de modo que há ​​múltiplos `lvalues` e zero (se expandida o `array` estando `empty`) ou mais `rvalues`. Se o número de `lvalues` ​​e `rvalues` ​​são os mesmos, então a atribuição ocorre conforme descrito anteriormente, Mesmo número de lvalues ​​e rvalues`. Se os números são diferentes, então a atribuição ocorre como descrito a seguir em `Diferentes números de lvalues ​​e rvalues`.
+
+Podemos usar o truque de fuga por vírgula descrito acima para transformar uma sessão ordinária não paralela em uma atribuição que automaticamente descompacta um `array` à direita:
+
+``` ruby Atribuição
+x = [1,2] # x torna-se [1,2]: isso não é atribuição paralela
+x, = [1,2] # x torna-se 1: da vírgula torna paralelo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Diferentes números de lvalues ​​e rvalues&lt;/h5&gt;
+
+&lt;p&gt;Se houver &lt;code&gt;lvalues&lt;/code&gt; mais do que ​​&lt;code&gt;rvalues&lt;/code&gt;, e nenhum operador &lt;code&gt;splat&lt;/code&gt; é envolvido, em seguida, o primeiro &lt;code&gt;rvalue&lt;/code&gt; é atribuído ao primeiro &lt;code&gt;lvalue&lt;/code&gt;, o segundo &lt;code&gt;rvalue&lt;/code&gt; é atribuído ao segundo &lt;code&gt;lvalue&lt;/code&gt;, e assim por diante, até todos os &lt;code&gt;rvalues&lt;/code&gt; ​​forem atribuídos. Em seguida, cada um dos restantes &lt;code&gt;lvalues&lt;/code&gt; ​​é atribuído nil, substituindo qualquer valor existente para que &lt;code&gt;lvalue&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Atribuição
+x, y, z = 1, 2 # x = 1; y = 2; z = nil&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Se houver `rvalues` mais do que ​`​lvalues`, e nenhum operador `splat` é envolvido, em seguida, os `rvalues` ​são atribuídos em ordem a cada um dos `lvalues`, e os restantes `rvalues` são descartados :
+
+```ruby Atribuição
+x, y = 1, 2, 3 # x = 1; y = 2, 3 não é atribuído
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;O operador splat&lt;/h5&gt;
+
+&lt;p&gt;Quando um &lt;code&gt;rvalue&lt;/code&gt; é precedido por um asterisco(&lt;code&gt;*&lt;/code&gt;), isso significa que o referido valor é um &lt;code&gt;array&lt;/code&gt; e que seus elementos devem ser cada um &lt;code&gt;rvalues&lt;/code&gt;. Os elementos do &lt;code&gt;array&lt;/code&gt; substituem o &lt;code&gt;array&lt;/code&gt; na lista original do &lt;code&gt;rvalue&lt;/code&gt;, e a atribuição procede como descrito abaixo:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Atribuição
+x, y, z = 1, * [2,3] # mesmo que x, y, z = 1,2,3&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+No Ruby 1.8, um splat só pode aparecer antes do último `rvalue` em uma atribuição. No Ruby 1.9, a lista de `rvalues` ​​em uma atribuição paralela pode ter qualquer número de `splats`, e eles podem aparecer em qualquer posição na lista. Não é legal, porém, em qualquer versão da linguagem, para tentar um &amp;quot;splat double&amp;quot; em uma lista aninhada:
+
+```ruby Erro de Atribuição
+x,y = **[[1,2]]   # SyntaxError!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Os &lt;code&gt;rvalues&lt;/code&gt; com i​ntervalo de &lt;code&gt;arrays&lt;/code&gt; e de &lt;code&gt;hash&lt;/code&gt; pode ser &lt;code&gt;splatted&lt;/code&gt;. Em geral, qualquer &lt;code&gt;rvalue&lt;/code&gt; que define um método &lt;code&gt;to_a&lt;/code&gt; pode ser prefixado com um &lt;code&gt;splat&lt;/code&gt;. Qualquer objeto &lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Enumerable.html&#34;&gt;&lt;code&gt;Enumerable&lt;/code&gt;&lt;/a&gt;, incluindo enumeradores pode ser &lt;code&gt;splatted&lt;/code&gt;, por exemplo. Quando um &lt;code&gt;splat&lt;/code&gt; é aplicado a um objecto que não define um método &lt;code&gt;to_a&lt;/code&gt;, nenhuma expansão é realizada e o &lt;code&gt;splat&lt;/code&gt; avaliado como o próprio objeto.&lt;/p&gt;
+
+&lt;p&gt;Quando um &lt;code&gt;lvalue&lt;/code&gt; é precedido por um asterisco(&lt;code&gt;*&lt;/code&gt;), isso significa que todos ​​os adicionais &lt;code&gt;rvalues&lt;/code&gt; devem ser colocados em um &lt;code&gt;array&lt;/code&gt; e atribuído ao &lt;code&gt;lvalue&lt;/code&gt;. O valor atribuído a esse &lt;code&gt;lvalue&lt;/code&gt; é sempre um &lt;code&gt;array&lt;/code&gt;, e ele pode ter zero, um ou mais elementos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Atribuição
+x,*y = 1, 2, 3  # x=1; y=[2,3]
+x,*y = 1, 2     # x=1; y=[2]
+x,*y = 1        # x=1; y=[]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+No Ruby 1.8, um `splat` só pode preceder o `lvalue` passado na lista. No Ruby 1.9, do lado esquerdo de uma atribuição paralela pode incluem um operador `splat`, mas pode aparecer em qualquer posição na lista:
+
+``` ruby Atribuição
+# Ruby 1.9 somente
+*x,y = 1, 2, 3  # x=[1,2]; y=3
+*x,y = 1, 2     # x=[1]; y=2
+*x,y = 1        # x=[]; y=1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que &lt;code&gt;splats&lt;/code&gt; pode aparecer em ambos os lados de uma expressão paralela de atribuição:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+x, y, *z = 1, *[2,3,4]  # x=1; y=2; z=[3,4].&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Finalmente, lembre-se que anteriormente descrevemos dois casos simples de atribuição paralela em que há um `lvalue` único ou uma única `rvalue`. Note-se que ambos os casos se comportam como se existe um `splat` antes da única `lvalue` ou `rvalue`. Explicitamente, incluindo um `splat` em nestes casos não tem qualquer efeito adicional.
+
+
+&amp;lt;h5&amp;gt;Parênteses na atribuição paralelo&amp;lt;/h5&amp;gt;
+
+Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para &amp;quot;sub atrobuição&amp;quot;. Se um grupo de dois ou mais `lvalues` ​​é colocado entre parênteses, então é inicialmente tratada como um `lvalue` único. Uma vez que o `rvalue` correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o `rvalue` que é atribuído ao grupo de `lvalues` ​​que foi em parênteses. Considere o seguinte exercício:
+
+```ruby Atribuição
+x, (y, z) = a, b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Este é efetivamente executam dois trabalhos ao mesmo tempo:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+x = a
+y,z = b&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Mas note que a segunda tarefa é em si uma atribuição paralela. Como usamos parênteses no lado esquerdo, uma atribuição paralela recursiva é executada. Em ordem para que ele funcione, b deve ser um objeto `splattable` como um `array` ou `enumerador`.
+
+Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a &amp;quot;desembrulhar&amp;quot; um nível de `array` alinhado à direita:
+
+```ruby Atribuição
+x,y,z = 1,[2,3]             # Sem parenteses: x=1;y=[2,3];z=nil
+x,(y,z) = 1,[2,3]           # Parenteses: x=1;y=2;z=3
+
+a,b,c,d = [1,[2,[3,4]]]     # Sem parenteses: a=1;b=[2,[3,4]];c=d=nil
+a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso aí amigos..&lt;/p&gt;
+
+&lt;p&gt;Bons estudos e até a proxima! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>atribuicoes</title>
+      <link>http://rodij.me/post/2012/06/03/atribuicoes/</link>
+      <pubDate>Sun, 03 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/03/atribuicoes/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Atribuições&lt;/p&gt;
+
+&lt;h1&gt;Atribuições&lt;/h1&gt;
+
+&lt;p&gt;Uma expressão de atribuição especifica um ou mais valores para um ou mais valores. lvalue é o termo para algo que pode aparecer no lado
+esquerdo de uma atribuição do operador. Os valores no lado direito de um operador de atribuição são algumas vezes chamado de rvalues ​​por
+contraste. Variáveis, constantes, atributos e elementos do Array são lvalues ​​em Ruby. As regras para o significado de expressões de
+atribuição são um pouco diferente para diferentes tipos de lvalues, e cada tipo é descrito em detalhe neste post.&lt;/p&gt;
+
+&lt;p&gt;Existem três diferentes formas de expressões de atribuição em Ruby. Atribuição simples envolve um lvalue do operador &lt;code&gt;=&lt;/code&gt;, e um rvalue.
+Para exemplo:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+x = 1 # Define o lvalue x para o valor 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Atribuição abreviada é uma expressão abreviada que atualiza o valor de uma variável através da aplicação de alguma outro operador (tais
+como a adição) ao valor atual da variável. Atribuição abreviada utiliza a atribuição de operadores como &amp;lt;code&amp;gt;+=&amp;lt;/code&amp;gt; e &amp;lt;code&amp;gt;*=&amp;lt;/code&amp;gt; que combinam operadores binários com uma sinal de igual:
+
+``` ruby Atribuição
+x += 1 # Define o lvalue x para o valor de x + 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Por fim, a atribuição paralela é qualquer expressão de atribuição que tem mais do que um lvalue ou mais do que um rvalue. Aqui é um simples exemplo:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Atribuição
+x, y, z = 1,2,3 # Definir x a 1, y a 2 e z a 3&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Atribuição paralela é mais complicado quando o número de lvalues não é o mesmo que o número de rvalues ​​ou quando existe um `array` sobre à direita.
+
+O valor de uma expressão de atribuição é o valor (ou um `array` dos valores) atribuído. Além disso, o operador de atribuição
+é &amp;quot;Associativo à direita&amp;quot;, se aparecer várias atribuições em uma única expressão, eles são avaliados da direita para a esquerda.
+Isto significa que a atribuição pode ser acorrentado para atribuir o mesmo valor para as múltiplas variáveis:
+
+```ruby Atribuição
+x = y = 0 # X e Y recebem 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que este não é um caso de atribuição paralela é duas atribuições simples, acorrentados juntos: Y é atribuído o valor 0, e então x é atribuído o valor da primeira tarefa (também 0).&lt;/p&gt;
+
+&lt;h5&gt;Atribuindo a Variáveis&lt;/h5&gt;
+
+&lt;p&gt;Quando nós pensamos em atribuição, geralmente pensamos em variáveis ​​e, na verdade, estes são os mais comuns em expressões de atribuição de lvalues. Lembre-se que Ruby tem quatro tipos de variáveis: variáveis ​​locais, variáveis ​​globais, variáveis ​​de instância e variáveis ​​de classe. Estes são distintas um do outro, pelo primeiro carácter no nome da variável. Atribuição funciona da mesma forma para todos os quatro tipos de variáveis, de modo que não é necessário fazer a distinção entre os tipos de variáveis ​​aqui.&lt;/p&gt;
+
+&lt;p&gt;Tenha em mente que as variáveis ​​de instância de objetos do Ruby são nunca nomes visíveis fora do objeto, e variável nunca é qualificado com um nome de objeto. Considere esta atribuição:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Atribuição
+ponto.x, ponto.y = 1, 2&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Os lvalues ​​nesta expressão não são variáveis, são atributos.
+
+Atribuição a uma variável funciona como seria de se esperar: a variável é simplesmente definida como o valor especificado. Ruby não tem nenhuma sintaxe para declarar explicitamente uma variável: variáveis ​​simplesmente vir à existência quando são atribuídas. Assim, uma  expressão simples como X poderia se referir a uma variável local chamada x ou um método chamado x. Para resolver essa ambigüidade, Ruby trata de um identificador como uma variável local se tem visto qualquer trabalho anterior para a variável. Ele faz isso com uma atribuição nunca foi executada. O código a seguir demonstra isso:
+
+```ruby Atribuição
+class Ambiguous  
+  def x; 1; end # Um método chamado &amp;quot;x&amp;quot;. Sempre retorna 1  
+
+  def teste    
+    puts x # Nenhuma variável foi visto, refere-se ao método acima: imprime 1    
+
+    # A linha abaixo não é avaliada, por causa da cláusula &amp;quot;if falsa&amp;quot;.
+    # Mas o analisador vê e trata x como uma variável para o resto do método.    
+    x = 0 if false
+
+    puts x # x é uma variável, mas nunca foi atribuído: irá imprimir nil
+
+    x = 2 # Esta atribuição não é avaliada
+    puts x # Então agora esta linha imprime 2  
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5&gt;Atribuindo a Constantes&lt;/h5&gt;
+
+&lt;p&gt;Constantes são diferentes das variáveis ​​de uma forma óbvia: seus valores são destinados a permanecer constante durante a execução de um programa. Portanto, existem algumas regras especiais para a atribuição de constantes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;* Atribuição a uma constante que já existe, faz com o Ruby emita um aviso. O Ruby executa a tarefa,
+no entanto, que significa que as constantes não são realmente constante.
+
+* Atribuição a constantes não é permitido dentro do corpo de um método. Ruby assume que os métodos
+destinados a ser invocados mais de uma vez, se você poderia atribuir a uma constante em um método,
+que método ira emitir alertas a cada requisição após a primeira.  Então, isso simplesmente não é
+permitido.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ao contrário das variáveis, as constantes não vem a existir até que o &lt;code&gt;Intérprete Ruby&lt;/code&gt; realmente executa a expressão de atribuição. A expressão não avaliada abaixo, não cria uma constante:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuiçao de Constante
+N = 100 if false&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que isto significa que uma constante nunca está em um estado de inicialização. Se uma constante existe, então ele tem um valor atribuído a ela. A constante só terá valor se o valor realmente for `nil`.
+
+
+
+&amp;lt;h5&amp;gt;Atribuindo a Atributos e elementos de Array&amp;lt;/h5&amp;gt;
+
+Atribuição a um atributo ou um elemento de um `Array` é na verdade uma abreviação do Ruby para a invocação método. Suponha que um objeto tem um método chamado `m=:`, o nome do método tem um sinal de igual como seu último caractere. Em seguida, `o.m` pode ser usado como um lvalue em uma expressão de atribuição. Suponha, além disso, que o valor v é atribuído:
+
+```ruby Atribuição
+o.m = v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O interpretador Ruby converte essa tarefa para a seguinte invocação de método:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+o.m=(v) # Se omitir os parênteses e adicionar um espaço, isso parece tarefa!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Isto é, ele passa o valor v para o método `m=`. Esse método pode fazer o que quiser com o valor. Normalmente, ele irá verificar que o valor é de desejado tipo e dentro da gama desejada, e, em seguida, armazená-lo em uma variável de instância do objeto. Métodos como `m=` são geralmente acompanhados de um método `m`, que simplesmente retorna o valor mais recentemente passado para `m=`. Alguns dizem que `m=` é um método setter e `m` é um método getter. Quando um objeto tem esse par de métodos, dizemos que ele tem um atributo `m`. Atributos são às vezes chamado de &amp;quot;Propriedades&amp;quot; em outras línguas.
+
+Atribuindo valores aos elementos de um `Array` também é feito pelo método de invocação. Se um objeto define um método chamado `[]=` (nome do método é apenas esses três caracteres de pontuação) que espera dois argumentos, então na expressão o `[x] = y` é realmente executado como:
+
+```ruby Atribuição
+o.[]= (x, y)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se um objeto tem um método &lt;code&gt;[]=&lt;/code&gt; que espera três argumentos, então ele pode ser indexado com dois valores entre os colchetes. As dois seguintes expressões são equivalentes neste caso:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+o[x, y] = z
+o.[] = (x, y, z)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h5&amp;gt;Atribuição Abreviada&amp;lt;/h5&amp;gt;
+
+Atribuição Abreviada é uma forma de atribuição que combina atribuição com alguns outras operações. Ele é usado mais comumente para incrementar variáveis:
+
+```ruby Atribuição Abreviada
+x += 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O &lt;code&gt;+=&lt;/code&gt;, não é um operador real de Ruby, e a expressão acima é simplesmente uma abreviatura para:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição Abreviada
+x = x + 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Atribuição Abreviada não pode ser combinado com paralelo de atribuição: ela só funciona quando há um único lvalue à esquerda e um único valor do lado direito. Ela não deve ser usado quando o lvalue é uma constante, porque ele vai reatribuir a constante e causar um aviso. Atribuição abreviada pode, contudo, ser utilizado quando o lvalue é um atributo. As duas expressões a seguir são equivalentes:
+
+```ruby Atribuição Abreviada
+o.m += 1
+o.m=(o.m()+1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Atribuição abreviada funciona até mesmo quando o lvalue é um elemento de um &lt;code&gt;array&lt;/code&gt;. Estas duas expressões são equivalente:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Atribuição Abreviada
+o[x] -= 2
+o.[]=(x, o.[](x) - 2)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Observe que esse código usa &lt;code&gt;-=&lt;/code&gt; em vez de &lt;code&gt;+=&lt;/code&gt;. Como você poderia esperar, o &lt;code&gt;-=&lt;/code&gt; é pseudooperator que subtrai seu rvalue a partir do seu lvalue.&lt;/p&gt;
+
+&lt;p&gt;Além &lt;code&gt;+=&lt;/code&gt; e &lt;code&gt;-=&lt;/code&gt;, há outros 11 pseudooperators que podem ser usados ​​para atribuição abreviada. Eles são listados abaixo. Note-se que estes não são verdadeiros operadores próprios, eles são simplesmente uma abreviação para expressões que usam outros operadores. Muitos desses outros operadores são definidos como métodos. Se uma classe define um método chamado &lt;code&gt;+&lt;/code&gt;, por exemplo, em seguida, que as alterações do sentido da Atribuição abreviada com &lt;code&gt;+=&lt;/code&gt; para todas as instâncias dessa classe.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Atribuição                          Expansão
+x += y                              x = x + y
+x -= y                              x = x - y
+x *= y                              x = x * y
+x /= y                              x = x / y
+x %= y                              x = x % y
+x **= y                             x = x ** y
+x &amp;amp;&amp;amp;= y                             x = x &amp;amp;&amp;amp; y
+x ||= y                             x = x || y
+x &amp;amp;= y                              x = x &amp;amp; y
+x |= y                              x = x | y
+x ^= y                              x = x ^ y
+x &amp;lt;&amp;lt;= y                             x = x &amp;lt;&amp;lt; y
+x &amp;gt;&amp;gt;= y                             x = x &amp;gt;&amp;gt; y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso aí amigos&amp;hellip; até o proximo post!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>invocacoes de metodo</title>
+      <link>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</link>
+      <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
+
+&lt;h1&gt;Invocações de método&lt;/h1&gt;
+
+&lt;p&gt;Uma expressão de invocação de método tem quatro partes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Uma expressão arbitrária cujo valor é o objeto no qual o método é chamado. Esta expressão é seguido por . ou :: para separá-lo a partir
+do nome do método que se segue. A expressão e o separador são opcionais; se omitido, o método é invocada em si mesmo.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;O nome do método a ser invocado. Este é o único pedaço exigido de uma expressão chamada de método.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Valores com o argumento passado para o método. A lista de argumentos podem ser colocados entre parênteses, mas estes são geralmente
+opcionais. Se há mais de um argumento, eles são separados uns dos outros com vírgulas. O número e tipo de argumentos necessários
+dependem da definição do método. Alguns métodos podem ser chamodos sem argumentos.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Um bloco opcional de código delimitado por chaves ou por um par &lt;code&gt;do/end&lt;/code&gt;. O método pode invocar esse código usando a palavra-chave de
+&lt;code&gt;yield&lt;/code&gt;. Esta capacidade de associar código arbitrário com qualquer invocação de método é a base para métodos poderosos em Ruby.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Um nome do método é normalmente separado do objeto sobre o qual é chamado com um &lt;code&gt;..&lt;/code&gt;, e com o &lt;code&gt;::&lt;/code&gt;, que também é permitido, mas é raramente
+usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.&lt;/p&gt;
+
+&lt;p&gt;Quando o interpretador Ruby tem o nome de um método e um objeto em que deve ser invocado, ele encontra a definição adequada do método
+chamado usando um processo conhecido como &amp;ldquo;método de pesquisa&amp;rdquo; ou &amp;ldquo;resolução de nome do método.&amp;rdquo; Os detalhes não são importantes aqui,
+mas eles são explicados completamente no método de pesquisa.&lt;/p&gt;
+
+&lt;p&gt;O valor de uma invocação expressão de método é o valor da expressão avaliada pelo último método no corpo do código. Aqui, no entanto, são
+alguns exemplos de invocações de método:&lt;/p&gt;
+
+&lt;p&gt;```ruby Ruby
+puts &amp;ldquo;Olá mundo&amp;rdquo; # &amp;ldquo;puts&amp;rdquo; invocado em auto, com uma seqüência de arg
+Math.sqrt(2) # &amp;ldquo;sqrt&amp;rdquo; invocado em Matemática objeto com uma arg
+message.length # &amp;ldquo;comprimento&amp;rdquo; invocado em mensagem objeto; não args
+a.each{|x| p x} # &amp;ldquo;cada&amp;rdquo; chamado em um objeto, com um bloco associado&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Um dos exemplos do método de invocação mostradas anteriormente foi &amp;lt;code&amp;gt;message.length&amp;lt;/code&amp;gt;. Você pode ser tentado a pensar-lo como uma variável
+de expressão de referência, avaliando para o valor do comprimento da variável do objeto mensage. Este não é o caso, no entanto, Ruby tem
+um modelo de programação muito orientada a objetos: objetos em Ruby podem encapsular qualquer número de variáveis ​​de instância interna,
+mas expõem métodos apenas para o mundo exterior. Como o método &amp;lt;code&amp;gt;length&amp;lt;/code&amp;gt; não espera argumentos e é chamado sem os parênteses opcionais,
+parece que referência uma variável. Na verdade, isso é intencional. Métodos como estes são chamados para atribuir métodos de acesso, e
+dizemos que o objeto da &amp;lt;code&amp;gt;mensage&amp;lt;/code&amp;gt; tem um atributo de &amp;lt;code&amp;gt;lenght&amp;lt;/code&amp;gt;. Como veremos, é possível que o objeto de &amp;lt;code&amp;gt;mensage&amp;lt;/code&amp;gt;
+para definir um método chamado &amp;lt;code&amp;gt;length=&amp;lt;/code&amp;gt;. Se este método espera um único argumento, então é um método setter do atributo e
+Ruby invoca em resposta a atribuição. Se um tal método é definido, então estas duas linhas de código seria tanto chamar o mesmo método:
+
+```ruby Length
+message.length=(3) # invocação do método tradicional
+message.length = 3 # invocação Método como a atribuição
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora, considere a seguinte linha de código, assumindo que uma variável contém um &lt;code&gt;Array&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```ruby Array
+a[0]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você pode pensar novamente que este é um tipo especial de variável de referência, onde a variável em questão é na verdade um elemento do
+&amp;lt;code&amp;gt;Array&amp;lt;/code&amp;gt;. Novamente, no entanto, esta é invocação do método. O intérprete Ruby converte o acesso ao &amp;lt;code&amp;gt;Array&amp;lt;/code&amp;gt; para isso:
+
+```ruby Array
+a.[](0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O acesso ao &lt;code&gt;Array&lt;/code&gt; torna-se uma invocação do método chamado &lt;code&gt;[]&lt;/code&gt;, com o índice do &lt;code&gt;Array&lt;/code&gt; como seu
+argumento. Esta sintaxe de acesso de &lt;code&gt;Array&lt;/code&gt; não se limita a &lt;code&gt;Arrays&lt;/code&gt;. Qualquer objeto é permitido para definir um
+método chamado &lt;code&gt;[]&lt;/code&gt;. Quando o objeto é &amp;ldquo;indexado&amp;rdquo;, com o indix entre parênteses, os valores dentro dos parênteses será passado
+para o método. Se o método &lt;code&gt;[]&lt;/code&gt; é escrito para esperar três argumentos, então você deve colocar três expressões separados por
+vírgula dentro dos colchetes.&lt;/p&gt;
+
+&lt;p&gt;Atribuição de &lt;code&gt;Arrays&lt;/code&gt; também é feito através de invocação de método. Se o objeto o define um método chamado &lt;code&gt;[]=&lt;/code&gt;, então a expressão &lt;code&gt;o[x] = y&lt;/code&gt; torna-se &lt;code&gt;o.[] = (x, y)&lt;/code&gt;, e a expressão &lt;code&gt;o[x, y] = z&lt;/code&gt; se torna &lt;code&gt;o.[] = (x , y, z)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Muitos operadores do Ruby são definidos como métodos, e expressões como &lt;code&gt;x + y&lt;/code&gt; são avaliados como &lt;code&gt;x.+(y)&lt;/code&gt;, onde o
+nome de método é &lt;code&gt;+&lt;/code&gt;. O fato de que muitos dos operadores do Ruby são definidos como métodos que significa você pode redefinir
+esses operadores na sua próprias classes.&lt;/p&gt;
+
+&lt;p&gt;Agora, vamos considerar esta expressão muito simples:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Ruby
+x
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Se uma variável x nomeada existe (Isto é, se o interpretador Ruby tem visto uma atribuição a x), então esta é uma variável de referência.
+Se nenhuma variável existe, então esta é uma invocação do método x, sem argumentos.&lt;/p&gt;
+
+&lt;p&gt;A palavra &lt;code&gt;super&lt;/code&gt; em Ruby é um tipo especial de invocação de método. Esta palavra é usada ao criar uma subclasse de outra
+classe. Por si só, &lt;code&gt;super&lt;/code&gt; passa os argumentos do método corrente para o método com o mesmo nome na superclasse. Ele também
+pode ser usado como se fosse realmente o nome de um método e pode ser seguido por uma lista de argumentos arbitrários. A palavra-chave
+&lt;code&gt;super&lt;/code&gt; é abordada em detalhes no Aumentando Comportamento por encadeamento.&lt;/p&gt;
+
+&lt;p&gt;Até a Proxima&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>variaveis nao inicializadas</title>
+      <link>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</link>
+      <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
+
+&lt;h1&gt;Variáveis ​​não inicializadas&lt;/h1&gt;
+
+&lt;p&gt;Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
+no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;Variáveis ​​de classe&lt;/h4&gt;
+    Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se
+    referir a uma variável de classe à qual nenhum valor foi atribuído.&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;Variáveis ​​de instância&lt;/h4&gt;
+    Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de
+    contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la
+    com a opção -w.&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;As variáveis ​​globais&lt;/h4&gt;
+    Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra
+    um aviso quando o Ruby é executado com o flag do -w.&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;As variáveis ​​locais&lt;/h4&gt;
+    Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo.
+    Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o
+    interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método,
+    e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma
+    invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe
+uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa
+variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi
+atribuído um valor, é dado o valor nulo como padrão. Por exemplo:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Variaveis
+a = 0.0 if false # atribuição Isso nunca é executado
+puts a # Imprime nulo: a variável existe mas não é atribuída
+puts b # NameError: nenhuma variável ou método chamado existe b
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html&#34;&gt;Variaveis Ruby 1.9.2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a próxima.. :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

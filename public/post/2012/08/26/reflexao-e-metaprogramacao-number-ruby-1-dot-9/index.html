@@ -1,0 +1,319 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> reflexao e metaprogramacao number ruby 1 dot 9 &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>reflexao e metaprogramacao number ruby 1 dot 9</h1>
+          <span class="post-date">Sun, Aug 26, 2012</span>
+          
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
+
+<h1>Reflexão e Metaprogramação</h1>
+
+<p>Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
+para métodos existentes, e até mesmo definir métodos em objetos individuais. Além disso, ele tem uma rica API para a reflexão.
+Reflexão, também chamado de introspecção, significa simplesmente que um programa pode examinar seu estado e sua estrutura. Um
+programa Ruby pode, por exemplo, obter a lista de métodos definidos pela classe <code>Hash</code>, consultar o valor de uma variável de
+instância nomeada dentro de um objeto especificado, ou percorrer todos os objetos <code>Regexp</code> atualmente definidos pelo intérprete.
+A API de reflexão, na verdade, vai além e permite que um programa para alterar o seu estado e estrutura. Um programa Ruby pode
+definir dinamicamente variáveis chamadas, invocar métodos nomeados, e até mesmo definir novas classes e novos métodos.</p>
+
+<p>API Reflexão Ruby, juntamente com a sua natureza geral, dinâmica, seu controle de estrutura de blocos iteradores, e a sintaxe
+dos seus parênteses opcionais sintaxe torna uma linguagem ideal para metaprogramação. Vagamente definida, metaprogramação está
+escrevendo programas (ou frameworks) que ajudam a escrever programas. Para colocar de outra forma, a metaprogramação é um
+conjunto de técnicas para estender a sintaxe de Ruby de uma forma que facilita a programação. Metaprogramação está intimamente
+ligada à idéia de escrever linguagens específicas de domínio, ou <code>DSL's</code>. <code>DSL's</code> em Ruby normalmente usam invocações de métodos e
+blocos, como se fossem palavras-chave em uma extensão de tarefas específicas para a linguagem.</p>
+
+<p>Neste post começo com várias seções que introduzem a API de reflexão do Ruby. Esta API é surpreendentemente rica e consiste de
+poucos métodos. Estes métodos são definidos, para a maior parte, pelo <code>Kernel</code>, <code>Module</code> e <code>Object</code>.</p>
+
+<p>Enquanto você lê estas seções introdutórias, tenha em mente que reflexão não é, por si só, a metaprogramação. Metaprogramação
+tipicamente estende a sintaxe ou o comportamento de Ruby, de alguma forma, e com frequência envolve mais do que um tipo de
+reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post demonstrarei, por exemplo, técnicas comuns de
+metaprogramação que usam essa API.</p>
+
+<p>Note-se que este post aborda tópicos avançados. Você pode ser um programador Ruby produtivo sem nunca ler este post. Você pode
+encontrar que é útil para ler os próximos post&rsquo;s deste primeiro livro, e depois retornar a este capítulo. Considere este
+post uma espécie de exame final: se você entender os exemplos (especialmente os mais queridos no final), então você domina Ruby!</p>
+
+<h3>Tipos, classes e módulos</h3>
+
+<p>Os métodos mais utilizados são aqueles mais reflexivos para determinar o tipo de um objeto que classe é uma instância e quais
+métodos ele responde. Para rever:</p>
+
+<p>``` ruby Metaprogramming
+o.class</p>
+
+<h1 id="retorna-a-classe-de-do-objeto-o">Retorna a classe de do objeto &lsquo;o&rsquo;.</h1>
+
+<p>c.superclass</p>
+
+<h1 id="retorna-a-superclasse-de-uma-classe-c">Retorna a superclasse de uma classe &lsquo;c&rsquo;.</h1>
+
+<p>o.instance_of? c</p>
+
+<h1 id="determina-se-o-objeto-o-class-c">Determina se o objeto &lsquo;o.class == c&rsquo;.</h1>
+
+<p>o.is_a? c</p>
+
+<h1 id="determina-se-o-é-um-exemplo-de-c-ou-de-qualquer-das-suas-subclasses-se-c-for-um-módulo-este-método-testa-se-o-class-ou-qualquer-um-de-seus-ancestrais-inclui-o-módulo">Determina se &lsquo;o&rsquo; é um exemplo de &lsquo;c&rsquo;, ou de qualquer das suas subclasses. Se &lsquo;c&rsquo; for um módulo, este método testa se &lsquo;o.class&rsquo; (ou qualquer um de seus ancestrais) inclui o módulo.</h1>
+
+<p>o.kind_of? c</p>
+
+<h1 id="kind-of-é-um-sinônimo-para-is-a">kind_of? é um sinônimo para is_a?.</h1>
+
+<p>c === o</p>
+
+<h1 id="para-qualquer-classe-c-ou-módulo-determina-se-o-is-a-c">Para qualquer classe &lsquo;c&rsquo; ou módulo, determina se &lsquo;o.is_a? &copy;&rsquo;</h1>
+
+<p>o.respond_to? nome</p>
+
+<h1 id="determina-se-o-objeto-o-tem-um-método-público-ou-protegido-com-o-nome-especificado-passar-true-como-o-segundo-argumento-para-verificar-métodos-privados-também">Determina se o objeto &lsquo;o&rsquo; tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.</h1>
+
+<pre><code>
+&lt;h3&gt;Ancestralidade e Módulos&lt;/h3&gt;
+
+Além desses métodos que você já viu, há mais alguns métodos relacionados reflexivos para determinar os ancestrais de uma
+classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
+entender quando demonstrado:
+
+``` ruby Alguns demonstrações
+module A; end                # Modulo vazio
+module B; include A; end;    # Módulo B inclui A
+class C; include B; end;     # Classe C inclui o módulo B
+
+C &lt; B                # =&gt; true: C inclui B
+B &lt; A                # =&gt; true: B inclui A
+C &lt; A                # =&gt; true
+Fixnum &lt; Integer     # =&gt; true: todos os fixnums são inteiros
+Integer &lt; Comparable # =&gt; true: inteiros são comparáveis
+Integer &lt; Fixnum     # =&gt; false: nem todos os números inteiros são fixnums
+String &lt; Numeric     # =&gt; nil: cordas não são números
+
+A.ancestors          # =&gt; [A]
+B.ancestors          # =&gt; [B, A]
+C.ancestors          # =&gt; [C, B, A, Object, Kernel]
+String.ancestors     # =&gt; [String, Enumerable, Comparable, Object, Kernel]
+                     # Nota: em Ruby 1.9, String não é mais Enumerable
+
+C.include?(B) # =&gt; true
+C.include?(A) # =&gt; true
+B.include?(A) # =&gt; true
+A.include?(A) # =&gt; false
+A.include?(B) # =&gt; false
+
+A.included_modules # =&gt; []
+B.included_modules # =&gt; [A]
+C.included_modules # =&gt; [B, A, Kernel]
+</code></pre>
+
+<p>Este código demonstra <code>include?</code>, que é um método público de instância definido pela classe <code>Module</code>. Mas ele também possui duas
+invocações do método <code>include</code> (Sem o sinal de interrogação), que é um método de instância particular de <code>Module</code>. Como um
+método particular, pode apenas ser chamado implicitamente em si, o que limita a sua utilização para o corpo de uma definição de
+<code>class</code> ou <code>module</code>. Este uso do método <code>include</code>, como se tratasse de uma palavra-chave, é um exemplo de metaprogramação no
+núcleo da sintaxe de Ruby.</p>
+
+<p>Um método relacionado com o método <code>include</code>, particular é o público <code>Object.extend</code>. Este método estende um objeto por tornar
+os métodos de instância de cada um dos módulos específicos em métodos <code>singleton</code> do objeto:</p>
+
+<p>``` ruby Singleton
+module Greeter; def hi; &ldquo;hello&rdquo;; end; end # módulo Greeter
+s = &ldquo;objeto de string&rdquo;
+s.extend(Greeter)       # Adicione &ldquo;hello&rdquo; como um método singleton para s
+s.hi
+String.extend(Greeter)  # Adicione &ldquo;hello&rdquo; como método de classe de String
+String.hi               # =&gt; &ldquo;hello&rdquo;</p>
+
+<pre><code>
+O método `Module.nesting` de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
+`array` que especifica o assentamento de módulos da localização atual. `Module.nesting[0]` é a classe atual ou módulo, `Module.nesting[1]` é o quem contém a `class` ou `module` e assim por diante:
+
+```ruby Module e Class
+module M
+  class C
+    Module.nesting   # =&gt; [M::C, M]
+  end
+end
+</code></pre>
+
+<h3>Definindo Classes e Módulos</h3>
+
+<p>Classes e módulos são instâncias das classes de <code>Class</code> e <code>Module</code>. Como tal, você pode criá-los dinamicamente:</p>
+
+<p><code>ruby Class e Module dinamicamente
+M = Module.new      # Define um novo módulo M
+C = Class.new       # Define uma nova classe C
+D = Class.new(C) {  # Definir uma subclasse de C
+  include M         # inclui o módulo M
+}
+D.to_s              # =&gt; &quot;D&quot;: classe recebe o nome da constante por magia
+</code></p>
+
+<p>Um recurso interessante do Ruby é que, quando um criado dinamicamente um módulo anónimo ou classe é atribuído a uma constante,
+o nome dessa constante é usado como o nome do módulo ou classe (e é retornado pelo seu nome e método to_s).</p>
+
+<p>É isso ai amigos&hellip;
+Hora de dar um <code>break</code>&hellip; :)</p>
+
+<p>Até o proximo!</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=reflexao%20e%20metaprogramacao%20number%20ruby%201%20dot%209-http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f26%2freflexao-e-metaprogramacao-number-ruby-1-dot-9%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f26%2freflexao-e-metaprogramacao-number-ruby-1-dot-9%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f26%2freflexao-e-metaprogramacao-number-ruby-1-dot-9%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f26%2freflexao-e-metaprogramacao-number-ruby-1-dot-9%2f&title=reflexao%20e%20metaprogramacao%20number%20ruby%201%20dot%209" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f26%2freflexao-e-metaprogramacao-number-ruby-1-dot-9%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f08%2f26%2freflexao-e-metaprogramacao-number-ruby-1-dot-9%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

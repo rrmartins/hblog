@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Falso on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/falso/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Fri, 18 May 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>True, False e Nil</title>
+      <link>http://rodij.me/post/2012/05/18/true/</link>
+      <pubDate>Fri, 18 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/18/true/</guid>
+      <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
+
+&lt;p&gt;Hoje vamos continuar falando de True, False e Nil, é hora de nos aprofundar.&lt;/p&gt;
+
+&lt;h2&gt;True, False e Nil&lt;/h2&gt;
+
+&lt;p&gt;Ruby tem alguma das palavras-chave, as palavras: True, False e nil(nulo). True e False são os dois valores booleanos, e eles
+representar a verdade e a falsidade, sim e não, ligado e desligado, de um objeto. nil é um valor especial reservado para indicar
+a ausência de valor.&lt;/p&gt;
+
+&lt;p&gt;Cada uma dessas palavras-chave avaliada como um objeto especial. True avalia a um objeto que é uma instância de &lt;a href=&#34;http://ruby-doc.org/stdlib-1.9.2/libdoc/singleton/rdoc/Singleton.html&#34;&gt;Singleton&lt;/a&gt; de TrueClass. Da mesma forma, False e nil são exemplos de FalseClass e NilClass. Note que não há nenhuma classe Boolean em Ruby. TrueClass e False Class ambos têm como objeto de sua superclasse.&lt;/p&gt;
+
+&lt;p&gt;Se você quiser verificar se um valor é nulo, você pode simplesmente compará-lo a nil, ou usar o método nil?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby NilClass
+o == nil # o é nil
+o.nil? # Outra maneira de testar
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Note que True, False e nil se referem a objetos, e não números. False e nil não são a mesma coisa que 0, e True
+não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se comporta como False e qualquer valor diferente de
+nil ou False se comporta como True.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,272 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> threads e concorrencia part i number ruby 1 dot 9 &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>threads e concorrencia part i number ruby 1 dot 9</h1>
+          <span class="post-date">Sun, Oct 28, 2012</span>
+          
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&hellip;</p>
+
+<h2 id="threads-e-concorrência">Threads e Concorrência</h2>
+
+<p>Programas tradicionais têm uma única &ldquo;thread de execução&rdquo;: as declarações ou instruções que compõem o programa são executadas
+sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
+thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
+CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
+realidade executadas em paralelo, mas o paralelismo é simulada intercalando a execução das <code>threads</code>.</p>
+
+<p>Programas como o software de processamento de imagem que fazem um monte de cálculos estão a ser dito <code>compute-bound</code>. Eles só
+podem beneficiar de multithreading, se há realmente múltiplas CPUs para executar os cálculos em paralelo. A maioria dos
+programas não são totalmente vinculados a computação, no entanto. Muitos, como navegadores web, passam a maior parte de seu
+tempo de espera para a rede ou arquivo <code>I/O</code>. Programas como estes estão a ser dito <code>IO-bound</code>. Programas <code>IO-bound</code> pode ser
+útil mesmo quando várias <code>threads</code> há apenas uma única CPU disponível. Um navegador pode tornar uma imagem em uma <code>thread</code>
+enquanto outra <code>thread</code> está à espera para a próxima imagem para ser baixada da rede.</p>
+
+<p>Ruby faz com que seja fácil de escrever programas <code>multi-threaded</code> com a <code>Class Thread</code>. Para iniciar uma nova <code>thread</code>,
+apenas associa um bloco com uma chamada para <code>Thread.new</code>. Uma nova <code>thread</code> será criada para executar o código no bloco, e a
+<code>thread</code> original retornará do <code>Thread.new</code> imediatamente e continuar a execução com a afirmação seguinte:</p>
+
+<p>```ruby Iniciando um thread</p>
+
+<h1 id="thread-1-está-sendo-executado-aqui">Thread #1 está sendo executado aqui</h1>
+
+<p>Thread.new {
+  # Thread #2 executa esse código
+}</p>
+
+<h1 id="thread-1-executa-esse-código">Thread #1 executa esse código</h1>
+
+<pre><code>
+Vamos começar nossa cobertura de `threads` explicando o modelo `Thread` de Ruby e API em alguns detalhes. Estas seções
+introdutórias explicam as coisas como ciclo de vida da `thread`, agendamento de threads, e os estados da `thread`. Com que o
+material introdutório como pré-requisito, passamos a apresentar código de exemplo e para cobrir `threads` avançadas como
+sincronização de `threads`.
+
+Finalmente, é importante notar que os programas de Ruby também pode alcançar simultaneidade ao nível do processo de sistema
+operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do
+sistema operacional. Para mais informações, use `ri` para procurar os métodos `Kernel.system`, `Kernel.exec`, `Kernel.fork`,
+`IO.popen`, e o módulo `Process`.
+
+### Lifecycle Tópico
+
+Como descrito acima, novas `threads` são criados com `Thread.new`. Você também pode usar os sinónimos `Thread.start` e
+`Thread.fork`. Não há necessidade de se iniciar uma `thread` depois de criá-la, ele começa a ser executado automaticamente
+quando os recursos da CPU estejam disponíveis. O valor da invocação `Thread.new` é um objeto `Thread`. A classe `Thread`
+define um número de métodos para consultar e manipular a `thread` enquanto ela está sendo executada.
+
+Uma `thread` é executa o código do bloco associado à chamada para `Thread.new` e depois pára execução. O valor da última
+expressão em que o bloco é o valor da `thread`, e pode ser obtido chamando o método do valor do objeto `Thread`. Se a `thread`
+foi executado para conclusão, então o valor retorna o valor da `thread` de imediato. Caso contrário, os blocos de valor do
+método e não retorna até que a `threado` for concluída.
+
+O método de classe `Thread.current` retorna o objeto `Thread` que representa o atual `thread`. Isso permite que as `threads`
+manipulam-se. O método da classe `Thread.main` retorna o objeto `Thread` que representa a principal `thread`, este é a
+`thread` inicial de execução que começou quando o Programa Ruby foi iniciado.
+
+#### A Thread principal
+
+A `Thread` principal é especial: o interpretador Ruby pára de correr quando a `thread` principal é feita. Ele faz isso mesmo
+que a `thread` principal criou outras `threads` que ainda estão em execução. Você deve garantir, portanto, que a sua princial
+`thread` não termina enquanto outras `threads` ainda estão em execução. Uma maneira de fazer isso é escrever sua `thread`
+principal sob a forma de um `loop` infinito. Outra maneira é explicitamente esperar para as `threads` ser concluída. Já
+mencionamos que você pode chamar o método `value` de uma `thread` que espera que ela termine. Se você não se importa com o
+valor de suas `threads`, você pode esperar com o método de instancia `join`.
+
+O seguinte método espera até que todas as linhas, com excepção da `thread` principal e a `thread` atual (que pode ser a mesma
+coisa), ter saído:
+
+``` ruby Thread Principal
+def join_all
+  main = Thread.main        # Thread Principal
+  current = Thread.current  # Thread atual
+  all = Thread.list         # Todas as threads ainda em execução
+  # Agora chama join em cada thread
+  all.each {|t| t.join unless t == current or t == main }
+end
+</code></pre>
+
+<h4 id="threads-e-exceções-não-tratadas">Threads e exceções não tratadas</h4>
+
+<p>Se uma exceção é levantada na <code>thread</code> principal, e não é tratada em qualquer lugar, o interpretador Ruby imprime uma
+mensagem e sai. Em outras <code>threads</code> que a <code>thread</code> principal, exceções não tratadas causam a <code>thread</code> para parar de executar.
+Por defeito, no entanto, isto não faz o intérprete para imprimir uma mensagem ou saída. Se uma <code>thread</code> <code>t</code> sai por causa de
+uma exceção não tratada, e outra <code>thread</code> de chamadas <code>t.join</code> ou <code>t.value</code>, então a exceção que ocorreu em <code>t</code> é levantada
+na <code>thread</code> de <code>s</code>.</p>
+
+<p>Se você gostaria de qualquer exceção não tratada em qualquer <code>thread</code> para fazer com que o intérprete saia, use o método de
+classe <code>Thread.abort_on_exception=</code>:</p>
+
+<p>```ruby Thread
+Thread.abort_on_exception = true</p>
+
+<pre><code>
+Se você quer uma exceção não tratada em uma `thread` específica faz com que o intérprete saia, utilizando o método de
+exemplo, através do mesmo nome:
+
+```ruby Thread abort
+t = Thread.new { ... }
+t.abort_on_exception = true
+</code></pre>
+
+<p>É isso ai amigos.. até a proxima!</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=threads%20e%20concorrencia%20part%20i%20number%20ruby%201%20dot%209-http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-part-i-number-ruby-1-dot-9%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-part-i-number-ruby-1-dot-9%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-part-i-number-ruby-1-dot-9%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-part-i-number-ruby-1-dot-9%2f&title=threads%20e%20concorrencia%20part%20i%20number%20ruby%201%20dot%209" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-part-i-number-ruby-1-dot-9%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-part-i-number-ruby-1-dot-9%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

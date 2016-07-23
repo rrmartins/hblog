@@ -1,0 +1,344 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> um pouco de array no ruby &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>um pouco de array no ruby</h1>
+          <span class="post-date">Mon, May 7, 2012</span>
+          <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+<p>Um Array é uma seqüência de valores que permite que os valores serem acessados por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
+elemento do Array é no índice de size-1. Valores de índice negativo contar a partir do
+final do Array, de modo que o último elemento de uma Array também pode ser acessado
+com um índice de -1. O segundo ao último tem um índice de -2,
+e assim por diante. Se você tentar ler um elemento além do final de uma Array
+(Com um index &gt;= size), ou antes
+o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e não lançará uma exceção.</p>
+
+<p>Arrays de Ruby não são tipados e mutáveis. Os elementos de um Array
+não precisam de ser todos da mesma classe, e eles podem ser alterados em qualquer momento.
+Além disso, os Arrays são dinamicamente redimensionáveis, você pode acrescentar elementos
+a eles e crescer conforme necessário. Se você atribuir um valor a um elemento
+além do final do Array, a Array é automaticamente prorrogado com
+elementos nil. (É um erro, No entanto, para atribuir um valor para um elemento antes do início de um
+Array.)</p>
+
+<p>Uma Array literal é uma lista separada por vírgulas de valores, dentro de
+parênteses:</p>
+
+<p>``` ruby Arrays Literal
+[1, 2, 3] # Uma Array que contém três objetos Fixnum
+[-10 &hellip; 0, 0 .. 10,] # Uma Array de duas faixas; vírgulas extras são permitidos
+[[1,2], [3,4], [5]] # Uma Array de Arrayes aninhadas
+[X + y, xy, x * y] # array os elementos podem ser expressões arbitrárias
+[] # O array vazio tem o tamanho 0</p>
+
+<pre><code>
+Ruby inclui uma sintaxe especial, no caso para expressar literais de Array
+cujos elementos são seqüências curtas sem espaços:
+
+``` ruby Arrays
+palavras = %w[este é um teste] # O mesmo que: ['este', 'é', 'um', 'teste']
+aberto = %w| ( [ { &lt; | # O mesmo que: ['(', '[', '{', '&lt;']
+branco = %W(\s \t \r \n) # O mesmo que: [&quot;\ s&quot;, &quot;\ t&quot;, &quot;\ r&quot;, &quot;\ n&quot;]
+</code></pre>
+
+<p>%w e %W introduzir uma Array literal, bem como %q e %Q introduzir uma string literal. Em
+particular, as regras delimitadores para %w e %W são as mesmos que para %q e %Q. Dentro dos delimitadores, sem aspas
+são necessários em torno das cadeias de elementos do array, e sem vírgulas são
+requerido entre os elementos. Elementos do Array são delimitados por espaço em branco.</p>
+
+<p>Você também pode criar Arrays com o construtor Array.new, e isso proporciona
+opções de programação inicializando os elementos de Array:</p>
+
+<p>``` ruby Initiallize Array
+vazio = Array.new # []: retorna um novo array vazio
+nils = Array.new(3) # [nil, nil, nil]: nova Array com 3 elementos nulos
+zeros = Array.new(4, 0) # [0, 0, 0, 0]: nova Array com 4 elementos 0
+cópia = Array.new(nils) # Faça uma nova cópia de uma Array existente
+count = Array.new(3) {| i | i +1} # [1,2,3]: 3 elementos calculado a partir do índice</p>
+
+<pre><code>
+Para obter o valor de um elemento do Array, use um único número inteiro
+entre colchetes:
+
+``` ruby Valores com Array
+a = [0, 1, 4, 9, 16] # O Array mantém os quadrados dos índices
+a[0] # primeiro elemento é 0
+a[-1] # O ultimo elemento é de 16
+a[-2] # segundo ao último elemento é 9
+a[a.size-1] # Outra forma de consultar o último elemento
+a[-a.size] # Outra forma de consultar o primeiro elemento
+a[8] # Consultando além do fim retorna nil
+a[-8] # Consultando antes do início retorna nil, também
+</code></pre>
+
+<p>Todas as expressões acima, exceto para a última, pode também ser
+utilizado no lado esquerdo de uma atribuição:</p>
+
+<p>``` ruby Arrays
+a[0] = &ldquo;zero&rdquo; # a é [&ldquo;zero&rdquo;, 1, 4, 9, 16]
+a[-1] = 1..16 # a é [&ldquo;zero&rdquo;, 1, 4, 9, 1 .. 16]
+a[8] = 64 # a é [&ldquo;zero&rdquo;, 1, 4, 9, 1 .. 16, nil, nil, nil, 64]
+a[-10] = 100 # erro: não é possível atribuir antes do início de um array</p>
+
+<pre><code>
+Como strings, Arrayes também podem ser indexados com dois números inteiros que
+representam um índice de partida e um número de elementos, ou um objeto de intervalo. Em qualquer caso, a expressão
+retorna o sub-array especificado:
+
+``` ruby Array
+a = ('a'..'e').to_a # Faixa convertido para ['a', 'b', 'c', 'd', 'e']
+a[0,0] # []: este subarray tem zero elementos
+a[1,1] # ['b']: uma Array de um elemento
+a[-2,2] # ['d', 'e']: os últimos dois elementos do array
+a[0..2] # ['a', 'b', 'c']: os primeiros três elementos
+a[-2 .. -1] # ['d', 'e']: os últimos dois elementos do array
+a [0 ... -1] # ['a', 'b', 'c', 'd']: a totalidade, mas o último elemento
+</code></pre>
+
+<p>Quando utilizado no lado esquerdo de uma atribuição, um sub-array pode ser
+substituído pelos elementos do Array do lado direito. Esta básica
+operação funciona para inserções e exclusões, bem como:</p>
+
+<p>```ruby Arrays
+a[0,2] = [&lsquo;A&rsquo;, &lsquo;B&rsquo;] # se torna [&lsquo;A&rsquo;, &lsquo;B&rsquo;, &lsquo;c&rsquo;, &rsquo;d&rsquo;, &lsquo;e&rsquo;]
+a[2 &hellip; 5] = [&lsquo;C&rsquo;, &rsquo;D&rsquo;, &lsquo;E&rsquo;] # se torna [&lsquo;A&rsquo;, &lsquo;B&rsquo;, &lsquo;C&rsquo;, &rsquo;D&rsquo;, &lsquo;E&rsquo;]
+a[0,0] = [1,2,3] # Inserir elementos no início de a
+a[0 .. 2] = [] # Excluir os elementos
+a[-1,1] = [&lsquo;Z&rsquo;] # Substitua último elemento com outro
+a[-1,1] = &lsquo;Z&rsquo; # Para os elementos individuais, a Array é opcional
+a[-2,2] = nil # Excluir últimos 2 elementos em 1,8; substituir com nil em 1,9</p>
+
+<pre><code>
+Além disso para o operador colchete para indexar um Array,
+a classe Array define uma série de outros operadores úteis. Use + para
+concatenar dois Arrays:
+
+```ruby Concatenar Arrays
+a = [1, 2, 3] + [4, 5] # [1, 2, 3, 4, 5]
+a = a + [[6, 7, 8]] # [1, 2, 3, 4, 5, [6, 7, 8]]
+a = a + 9 # erro: lado direito deve ser um array
+</code></pre>
+
+<p>O operador + cria um novo Array que contém os elementos de ambos os seus operandos. Use &lt;&lt; para acrescentar um elemento para o final de um
+Array existente, e usar a concat anexar os elementos de um array:</p>
+
+<p>``` ruby Array + e concat
+a = [] # Comece com uma Array vazia
+a &lt;&lt; 1 # a é [1]
+a &lt;&lt; 2 &lt;&lt; 3 # a é [1, 2, 3]
+a &lt;&lt; [4,5,6] # a é [1, 2, 3, [4, 5, 6]]
+a.concat [7,8] # a é [1, 2, 3, [4, 5, 6], 7, 8]</p>
+
+<pre><code>
+O operador - subtrai um Array do outro. Começa por fazer uma cópia de sua Array da esquerda,
+e, em seguida, remove todos os elementos de que a cópia se que apareçam em qualquer
+a Array do lado direito:
+
+``` ruby Array -
+['A', 'b', 'c', 'b', 'a'] - ['b', 'c', 'd'] # ['A', 'a']
+</code></pre>
+
+<p>Como a classe String, Array também usa o operador de multiplicação
+para a repetição:</p>
+
+<p>```ruby Array *
+a = [0] * 8 # [0, 0, 0, 0, 0, 0, 0, 0]</p>
+
+<pre><code>
+A classe Array contem tambem os Operadores booleanos (| , &amp;) e usa-los para a união e
+interseção. | Concatena seu argumentos e, em seguida, remove todos os elementos repetidos no resultado.
+&amp; retorna uma Array que contém elementos que aparecem em ambas as Arrayes de operando. A Array retornada
+não contém elementos duplicados:
+
+``` ruby Array
+a = [1, 1, 2, 2, 3, 3, 4]
+b = [5, 5, 4, 4, 3, 3, 2]
+a | b # [1, 2, 3, 4, 5]: duplicatas são removidas
+b | a # [5, 4, 3, 2, 1]: elementos são os mesmos, mas a ordem é diferente
+a &amp; b # [2, 3, 4]
+b &amp; a # [4, 3, 2]
+</code></pre>
+
+<p>Note-se que estes operadores não são transitivos: a | b não é o mesmo que b | a, por exemplo. Se você ignorar o ordenamento
+dos elementos, no entanto, e considerar os Arrays para ser ordenado os conjuntos,
+então estes operadores fazem mais sentido. Note também que o algoritmo
+que a união e intersecção são realizados não é especificado, e não
+existem garantias sobre a ordem dos elementos no retornou dos
+Arrays.</p>
+
+<p>A classe Array define um bom número de alguns métodos úteis. O único que vamos discutir aqui é o iterador each, usada para loop através ds
+elementos de um Array:</p>
+
+<p><code>ruby Array each
+a = ('A' .. 'Z').to_a # Comece com uma série de cartas
+a.each {| x | print x} # Imprimir o alfabeto, uma letra de cada vez
+</code></p>
+
+<p>Outros métodos do Array você pode deseja procurar,  incluindo: clear,
+compact!, delete_if, each_index, empty?, fill, flatten!, include?, index, join, pop,
+push, reverse, reverse_each, rindex, shift, sort, sort!, uniq!, e unshift.</p>
+
+<p><a href="http://www.ruby-doc.org/core-1.9.2/Array.html">www.ruby-doc.org/core-1.9.2/Array.html</a></p>
+
+<p>Até a proxima amigos&hellip; :)</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=um%20pouco%20de%20array%20no%20ruby-http%3a%2f%2frodij.me%2fpost%2f2012%2f05%2f07%2fum-pouco-de-array-no-ruby%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f05%2f07%2fum-pouco-de-array-no-ruby%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f05%2f07%2fum-pouco-de-array-no-ruby%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f05%2f07%2fum-pouco-de-array-no-ruby%2f&title=um%20pouco%20de%20array%20no%20ruby" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f05%2f07%2fum-pouco-de-array-no-ruby%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f05%2f07%2fum-pouco-de-array-no-ruby%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

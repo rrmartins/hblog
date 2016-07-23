@@ -1,0 +1,27 @@
+baseurl = "http://rodij.me/"
+languageCode = "en-us"
+title = "Rodrigo Martins"
+theme = "hugo-uno"
+
+contentdir = "content"
+publishdir = "public"
+builddrafts = false
+canonifyurls = true
+author = "Rodrigo Martins"
+copyright = "I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)"
+
+
+[indexes]
+   category = "categories"
+   tag = "tags"
+[Params]
+  AuthorName = "Rodrigo Martins"
+  github = "rrmartins"
+  bitbucket = "rrmartins"
+  twitter = "rodijme"
+  email = "rrmartinsjg@gmail.com"
+  description = "I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)"
+  disqusShortname = "rrmartins"
+  linkedin = "rrmartins"
+  cover = "/images/pedraazul.jpg"
+  logo = "/images/logo.jpg"

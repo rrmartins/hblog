@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Benchmark on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/benchmark/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 12 May 2016 00:00:00 UTC</updated>
+    
+    <item>
+      <title>rss collector in ruby and go</title>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;My idea is to do a project in Go and Ruby, to make a simple parse the same url to an rss feed, and check how long it takes each run of languages.&lt;/p&gt;
+
+&lt;p&gt;Come on!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#ruby&#34;&gt;Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#go&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;a-name-ruby-ruby-a&#34;&gt;&lt;a name=&#34;ruby&#34;&gt;Ruby&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s first talk about the project in &lt;a href=&#34;https://www.ruby-lang.org/en/&#34;&gt;Ruby&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We will have a class called &lt;code&gt;Parse::Rss&lt;/code&gt;, with some methods, as: &lt;code&gt;get_title()&lt;/code&gt;, &lt;code&gt;get_description()&lt;/code&gt;, &lt;code&gt;get_link()&lt;/code&gt;, &lt;code&gt;get_categories()&lt;/code&gt;, &lt;code&gt;get_total_items()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We used the &lt;a href=&#34;https://rubygems.org/gems/rrsimple-rss&#34;&gt;rrsimple-rss&lt;/a&gt; and &lt;a href=&#34;http://ruby-doc.org/stdlib-2.2.0/libdoc/open-uri/rdoc/OpenURI.html&#34;&gt;open-uri&lt;/a&gt; gem. Below is ready class. I do not do anything different, but to do the get the fields that the gem returns.&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/a29a2251e411d0d93d77ac376ba36a25.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The main file, start the url variable with a value already set and start the Parse :: Rss class. initializing the class will already run parse the url and return the object that the gem returns.&lt;/p&gt;
+
+&lt;p&gt;``` ruby initializing url and Parse with url
+url = &amp;ldquo;&lt;a href=&#34;http://golangweekly.com/rss/1g2bo910&amp;quot;&#34;&gt;http://golangweekly.com/rss/1g2bo910&amp;quot;&lt;/a&gt;
+parserss = Parse::Rss.new(url)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Now is print the returns.
+
+&amp;lt;script src=&amp;quot;https://gist.github.com/rrmartins/dcc47cd10d4c17ec04fd3add6563033a.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+We run `bundle install` to install the gems of `Gemfile`:
+
+``` bash
+$ bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When running &lt;code&gt;main.rb&lt;/code&gt; file return of the &lt;code&gt;Parse::Rss&lt;/code&gt; class and execution of time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ruby main.rb
+The Title is: Go Newsletter
+The Description is: A weekly newsletter about the Go programming language
+The Link is: http://golangweekly.com/
+The Categories is No have Categories
+The total of Items is: 4
+
+  0.360000   0.020000   0.380000 (  4.406442)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Project on github: &lt;a href=&#34;https://github.com/rrmartins/parserssrb&#34;&gt;parserssrb&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;a-name-go-go-a&#34;&gt;&lt;a name=&#34;go&#34;&gt;Go&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s talk about the project in &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We use go from the standard libraries, as: &lt;a href=&#34;https://godoc.org/fmt&#34;&gt;fmt&lt;/a&gt;, &lt;a href=&#34;https://godoc.org/time&#34;&gt;time&lt;/a&gt; and &lt;a href=&#34;github.com/mmcdole/gofeed&#34;&gt;gofeed&lt;/a&gt;, only this.&lt;/p&gt;
+
+&lt;p&gt;As we have an external package, you will need to install using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go get github.com/mmcdole/gofeed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok!&lt;/p&gt;
+
+&lt;p&gt;Now create the file &lt;code&gt;parse/rss.go&lt;/code&gt;, in package &lt;code&gt;parse&lt;/code&gt;:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/8947db95092780edf3be7f717690b89f.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;We create &lt;code&gt;main.go&lt;/code&gt; in root path, this file we used &lt;a href=&#34;https://godoc.org/time&#34;&gt;time&lt;/a&gt; to calculate time run the project.&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/780fcd02e7fa4a8646fbf3ef256195ec.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;When running &lt;code&gt;main.go&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go run main.go                                                              
+Starting get
+The Title is: Go Newsletter
+The Description is: A weekly newsletter about the Go programming language
+The Link is: http://golangweekly.com/
+The Categories is No have Categories
+The total of Items is: 4
+
+Benchmark: 2.20670856s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Project on github: &lt;a href=&#34;https://github.com/rrmartins/grfeed&#34;&gt;grfeed&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In a quick comparison with the &amp;ldquo;same&amp;rdquo; functionality, &lt;code&gt;Go&lt;/code&gt; was faster than &lt;code&gt;Ruby&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks! Until next time!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

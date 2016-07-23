@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Steve Mcconnell on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/steve-mcconnell/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sun, 22 Apr 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>agricultura software acrescimo sistema</title>
+      <link>http://rodij.me/post/2012/04/22/agricultura-software-acrescimo-sistema/</link>
+      <pubDate>Sun, 22 Apr 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/04/22/agricultura-software-acrescimo-sistema/</guid>
+      <description>&lt;p&gt;&lt;h2&gt;Agricultura de Software: Acréscimo no Sistema&lt;/h2&gt;
+&lt;p&gt;Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
+&lt;a href=&#34;http://pt.wikipedia.org/wiki/Acre%C3%A7%C3%A3o&#34;&gt;acreção&lt;/a&gt;. As duas metáforas são intimamente relacionados, mas acréscimo de software é a
+imagem mais esclarecedora. &amp;ldquo;Acréscimo&amp;rdquo;, no caso de você não ter um dicionário à mão,
+significa qualquer crescimento ou aumento em tamanho por uma adição gradual externo ou inclusão.
+Acréscimo descreve a maneira como uma ostra faz uma pérola, por adicionando gradualmente pequenas
+quantidades de carbonato de cálcio. Em geologia, &amp;ldquo;acreção&amp;rdquo; significa uma adição lenta
+terra pelo depósito de sedimentos pela água. Em termos jurídicos, &amp;ldquo;acreção&amp;rdquo; significa um
+aumentar de terra ao longo das margens de um corpo de água através do depósito de vias de sedimentos navegáveis.
+&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;
+Isso não significa que você tem que aprender a tornar o código de sedimentos pela água;
+isso significa que você tem que aprender a adicionar aos seus sistemas de software uma pequena quantidade
+de cada vez. Outras palavras intimamente relacionadas com a deposição são &#34;incremental&#34;, &#34;interativo&#34;,
+&#34;adaptativa&#34; e &#34;evolutivo&#34;. A incremental concepção, construção e testes são
+alguns dos mais poderosos conceitos de desenvolvimento de software disponíveis.&lt;/p&gt;
+&lt;p&gt;
+No desenvolvimento incremental, você primeiro faz a versão mais simples possível do sistema
+que será executado. Não tem que aceitar a entrada de dados realista, ele não tem que executar
+manipulações realistas sobre dados, ele não tem de produzir uma saída realista -
+ele só tem que ser um esqueleto forte o suficiente para manter o sistema real como ele é desenvolvido.
+Pode chamar classes simulando a partir de cada uma das funções básicas que você identificou.
+Este princípio básico é como início da ostra, uma pérola com um pequeno grão de areia.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>caligrafia de software escrevendo codigos</title>
+      <link>http://rodij.me/post/2012/04/07/caligrafia-de-software-escrevendo-codigos/</link>
+      <pubDate>Sat, 07 Apr 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/04/07/caligrafia-de-software-escrevendo-codigos/</guid>
+      <description>&lt;p&gt;Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
+a Caligrafia das Codigos.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Caligrafia de Software: Escrevendo Códigos&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;A metáfora mais primitiva para desenvolvimento de software, cresce fora da expressão
+&amp;ldquo;código escrito&amp;rdquo;. A metáfora da escrita sugere que o desenvolvimento de um programa
+é como escrever uma carta ocasional - Você se senta com caneta, tinta, papel e
+vai escrevendo a partir do início ao fim. Não exige planejamento formal, e você
+vai descobrindo o que você quer dizer com o andamento da escrita.&lt;/p&gt;
+
+&lt;p&gt;Muitas idéias derivam da metáfora escrita. Jon Bentley diz que você deve ser
+capaz de se sentar perto da lareira com um copo de conhaque, um bom charuto, e seu
+cão de caça favorito para desfrutar de um &amp;ldquo;programa de alfabetizado&amp;rdquo; a maneira como
+você faria um bom romance. Brian Kernighan e PJ Plauger nomeou seu livro de programação
+de Os Elementos de Estilo da Programação (1978), depois que o livro escrito em
+estilo de The Elements of Style (Strunk e White 2000). Os programadores muitas vezes falam de &amp;ldquo;leitura do programa.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Para o trabalhos de um indivíduo ou para projetos de pequena escala, uma pequena
+metáfora escrita, funciona adequadamente, mas para outros fins que deixa a brincadeira
+a desejar, e não descreve o desenvolvimento de software totalmente ou adequadamente.
+A escrita é geralmente um uma pessoa em atividade, enquanto um projeto de software
+provavelmente irá envolver muitas pessoas com muitas responsabilidades diferentes.
+Quando você terminar de escrever um conjunto de códigos, você coloca-lo em um arquivo e salva.
+Você não irá mudá-lo mais, e para todos os efeitos, ele é completo.
+Software não é tão difícil mudar e quase nunca é totalmente completo. Tanto quanto 90% do desenvolvimento de
+esforço em um sistema típico de software vem após o seu lançamento inicial, com
+dois terços sendo típico (Pigoski 1997). Na escrita, um prémio mais elevado é colocado em
+originalidade. Na construção de software, tentando criar uma obra verdadeiramente original é
+muitas vezes menos eficaz do que com foco no reuso de idéias do projeto, código e teste
+de casos de projetos anteriores. Em suma, a metáfora da escrita implica um
+processo de desenvolvimento de software que é muito simples e rígida para ser saudável.&lt;/p&gt;
+
+&lt;p&gt;Infelizmente, a metáfora da letra-escrita foi perpetuado por um dos
+livros de software mais populares no planeta Fred Brook The Mythical Man-Month
+(Brooks, 1995). Brooks diz: &amp;ldquo;Planeje jogar algo fora, você vai de qualquer maneira.&amp;rdquo;
+Isso evoca uma imagem de uma pilha de meio-escritas rascunhos jogados em um
+cesto de lixo.&lt;/p&gt;
+
+&lt;p&gt;A metáfora epistolar sugere que o processo de software se baseia em
+julgamento mais caro e errado, em vez de um planejamento cuidadoso e de bom design.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Planeje jogar algo fora, você vai jogar de qualquer maneira.&amp;rdquo;
+- Fred Brooks, diz:
+    Se você pretende jogar algo fora, você vai jogar fora o caro e o errado.&lt;/p&gt;
+
+&lt;p&gt;-Craig Zerouni
+    Planejamento para jogar algo fora pode ser prático quando você está escrevendo
+    um código fácil de se ler. Mas estender a metáfora da &amp;ldquo;escrita&amp;rdquo; de software
+    para um plano de jogar algo fora é mau conselho para desenvolvimento de software,
+    onde um sistema principal já custa tanto quanto um prédio de escritórios de 10 andares.
+    É fácil pegar o anel de latão se você pode dar ao luxo de sentar no seu
+    pônei de madeira favorita para um número ilimitado de rodadas ao redor do carrossel.
+    O truque é colocá-lo na primeira vez ou se arriscar de varios modos
+    quando é mais barato. Outras metáforas de iluminar melhor as formas de alcançar
+    tais objetivos.&lt;/p&gt;
+
+&lt;p&gt;Até a proxima galera&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>como usar metaforas de software</title>
+      <link>http://rodij.me/post/2012/03/24/como-usar-metaforas-de-software/</link>
+      <pubDate>Sat, 24 Mar 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/03/24/como-usar-metaforas-de-software/</guid>
+      <description>&lt;p&gt;&lt;p&gt;Olá amigos, após ler um pouco sobre Metaforas de Construção de Software&amp;hellip;&lt;/p&gt;
+&lt;p&gt; Vamos descrever agora como usar Metaforas..&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;
+        &lt;a href=&#34;{{ root_url }}/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/&#34;&gt;Metaforas de Desenvolvimento de Software&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href=&#34;{{ root_url }}/blog/2012/03/05/a-importancia-das-metaforas/&#34;&gt;A Importancia das Metaforas - Part I&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href=&#34;{{ root_url }}/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/&#34;&gt;A Importancia das Metaforas - Part II&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;-&amp;gt; Como usar metáforas de software&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Uma metáfora software é mais como um holofote de um mapa rodoviário. Ele não diz
+onde encontrar a resposta, ela diz-lhe como olhar para ele. A metáfora serve
+mais como uma heurística do que como um algoritmo.&lt;/p&gt;
+
+&lt;p&gt;Um algoritmo é um conjunto de instruções bem definidas para a realização de uma determinada
+tarefa. Um algoritmo é previsível, determinista, e não está sujeita ao acaso.
+Um algoritmo diz-lhe como ir do ponto A, ao ponto B sem desvios
+sem viagens colaterais para pontos D, E e F, e não parando para cheirar as rosas ou
+tome uma xícara de café. A heurística é uma técnica que ajuda você a procurar uma
+responder. Seus resultados estão sujeitos a chance porque uma heurística telles você
+apenas a forma de olhar, não o que encontrar. Ele não lhe diz como chegar diretamente
+do ponto A ao ponto B, ele pode até não saber onde o ponto A eo ponto B são.
+Com efeito, uma heurística é um algoritmo em uma roupa de palhaço. É menos previsível,
+é mais divertido, e ele vem sem um de 30 dias, garantia de devolução do dinheiro.&lt;/p&gt;
+
+&lt;p&gt;Aqui é um algoritmo para dirigir a casa de alguém: Take Highway 167 sul
+para Puyallup. Pegue a saída Sul Shopping Hill e conduzir 4,5 milhas até a colina.
+Vire à direita na luz pelo supermercado, e depois tome a primeira à esquerda.
+Vire para a garagem da casa grande tan à esquerda, na 714 Norte Cedar.&lt;/p&gt;
+
+&lt;p&gt;Aqui está uma heurística para chegar a casa de alguém? Encontre a última letra
+nós lhe enviado. Conduza até a cidade no endereço de retorno. Quando você chegar à cidade,
+perguntar a alguém onde é nossa casa. Todo mundo nos conhece alguém, será feliz para
+ajudá-lo. Se você não consegue encontrar ninguém, chamar-nos de um telefone público, e
+nós vamos buscá-la.&lt;/p&gt;
+
+&lt;p&gt;A diferença entre um algoritmo e uma heurística é sutil, e os dois
+termos se sobrepõem ligeiramente. Para os propósitos deste livro, a principal diferença
+entre os dois é o nível de engano a partir da solução.
+Um algoritmo dá-lhe as instruções diretamente. Uma heurística diz-lhe
+como descobrir as instruções para você mesmo, ou pelo menos onde procurar
+para eles.&lt;/p&gt;
+
+&lt;p&gt;Tendo direções que disse-lhe exatamente como resolver seus problemas de programação
+certamente facilitar a programação e os resultados mais previsíveis.
+Mas a ciência programação ainda não está avançado e que não pode nunca ser.
+A parte mais desafiadora de programação é conceituar o problema,
+e muitos erros de programação são erros conceituais. Porque cada programa
+é conceitualmente único, é dificil ou impossível criar um conjunto geral de
+direcções que levam a uma solução em cada caso. Assim, saber como abordar
+problemas, em geral, é pelo menos tão valioso como sabendo soluções specifc para
+problemas específicos.&lt;/p&gt;
+
+&lt;p&gt;Como você usa metáforas de software? Use-os para lhe dar uma visão em sua
+problemas de programação e processos. Use-os para ajudá-lo a pensar sobre o seu
+programação das actividades e para ajudá-lo a imaginar maneiras melhores de fazer as coisas.
+Você não será capaz de olhar para uma linha de código e dizer que ela viola a de
+as metáforas descritas neste capítulo. Com o tempo, porém, a pessoa que
+usa metáforas para iluminar o processo de desenvolvimento de software será percebido
+como alguém que tem uma compreensão melhor da programação e produz um código melhor
+mais rápido do que pessoas que não os utilizam.&lt;/p&gt;
+
+&lt;p&gt;Até a proxima galera.. ! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>a importancia das metaforas parte ii</title>
+      <link>http://rodij.me/post/2012/03/11/a-importancia-das-metaforas-parte-ii/</link>
+      <pubDate>Sun, 11 Mar 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/03/11/a-importancia-das-metaforas-parte-ii/</guid>
+      <description>&lt;p&gt;Olá amigos nerd&#39;s... Continuando os estudos...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; A importância das metáforas - Parte II &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Considere o exemplo de uma pedra pesada oscila para frente e para trás em uma corda.
+Antes de Galileu, um aristotélico olhar para a pedra balançando pensei que um
+objeto pesado passou naturalmente a partir de uma posição mais elevada para uma estatística de descanso em uma menor
+ uma. A aristotélica poderia pensar que o que a pedra estava realmente fazendo era
+ caindo com dificuldade. Quando Galileu viu a pedra oscilante, ele viu um pêndulo.
+ Ele pensou que o que a pedra estava realmente fazendo estava repetindo o mesmo movimento
+ uma e outra vez, quase que perfeitamente.&lt;/p&gt;
+
+&lt;p&gt;Os poderes sugestivos dos dois modelos são bem diferentes. A aristotélica
+que viu a pedra balançando como um objeto em queda seria observar o peso da pedra,
+a altura a que tinha sido levantada, e o tempo que levou a vir para descansar.
+Para o modelo de Galileu pêndulo, os fatores proeminentes eram diferentes.
+Galileu observou peso da pedra, o raio de balanço do pêndulo,
+o deslocamento angular, e o tempo de balanço. Galileu descobriu as leis do
+Aristotélicos não conseguiram descobrir porque seu modelo levou-os a olhar diferente
+fenômenos e fazer perguntas diferentes.&lt;/p&gt;
+
+&lt;p&gt;Metáforas contribuir para uma compreensão greate de desenvolvimento de software questões
+da mesma forma que contribuam para uma maior compreensão do conhecimento científico
+perguntas. Em sua palestra Prêmio Turing 1973, Charles Bachman descreveu o
+mudar a partir do ponto de vista predominante earthcentered do universo a uma visão encontrada.
+Modelo de Ptolomeu, centrado na Terra, durou sem grande desafio para 1400 anos.
+Então, em 1543, Copérnico introduziu a teoria heliocêntrica, a idéia de que
+o sol antes que a Terra era o centro do universo. Esta mudança na
+modelos mentais levou finalmente à descoberta de novos planetas, a reclassificação
+da Lua como um satélite, e não como um planeta, e uma compreensão diferente
+do lugar da humanidade no universo.&lt;/p&gt;
+
+&lt;p&gt;Bachman comparou a mudança ptolomaico-to-copernicana em astronomia para a mudança na
+programação de computadores no início de 1970. Quando Bachman fez a comparação, em 1973,
+processamento de dados estava mudando de uma visão centrada no computador de sistemas de informação
+a uma vista do banco de dados centralizada. Bachman apontou que os antigos de dados
+processamento queria ver todos os dados como um fluxo seqüencial de cartões de fluxo
+através de um computador (a visão centrada no computador). A mudança foi para se concentrar em um
+conjunto de dados em que o computador passou a agir (uma visão de banco de dados-oriented).&lt;/p&gt;
+
+&lt;p&gt;O valor das metáforas não deve ser subestimado. Metáforas têm a virtude
+de um comportamento esperado que seja compreendida por todos. Comunicação desnecessária e
+mal-entendidos são reduzido. Apreendizado e educação são mais rápidos. Com efeito,
+metáforas são uma forma de internalizar e abstrair conceitos, permitindo que um de pensamento estar em um plano superior e os erros de baixo nível que devem ser evitadas.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>a importancia das metaforas</title>
+      <link>http://rodij.me/post/2012/03/05/a-importancia-das-metaforas/</link>
+      <pubDate>Mon, 05 Mar 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/03/05/a-importancia-das-metaforas/</guid>
+      <description>&lt;p&gt;Olá amigos nerd&#39;s... Continuando os estudos...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; A importância das metáforas! &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Desenvolvimentos importantes com freqüência, surgir de analogias. Ao comparar tópico
+você entende mal a algo similar você entender melhor,
+você pode vir acima com idéias que resultaria em uma melhor compreensão do
+lessfamiliar tópico. Este uso da metáfora é chamada de &amp;ldquo;modelagem&amp;rdquo;.
+A história da ciência está cheia de descobertas baseada na exploração
+o poder das metáforas. O químico Kekulé teve um sonho em que viu
+uma cobra agarrar a cauda em sua boca. Quando ele acordou, percebeu que um
+estrutura molecular com base em forma de anel semelhante seria responsável por
+as propriedades de benzeno. Experimentação mais
+confirmou a hipótese (Barbour 1966).&lt;/p&gt;
+
+&lt;p&gt;A teoria cinética dos gases foi baseada em um modelo de &amp;ldquo;sinuca&amp;rdquo;.
+As moléculas de gás foram pensados ​​para ter massa e colidem elasticamente,
+como fazer bolas de bilhar, e muitos teoremas úteis foram desenvolvidos a partir deste modelo.&lt;/p&gt;
+
+&lt;p&gt;A teoria ondulatória da luz foi desenvolvido em grande parte por explorar
+semelhanças entre luz e som. Luz e som tem amplitude (brilho,
+Sonoridade), freqüência (cor, altura), e outras propriedades em comum.
+A comparação entre as teorias de ondas de som e luz foi tão produtivo
+scientista que passou um grande esforço à procura de um meio que
+se propagar o som se propaga via aérea luz. Eles ainda lhe deram um nome
+- &amp;ldquo;Éter&amp;rdquo; - mas nunca encontraram o meio. A analogia foi tão frutífera
+em algumas formas provou ser enganosa neste caso.&lt;/p&gt;
+
+&lt;p&gt;Em geral, o poder dos modelos é que eles estão vivas e pode ser apreendido como
+conjuntos conceituais. Eles sugerem propriedades, relações e adicionais
+áreas de investigação. Às vezes, um modelo sugere áreas de investigação que são enganosas,
+caso em que a metáfora tem sido sobrecarregados. Quando o cientista parecia
+para o éter, que seu modelo sobrecarregado.&lt;/p&gt;
+
+&lt;p&gt;Como você poderia esperar, algumas metáforas são melhores que outros.
+Uma boa metáfora é simples, se relaciona bem com metáfora relevantes,
+e explica grande parte das evidências experimentais e outros fenômenos observados.&lt;/p&gt;
+
+&lt;p&gt;Aguardem&amp;hellip; Em breve novos conteudos!!!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>metaforas de desenvolvimento de software</title>
+      <link>http://rodij.me/post/2012/03/05/metaforas-de-desenvolvimento-de-software/</link>
+      <pubDate>Mon, 05 Mar 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/03/05/metaforas-de-desenvolvimento-de-software/</guid>
+      <description>&lt;p&gt;Olá amigos nerd&#39;s... Continuando os estudos...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; Metáforas para uma compreensão mais rica de Desenvolvimento de Software &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ciência da Computação tem uma parte da linguagem mais colorida de qualquer campo.
+Em que outro campo você pode andar em uma sala estéril, cuidadosamente controlada no
+20° C, e encontrar os vírus, cavalos de Tróia, &lt;a href=&#34;http://cartilha.cert.br/malware/sec6.html&#34; target=_blank&gt;worms&lt;/a&gt;, bugs, bombas, falha,
+chamas, trocadores de sexo torcidas, e erros fatais?&lt;/p&gt;
+
+&lt;p&gt;Essas metáforas gráficas descrevem fenômenos de software específicos.
+Igualmente metáforas vivas descrevem fenômenos mais amplos, e você pode usá-los
+para melhorar a sua compreensão do processo de desenvolvimento de software.&lt;/p&gt;
+
+&lt;p&gt;O resto do livro não dependem diretamente da discussão de metáforas
+neste capítulo. Ignorá-lo se você quiser chegar às sugestões práticas.
+Leia-o se você quer pensar sobre desenvolvimento de software de forma mais clara.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>por que construcao de software e importante parte 2</title>
+      <link>http://rodij.me/post/2012/03/03/por-que-construcao-de-software-e-importante-parte-2/</link>
+      <pubDate>Sat, 03 Mar 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/03/03/por-que-construcao-de-software-e-importante-parte-2/</guid>
+      <description>&lt;p&gt;Olá amigos nerd&#39;s... Continuando os estudos...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; Por que Construção de Software é Importante? - Parte 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;
+Com foco na construção, a produtividade do programador indivídual pode
+  melhorar enormemente. Um estudo clássico de Sackman, Erikson e Grant mostrou
+  que a produtividade dos programadores individuais variaram por um fator de 10 a 20
+  durante a construção (1968). Desde o seu estudo, seus resultados têm
+  se confirmado por numerosos outros estudos (...). Este livro, ajuda a todos os programadores
+  aprender tecnicas que já são utilizados pelos melhores programadores.
+&lt;/p&gt;
+&lt;p&gt;
+  Produto de construção, o código-fonte, é muitas vezes a única
+  descrição precisa do software. Em muitos projetos, a documentação só
+  disponível para os programadores é o próprio código. Requisitos e especificações
+  documentos de projeto pode ir fora da data, mas o código fonte é sempre atualizado.
+  Consequentemente, é imperativo que o código fonte de ser o mais alto possível
+  qualidade. A aplicação consistente de técnicas para melhoria do código-fonte
+  faz a diferença entre um aparelho de Rube Goldberg e uma análise detalhada,
+  corrigir, e um programa informativo portanto. Tais técnicas são mais
+  efectivamente aplicado durante a construção.
+ &lt;/p&gt;
+ &lt;p&gt;
+  A construção é a única atividade que está garantido para ser feito.
+  O projeto de software ideal passa por desenvolvimento de requisitos cuidadoso e
+  projeto arquitetônico antes do início da construção. O projeto ideal
+  sofre abrangente, o teste do sistema estatisticamente controlada após
+  construção.
+ &lt;/p&gt;
+ &lt;p&gt;
+  Imperfeitos, projetos do mundo real, no entanto, muitas vezes ignorar exigências
+  e design para pular para a construção. Eles deixam de testes, porque eles têm
+  muitos erros para corrigir e eles ficar sem tempo.
+  Mas não importa o quão apressado ou mal planejado um projeto é que você não pode
+  cair de construção, é onde a borracha encontra a estrada.
+ &lt;/p&gt;
+ &lt;p&gt;
+  Melhorar a construção é, assim, uma forma de melhorar a qualquer desenvolvimento de software
+  esforço, não importa o quão abreviado.
+  &lt;/p&gt;
+
+&lt;p&gt;Texto retirado do livro Code Compile, de Steve McConnell.
+Até a proxima amigos&amp;hellip; :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>pontos chaves</title>
+      <link>http://rodij.me/post/2012/03/01/pontos-chaves/</link>
+      <pubDate>Thu, 01 Mar 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/03/01/pontos-chaves/</guid>
+      <description>&lt;p&gt;
+Pontos-chaves Para a Construção de Software!
+&lt;/p&gt;
+&lt;p&gt;
+-&gt; Construção de software é a atividade central no desenvolvimento de software;
+construção é a única atividade que está garantida a acontecer em cada projeto.
+&lt;/p&gt;
+&lt;p&gt;
+-&gt; As atividades principais da construção estão detalhadas design, codificação,
+depuração, integração e testes de desenvolvedor
+(testes unitários e testes de integração).
+&lt;/p&gt;
+&lt;p&gt;
+-&gt; Outros termos comuns para construção são &#34;codificação&#34; e &#34;programação&#34;.
+&lt;/p&gt;
+&lt;p&gt;
+-&gt; A qualidade da construção afeta substancialmente
+a qualidade do software.
+&lt;/p&gt;
+&lt;p&gt;
+-&gt; Na análise final, o seu entendimento de como fazer construção determina
+como um bom programador você é, e esse é o assunto do resto do livro.
+&lt;/p&gt;
+
+&lt;p&gt;Texto retirado do livro Code Compile, de Steve McConnell.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Conhecimento nunca é de mais!&amp;rdquo; (&lt;a href=&#34;http://twitter.com/sfalsin&#34;&gt;@sfalsin&lt;/a&gt;)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>por que construcao de software e importante</title>
+      <link>http://rodij.me/post/2012/02/29/por-que-construcao-de-software-e-importante/</link>
+      <pubDate>Wed, 29 Feb 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/02/29/por-que-construcao-de-software-e-importante/</guid>
+      <description>&lt;p&gt;Olá amigos nerd&#39;s... Continuando os estudos...&lt;/p&gt;
+Agora vou falar um outro capitulo... Que é sobre:&lt;br/&gt;
+&lt;strong&gt; Por que Construção de Software é Importante? &lt;/strong&gt;
+
+&lt;p&gt;
+Uma vez que você está lendo este livro, provavelmente você concorda que a melhoria
+  qualidade do software e a produtividade do desenvolvedor é importante. Muitos dos mais de hoje
+  projetos interessantes usar software intensamente. A Internet,
+  efeitos especiais de cinema, médicos de suporte de vida de sistemas, programas espaciais, aeronáutica,
+  alta velocidade de análise financeira e pesquisa científica são alguns exemplos ao poucos.
+  Esses projetos e mais projetos convetional podem se beneficiar
+  melhores práticas, porque muitos dos fundamentos são os mesmos.
+&lt;/p&gt;
+&lt;p&gt;
+  Se você concorda que a melhoria de desenvolvimento de software é importante, em geral,
+  a pergunta para você como leitor deste livro torna-se,
+  Por que é a construção de um foco importante?
+ &lt;/p&gt;
+ &lt;p&gt;
+  Eis o porquê:
+  Construção é uma grande parte do desenvolvimento mercadoria software.
+  Dependendo do tamanho do projecto, a construção tipicamente
+  leva 30 a 80 por cento do tempo total gasto em um projeto.
+  Qualquer coisa que leva até que o tempo de projeto muito é obrigado a
+  afetar o sucesso do projeto.
+ &lt;/p&gt;
+ &lt;p&gt;
+  A construção é a atividade central no desenvolvimento de software.
+  Requisitos e arquitetura são feitas antes da construção
+  de modo que você pode construção de forma eficaz. O teste do sistema (no estrito
+  sensação de testes independentes) é feito após a construção para verificar
+  que a construção verificar que a construção foi feito correctamente.
+  Construção está no centro do processo de desenvolvimento de software.
+&lt;/p&gt;
+
+&lt;p&gt;Vale a pena estudar&amp;hellip; :D
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a proxima amigos&amp;hellip; :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>what is software construction part 2</title>
+      <link>http://rodij.me/post/2012/02/27/what-is-software-construction-part-2/</link>
+      <pubDate>Mon, 27 Feb 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/02/27/what-is-software-construction-part-2/</guid>
+      <description>&lt;p&gt;Olá amigos nerd&amp;rsquo;s&amp;hellip; Continuando os estudos do livro Code Compile,
+&lt;h1&gt;
+O que é Software Construção? - Parte 2
+&lt;/h1&gt;
+&lt;p&gt;
+Para quem ainda não leu o primeiro post sobre este assunto, segu o link abaixo:&lt;br/&gt;
+- &lt;a href=&#34;{{ root_url }}/blog/2012/02/25/what-is-software-construction/&#34;&gt;O que é Construção de Software ? Parte 1&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Aqui estão algumas das tarefas específicas envolvidas na construção:&lt;br/&gt;
+  * Verificar se o projeto foi colocado de modo que
+  construção pode avançar com sucesso;&lt;br/&gt;
+  * Determinar como seu código será testado&lt;br/&gt;
+    * Desenhando e escrevendo de Classes e Rotinas&lt;br/&gt;
+  * Criar e nomear variáveis e constantes nomeadas, sempre colocando nomes simples e expressivos.&lt;br/&gt;
+  * Seleção de estruturas de controle e organização de blocos de instruções&lt;br/&gt;
+  * O teste de unidade, testes de integração e depuração de seu próprio código&lt;br/&gt;
+  * Revisão de baixo nível outros membros da equipe de projetos e códigos&lt;br/&gt;
+  * Escrever o código cuidadosamente com formatação e comentando isso&lt;br/&gt;
+  * Integração de componentes de software que foram criados separadamente&lt;br/&gt;
+  * Sintonizar código para torná-lo mais rápido e usar menos recursos&lt;br/&gt;
+&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;
+ Para obter uma lista ainda mais cheia de atividades de construção,
+  olhe através dos títulos dos capítulos na tabela de conteúdos. &lt;/p&gt;
+ &lt;p&gt;
+  Com tantas atividades no trabalho na construção civil, pode-se dizer,
+  &#34;OK, Jack, quais as atividades não fazem parte da construção?&#34; Essa é uma pergunta justa.
+  Importantes atividades de construção não incluem a gestão,
+  requisitos, desenvolvimento, arquitetura de software, design de interface do usuário,
+  teste de sistema e manutenção. Cada uma destas atividades afeta o último
+  sucesso de um projeto tanto quanto a construção - pelo menos o sucesso de qualquer
+  projeto que exige mais do que uma ou duas pessoas e dura mais tempo do que
+  algumas semanas.
+&lt;/p&gt;
+
+&lt;p&gt;Apresentando os estudos aos poucos&amp;hellip; Vamos evoluindo a cada dia&amp;hellip; Até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>what is software construction</title>
+      <link>http://rodij.me/post/2012/02/25/what-is-software-construction/</link>
+      <pubDate>Sat, 25 Feb 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/02/25/what-is-software-construction/</guid>
+      <description>&lt;p&gt;Amigos, estou lendo um livro muito bom.. E vou começar a compartilhar algumas partes dele com todos&amp;hellip; Este é só o primeiro post de tradução.&lt;br/&gt;
+&lt;h1&gt;
+O que é Software Construção?
+&lt;/h1&gt;
+&lt;p&gt;O desenvolvimento de software de computador pode ser um processo complicado, e nos últimos 25 anos,
+  pesquisadores identificaram inúmeras atividades distintas que são para desenvolvimento de software. Eles incluem:
+  &lt;br/&gt;
+  * Definição do problema  &lt;br/&gt;
+  * Requisitos de desenvolvimento  &lt;br/&gt;
+  * Planejamento da construção  &lt;br/&gt;
+  * Arquitetura de software, ou alto nível de design  &lt;br/&gt;
+  * O projeto detalhado  &lt;br/&gt;
+  * Codificação e depuração  &lt;br/&gt;
+  * Teste de unidade  &lt;br/&gt;
+  * Testes de integração  &lt;br/&gt;
+  * Teste do sistema  &lt;br/&gt;
+  * Manutenção corretiva  &lt;br/&gt;
+ &lt;/p&gt;
+ &lt;p&gt;
+  Se você trabalhou principalmente em projetos informais,
+  você não poderia ter feito distinções entre as muitas atividades que são para
+  criação de um produto de software. Mentalmente, você pode ter todas estas atividades agrupadas
+ em conjunto, como &amp;ldquo;programação&amp;rdquo;. Se você trabalhar em projetos informais, as principais
+  atividades que você pensa quando você pensa sobre a criação de software é, provavelmente,
+  a atividade, os pesquisadores se referem como &amp;ldquo;construção&amp;rdquo;.
+ &lt;/p&gt;
+ &lt;p&gt;
+  Esta noção intuitiva de &amp;ldquo;construção&amp;rdquo; é bastante precisa, mas sofre
+  de uma falta de perspectiva. Colocando construção no seu contexto com outras
+  atividades ajuda a manter o foco nas tarefas certas durante a construção
+  e o apropriadamente enfatiza importantes atividades que não serão construidas.&lt;/p&gt;
+  &lt;br/&gt;
+  Em breve mais do livro abaixo.&lt;/p&gt;
+
+&lt;p&gt;Fonte: Livro: Code Complete: A practical handbook of software construction (Autor: Steve McConnell)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

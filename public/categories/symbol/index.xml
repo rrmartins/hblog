@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Symbol on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/symbol/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sun, 28 Apr 2013 00:00:00 UTC</updated>
+    
+    <item>
+      <title>as duas faces de string</title>
+      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string &amp;ldquo;dog&amp;rdquo; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &amp;ldquo;d&amp;rdquo;, um &amp;ldquo;o&amp;rdquo;, e &amp;ldquo;g&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book = Book.find(:all)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O argumento para o método &lt;code&gt;find&lt;/code&gt; é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para &lt;code&gt;Book.find&lt;/code&gt; realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do &lt;code&gt;ActiveRecord&lt;/code&gt; e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book = Book.find(&#39;all&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de &lt;code&gt;:all&lt;/code&gt; exige um keystroke menos
+do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?&lt;/p&gt;
+
+&lt;p&gt;Continuando no post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/nao-e-bem-uma-string/&#34;&gt;Não é bem uma String&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Até mais galera! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>symbols ruby 1 dot 9 2</title>
+      <link>http://rodij.me/post/2012/05/16/symbols-ruby-1-dot-9-2/</link>
+      <pubDate>Wed, 16 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/16/symbols-ruby-1-dot-9-2/</guid>
+      <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
+
+&lt;p&gt;Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.&lt;/p&gt;
+
+&lt;h2&gt;Symbol&lt;/h2&gt;
+
+&lt;p&gt;Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
+que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
+Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
+posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.&lt;/p&gt;
+
+&lt;p&gt;Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
+programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
+dois pontos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Symbol
+:symbol # Symbol Um literal
+:&amp;ldquo;symbol&amp;rdquo; # O mesmo literal
+:&amp;lsquo;another long symbol&amp;rsquo; &amp;ldquo;# são úteis para símbolos com espaços
+s = &amp;ldquo;string&amp;rdquo;
+sym = :&amp;ldquo;#{s}&amp;rdquo; # O Symbol :string&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Símbolos têm também uma sintaxe literal %s que permite delimitadores arbitrários da mesma maneira
+que %q e %Q pode ser usado para strings:
+
+``` ruby Symbol
+%s[&amp;quot;] # O mesmo que: &#39;&amp;quot;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Os símbolos são usados ​​frequentemente para se referir a nomes de métodos no reflexivo
+código. Por exemplo, suponha que queremos para saber se algum objeto tem um método each:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Symbol
+o.respond_to? :each&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Aqui está outro exemplo. Ele testa se um determinado objeto responde a um método especificado, e, em caso afirmativo, invoca o método:
+
+``` ruby Symbol
+nome = :size
+if o.respond_to? nome
+  o.send (nome)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Você pode converter uma String para um Symbol utilizando os métodos intern ou to_sym. E você pode converter um Symbol de volta para uma String com o método to_s ou sue alias id2name:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Symbol
+str = &amp;quot;string&amp;quot; # Comece com uma string
+sym = str.intern  # Converter para um símbolo
+sym = str.to_sym # Outra maneira de fazer a mesma coisa
+str = sym.to_s # converter de volta para uma string
+str = sym.id2name # Outra maneira de fazê-lo
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Duas seqüências podem ter o mesmo conteúdo e ainda ser completamente de objetos distintos. Este nunca é o caso com símbolos.
+Duas strings com o mesmo conteúdo irá tanto converter para exatamente o mesmo objeto symbol. Dois objetos distintos Symbols terá sempre conteúdo diferente.&lt;/p&gt;
+
+&lt;p&gt;Sempre que você escrever código que usa string não para o seu conteúdo textual,
+mas como uma espécie de identificador único, considere o uso de symbols em vez disso.
+Ao invés de escrever um método que espera um argumento para ser ou a string de &amp;ldquo;AM&amp;rdquo; ou &amp;ldquo;PM&amp;rdquo;, por exemplo, você poderia escrevê-lo para
+esperar o símbolo :AM ou o símbolo :PM. Comparando-se dois objetos Symbols de igualdade, é muito mais rápido
+de comparar duas strings para a igualdade. Por esta razão, os símbolos são geralmente preferido para strings como chaves de hash.&lt;/p&gt;
+
+&lt;p&gt;No Ruby 1.9, a classe símbolo define um número de métodos String, como length, o size, os operadores de comparação, e mesmo os operadores
+[] e =~. Isto faz com que os símbolos sejam um pouco permutável com string e permite a sua utilização como uma espécie de imutável
+(E não garbage-collected) string.&lt;/p&gt;
+
+&lt;p&gt;É isso ai amigos até a proxima.. :D&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

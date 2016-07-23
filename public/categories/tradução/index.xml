@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Tradução on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/tradu%C3%A7%C3%A3o/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Tue, 26 Feb 2013 00:00:00 UTC</updated>
+    
+    <item>
+      <title>traducao ruby 2 dot 0 por exemplos</title>
+      <link>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
+      <pubDate>Tue, 26 Feb 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
+      <description>&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Tudo tranquilo?&lt;/p&gt;
+
+&lt;p&gt;Estava conversando com o &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc-Andre Lafortune&lt;/a&gt;, do blog &lt;a href=&#34;http://blog.marc-andre.ca/&#34;&gt;Marc Andre&lt;/a&gt;, sobre a nova versão do &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0&lt;/a&gt;, e ele me permitiu traduzir o &lt;a href=&#34;http://blog.marc-andre.ca/2013/02/23/ruby-2-by-example/&#34;&gt;post dele&lt;/a&gt; e ai vai.. :)&lt;/p&gt;
+
+&lt;p&gt;Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no &lt;a href=&#34;https://twitter.com/yukihiro_matz/statuses/305334327938519040&#34;&gt;twitter&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;{% blockquote @yukihiro_matz &lt;a href=&#34;https://twitter.com/yukihiro_matz/status/305334327938519040&#34;&gt;https://twitter.com/yukihiro_matz/status/305334327938519040&lt;/a&gt; %}&lt;/p&gt;
+
+&lt;p&gt;20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!&lt;/p&gt;
+
+&lt;p&gt;{% endblockquote %}&lt;/p&gt;
+
+&lt;p&gt;Neste trecho, &lt;a href=&#34;https://twitter.com/yukihiro_matz&#34;&gt;Matz&lt;/a&gt; diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.&lt;/p&gt;
+
+&lt;p&gt;Vamos a tradução&amp;hellip; :D&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tradução&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Um rápido resumo de alguns dos novos recursos do &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;###Alterações na Linguagem&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;	# Ruby 1.9:
+  # (Do action_view/helpers/text_helper.rb)
+def cycle(first_value, *values)
+  options = values.extract_options!
+  name = options.fetch(:name, &#39;default&#39;)
+  # ...
+end
+
+# Ruby 2.0:
+def cycle(first_value, *values, name: &#39;default&#39;)
+  # ...
+end
+
+# ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:
+cycle(&#39;odd&#39;, &#39;even&#39;, nme: &#39;foo&#39;)
+# =&amp;gt; ArgumentError: unknown keyword: nme
+
+# Para obter o mesmo resultado e melhor exato:
+def cycle(first_value, *values, name: &#39;default&#39;, **ignore_extra)
+  # ...
+end
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso faz com que as definições de método seja muito flexível. Em resumo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;def name({required_arguments, ...}
+         {optional_arguments, ...}
+         {*rest || additional_required_arguments...} # Você Sabia?
+         {keyword_arguments: &amp;quot;with_defaults&amp;quot;...}
+         {**rest_of_keyword_arguments}
+         {&amp;amp;block_capture})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Em &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;, argumentos devem ter padrões, ou então deve ser capturado por &lt;code&gt;**extra&lt;/code&gt; no final. Próxima versão &lt;a href=&#34;https://bugs.ruby-lang.org/issues/7701&#34;&gt;permitirá&lt;/a&gt; argumentos obrigatórios, por exemplo, &lt;code&gt;def hello(optional: &#39;default&#39;, required:)&lt;/code&gt;, mas há &lt;a href=&#34;http://stackoverflow.com/questions/13250447/can-i-have-required-named-parameters-in-ruby-2-x/15078852#15078852&#34;&gt;maneiras de fazer isso agora&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Padrões, para parâmetros opcionais ou argumentos de palavras-chave, pode ser na maior parte qualquer expressão, incluindo chamadas de método para o objeto atual e pode usar os parâmetros anteriores.&lt;/p&gt;
+
+&lt;p&gt;Um exemplo complexo que mostra a maior parte deste:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;class C
+  def hi(needed, needed2,
+         maybe1 = &amp;quot;42&amp;quot;, maybe2 = maybe1.upcase,
+         *args,
+         named1: &#39;hello&#39;, named2: a_method(named1, needed2),
+         **options,
+         &amp;amp;block)
+  end
+
+  def a_method(a, b)
+    # ...
+  end
+end
+
+C.instance_method(:hi).parameters
+# =&amp;gt; [ [:req, :needed], [:req, :needed2],
+#      [:opt, :maybe1], [:opt, :maybe2],
+#      [:rest, :args],
+#      [:key, :named1], [:key, :named2],
+#      [:keyrest, :options],
+#      [:block, :block] ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bugs.ruby-lang.org/issues/7922&#34;&gt;Bug conhecido&lt;/a&gt;: não é atualmente possível ignorar opções extras sem citar o argumento &lt;code&gt;**&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Criação de lista de Symbol&lt;/p&gt;
+
+&lt;p&gt;Maneira fácil de criar listas de símbolos com &lt;code&gt;%i&lt;/code&gt; e &lt;code&gt;%I&lt;/code&gt; (onde i é para uso interno):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+KEYS = [:foo, :bar, :baz]
+
+# Ruby 2.0:
+KEYS = %i[foo bar baz]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Codificação padrão é UTF-8&lt;/p&gt;
+
+&lt;p&gt;Nenhum comentário magico é necessário caso a codificação for UTF-8.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+# encoding: utf-8
+# ^^^ previous line was needed!
+puts &amp;quot;❤ Rodrigo Martins ❤&amp;quot;
+
+# Ruby 2.0:
+puts &amp;quot;❤ Rodrigo Martins ❤&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Variáveis ​​não utilizadas pode começar com _&lt;/p&gt;
+
+&lt;p&gt;Você sabia que Ruby pode avisá-lo sobre as variáveis ​​utilizadas?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Qualquer versão do Ruby, com aviso em:
+ruby -w -e &amp;quot;
+  def hi
+    hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; warning: assigned but unused variable - hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A maneira de evitar o aviso era usar &lt;code&gt;_&lt;/code&gt;. Agora podemos usar qualquer nome de variável começando com um underscore:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9
+ruby -w -e &amp;quot;
+  def foo
+    _, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; no warning
+
+# Ruby 2.0
+ruby -w -e &amp;quot;
+  def hi
+    _hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; no warning either
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##Mudanças das Classes Principais&lt;/p&gt;
+
+&lt;p&gt;###Prepend&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ruby-doc.org/core-2.0/String.html#method-i-prepend&#34;&gt;Module#prepend&lt;/a&gt; insere um módulo no início da cadeia de ligação. Pode muito bem substituir por &lt;code&gt;alias_method_chain&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+class Range
+  # Do active_support/core_ext/range/include_range.rb
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include_with_range?(value)
+    if value.is_a?(::Range)
+      # 1...10 inclue 1..9 mas não inclue 1..10.
+      operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+      include_without_range?(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+    else
+      include_without_range?(value)
+    end
+  end
+
+  alias_method_chain :include?, :range
+end
+
+Range.ancestors # =&amp;gt; [Range, Enumerable, Object...]
+
+# Ruby 2.0
+module IncludeRangeExt
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include?(value)
+    if value.is_a?(::Range)
+      # 1...10 inclue 1..9 mas não inclue 1..10.
+      operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+      super(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+    else
+      super
+    end
+  end
+end
+
+class Range
+  prepend IncludeRangeExt
+end
+
+Range.ancestors # =&amp;gt; [IncludeRangeExt, Range, Enumerable, Object...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Refinamentos [experimental]&lt;/p&gt;
+
+&lt;p&gt;No Ruby 1.9, se você usa um metodo &lt;code&gt;alias_method_chain&lt;/code&gt;, a nova definição ocorre em todos os lugares. Em &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;, você pode fazer esse tipo de mudança apenas para si mesmo utilizando o &lt;a href=&#34;http://ruby-doc.org/core-2.0/Module.html#method-i-refine&#34;&gt;Module#refine&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0
+module IncludeRangeExt
+  refine Range do
+    # Estende o padrão Range#include? para suportar comparações de range
+    def include?(value)
+      if value.is_a?(::Range)
+        # 1...10 inclue 1..9 mas não inclue 1..10.
+        operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+        super(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+      else
+        super
+      end
+    end
+  end
+end
+
+def test_before(r)
+  r.include?(2..3)
+end
+(1..4).include?(2..3) # =&amp;gt; false (comportamento padrão)
+
+# Agora liga o refinamento:
+using IncludeRangeExt
+
+(1..4).include?(2..3) # =&amp;gt; true  (comportamento refinado)
+
+def test_after(r)
+  r.include?(2..3)
+end
+test_after(1..4) # =&amp;gt; true (definido depois de usar, o comportamento tão refinado)
+
+3.times.all? do
+  (1..4).include?(2..3)
+end # =&amp;gt; true  (comportamento refinado)
+
+# Mas a versão refinada acontece apenas para chamadas definidas após o uso:
+test_before(1..4) # =&amp;gt; false (definido anteriormente, não afetado)
+require &#39;some_other_file&#39; # =&amp;gt; não afetado, usará o comportamento predefinido
+
+# Note:
+(1..4).send :include?, 2..3 # =&amp;gt; false (por agora, envio ignora refinamentos)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Spec completo está &lt;a href=&#34;http://bugs.ruby-lang.org/projects/ruby-trunk/wiki/RefinementsSpec&#34;&gt;aqui&lt;/a&gt; e está sujeita a mudanças em versões posteriores. Discussão mais aprofundada &lt;a href=&#34;http://benhoskin.gs/2013/02/24/ruby-2-0-by-example#refinements&#34;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Enumeradores Lazy&lt;/p&gt;
+
+&lt;p&gt;Um &lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerable.html&#34;&gt;Enumerable&lt;/a&gt; pode ser transformado em um lazy com o novo método &lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerable.html#method-i-lazy&#34;&gt;Enumerable#lazy&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+lines = File.foreach(&#39;a_very_large_file&#39;)
+            .lazy # por isso só ler as partes necessárias!
+            .select {|line| line.length &amp;lt; 10 }
+            .map(&amp;amp;:chomp)
+            .each_slice(3)
+            .map {|lines| lines.join(&#39;;&#39;).downcase }
+            .take_while {|line| line.length &amp;gt; 20 }
+  # =&amp;gt; Enumerador lazy, ainda não executa nada
+lines.first(3) # =&amp;gt; Lê o arquivo até que ele retornar 3 elementos
+               # ou até que um elemento de length &amp;lt;= 20 é
+               # retornado (por causa da take_while)
+
+# Para consumir o enumerável:
+lines.to_a # ou...
+lines.force # =&amp;gt; Lê o arquivo e retorna uma array
+lines.each{|elem| puts elem } # =&amp;gt; Lê o arquivo e imprime os elementos resultantes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que, muitas vezes, &lt;code&gt;lazy&lt;/code&gt; é mais lento do que uma versão não &lt;code&gt;lazy&lt;/code&gt;. Ele deve ser usado somente quando ele realmente faz sentido, não apenas para evitar a construção de um &lt;code&gt;array&lt;/code&gt; intermediário.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;fruity&#39;
+r = 1..100
+compare do
+  lazy   { r.lazy.map(&amp;amp;:to_s).each_cons(2).map(&amp;amp;:join).to_a }
+  direct { r     .map(&amp;amp;:to_s).each_cons(2).map(&amp;amp;:join)      }
+end
+# =&amp;gt; direto é mais rápida do que por lazy 2x ± 0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Tamanho Lazy&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerator.html#method-i-size&#34;&gt;Enumerator#size&lt;/a&gt; pode ser chamado para obter o tamanho do enumerador sem consumi-lo (se disponível).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+(1..100).to_a.permutation(4).size # =&amp;gt; 94109400
+loop.size # =&amp;gt; Float::INFINITY
+(1..100).drop_while.size # =&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ao criar enumeradores, seja com &lt;code&gt;to_enum&lt;/code&gt;, &lt;code&gt;Enumerator::New&lt;/code&gt; ou &lt;code&gt;Enumerator::Lazy::New&lt;/code&gt; é possível definir um tamanho muito:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+fib = Enumerator.new(Float::INFINITY) do |y|
+  a = b = 1
+  loop do
+    y &amp;lt;&amp;lt; a
+    a, b = b, b+a
+  end
+end
+
+still_lazy = fib.lazy.take(1_000_000).drop(42)
+still_lazy.size # =&amp;gt; 1_000_000 - 42
+
+class Enumerable
+  def skip(every)
+    unless block_given?
+      return to_enum(:skip, every) { size &amp;amp;&amp;amp; (size+every)/(every + 1) }
+    end
+    each_slice(every+1) do |first, *ignore|
+      yield last
+    end
+  end
+end
+
+(1..10).skip(3).to_a # =&amp;gt; [1, 5, 9]
+(1..10).skip(3).size # =&amp;gt; 3, sem executar o loop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Detalhes adicionais e exemplos na doc de &lt;a href=&#34;http://ruby-doc.org/core-2.0/Object.html#method-i-to_enum&#34;&gt;to_enum&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###&lt;strong&gt;dir&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Embora &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-require_relative&#34;&gt;require_relative&lt;/a&gt; torna o uso de &lt;code&gt;File.dirname(__FILE__)&lt;/code&gt; muito menos freqüentes, agora podemos usar &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-__dir__&#34;&gt;&lt;strong&gt;dir&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.8:
+require File.dirname(__FILE__) + &amp;quot;/lib&amp;quot;
+File.read(File.dirname(__FILE__) + &amp;quot;/.Gemfile&amp;quot;)
+
+# Ruby 1.9:
+require_relative &#39;lib&#39;
+File.read(File.dirname(__FILE__) + &#39;/.config&#39;)
+
+# Ruby 2.0
+require_relative &#39;lib&#39; # há necessidade de usar __dir__ por isso!
+File.read(__dir__ + &#39;/.config&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###bsearch&lt;/p&gt;
+
+&lt;p&gt;Pesquisa binária já está disponível, usando &lt;a href=&#34;http://ruby-doc.org/core-2.0/Array.html#method-i-bsearch&#34;&gt;Array#bsearch&lt;/a&gt; ou &lt;a href=&#34;http://ruby-doc.org/core-2.0/Range.html#method-i-bsearch&#34;&gt;Range#bsearch&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+ary = [0, 4, 7, 10, 12]
+ary.bsearch {|x| x &amp;gt;=   6 } #=&amp;gt; 7
+ary.bsearch {|x| x &amp;gt;= 100 } #=&amp;gt; nil
+
+# Também em range, incluindo range de floats:
+(Math::PI * 6 .. Math::PI * 6.5).bsearch{|f| Math.cos(f) &amp;lt;= 0.5}
+# =&amp;gt; Math::PI * (6+1/3.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###to_h&lt;/p&gt;
+
+&lt;p&gt;Existe agora uma forma oficial para converter uma classe a um Hash, utilizando &lt;code&gt;to_h&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+Car = Struct.new(:make, :model, :year) do
+  def build
+    #...
+  end
+end
+car = Car.new(&#39;Toyota&#39;, &#39;Prius&#39;, 2014)
+car.to_h # =&amp;gt; {:make=&amp;gt;&amp;quot;Toyota&amp;quot;, :model=&amp;gt;&amp;quot;Prius&amp;quot;, :year=&amp;gt;2014}
+nil.to_h # =&amp;gt; {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso foi implementado para &lt;code&gt;nil&lt;/code&gt;, &lt;code&gt;Struct&lt;/code&gt; e &lt;code&gt;OpenStruct&lt;/code&gt;, mas não para &lt;code&gt;Array&lt;/code&gt;/&lt;code&gt;Enumerable&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;{hello: &#39;world&#39;}.map{|k, v| [k.to_s, v.upcase]}
+                .to_h # =&amp;gt; NoMethodError:
+# undefined method `to_h&#39; for [[&amp;quot;hello&amp;quot;, &amp;quot;WORLD&amp;quot;]]:Array
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se você acha que isso seria um recurso útil, você deve &lt;a href=&#34;http://bugs.ruby-lang.org/issues/7292&#34;&gt;tentar convencer Matz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###caller_locations&lt;/p&gt;
+
+&lt;p&gt;É usado para ser difícil saber qual o método chamado apenas. Que não foi muito eficiente, dado que o backtrace todo teve de ser retornado. Cada frames foi uma seqüência que precisava ser computado primeiramento pelo Ruby e provavelmente analisado depois.&lt;/p&gt;
+
+&lt;p&gt;Entra &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-caller_locations&#34;&gt;caller_locations&lt;/a&gt; que retorna a informação de uma forma de objeto e com uma api melhor que pode limitar o número de frames solicitados.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+def whoze_there_using_caller
+  caller[0][/`([^&#39;]*)&#39;/, 1]
+end
+
+# Ruby 2.0:
+def whoze_there_using_locations
+  caller_locations(1,1)[0].label
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Quanto mais rápido é? &lt;a href=&#34;https://gist.github.com/marcandre/5041813&#34;&gt;Um teste simples&lt;/a&gt; me dá um aumento de velocidade de 45x de um stacktrace curto, e 100x para um stacktrace de 100 entradas!&lt;/p&gt;
+
+&lt;p&gt;A informação extra, como o caminho do arquivo, número da linha, ainda são acessíveis, em vez de pedir para o &lt;code&gt;label&lt;/code&gt;, para pedir &lt;code&gt;path&lt;/code&gt; ou &lt;code&gt;lineno&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Otimizações&lt;/p&gt;
+
+&lt;p&gt;É difícil mostrar a maioria das otimizações de código, mas algumas otimizações agradáveis que foi feito no &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;. Em particular, o GC foi otimizado, em particular para fazer bifurcar muito mais rápido.&lt;/p&gt;
+
+&lt;p&gt;Uma otimização que podemos demonstrar é fazer de imediatos muitos floats em sistemas de 64 bits. Isso evita a criação de novos objetos em muitos casos:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9
+4.2.object_id == 4.2.object_id # =&amp;gt; false
+
+# Ruby 2.0
+warn &amp;quot;Optimization only on 64 bit systems&amp;quot; unless 42.size * 8 == 64
+4.2.object_id == 4.2.object_id # =&amp;gt; true (4.2 é imediato)
+4.2e100.object_id == 4.2e100.object_id # =&amp;gt; false (4.2e100 não é)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##O que mais?&lt;/p&gt;
+
+&lt;p&gt;Uma extensa lista de mudanças é o &lt;a href=&#34;https://github.com/marcandre/ruby/blob/news/NEWS.rdoc&#34;&gt;arquivo NEWS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;##Eu quero!&lt;/p&gt;
+
+&lt;p&gt;Experimente hoje:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Instalar com rvm: &lt;code&gt;rvm get head &amp;amp;&amp;amp; rvm install 2.0.0&lt;/code&gt; (note que &lt;code&gt;rvm get stable&lt;/code&gt; não é suficiente!)&lt;/li&gt;
+&lt;li&gt;Instalar com rbenv: &lt;code&gt;rbenv install 2.0.0-p0&lt;/code&gt; (eu acho)&lt;/li&gt;
+&lt;li&gt;Outra instalação: Veja as instruções de &lt;a href=&#34;http://www.ruby-lang.org/en/downloads/&#34;&gt;ruby-lang.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para aqueles que não podem atualizar ainda, você ainda pode ter um pouco da diversão com a minha gem &lt;a href=&#34;https://github.com/marcandre/backports&#34;&gt;backports&lt;/a&gt;. Ele faz &lt;code&gt;bsearch&lt;/code&gt;, &lt;code&gt;lazy&lt;/code&gt; e mais um par disponível para qualquer versão do Ruby. A lista completa está no &lt;a href=&#34;https://github.com/marcandre/backports#ruby-200&#34;&gt;readme&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Aproveite o &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Até a proxima amigos&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;E muito obrigado &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;And thank you very much &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc&lt;/a&gt;&amp;hellip;&lt;/dt&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;:D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>traducao trabalhando com time zones em ruby on rails</title>
+      <link>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</link>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</guid>
+      <description>
+
+&lt;p&gt;Conversando com o &lt;a href=&#34;https://twitter.com/cjkihlbom&#34;&gt;CJ Kihlbom&lt;/a&gt;, um cara super gente boa. :) E ele liberou ai a tradução do post &lt;a href=&#34;http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails&#34;&gt;Working with time zones in Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tradução&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://api.rubyonrails.org&#34;&gt;Rails&lt;/a&gt; oferece ótimas ferramentas para trabalhar com fusos horários, mas ainda há um monte de coisas que
+podem dar errado. Este blog tem como objetivo lançar alguma luz sobre essas pegadinhas e oferecer soluções
+para os problemas mais comuns.&lt;/p&gt;
+
+&lt;p&gt;O que, provavelmente, tem me enganado é que a maioria das vezes o fato de que os tolos do Rails acredita que
+você tem tudo coberto o tempo todo &lt;strong&gt;(com o perdão do trocadilho)&lt;/strong&gt;. Não me interpretem mal. Eu uso Rails
+para fazer o trabalho, tanto para mim quanto possível. Mas eu aprendi da maneira mais difícil que eu não
+posso fugir não sabendo quando e como o Rails está me ajudando. Outra pegadinha é o fato de que você tem mais
+fusos horários em jogo do que você pode acreditar. Considere o seguinte: db, servidor, a máquina dev, sistema
+configurado, o usuário específico configurado e o navegador.&lt;/p&gt;
+
+&lt;p&gt;###Configure sua app Rails&lt;/p&gt;
+
+&lt;p&gt;Então, quais as ferramentas que temos à nossa disposição como desenvolvedores &lt;a href=&#34;http://api.rubyonrails.org&#34;&gt;Rails&lt;/a&gt;? O mais importante é
+a configuração &lt;code&gt;config.time_zone&lt;/code&gt; em seu arquivo &lt;code&gt;config/application.rb&lt;/code&gt;. ActiveRecord irá ajudá-lo a
+converter de e para UTC (o que a documentação não explica) e o fuso horário de sua escolha. Isto significa
+que, se tudo que você está fazendo é ter usuários postando varias vezes através de um formulário e utilizar
+&lt;code&gt;Active Record&lt;/code&gt; que ele persista que você é bom para ir.&lt;/p&gt;
+
+&lt;p&gt;###Processamento de informações de time&lt;/p&gt;
+
+&lt;p&gt;Então, o que sobre o fato de fazer algo com a informação de &lt;code&gt;time&lt;/code&gt; antes de aceitá-lo? Que é quando se torna
+complicado.&lt;/p&gt;
+
+&lt;p&gt;####Parsing&lt;/p&gt;
+
+&lt;p&gt;Ao analisar informações de &lt;code&gt;time&lt;/code&gt; é importante nunca fazê-lo sem especificar o fuso horário. A melhor maneira
+de o fazer é utilizar &lt;code&gt;Time.zone.parse&lt;/code&gt; (que vai usar na zona de tempo especificado no &lt;code&gt;config.time_zone&lt;/code&gt;) em
+vez de apenas &lt;code&gt;Time.parse&lt;/code&gt; (que vai usar a zona do computador).&lt;/p&gt;
+
+&lt;p&gt;####Trabalhar com atributos numéricos e ActiveRecord&lt;/p&gt;
+
+&lt;p&gt;Chamadas de método como &lt;code&gt;2.hours.ago&lt;/code&gt; usa o fuso horário que você configurou, portanto, use este se você
+pode! A mesma coisa é verdade para atributos de tempo em modelos &lt;code&gt;ActiveRecord&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;```ruby Time
+post = Post.first
+post.published_at #=&amp;gt; Thu, 22 Mar 2012 00:00:00 CDT -05:00&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`ActiveRecord` busca a hora `UTC` do banco de dados e converte para o fuso horário em `config.time_zone` para
+você.
+
+####Date vs Time
+
+`Time` tem informações de `Date`, mas `Date` não tem informação de `Time`. Mesmo que você não acha que se
+importa, você pode perceber que você faz, mais cedo ou mais tarde. Seja seguro e use `Time` (ou `DateTime`,
+se você precisa de suporte para `Times` muito longe do presente).
+
+Mas vamos dizer que você está preso com uma `Date` que você precisa para tratar como um `Time`, pelo menos,
+certifique-se de convertê-lo para o seu fuso horário configurado:
+
+```ruby Date vs Time
+1.day.from_now # =&amp;gt; Fri, 02 Mar 2012 22:04:47 JST +09:00
+Date.today.to_time_in_current_zone # =&amp;gt; Fri, 02 Mar 2012 00:00:00 JST +09:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####Consultando&lt;/p&gt;
+
+&lt;p&gt;Desde que Rails sabe que a sua informação de &lt;code&gt;Time&lt;/code&gt; é armazenado como UTC no banco de dados que irá converter
+a qualquer momento que você dá para o UTC.&lt;/p&gt;
+
+&lt;p&gt;```ruby Query
+Post.where ([&amp;ldquo;posts.publised_at&amp;gt;?&amp;ldquo;, Time.zone.now])&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Só não se esqueça de nunca construir a seqüência de consulta à mão e use sempre `Time.zone.now` como a base e
+você deve ser seguro.
+
+###Trabalhando com APIs
+
+####Fornecimento
+
+A construção de uma API web para o consumo de outros? Certifique-se sempre de enviar todos os dados de tempo
+como `UTC` (e especificar que este é o caso).
+
+``` ruby Time
+Time.zone.now.utc.iso8601 # =&amp;gt; &amp;quot;2012-03-16T14: 55:33 Z&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Leia mais sobre por ISO8601 é aconselhável aqui: &lt;a href=&#34;http://devblog.avdi.org/2009/10/25/iso8601-dates-in-ruby/&#34;&gt;iso8601-dates-in-ruby&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;####Consumindo&lt;/p&gt;
+
+&lt;p&gt;Quando você começa a informação do &lt;code&gt;Time&lt;/code&gt; a partir de uma API externa que você não tem controle sobre o que
+você simplesmente necessita de descobrir o formato e o fuso horário que é enviado a você. Porque
+&lt;code&gt;Time.zone.parse&lt;/code&gt; pode não funcionar com o formato que você recebe, pode precisar de usar:&lt;/p&gt;
+
+&lt;p&gt;```ruby Time
+Time.strptime(time_string, &amp;lsquo;%Y-%m-%dT%H:%M:%S%z&amp;rsquo;).in_time_zone(Time.zone)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Por que não há nenhum método `#strptime` em `Time.zone` quando há um `#parse`. No entanto, não se esqueça de
+chamar `in_time_zone` (`Time.zone`) no seu resultado!
+
+###Trabalhar com vários fusos horários do usuário
+
+Muitos sistemas necessita de suporte aos usuários para entrar e visualizar as informações de tempo em uma
+variedade de zonas de tempo. Para conseguir isso, você precisa armazenar zona de cada usuário tempo
+(provavelmente só um dos nomes de zona de tempo `String` encontrado no `rake time:zones:all`). Então, para
+realmente usar esse fuso horário o padrão mais comum é simplesmente criar um método particular em sua
+`ActionController` e executá-la antes como um filtro.
+
+```ruby Time
+before_filter :set_time_zone
+
+def set_time_zone
+  Time.zone = current_user.time_zone if current_user
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso vai fazer a mesma coisa que &lt;code&gt;config.time_zone&lt;/code&gt; mas em uma base por pedido. Eu ainda recomendo mudar o
+&lt;code&gt;config.time_zone&lt;/code&gt; padrão para um fuso horário que é um bom padrão para seus usuários.&lt;/p&gt;
+
+&lt;p&gt;####Testando&lt;/p&gt;
+
+&lt;p&gt;Todos acima é algo que os testes devem pegar para você. O problema é que você como o usuário e seu
+computador como o servidor de desenvolvimento, acontece a residir no mesmo fuso horário. Esse raramente é o
+ caso, uma vez que você levar as coisas para a produção.&lt;/p&gt;
+
+&lt;p&gt;Highgroove liberado apenas &lt;a href=&#34;https://github.com/highgroove/zonebie&#34;&gt;Zonebie&lt;/a&gt;, uma gem que o ajuda a lidar com isso. Eu não tive tempo de testá-lo
+eu mesmo ainda, mas parece muito promissor. Se você achar que isso seja um exagero, pelo menos,
+certifique-se de que seus testes executados com um conjunto &lt;code&gt;Time.zone&lt;/code&gt; para outro fuso horário do que a sua
+máquina de desenvolvimento está configurado!&lt;/p&gt;
+
+&lt;p&gt;####Bug no Time.zone.parse&lt;/p&gt;
+
+&lt;p&gt;Jarkko Laine (&lt;a href=&#34;https://twitter.com/#!/jarkko&#34;&gt;@Jarkko&lt;/a&gt;) apontou que não há atualmente um bug no &lt;code&gt;Rails&lt;/code&gt; que pode fazer o
+&lt;code&gt;Time.zone.parse&lt;/code&gt; perder uma hora quando o tempo do sistema está em &lt;code&gt;DST&lt;/code&gt; (&lt;code&gt;horário de verão&lt;/code&gt;) e seu fuso
+horário configurado não. Jarkko postou um problema no &lt;code&gt;Rails&lt;/code&gt; rastreando o assunto e escreveu um patch para
+corrigir o bug. Até que o patch foi aceito ou se você está rodando com versões mais antigas do &lt;code&gt;Rails&lt;/code&gt; a
+única forma segura de evitar este erro, quer seja um patches para &lt;code&gt;Rails&lt;/code&gt; em seu aplicativo com correção
+Jarkko’s ou uso:&lt;/p&gt;
+
+&lt;p&gt;```ruby Time&lt;/p&gt;
+
+&lt;h1 id=&#34;use&#34;&gt;use&lt;/h1&gt;
+
+&lt;p&gt;ActiveSupport::TimeWithZone.new(nil, Time.zone, DateTime.parse(&amp;ldquo;2012-03-25 03:29&amp;rdquo;))&lt;/p&gt;
+
+&lt;h1 id=&#34;sun-25-mar-2012-03-29-00-pdt-07-00&#34;&gt;=&amp;gt; Sun, 25 Mar 2012 03:29:00 PDT -07:00&lt;/h1&gt;
+
+&lt;h1 id=&#34;or-if-possible-pass-the-time-zone-in-the-string&#34;&gt;or if possible pass the time zone in the string&lt;/h1&gt;
+
+&lt;p&gt;Time.zone.parse(&amp;ldquo;2012-03-25 03:29 PDT&amp;rdquo;)&lt;/p&gt;
+
+&lt;h1 id=&#34;sun-25-mar-2012-03-29-00-pdt-07-00-1&#34;&gt;=&amp;gt; Sun, 25 Mar 2012 03:29:00 PDT -07:00&lt;/h1&gt;
+
+&lt;h1 id=&#34;instead-of&#34;&gt;instead of&lt;/h1&gt;
+
+&lt;p&gt;Time.zone.parse(&amp;ldquo;2012-03-25 03:29&amp;rdquo;)&lt;/p&gt;
+
+&lt;h1 id=&#34;sun-25-mar-2012-04-29-00-pdt-07-00&#34;&gt;=&amp;gt; Sun, 25 Mar 2012 04:29:00 PDT -07:00&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Deve, contudo, ser mencionado que é muito raro que esta superfícies de bug e quando ele faz isso só pode
+perder uma hora. Se você pode viver com o que você provavelmente faz melhor por apenas aguardando o patch
+para ser aceito.
+
+###Cheat Sheet
+
+####FAZER
+
+```ruby Date vs Time
+2.hours.ago # =&amp;gt; Fri, 02 Mar 2012 14:02:42 CET +01:00
+1.day.from_now # =&amp;gt; Fri, 02 Mar 2012 22:04:47 JST +09:00
+Date.today.to_time_in_current_zone # =&amp;gt; Fri, 02 Mar 2012 00:00:00 JST +09:00
+Time.zone.parse(&amp;quot;2012-03-02 16:05:37&amp;quot;) # =&amp;gt; Fri, 02 Mar 2012 16:05:37 JST +09:00
+Time.zone.now # =&amp;gt; Sat, 03 Mar 2012 00:07:37 JST +09:00
+Time.zone.today # If you really can&#39;t have a Time or DateTime for some reason
+Time.zone.now.utc.iso8601 # &amp;quot;When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it&#39;s needed)
+Time.strptime(time_string, &#39;%Y-%m-%dT%H:%M:%S%z&#39;).in_time_zone(Time.zone) # If you can&#39;t use parse
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####NÃO FAZER&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Date vs Time
+Time.now # =&amp;gt; 2012-03-02 16:05:37 +0100
+Date.today.to_time # =&amp;gt; 2012-03-02 00:00:00 +0100
+Time.parse(&amp;quot;2012-03-02 16:05:37&amp;quot;) # =&amp;gt; 2012-03-02 16:05:37 +0100
+Time.now # =&amp;gt; 2012-03-02 16:07:20 +0100
+Date.today # This could be yesterday or tomorrow depending on the machine&#39;s time zone!
+Time.strptime(time_string, &#39;%Y-%m-%dT%H:%M:%S%z&#39;) # You won&#39;t have the time in your configured time zone!
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;###Epílogo&lt;/p&gt;
+
+&lt;p&gt;Espero que você tenha aprendido alguma coisa com este post. Tenho certeza que fiz ao escrevê-lo! Se você tem
+algum comentário sobre como ele pode ser melhorada, ou se você encontrar algum erro, por favor me avise por
+postar um comentário abaixo!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Agradeço ao amigo &lt;a href=&#34;https://twitter.com/cjkihlbom&#34;&gt;CJ Kihlbom&lt;/a&gt;, abraços amigo&amp;hellip; :D&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

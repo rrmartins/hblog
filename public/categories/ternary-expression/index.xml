@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Ternary Expression on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/ternary-expression/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 08 Oct 2015 00:00:00 UTC</updated>
+    
+    <item>
+      <title>expressao ternaria em go</title>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <description>&lt;p&gt;Æ galera,&lt;/p&gt;
+
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+
+&lt;p&gt;Tal erro:&lt;/p&gt;
+
+&lt;p&gt;``` go Error Illegal Character
+    illegal character U+003F &amp;lsquo;?&amp;rsquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Pois bem, no mundo ruby, seria algo assim:
+
+``` ruby Expressão Ternária
+    c = a != &amp;quot;&amp;quot; ? a : &amp;quot;8080&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mas, o jeito &amp;ldquo;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; de ser&amp;rdquo;, ficou assim:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;go &#39;Pseudo-Expressao Ternaria&#39; em Go
+    c = map[bool]string{true: a, false: &amp;quot;8080&amp;quot;}[a != &amp;quot;&amp;quot;]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta forma que escrevemos em Go, já temos os retornos da validação, e ali pode retornar uma &lt;code&gt;func&lt;/code&gt; ou valores quaisquer, dependendo da validação.&lt;/p&gt;
+
+&lt;p&gt;Valeu, abraço.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
