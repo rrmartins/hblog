@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Ruby 1.9.3 on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/ruby-1.9/index.3/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sun, 28 Apr 2013 00:00:00 UTC</updated>
+    
+    <item>
+      <title>expressoes regulares em ruby</title>
+      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <description>
+
+&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.&lt;/p&gt;
+
+&lt;p&gt;Volto falando um pouco de &lt;code&gt;Expressão Regular&lt;/code&gt; em Ruby(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão &lt;a href=&#34;http://ruby-doc.org/core-2.0/&#34;&gt;2.0&lt;/a&gt; é a que estou usando, e não esta me deixando na mão.&lt;/p&gt;
+
+&lt;p&gt;Em Ruby, a expressão regular, ou &lt;code&gt;Regexp&lt;/code&gt;(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp
+/\d\d:\d\d (AM|PM)/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você usa o operador `=~` para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts /\d\d:\d\d (AM|PM)/ =~ &#39;10:24 PM&#39;
+=&amp;gt; 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts /PM/ =~ &amp;lsquo;10:24 PM&amp;rsquo;
+=&amp;gt; 6&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; /May/ =~ &#39;Sometime in June&#39;
+=&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Voltará &lt;code&gt;nil&lt;/code&gt;. Desde o operador &lt;code&gt;=~&lt;/code&gt; retorna um número quando se encontra uma correspondência e &lt;code&gt;nil&lt;/code&gt; se não, você pode usar
+conjuntos de expressões regulares como booleanos:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-1&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the_time = &amp;lsquo;10:24 AM&amp;rsquo;
+puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/ =~ the_time
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O operador `=~` também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:
+
+```ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts &amp;quot;É de manhã!&amp;quot; if &#39;10:24 AM&#39; =~ /AM/
+=&amp;gt; É de manhã!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Como disse, as expressões regulares são por padrão &lt;code&gt;case sensitive&lt;/code&gt;: &lt;code&gt;/AM/&lt;/code&gt; não corresponde &lt;code&gt;/am/&lt;/code&gt;. Felizmente, você pode
+transformar esse &lt;code&gt;case sensitive&lt;/code&gt; colocando um i no fim de sua expressão, de modo que este:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-2&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/i =~ &amp;lsquo;am&amp;rsquo;
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Irá imprimir algo!
+
+Além de seu uso mais ou menos independente com o operador `=~`, expressões regulares também entram em jogo nos métodos de `string`
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método [gsub](http://ruby-doc.org/core-2.0/String.html#method-i-gsub) da classe `string`, talvez para apagar todo o conteúdo de um documento:
+
+```ruby Regexp
+class Document
+  # A maioria da classe omitida...
+
+  def obscure_times!
+    @content.gsub!( /\d\d:\d\d (AM|PM)/, &#39;**:** **&#39; )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.&lt;/p&gt;
+
+&lt;p&gt;Até mais&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

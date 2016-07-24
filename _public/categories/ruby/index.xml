@@ -1,0 +1,2115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Ruby on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/ruby/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 12 May 2016 00:00:00 UTC</updated>
+    
+    <item>
+      <title>rss collector in ruby and go</title>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;My idea is to do a project in Go and Ruby, to make a simple parse the same url to an rss feed, and check how long it takes each run of languages.&lt;/p&gt;
+
+&lt;p&gt;Come on!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#ruby&#34;&gt;Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#go&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;a-name-ruby-ruby-a&#34;&gt;&lt;a name=&#34;ruby&#34;&gt;Ruby&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s first talk about the project in &lt;a href=&#34;https://www.ruby-lang.org/en/&#34;&gt;Ruby&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We will have a class called &lt;code&gt;Parse::Rss&lt;/code&gt;, with some methods, as: &lt;code&gt;get_title()&lt;/code&gt;, &lt;code&gt;get_description()&lt;/code&gt;, &lt;code&gt;get_link()&lt;/code&gt;, &lt;code&gt;get_categories()&lt;/code&gt;, &lt;code&gt;get_total_items()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We used the &lt;a href=&#34;https://rubygems.org/gems/rrsimple-rss&#34;&gt;rrsimple-rss&lt;/a&gt; and &lt;a href=&#34;http://ruby-doc.org/stdlib-2.2.0/libdoc/open-uri/rdoc/OpenURI.html&#34;&gt;open-uri&lt;/a&gt; gem. Below is ready class. I do not do anything different, but to do the get the fields that the gem returns.&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/a29a2251e411d0d93d77ac376ba36a25.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The main file, start the url variable with a value already set and start the Parse :: Rss class. initializing the class will already run parse the url and return the object that the gem returns.&lt;/p&gt;
+
+&lt;p&gt;``` ruby initializing url and Parse with url
+url = &amp;ldquo;&lt;a href=&#34;http://golangweekly.com/rss/1g2bo910&amp;quot;&#34;&gt;http://golangweekly.com/rss/1g2bo910&amp;quot;&lt;/a&gt;
+parserss = Parse::Rss.new(url)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Now is print the returns.
+
+&amp;lt;script src=&amp;quot;https://gist.github.com/rrmartins/dcc47cd10d4c17ec04fd3add6563033a.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+We run `bundle install` to install the gems of `Gemfile`:
+
+``` bash
+$ bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When running &lt;code&gt;main.rb&lt;/code&gt; file return of the &lt;code&gt;Parse::Rss&lt;/code&gt; class and execution of time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ruby main.rb
+The Title is: Go Newsletter
+The Description is: A weekly newsletter about the Go programming language
+The Link is: http://golangweekly.com/
+The Categories is No have Categories
+The total of Items is: 4
+
+  0.360000   0.020000   0.380000 (  4.406442)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Project on github: &lt;a href=&#34;https://github.com/rrmartins/parserssrb&#34;&gt;parserssrb&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;a-name-go-go-a&#34;&gt;&lt;a name=&#34;go&#34;&gt;Go&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s talk about the project in &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We use go from the standard libraries, as: &lt;a href=&#34;https://godoc.org/fmt&#34;&gt;fmt&lt;/a&gt;, &lt;a href=&#34;https://godoc.org/time&#34;&gt;time&lt;/a&gt; and &lt;a href=&#34;github.com/mmcdole/gofeed&#34;&gt;gofeed&lt;/a&gt;, only this.&lt;/p&gt;
+
+&lt;p&gt;As we have an external package, you will need to install using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go get github.com/mmcdole/gofeed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok!&lt;/p&gt;
+
+&lt;p&gt;Now create the file &lt;code&gt;parse/rss.go&lt;/code&gt;, in package &lt;code&gt;parse&lt;/code&gt;:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/8947db95092780edf3be7f717690b89f.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;We create &lt;code&gt;main.go&lt;/code&gt; in root path, this file we used &lt;a href=&#34;https://godoc.org/time&#34;&gt;time&lt;/a&gt; to calculate time run the project.&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/780fcd02e7fa4a8646fbf3ef256195ec.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;When running &lt;code&gt;main.go&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go run main.go                                                              
+Starting get
+The Title is: Go Newsletter
+The Description is: A weekly newsletter about the Go programming language
+The Link is: http://golangweekly.com/
+The Categories is No have Categories
+The total of Items is: 4
+
+Benchmark: 2.20670856s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Project on github: &lt;a href=&#34;https://github.com/rrmartins/grfeed&#34;&gt;grfeed&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In a quick comparison with the &amp;ldquo;same&amp;rdquo; functionality, &lt;code&gt;Go&lt;/code&gt; was faster than &lt;code&gt;Ruby&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks! Until next time!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>comparando auto increments ruby x golang</title>
+      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <description>&lt;p&gt;Æ,&lt;/p&gt;
+
+&lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Enquanto em Ruby fazemos assim:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Auto Increment Ruby
+   &amp;gt; a = 0
+   =&amp;gt; 0
+   a += 1
+   =&amp;gt; 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em Go, fazemos de forma um pouco mais simplificado - não sei se era essa a intenção deles.
+
+``` go Auto Increment Golang
+   a := 0
+   a ++
+   fmt.Printf(&amp;quot;a = %d&amp;quot;,a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A saída será: &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;E em caso para decrementar:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Auto Decrement Ruby
+   &amp;gt; a = 0
+   =&amp;gt; 0
+   a -= 1
+   =&amp;gt; -1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em Go:
+
+``` go Auto Decrement Golang
+   a := 0
+   a --
+   fmt.Printf(&amp;quot;a = %d&amp;quot;,a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A saída será: &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Rapidinho né?! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>expressao ternaria em go</title>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <description>&lt;p&gt;Æ galera,&lt;/p&gt;
+
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+
+&lt;p&gt;Tal erro:&lt;/p&gt;
+
+&lt;p&gt;``` go Error Illegal Character
+    illegal character U+003F &amp;lsquo;?&amp;rsquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Pois bem, no mundo ruby, seria algo assim:
+
+``` ruby Expressão Ternária
+    c = a != &amp;quot;&amp;quot; ? a : &amp;quot;8080&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mas, o jeito &amp;ldquo;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; de ser&amp;rdquo;, ficou assim:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;go &#39;Pseudo-Expressao Ternaria&#39; em Go
+    c = map[bool]string{true: a, false: &amp;quot;8080&amp;quot;}[a != &amp;quot;&amp;quot;]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta forma que escrevemos em Go, já temos os retornos da validação, e ali pode retornar uma &lt;code&gt;func&lt;/code&gt; ou valores quaisquer, dependendo da validação.&lt;/p&gt;
+
+&lt;p&gt;Valeu, abraço.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>as duas faces de string</title>
+      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string &amp;ldquo;dog&amp;rdquo; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &amp;ldquo;d&amp;rdquo;, um &amp;ldquo;o&amp;rdquo;, e &amp;ldquo;g&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book = Book.find(:all)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O argumento para o método &lt;code&gt;find&lt;/code&gt; é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para &lt;code&gt;Book.find&lt;/code&gt; realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do &lt;code&gt;ActiveRecord&lt;/code&gt; e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book = Book.find(&#39;all&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de &lt;code&gt;:all&lt;/code&gt; exige um keystroke menos
+do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?&lt;/p&gt;
+
+&lt;p&gt;Continuando no post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/nao-e-bem-uma-string/&#34;&gt;Não é bem uma String&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Até mais galera! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>expressoes regulares em ruby</title>
+      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <description>
+
+&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.&lt;/p&gt;
+
+&lt;p&gt;Volto falando um pouco de &lt;code&gt;Expressão Regular&lt;/code&gt; em Ruby(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão &lt;a href=&#34;http://ruby-doc.org/core-2.0/&#34;&gt;2.0&lt;/a&gt; é a que estou usando, e não esta me deixando na mão.&lt;/p&gt;
+
+&lt;p&gt;Em Ruby, a expressão regular, ou &lt;code&gt;Regexp&lt;/code&gt;(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp
+/\d\d:\d\d (AM|PM)/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você usa o operador `=~` para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts /\d\d:\d\d (AM|PM)/ =~ &#39;10:24 PM&#39;
+=&amp;gt; 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts /PM/ =~ &amp;lsquo;10:24 PM&amp;rsquo;
+=&amp;gt; 6&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; /May/ =~ &#39;Sometime in June&#39;
+=&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Voltará &lt;code&gt;nil&lt;/code&gt;. Desde o operador &lt;code&gt;=~&lt;/code&gt; retorna um número quando se encontra uma correspondência e &lt;code&gt;nil&lt;/code&gt; se não, você pode usar
+conjuntos de expressões regulares como booleanos:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-1&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the_time = &amp;lsquo;10:24 AM&amp;rsquo;
+puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/ =~ the_time
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O operador `=~` também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:
+
+```ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts &amp;quot;É de manhã!&amp;quot; if &#39;10:24 AM&#39; =~ /AM/
+=&amp;gt; É de manhã!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Como disse, as expressões regulares são por padrão &lt;code&gt;case sensitive&lt;/code&gt;: &lt;code&gt;/AM/&lt;/code&gt; não corresponde &lt;code&gt;/am/&lt;/code&gt;. Felizmente, você pode
+transformar esse &lt;code&gt;case sensitive&lt;/code&gt; colocando um i no fim de sua expressão, de modo que este:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-2&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/i =~ &amp;lsquo;am&amp;rsquo;
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Irá imprimir algo!
+
+Além de seu uso mais ou menos independente com o operador `=~`, expressões regulares também entram em jogo nos métodos de `string`
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método [gsub](http://ruby-doc.org/core-2.0/String.html#method-i-gsub) da classe `string`, talvez para apagar todo o conteúdo de um documento:
+
+```ruby Regexp
+class Document
+  # A maioria da classe omitida...
+
+  def obscure_times!
+    @content.gsub!( /\d\d:\d\d (AM|PM)/, &#39;**:** **&#39; )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.&lt;/p&gt;
+
+&lt;p&gt;Até mais&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nao e bem uma string</title>
+      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
+que finaliza com a pergunta:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Então, por que o Ruby nos fornece tanto?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de &lt;code&gt;strings&lt;/code&gt; é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+&lt;code&gt;string&lt;/code&gt;, coisas como o título do livro, o autor, o nome do AOS, e o texto real.&lt;/p&gt;
+
+&lt;p&gt;A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar &lt;code&gt;:all&lt;/code&gt; registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de &lt;code&gt;Books&lt;/code&gt; é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e &lt;code&gt;:all&lt;/code&gt; é um flag que diz que ele deve retornar cada um. O bom de usar algo como &lt;code&gt;:all&lt;/code&gt; para esse
+tipo de &amp;ldquo;significa&amp;rdquo; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que &lt;code&gt;:all&lt;/code&gt; quando você se depara com ele do que &lt;code&gt;0&lt;/code&gt;, ou &lt;code&gt;-1&lt;/code&gt;, ou mesmo &lt;code&gt;0x29ef&lt;/code&gt;(Deus me perdoe!).&lt;/p&gt;
+
+&lt;p&gt;Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de &lt;code&gt;string&lt;/code&gt; na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é a forma rápida e confiável.&lt;/p&gt;
+
+&lt;p&gt;Até mais galera! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>traducao ruby 2 dot 0 por exemplos</title>
+      <link>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
+      <pubDate>Tue, 26 Feb 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
+      <description>&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Tudo tranquilo?&lt;/p&gt;
+
+&lt;p&gt;Estava conversando com o &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc-Andre Lafortune&lt;/a&gt;, do blog &lt;a href=&#34;http://blog.marc-andre.ca/&#34;&gt;Marc Andre&lt;/a&gt;, sobre a nova versão do &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0&lt;/a&gt;, e ele me permitiu traduzir o &lt;a href=&#34;http://blog.marc-andre.ca/2013/02/23/ruby-2-by-example/&#34;&gt;post dele&lt;/a&gt; e ai vai.. :)&lt;/p&gt;
+
+&lt;p&gt;Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no &lt;a href=&#34;https://twitter.com/yukihiro_matz/statuses/305334327938519040&#34;&gt;twitter&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;{% blockquote @yukihiro_matz &lt;a href=&#34;https://twitter.com/yukihiro_matz/status/305334327938519040&#34;&gt;https://twitter.com/yukihiro_matz/status/305334327938519040&lt;/a&gt; %}&lt;/p&gt;
+
+&lt;p&gt;20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!&lt;/p&gt;
+
+&lt;p&gt;{% endblockquote %}&lt;/p&gt;
+
+&lt;p&gt;Neste trecho, &lt;a href=&#34;https://twitter.com/yukihiro_matz&#34;&gt;Matz&lt;/a&gt; diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.&lt;/p&gt;
+
+&lt;p&gt;Vamos a tradução&amp;hellip; :D&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tradução&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Um rápido resumo de alguns dos novos recursos do &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;###Alterações na Linguagem&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;	# Ruby 1.9:
+  # (Do action_view/helpers/text_helper.rb)
+def cycle(first_value, *values)
+  options = values.extract_options!
+  name = options.fetch(:name, &#39;default&#39;)
+  # ...
+end
+
+# Ruby 2.0:
+def cycle(first_value, *values, name: &#39;default&#39;)
+  # ...
+end
+
+# ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:
+cycle(&#39;odd&#39;, &#39;even&#39;, nme: &#39;foo&#39;)
+# =&amp;gt; ArgumentError: unknown keyword: nme
+
+# Para obter o mesmo resultado e melhor exato:
+def cycle(first_value, *values, name: &#39;default&#39;, **ignore_extra)
+  # ...
+end
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso faz com que as definições de método seja muito flexível. Em resumo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;def name({required_arguments, ...}
+         {optional_arguments, ...}
+         {*rest || additional_required_arguments...} # Você Sabia?
+         {keyword_arguments: &amp;quot;with_defaults&amp;quot;...}
+         {**rest_of_keyword_arguments}
+         {&amp;amp;block_capture})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Em &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;, argumentos devem ter padrões, ou então deve ser capturado por &lt;code&gt;**extra&lt;/code&gt; no final. Próxima versão &lt;a href=&#34;https://bugs.ruby-lang.org/issues/7701&#34;&gt;permitirá&lt;/a&gt; argumentos obrigatórios, por exemplo, &lt;code&gt;def hello(optional: &#39;default&#39;, required:)&lt;/code&gt;, mas há &lt;a href=&#34;http://stackoverflow.com/questions/13250447/can-i-have-required-named-parameters-in-ruby-2-x/15078852#15078852&#34;&gt;maneiras de fazer isso agora&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Padrões, para parâmetros opcionais ou argumentos de palavras-chave, pode ser na maior parte qualquer expressão, incluindo chamadas de método para o objeto atual e pode usar os parâmetros anteriores.&lt;/p&gt;
+
+&lt;p&gt;Um exemplo complexo que mostra a maior parte deste:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;class C
+  def hi(needed, needed2,
+         maybe1 = &amp;quot;42&amp;quot;, maybe2 = maybe1.upcase,
+         *args,
+         named1: &#39;hello&#39;, named2: a_method(named1, needed2),
+         **options,
+         &amp;amp;block)
+  end
+
+  def a_method(a, b)
+    # ...
+  end
+end
+
+C.instance_method(:hi).parameters
+# =&amp;gt; [ [:req, :needed], [:req, :needed2],
+#      [:opt, :maybe1], [:opt, :maybe2],
+#      [:rest, :args],
+#      [:key, :named1], [:key, :named2],
+#      [:keyrest, :options],
+#      [:block, :block] ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bugs.ruby-lang.org/issues/7922&#34;&gt;Bug conhecido&lt;/a&gt;: não é atualmente possível ignorar opções extras sem citar o argumento &lt;code&gt;**&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Criação de lista de Symbol&lt;/p&gt;
+
+&lt;p&gt;Maneira fácil de criar listas de símbolos com &lt;code&gt;%i&lt;/code&gt; e &lt;code&gt;%I&lt;/code&gt; (onde i é para uso interno):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+KEYS = [:foo, :bar, :baz]
+
+# Ruby 2.0:
+KEYS = %i[foo bar baz]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Codificação padrão é UTF-8&lt;/p&gt;
+
+&lt;p&gt;Nenhum comentário magico é necessário caso a codificação for UTF-8.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+# encoding: utf-8
+# ^^^ previous line was needed!
+puts &amp;quot;❤ Rodrigo Martins ❤&amp;quot;
+
+# Ruby 2.0:
+puts &amp;quot;❤ Rodrigo Martins ❤&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Variáveis ​​não utilizadas pode começar com _&lt;/p&gt;
+
+&lt;p&gt;Você sabia que Ruby pode avisá-lo sobre as variáveis ​​utilizadas?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Qualquer versão do Ruby, com aviso em:
+ruby -w -e &amp;quot;
+  def hi
+    hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; warning: assigned but unused variable - hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A maneira de evitar o aviso era usar &lt;code&gt;_&lt;/code&gt;. Agora podemos usar qualquer nome de variável começando com um underscore:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9
+ruby -w -e &amp;quot;
+  def foo
+    _, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; no warning
+
+# Ruby 2.0
+ruby -w -e &amp;quot;
+  def hi
+    _hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; no warning either
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##Mudanças das Classes Principais&lt;/p&gt;
+
+&lt;p&gt;###Prepend&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ruby-doc.org/core-2.0/String.html#method-i-prepend&#34;&gt;Module#prepend&lt;/a&gt; insere um módulo no início da cadeia de ligação. Pode muito bem substituir por &lt;code&gt;alias_method_chain&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+class Range
+  # Do active_support/core_ext/range/include_range.rb
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include_with_range?(value)
+    if value.is_a?(::Range)
+      # 1...10 inclue 1..9 mas não inclue 1..10.
+      operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+      include_without_range?(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+    else
+      include_without_range?(value)
+    end
+  end
+
+  alias_method_chain :include?, :range
+end
+
+Range.ancestors # =&amp;gt; [Range, Enumerable, Object...]
+
+# Ruby 2.0
+module IncludeRangeExt
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include?(value)
+    if value.is_a?(::Range)
+      # 1...10 inclue 1..9 mas não inclue 1..10.
+      operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+      super(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+    else
+      super
+    end
+  end
+end
+
+class Range
+  prepend IncludeRangeExt
+end
+
+Range.ancestors # =&amp;gt; [IncludeRangeExt, Range, Enumerable, Object...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Refinamentos [experimental]&lt;/p&gt;
+
+&lt;p&gt;No Ruby 1.9, se você usa um metodo &lt;code&gt;alias_method_chain&lt;/code&gt;, a nova definição ocorre em todos os lugares. Em &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;, você pode fazer esse tipo de mudança apenas para si mesmo utilizando o &lt;a href=&#34;http://ruby-doc.org/core-2.0/Module.html#method-i-refine&#34;&gt;Module#refine&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0
+module IncludeRangeExt
+  refine Range do
+    # Estende o padrão Range#include? para suportar comparações de range
+    def include?(value)
+      if value.is_a?(::Range)
+        # 1...10 inclue 1..9 mas não inclue 1..10.
+        operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+        super(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+      else
+        super
+      end
+    end
+  end
+end
+
+def test_before(r)
+  r.include?(2..3)
+end
+(1..4).include?(2..3) # =&amp;gt; false (comportamento padrão)
+
+# Agora liga o refinamento:
+using IncludeRangeExt
+
+(1..4).include?(2..3) # =&amp;gt; true  (comportamento refinado)
+
+def test_after(r)
+  r.include?(2..3)
+end
+test_after(1..4) # =&amp;gt; true (definido depois de usar, o comportamento tão refinado)
+
+3.times.all? do
+  (1..4).include?(2..3)
+end # =&amp;gt; true  (comportamento refinado)
+
+# Mas a versão refinada acontece apenas para chamadas definidas após o uso:
+test_before(1..4) # =&amp;gt; false (definido anteriormente, não afetado)
+require &#39;some_other_file&#39; # =&amp;gt; não afetado, usará o comportamento predefinido
+
+# Note:
+(1..4).send :include?, 2..3 # =&amp;gt; false (por agora, envio ignora refinamentos)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Spec completo está &lt;a href=&#34;http://bugs.ruby-lang.org/projects/ruby-trunk/wiki/RefinementsSpec&#34;&gt;aqui&lt;/a&gt; e está sujeita a mudanças em versões posteriores. Discussão mais aprofundada &lt;a href=&#34;http://benhoskin.gs/2013/02/24/ruby-2-0-by-example#refinements&#34;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Enumeradores Lazy&lt;/p&gt;
+
+&lt;p&gt;Um &lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerable.html&#34;&gt;Enumerable&lt;/a&gt; pode ser transformado em um lazy com o novo método &lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerable.html#method-i-lazy&#34;&gt;Enumerable#lazy&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+lines = File.foreach(&#39;a_very_large_file&#39;)
+            .lazy # por isso só ler as partes necessárias!
+            .select {|line| line.length &amp;lt; 10 }
+            .map(&amp;amp;:chomp)
+            .each_slice(3)
+            .map {|lines| lines.join(&#39;;&#39;).downcase }
+            .take_while {|line| line.length &amp;gt; 20 }
+  # =&amp;gt; Enumerador lazy, ainda não executa nada
+lines.first(3) # =&amp;gt; Lê o arquivo até que ele retornar 3 elementos
+               # ou até que um elemento de length &amp;lt;= 20 é
+               # retornado (por causa da take_while)
+
+# Para consumir o enumerável:
+lines.to_a # ou...
+lines.force # =&amp;gt; Lê o arquivo e retorna uma array
+lines.each{|elem| puts elem } # =&amp;gt; Lê o arquivo e imprime os elementos resultantes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que, muitas vezes, &lt;code&gt;lazy&lt;/code&gt; é mais lento do que uma versão não &lt;code&gt;lazy&lt;/code&gt;. Ele deve ser usado somente quando ele realmente faz sentido, não apenas para evitar a construção de um &lt;code&gt;array&lt;/code&gt; intermediário.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;fruity&#39;
+r = 1..100
+compare do
+  lazy   { r.lazy.map(&amp;amp;:to_s).each_cons(2).map(&amp;amp;:join).to_a }
+  direct { r     .map(&amp;amp;:to_s).each_cons(2).map(&amp;amp;:join)      }
+end
+# =&amp;gt; direto é mais rápida do que por lazy 2x ± 0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Tamanho Lazy&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerator.html#method-i-size&#34;&gt;Enumerator#size&lt;/a&gt; pode ser chamado para obter o tamanho do enumerador sem consumi-lo (se disponível).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+(1..100).to_a.permutation(4).size # =&amp;gt; 94109400
+loop.size # =&amp;gt; Float::INFINITY
+(1..100).drop_while.size # =&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ao criar enumeradores, seja com &lt;code&gt;to_enum&lt;/code&gt;, &lt;code&gt;Enumerator::New&lt;/code&gt; ou &lt;code&gt;Enumerator::Lazy::New&lt;/code&gt; é possível definir um tamanho muito:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+fib = Enumerator.new(Float::INFINITY) do |y|
+  a = b = 1
+  loop do
+    y &amp;lt;&amp;lt; a
+    a, b = b, b+a
+  end
+end
+
+still_lazy = fib.lazy.take(1_000_000).drop(42)
+still_lazy.size # =&amp;gt; 1_000_000 - 42
+
+class Enumerable
+  def skip(every)
+    unless block_given?
+      return to_enum(:skip, every) { size &amp;amp;&amp;amp; (size+every)/(every + 1) }
+    end
+    each_slice(every+1) do |first, *ignore|
+      yield last
+    end
+  end
+end
+
+(1..10).skip(3).to_a # =&amp;gt; [1, 5, 9]
+(1..10).skip(3).size # =&amp;gt; 3, sem executar o loop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Detalhes adicionais e exemplos na doc de &lt;a href=&#34;http://ruby-doc.org/core-2.0/Object.html#method-i-to_enum&#34;&gt;to_enum&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###&lt;strong&gt;dir&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Embora &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-require_relative&#34;&gt;require_relative&lt;/a&gt; torna o uso de &lt;code&gt;File.dirname(__FILE__)&lt;/code&gt; muito menos freqüentes, agora podemos usar &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-__dir__&#34;&gt;&lt;strong&gt;dir&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.8:
+require File.dirname(__FILE__) + &amp;quot;/lib&amp;quot;
+File.read(File.dirname(__FILE__) + &amp;quot;/.Gemfile&amp;quot;)
+
+# Ruby 1.9:
+require_relative &#39;lib&#39;
+File.read(File.dirname(__FILE__) + &#39;/.config&#39;)
+
+# Ruby 2.0
+require_relative &#39;lib&#39; # há necessidade de usar __dir__ por isso!
+File.read(__dir__ + &#39;/.config&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###bsearch&lt;/p&gt;
+
+&lt;p&gt;Pesquisa binária já está disponível, usando &lt;a href=&#34;http://ruby-doc.org/core-2.0/Array.html#method-i-bsearch&#34;&gt;Array#bsearch&lt;/a&gt; ou &lt;a href=&#34;http://ruby-doc.org/core-2.0/Range.html#method-i-bsearch&#34;&gt;Range#bsearch&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+ary = [0, 4, 7, 10, 12]
+ary.bsearch {|x| x &amp;gt;=   6 } #=&amp;gt; 7
+ary.bsearch {|x| x &amp;gt;= 100 } #=&amp;gt; nil
+
+# Também em range, incluindo range de floats:
+(Math::PI * 6 .. Math::PI * 6.5).bsearch{|f| Math.cos(f) &amp;lt;= 0.5}
+# =&amp;gt; Math::PI * (6+1/3.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###to_h&lt;/p&gt;
+
+&lt;p&gt;Existe agora uma forma oficial para converter uma classe a um Hash, utilizando &lt;code&gt;to_h&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+Car = Struct.new(:make, :model, :year) do
+  def build
+    #...
+  end
+end
+car = Car.new(&#39;Toyota&#39;, &#39;Prius&#39;, 2014)
+car.to_h # =&amp;gt; {:make=&amp;gt;&amp;quot;Toyota&amp;quot;, :model=&amp;gt;&amp;quot;Prius&amp;quot;, :year=&amp;gt;2014}
+nil.to_h # =&amp;gt; {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso foi implementado para &lt;code&gt;nil&lt;/code&gt;, &lt;code&gt;Struct&lt;/code&gt; e &lt;code&gt;OpenStruct&lt;/code&gt;, mas não para &lt;code&gt;Array&lt;/code&gt;/&lt;code&gt;Enumerable&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;{hello: &#39;world&#39;}.map{|k, v| [k.to_s, v.upcase]}
+                .to_h # =&amp;gt; NoMethodError:
+# undefined method `to_h&#39; for [[&amp;quot;hello&amp;quot;, &amp;quot;WORLD&amp;quot;]]:Array
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se você acha que isso seria um recurso útil, você deve &lt;a href=&#34;http://bugs.ruby-lang.org/issues/7292&#34;&gt;tentar convencer Matz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###caller_locations&lt;/p&gt;
+
+&lt;p&gt;É usado para ser difícil saber qual o método chamado apenas. Que não foi muito eficiente, dado que o backtrace todo teve de ser retornado. Cada frames foi uma seqüência que precisava ser computado primeiramento pelo Ruby e provavelmente analisado depois.&lt;/p&gt;
+
+&lt;p&gt;Entra &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-caller_locations&#34;&gt;caller_locations&lt;/a&gt; que retorna a informação de uma forma de objeto e com uma api melhor que pode limitar o número de frames solicitados.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+def whoze_there_using_caller
+  caller[0][/`([^&#39;]*)&#39;/, 1]
+end
+
+# Ruby 2.0:
+def whoze_there_using_locations
+  caller_locations(1,1)[0].label
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Quanto mais rápido é? &lt;a href=&#34;https://gist.github.com/marcandre/5041813&#34;&gt;Um teste simples&lt;/a&gt; me dá um aumento de velocidade de 45x de um stacktrace curto, e 100x para um stacktrace de 100 entradas!&lt;/p&gt;
+
+&lt;p&gt;A informação extra, como o caminho do arquivo, número da linha, ainda são acessíveis, em vez de pedir para o &lt;code&gt;label&lt;/code&gt;, para pedir &lt;code&gt;path&lt;/code&gt; ou &lt;code&gt;lineno&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Otimizações&lt;/p&gt;
+
+&lt;p&gt;É difícil mostrar a maioria das otimizações de código, mas algumas otimizações agradáveis que foi feito no &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;. Em particular, o GC foi otimizado, em particular para fazer bifurcar muito mais rápido.&lt;/p&gt;
+
+&lt;p&gt;Uma otimização que podemos demonstrar é fazer de imediatos muitos floats em sistemas de 64 bits. Isso evita a criação de novos objetos em muitos casos:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9
+4.2.object_id == 4.2.object_id # =&amp;gt; false
+
+# Ruby 2.0
+warn &amp;quot;Optimization only on 64 bit systems&amp;quot; unless 42.size * 8 == 64
+4.2.object_id == 4.2.object_id # =&amp;gt; true (4.2 é imediato)
+4.2e100.object_id == 4.2e100.object_id # =&amp;gt; false (4.2e100 não é)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##O que mais?&lt;/p&gt;
+
+&lt;p&gt;Uma extensa lista de mudanças é o &lt;a href=&#34;https://github.com/marcandre/ruby/blob/news/NEWS.rdoc&#34;&gt;arquivo NEWS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;##Eu quero!&lt;/p&gt;
+
+&lt;p&gt;Experimente hoje:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Instalar com rvm: &lt;code&gt;rvm get head &amp;amp;&amp;amp; rvm install 2.0.0&lt;/code&gt; (note que &lt;code&gt;rvm get stable&lt;/code&gt; não é suficiente!)&lt;/li&gt;
+&lt;li&gt;Instalar com rbenv: &lt;code&gt;rbenv install 2.0.0-p0&lt;/code&gt; (eu acho)&lt;/li&gt;
+&lt;li&gt;Outra instalação: Veja as instruções de &lt;a href=&#34;http://www.ruby-lang.org/en/downloads/&#34;&gt;ruby-lang.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para aqueles que não podem atualizar ainda, você ainda pode ter um pouco da diversão com a minha gem &lt;a href=&#34;https://github.com/marcandre/backports&#34;&gt;backports&lt;/a&gt;. Ele faz &lt;code&gt;bsearch&lt;/code&gt;, &lt;code&gt;lazy&lt;/code&gt; e mais um par disponível para qualquer versão do Ruby. A lista completa está no &lt;a href=&#34;https://github.com/marcandre/backports#ruby-200&#34;&gt;readme&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Aproveite o &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Até a proxima amigos&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;E muito obrigado &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;And thank you very much &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc&lt;/a&gt;&amp;hellip;&lt;/dt&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;:D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>traducao trabalhando com time zones em ruby on rails</title>
+      <link>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</link>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/</guid>
+      <description>
+
+&lt;p&gt;Conversando com o &lt;a href=&#34;https://twitter.com/cjkihlbom&#34;&gt;CJ Kihlbom&lt;/a&gt;, um cara super gente boa. :) E ele liberou ai a tradução do post &lt;a href=&#34;http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails&#34;&gt;Working with time zones in Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tradução&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://api.rubyonrails.org&#34;&gt;Rails&lt;/a&gt; oferece ótimas ferramentas para trabalhar com fusos horários, mas ainda há um monte de coisas que
+podem dar errado. Este blog tem como objetivo lançar alguma luz sobre essas pegadinhas e oferecer soluções
+para os problemas mais comuns.&lt;/p&gt;
+
+&lt;p&gt;O que, provavelmente, tem me enganado é que a maioria das vezes o fato de que os tolos do Rails acredita que
+você tem tudo coberto o tempo todo &lt;strong&gt;(com o perdão do trocadilho)&lt;/strong&gt;. Não me interpretem mal. Eu uso Rails
+para fazer o trabalho, tanto para mim quanto possível. Mas eu aprendi da maneira mais difícil que eu não
+posso fugir não sabendo quando e como o Rails está me ajudando. Outra pegadinha é o fato de que você tem mais
+fusos horários em jogo do que você pode acreditar. Considere o seguinte: db, servidor, a máquina dev, sistema
+configurado, o usuário específico configurado e o navegador.&lt;/p&gt;
+
+&lt;p&gt;###Configure sua app Rails&lt;/p&gt;
+
+&lt;p&gt;Então, quais as ferramentas que temos à nossa disposição como desenvolvedores &lt;a href=&#34;http://api.rubyonrails.org&#34;&gt;Rails&lt;/a&gt;? O mais importante é
+a configuração &lt;code&gt;config.time_zone&lt;/code&gt; em seu arquivo &lt;code&gt;config/application.rb&lt;/code&gt;. ActiveRecord irá ajudá-lo a
+converter de e para UTC (o que a documentação não explica) e o fuso horário de sua escolha. Isto significa
+que, se tudo que você está fazendo é ter usuários postando varias vezes através de um formulário e utilizar
+&lt;code&gt;Active Record&lt;/code&gt; que ele persista que você é bom para ir.&lt;/p&gt;
+
+&lt;p&gt;###Processamento de informações de time&lt;/p&gt;
+
+&lt;p&gt;Então, o que sobre o fato de fazer algo com a informação de &lt;code&gt;time&lt;/code&gt; antes de aceitá-lo? Que é quando se torna
+complicado.&lt;/p&gt;
+
+&lt;p&gt;####Parsing&lt;/p&gt;
+
+&lt;p&gt;Ao analisar informações de &lt;code&gt;time&lt;/code&gt; é importante nunca fazê-lo sem especificar o fuso horário. A melhor maneira
+de o fazer é utilizar &lt;code&gt;Time.zone.parse&lt;/code&gt; (que vai usar na zona de tempo especificado no &lt;code&gt;config.time_zone&lt;/code&gt;) em
+vez de apenas &lt;code&gt;Time.parse&lt;/code&gt; (que vai usar a zona do computador).&lt;/p&gt;
+
+&lt;p&gt;####Trabalhar com atributos numéricos e ActiveRecord&lt;/p&gt;
+
+&lt;p&gt;Chamadas de método como &lt;code&gt;2.hours.ago&lt;/code&gt; usa o fuso horário que você configurou, portanto, use este se você
+pode! A mesma coisa é verdade para atributos de tempo em modelos &lt;code&gt;ActiveRecord&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;```ruby Time
+post = Post.first
+post.published_at #=&amp;gt; Thu, 22 Mar 2012 00:00:00 CDT -05:00&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`ActiveRecord` busca a hora `UTC` do banco de dados e converte para o fuso horário em `config.time_zone` para
+você.
+
+####Date vs Time
+
+`Time` tem informações de `Date`, mas `Date` não tem informação de `Time`. Mesmo que você não acha que se
+importa, você pode perceber que você faz, mais cedo ou mais tarde. Seja seguro e use `Time` (ou `DateTime`,
+se você precisa de suporte para `Times` muito longe do presente).
+
+Mas vamos dizer que você está preso com uma `Date` que você precisa para tratar como um `Time`, pelo menos,
+certifique-se de convertê-lo para o seu fuso horário configurado:
+
+```ruby Date vs Time
+1.day.from_now # =&amp;gt; Fri, 02 Mar 2012 22:04:47 JST +09:00
+Date.today.to_time_in_current_zone # =&amp;gt; Fri, 02 Mar 2012 00:00:00 JST +09:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####Consultando&lt;/p&gt;
+
+&lt;p&gt;Desde que Rails sabe que a sua informação de &lt;code&gt;Time&lt;/code&gt; é armazenado como UTC no banco de dados que irá converter
+a qualquer momento que você dá para o UTC.&lt;/p&gt;
+
+&lt;p&gt;```ruby Query
+Post.where ([&amp;ldquo;posts.publised_at&amp;gt;?&amp;ldquo;, Time.zone.now])&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Só não se esqueça de nunca construir a seqüência de consulta à mão e use sempre `Time.zone.now` como a base e
+você deve ser seguro.
+
+###Trabalhando com APIs
+
+####Fornecimento
+
+A construção de uma API web para o consumo de outros? Certifique-se sempre de enviar todos os dados de tempo
+como `UTC` (e especificar que este é o caso).
+
+``` ruby Time
+Time.zone.now.utc.iso8601 # =&amp;gt; &amp;quot;2012-03-16T14: 55:33 Z&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Leia mais sobre por ISO8601 é aconselhável aqui: &lt;a href=&#34;http://devblog.avdi.org/2009/10/25/iso8601-dates-in-ruby/&#34;&gt;iso8601-dates-in-ruby&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;####Consumindo&lt;/p&gt;
+
+&lt;p&gt;Quando você começa a informação do &lt;code&gt;Time&lt;/code&gt; a partir de uma API externa que você não tem controle sobre o que
+você simplesmente necessita de descobrir o formato e o fuso horário que é enviado a você. Porque
+&lt;code&gt;Time.zone.parse&lt;/code&gt; pode não funcionar com o formato que você recebe, pode precisar de usar:&lt;/p&gt;
+
+&lt;p&gt;```ruby Time
+Time.strptime(time_string, &amp;lsquo;%Y-%m-%dT%H:%M:%S%z&amp;rsquo;).in_time_zone(Time.zone)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Por que não há nenhum método `#strptime` em `Time.zone` quando há um `#parse`. No entanto, não se esqueça de
+chamar `in_time_zone` (`Time.zone`) no seu resultado!
+
+###Trabalhar com vários fusos horários do usuário
+
+Muitos sistemas necessita de suporte aos usuários para entrar e visualizar as informações de tempo em uma
+variedade de zonas de tempo. Para conseguir isso, você precisa armazenar zona de cada usuário tempo
+(provavelmente só um dos nomes de zona de tempo `String` encontrado no `rake time:zones:all`). Então, para
+realmente usar esse fuso horário o padrão mais comum é simplesmente criar um método particular em sua
+`ActionController` e executá-la antes como um filtro.
+
+```ruby Time
+before_filter :set_time_zone
+
+def set_time_zone
+  Time.zone = current_user.time_zone if current_user
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso vai fazer a mesma coisa que &lt;code&gt;config.time_zone&lt;/code&gt; mas em uma base por pedido. Eu ainda recomendo mudar o
+&lt;code&gt;config.time_zone&lt;/code&gt; padrão para um fuso horário que é um bom padrão para seus usuários.&lt;/p&gt;
+
+&lt;p&gt;####Testando&lt;/p&gt;
+
+&lt;p&gt;Todos acima é algo que os testes devem pegar para você. O problema é que você como o usuário e seu
+computador como o servidor de desenvolvimento, acontece a residir no mesmo fuso horário. Esse raramente é o
+ caso, uma vez que você levar as coisas para a produção.&lt;/p&gt;
+
+&lt;p&gt;Highgroove liberado apenas &lt;a href=&#34;https://github.com/highgroove/zonebie&#34;&gt;Zonebie&lt;/a&gt;, uma gem que o ajuda a lidar com isso. Eu não tive tempo de testá-lo
+eu mesmo ainda, mas parece muito promissor. Se você achar que isso seja um exagero, pelo menos,
+certifique-se de que seus testes executados com um conjunto &lt;code&gt;Time.zone&lt;/code&gt; para outro fuso horário do que a sua
+máquina de desenvolvimento está configurado!&lt;/p&gt;
+
+&lt;p&gt;####Bug no Time.zone.parse&lt;/p&gt;
+
+&lt;p&gt;Jarkko Laine (&lt;a href=&#34;https://twitter.com/#!/jarkko&#34;&gt;@Jarkko&lt;/a&gt;) apontou que não há atualmente um bug no &lt;code&gt;Rails&lt;/code&gt; que pode fazer o
+&lt;code&gt;Time.zone.parse&lt;/code&gt; perder uma hora quando o tempo do sistema está em &lt;code&gt;DST&lt;/code&gt; (&lt;code&gt;horário de verão&lt;/code&gt;) e seu fuso
+horário configurado não. Jarkko postou um problema no &lt;code&gt;Rails&lt;/code&gt; rastreando o assunto e escreveu um patch para
+corrigir o bug. Até que o patch foi aceito ou se você está rodando com versões mais antigas do &lt;code&gt;Rails&lt;/code&gt; a
+única forma segura de evitar este erro, quer seja um patches para &lt;code&gt;Rails&lt;/code&gt; em seu aplicativo com correção
+Jarkko’s ou uso:&lt;/p&gt;
+
+&lt;p&gt;```ruby Time&lt;/p&gt;
+
+&lt;h1 id=&#34;use&#34;&gt;use&lt;/h1&gt;
+
+&lt;p&gt;ActiveSupport::TimeWithZone.new(nil, Time.zone, DateTime.parse(&amp;ldquo;2012-03-25 03:29&amp;rdquo;))&lt;/p&gt;
+
+&lt;h1 id=&#34;sun-25-mar-2012-03-29-00-pdt-07-00&#34;&gt;=&amp;gt; Sun, 25 Mar 2012 03:29:00 PDT -07:00&lt;/h1&gt;
+
+&lt;h1 id=&#34;or-if-possible-pass-the-time-zone-in-the-string&#34;&gt;or if possible pass the time zone in the string&lt;/h1&gt;
+
+&lt;p&gt;Time.zone.parse(&amp;ldquo;2012-03-25 03:29 PDT&amp;rdquo;)&lt;/p&gt;
+
+&lt;h1 id=&#34;sun-25-mar-2012-03-29-00-pdt-07-00-1&#34;&gt;=&amp;gt; Sun, 25 Mar 2012 03:29:00 PDT -07:00&lt;/h1&gt;
+
+&lt;h1 id=&#34;instead-of&#34;&gt;instead of&lt;/h1&gt;
+
+&lt;p&gt;Time.zone.parse(&amp;ldquo;2012-03-25 03:29&amp;rdquo;)&lt;/p&gt;
+
+&lt;h1 id=&#34;sun-25-mar-2012-04-29-00-pdt-07-00&#34;&gt;=&amp;gt; Sun, 25 Mar 2012 04:29:00 PDT -07:00&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Deve, contudo, ser mencionado que é muito raro que esta superfícies de bug e quando ele faz isso só pode
+perder uma hora. Se você pode viver com o que você provavelmente faz melhor por apenas aguardando o patch
+para ser aceito.
+
+###Cheat Sheet
+
+####FAZER
+
+```ruby Date vs Time
+2.hours.ago # =&amp;gt; Fri, 02 Mar 2012 14:02:42 CET +01:00
+1.day.from_now # =&amp;gt; Fri, 02 Mar 2012 22:04:47 JST +09:00
+Date.today.to_time_in_current_zone # =&amp;gt; Fri, 02 Mar 2012 00:00:00 JST +09:00
+Time.zone.parse(&amp;quot;2012-03-02 16:05:37&amp;quot;) # =&amp;gt; Fri, 02 Mar 2012 16:05:37 JST +09:00
+Time.zone.now # =&amp;gt; Sat, 03 Mar 2012 00:07:37 JST +09:00
+Time.zone.today # If you really can&#39;t have a Time or DateTime for some reason
+Time.zone.now.utc.iso8601 # &amp;quot;When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it&#39;s needed)
+Time.strptime(time_string, &#39;%Y-%m-%dT%H:%M:%S%z&#39;).in_time_zone(Time.zone) # If you can&#39;t use parse
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####NÃO FAZER&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Date vs Time
+Time.now # =&amp;gt; 2012-03-02 16:05:37 +0100
+Date.today.to_time # =&amp;gt; 2012-03-02 00:00:00 +0100
+Time.parse(&amp;quot;2012-03-02 16:05:37&amp;quot;) # =&amp;gt; 2012-03-02 16:05:37 +0100
+Time.now # =&amp;gt; 2012-03-02 16:07:20 +0100
+Date.today # This could be yesterday or tomorrow depending on the machine&#39;s time zone!
+Time.strptime(time_string, &#39;%Y-%m-%dT%H:%M:%S%z&#39;) # You won&#39;t have the time in your configured time zone!
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;###Epílogo&lt;/p&gt;
+
+&lt;p&gt;Espero que você tenha aprendido alguma coisa com este post. Tenho certeza que fiz ao escrevê-lo! Se você tem
+algum comentário sobre como ele pode ser melhorada, ou se você encontrar algum erro, por favor me avise por
+postar um comentário abaixo!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Agradeço ao amigo &lt;a href=&#34;https://twitter.com/cjkihlbom&#34;&gt;CJ Kihlbom&lt;/a&gt;, abraços amigo&amp;hellip; :D&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia exemplos de threads part iv number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Exemplos de Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h4 id=&#34;exemplos-de-threads&#34;&gt;Exemplos de Threads&lt;/h4&gt;
+
+&lt;p&gt;Agora que já passamos alguns post falando do modelo &lt;code&gt;Thread&lt;/code&gt; e da API de &lt;code&gt;Thread&lt;/code&gt; em Ruby, vamos dar uma olhada em alguns
+exemplos reais de vários códigos de &lt;code&gt;threads&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;leitura-de-arquivos-simultaneamente&#34;&gt;Leitura de arquivos simultaneamente&lt;/h3&gt;
+
+&lt;p&gt;O uso mais comum de &lt;code&gt;threads&lt;/code&gt; de Ruby é em programas que são IO. Eles permitem que os programas mantenham ocupado até
+mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
+define um método &lt;code&gt;conread&lt;/code&gt; (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de &lt;code&gt;hash&lt;/code&gt;
+com esses nomes para o conteúdo desses arquivos. Ele usa &lt;code&gt;thread&lt;/code&gt; para ler esses arquivos ao mesmo tempo, e é realmente
+destinado a ser utilizado com o módulo &lt;code&gt;open-uri&lt;/code&gt;, que permite que as URL&amp;rsquo;s &lt;code&gt;HTTP&lt;/code&gt; e &lt;code&gt;FTP&lt;/code&gt; possam ser abertas com
+&lt;code&gt;Kernel.open&lt;/code&gt; e ler como se fossem arquivos:&lt;/p&gt;
+
+&lt;p&gt;```ruby Lendo arquivos&lt;/p&gt;
+
+&lt;h1 id=&#34;ler-arquivos-simultaneamente-use-com-o-módulo-open-uri-para-buscar-urls&#34;&gt;Ler arquivos simultaneamente. Use com o módulo &amp;ldquo;open-uri&amp;rdquo; para buscar URLs.&lt;/h1&gt;
+
+&lt;h1 id=&#34;passe-uma-matriz-de-nomes-de-arquivos-retorna-um-mapa-de-nomes-de-arquivos-de-hash-para-o-conteúdo&#34;&gt;Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.&lt;/h1&gt;
+
+&lt;p&gt;def conread(filenames)
+  h = {}            # hash vazio de resultados&lt;/p&gt;
+
+&lt;p&gt;# Crie uma linha para cada arquivo
+  filenames.each do |filename|      # Para cada arquivo chamado
+    h[filename] = Thread.new do     # Criar um fio, mapa para filename
+      open(filename) {|f| f.read }  # Abra e leia o arquivo
+    end                             # valor da linha é o conteúdo do arquivo
+  end&lt;/p&gt;
+
+&lt;p&gt;  # Percorre o hash, à espera de cada thread para completar.
+  # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
+  h.each_pair do |filename, thread|
+    begin
+      h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
+    rescue
+      h[filename] = $!              # Ou a exceção levantada
+    end
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+### Servidor A Multithreads
+
+Outra, quase canônico caso, o uso de `threads` é para escrever servidores que podem comunicar com mais do que um cliente
+de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
+possivelmente menos escalável) solução usa `threads`:
+
+```ruby Servidor a Multithreads
+require &#39;socket&#39;
+
+# Este método espera um socket ligado a um cliente.
+# Ele lê as linhas do cliente, inverte-los e envia-los de volta.
+# Múltiplas Threads podem executar este método, ao mesmo tempo.
+def handle_client(c)
+  while true
+    input = c.gets.chop     # Ler uma linha de entrada do cliente
+    break if !input         # sai se tem muitas entradas
+    break if input==&amp;quot;quit&amp;quot;  # ou se o cliente pede
+    c.puts(input.reverse)   # Caso contrário, responde ao cliente.
+    c.flush                 # Força a saída para fora
+  end
+  c.close                   # Fecha o socket cliente
+end
+
+server = TCPServer.open(2000) # Ouve na porta 2000
+
+while true                    # Laço de servidores para sempre
+  client = server.accept      # Espere um cliente para conectar
+  Thread.start(client) do |c| # Inicia uma nova thread
+    handle_client(c)          # E Lida com o clinete nessa Thread
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;iteradores-simultâneas&#34;&gt;Iteradores simultâneas&lt;/h3&gt;
+
+&lt;p&gt;Embora tarefas IO são o caso de uso típico para &lt;code&gt;threads&lt;/code&gt; de Ruby, eles não se restringem aos que usam. O código a seguir
+adiciona um método &lt;code&gt;conmap&lt;/code&gt; (por mapa concorrente) para o modulo &lt;code&gt;Enumerável&lt;/code&gt;. Ele funciona como mapa, mas processa cada
+elemento da matriz de entrada com uma distinta &lt;code&gt;Thread&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```ruby Iterador Simultâneo
+module Enumerable           # Abre o módulo Enumerable
+  def conmap(&amp;amp;block)        # Define um novo método que espera um block
+    threads = []            # Começa com uma matriz vazia de threads
+    self.each do |item|     # Para cada item enumerable
+      # Chama o bloco em uma nova Thread, e lembra da Thread
+      threads &amp;lt;&amp;lt; Thread.new { block.call(item) }
+    end
+    # Agora mapea o conjunto de Threads para os seus valores
+    threads.map {|t| t.value } # E retorna a matriz de valores
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+E aqui está uma versão concorrente similar do iterador de cada um:
+
+```ruby Módulo Enumerable
+module Enumerable
+  def concurrently
+    map {|item| Thread.new { yield item }}.each {|t| t.join }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
+Ruby e iteradores Ruby.&lt;/p&gt;
+
+&lt;p&gt;Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
+que, dado o método &lt;code&gt;concurrently&lt;/code&gt; definido mais cedo e um objeto &lt;code&gt;Hash h&lt;/code&gt;, podemos escrever:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Método Concurrently
+h.each_pair.concurrently {|*pair| process(pair)}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Até o proximo amigos!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia escalando threads part iii number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Escalando Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;threads-e-concorrência&#34;&gt;Threads e Concorrência&lt;/h2&gt;
+
+&lt;h3 id=&#34;escalando-threads&#34;&gt;Escalando Threads&lt;/h3&gt;
+
+&lt;p&gt;Intérpretes do Ruby(irb), muitas vezes têm mais &lt;code&gt;threads&lt;/code&gt; para executar do que há CPU tem disponível para executá-los. Quando
+o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre &lt;code&gt;threads&lt;/code&gt;. O processo para
+a partilha de uma CPU entre as &lt;code&gt;threads&lt;/code&gt; é chamado de escalonamento de &lt;code&gt;threads&lt;/code&gt;. Dependendo da implementação e plataforma,
+agendamento de &lt;code&gt;threads&lt;/code&gt; pode ser feito pelo Intérprete do Ruby(irb), ou pode ser tratado pelo sistema operacional.&lt;/p&gt;
+
+&lt;h4 id=&#34;prioridades-da-thread&#34;&gt;Prioridades da Thread&lt;/h4&gt;
+
+&lt;p&gt;O primeiro fator que afeta o agendamento de &lt;code&gt;threads&lt;/code&gt; é prioridades de &lt;code&gt;thread&lt;/code&gt;: com a alta prioridade da &lt;code&gt;thread&lt;/code&gt; são
+agendadas antes de baixa prioridade de &lt;code&gt;thread&lt;/code&gt;. Mais precisamente, uma &lt;code&gt;thread&lt;/code&gt; só vai ficar o tempo de CPU, se não houver
+maior prioridade de &lt;code&gt;thread&lt;/code&gt; aguardando para ser executada.&lt;/p&gt;
+
+&lt;p&gt;Definir e consultar a prioridade de um objeto Ruby &lt;code&gt;Thread&lt;/code&gt; com &lt;code&gt;priority=&lt;/code&gt; e &lt;code&gt;priority&lt;/code&gt;. Note-se que não há nenhuma maneira
+de definir a prioridade de uma &lt;code&gt;thread&lt;/code&gt; antes que ela comece a funcionar. Uma &lt;code&gt;thread&lt;/code&gt; pode, no entanto, aumentar ou diminuir
+sua própria prioridade como a primeira ação que toma.&lt;/p&gt;
+
+&lt;p&gt;Uma &lt;code&gt;thread&lt;/code&gt; recém-criada começa com a mesma prioridade que a &lt;code&gt;thread&lt;/code&gt; que a criou. A &lt;code&gt;thread&lt;/code&gt; principal começa na prioridade
+ 0.&lt;/p&gt;
+
+&lt;p&gt;Como muitos aspectos de &lt;code&gt;threading&lt;/code&gt;, prioridades de &lt;code&gt;threads&lt;/code&gt; são depende da implementação do &lt;code&gt;Ruby&lt;/code&gt; e do subjacente sistema
+operacional. No Linux, por exemplo, &lt;code&gt;threads&lt;/code&gt; não privilegiadas não pode ter as suas prioridades levantada ou abaixada. Assim,
+no Ruby 1.9 (que usa &lt;code&gt;threads&lt;/code&gt; nativas) no &lt;code&gt;Linux&lt;/code&gt;, a definição de prioridades de &lt;code&gt;Thread&lt;/code&gt; é ignorada.&lt;/p&gt;
+
+&lt;h4 id=&#34;aquisição-de-thread-e-thread-pass&#34;&gt;Aquisição de Thread e Thread.pass&lt;/h4&gt;
+
+&lt;p&gt;Quando várias &lt;code&gt;Threads&lt;/code&gt; com a mesma prioridade precisam compartilhar a CPU, cabe a &lt;code&gt;thread&lt;/code&gt; programada para decidir quando e
+por quanto tempo, cada &lt;code&gt;thread&lt;/code&gt; é executada. Alguns escalonadores são antecipadas, o que significa que elas permitem a &lt;code&gt;thread&lt;/code&gt;
+a ser executada apenas por um determinado período de tempo antes de permitir outra &lt;code&gt;thread&lt;/code&gt; da mesma prioridade para ser
+executada. Outros programadores não são preempção: uma vez que uma &lt;code&gt;thread&lt;/code&gt; começa a correr, ela continua funcionando a menos
+que durma, blocos para I/O, ou uma &lt;code&gt;thread&lt;/code&gt; de maior prioridade acorda.&lt;/p&gt;
+
+&lt;p&gt;Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
+não preemptivo, ela vai &amp;ldquo;morrer de fome&amp;rdquo; as outras &lt;code&gt;threads&lt;/code&gt; com a mesma prioridade, e elas nunca tem a chance de correr.
+Para evitar esse problema, de longa duração &lt;code&gt;compute-bound&lt;/code&gt; &lt;code&gt;threads&lt;/code&gt; devem chamar periodicamente &lt;code&gt;Thread.pass&lt;/code&gt; para pedir o
+programador para produzir a CPU para outra &lt;code&gt;thread&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Até a proxima amigos! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia part i number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Thread Lifecycle&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;threads-e-concorrência&#34;&gt;Threads e Concorrência&lt;/h2&gt;
+
+&lt;p&gt;Programas tradicionais têm uma única &amp;ldquo;thread de execução&amp;rdquo;: as declarações ou instruções que compõem o programa são executadas
+sequencialmente até que o programa termina. Um programa multithread tem mais de uma &lt;code&gt;thread&lt;/code&gt; de execução. Dentro de cada &lt;code&gt;
+thread&lt;/code&gt;, os comandos são executados sequencialmente, mas as próprias &lt;code&gt;threads&lt;/code&gt; podem ser executadas em paralelo em uma
+CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias &lt;code&gt;Threads&lt;/code&gt; não são na
+realidade executadas em paralelo, mas o paralelismo é simulada intercalando a execução das &lt;code&gt;threads&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Programas como o software de processamento de imagem que fazem um monte de cálculos estão a ser dito &lt;code&gt;compute-bound&lt;/code&gt;. Eles só
+podem beneficiar de multithreading, se há realmente múltiplas CPUs para executar os cálculos em paralelo. A maioria dos
+programas não são totalmente vinculados a computação, no entanto. Muitos, como navegadores web, passam a maior parte de seu
+tempo de espera para a rede ou arquivo &lt;code&gt;I/O&lt;/code&gt;. Programas como estes estão a ser dito &lt;code&gt;IO-bound&lt;/code&gt;. Programas &lt;code&gt;IO-bound&lt;/code&gt; pode ser
+útil mesmo quando várias &lt;code&gt;threads&lt;/code&gt; há apenas uma única CPU disponível. Um navegador pode tornar uma imagem em uma &lt;code&gt;thread&lt;/code&gt;
+enquanto outra &lt;code&gt;thread&lt;/code&gt; está à espera para a próxima imagem para ser baixada da rede.&lt;/p&gt;
+
+&lt;p&gt;Ruby faz com que seja fácil de escrever programas &lt;code&gt;multi-threaded&lt;/code&gt; com a &lt;code&gt;Class Thread&lt;/code&gt;. Para iniciar uma nova &lt;code&gt;thread&lt;/code&gt;,
+apenas associa um bloco com uma chamada para &lt;code&gt;Thread.new&lt;/code&gt;. Uma nova &lt;code&gt;thread&lt;/code&gt; será criada para executar o código no bloco, e a
+&lt;code&gt;thread&lt;/code&gt; original retornará do &lt;code&gt;Thread.new&lt;/code&gt; imediatamente e continuar a execução com a afirmação seguinte:&lt;/p&gt;
+
+&lt;p&gt;```ruby Iniciando um thread&lt;/p&gt;
+
+&lt;h1 id=&#34;thread-1-está-sendo-executado-aqui&#34;&gt;Thread #1 está sendo executado aqui&lt;/h1&gt;
+
+&lt;p&gt;Thread.new {
+  # Thread #2 executa esse código
+}&lt;/p&gt;
+
+&lt;h1 id=&#34;thread-1-executa-esse-código&#34;&gt;Thread #1 executa esse código&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Vamos começar nossa cobertura de `threads` explicando o modelo `Thread` de Ruby e API em alguns detalhes. Estas seções
+introdutórias explicam as coisas como ciclo de vida da `thread`, agendamento de threads, e os estados da `thread`. Com que o
+material introdutório como pré-requisito, passamos a apresentar código de exemplo e para cobrir `threads` avançadas como
+sincronização de `threads`.
+
+Finalmente, é importante notar que os programas de Ruby também pode alcançar simultaneidade ao nível do processo de sistema
+operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do
+sistema operacional. Para mais informações, use `ri` para procurar os métodos `Kernel.system`, `Kernel.exec`, `Kernel.fork`,
+`IO.popen`, e o módulo `Process`.
+
+### Lifecycle Tópico
+
+Como descrito acima, novas `threads` são criados com `Thread.new`. Você também pode usar os sinónimos `Thread.start` e
+`Thread.fork`. Não há necessidade de se iniciar uma `thread` depois de criá-la, ele começa a ser executado automaticamente
+quando os recursos da CPU estejam disponíveis. O valor da invocação `Thread.new` é um objeto `Thread`. A classe `Thread`
+define um número de métodos para consultar e manipular a `thread` enquanto ela está sendo executada.
+
+Uma `thread` é executa o código do bloco associado à chamada para `Thread.new` e depois pára execução. O valor da última
+expressão em que o bloco é o valor da `thread`, e pode ser obtido chamando o método do valor do objeto `Thread`. Se a `thread`
+foi executado para conclusão, então o valor retorna o valor da `thread` de imediato. Caso contrário, os blocos de valor do
+método e não retorna até que a `threado` for concluída.
+
+O método de classe `Thread.current` retorna o objeto `Thread` que representa o atual `thread`. Isso permite que as `threads`
+manipulam-se. O método da classe `Thread.main` retorna o objeto `Thread` que representa a principal `thread`, este é a
+`thread` inicial de execução que começou quando o Programa Ruby foi iniciado.
+
+#### A Thread principal
+
+A `Thread` principal é especial: o interpretador Ruby pára de correr quando a `thread` principal é feita. Ele faz isso mesmo
+que a `thread` principal criou outras `threads` que ainda estão em execução. Você deve garantir, portanto, que a sua princial
+`thread` não termina enquanto outras `threads` ainda estão em execução. Uma maneira de fazer isso é escrever sua `thread`
+principal sob a forma de um `loop` infinito. Outra maneira é explicitamente esperar para as `threads` ser concluída. Já
+mencionamos que você pode chamar o método `value` de uma `thread` que espera que ela termine. Se você não se importa com o
+valor de suas `threads`, você pode esperar com o método de instancia `join`.
+
+O seguinte método espera até que todas as linhas, com excepção da `thread` principal e a `thread` atual (que pode ser a mesma
+coisa), ter saído:
+
+``` ruby Thread Principal
+def join_all
+  main = Thread.main        # Thread Principal
+  current = Thread.current  # Thread atual
+  all = Thread.list         # Todas as threads ainda em execução
+  # Agora chama join em cada thread
+  all.each {|t| t.join unless t == current or t == main }
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;threads-e-exceções-não-tratadas&#34;&gt;Threads e exceções não tratadas&lt;/h4&gt;
+
+&lt;p&gt;Se uma exceção é levantada na &lt;code&gt;thread&lt;/code&gt; principal, e não é tratada em qualquer lugar, o interpretador Ruby imprime uma
+mensagem e sai. Em outras &lt;code&gt;threads&lt;/code&gt; que a &lt;code&gt;thread&lt;/code&gt; principal, exceções não tratadas causam a &lt;code&gt;thread&lt;/code&gt; para parar de executar.
+Por defeito, no entanto, isto não faz o intérprete para imprimir uma mensagem ou saída. Se uma &lt;code&gt;thread&lt;/code&gt; &lt;code&gt;t&lt;/code&gt; sai por causa de
+uma exceção não tratada, e outra &lt;code&gt;thread&lt;/code&gt; de chamadas &lt;code&gt;t.join&lt;/code&gt; ou &lt;code&gt;t.value&lt;/code&gt;, então a exceção que ocorreu em &lt;code&gt;t&lt;/code&gt; é levantada
+na &lt;code&gt;thread&lt;/code&gt; de &lt;code&gt;s&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se você gostaria de qualquer exceção não tratada em qualquer &lt;code&gt;thread&lt;/code&gt; para fazer com que o intérprete saia, use o método de
+classe &lt;code&gt;Thread.abort_on_exception=&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```ruby Thread
+Thread.abort_on_exception = true&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Se você quer uma exceção não tratada em uma `thread` específica faz com que o intérprete saia, utilizando o método de
+exemplo, através do mesmo nome:
+
+```ruby Thread abort
+t = Thread.new { ... }
+t.abort_on_exception = true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos.. até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Threads e Variáveis&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;threads-e-concorrência&#34;&gt;Threads e Concorrência&lt;/h2&gt;
+
+&lt;h3 id=&#34;threads-e-variáveis&#34;&gt;Threads e Variáveis&lt;/h3&gt;
+
+&lt;p&gt;Uma das características-chave de &lt;code&gt;Thread&lt;/code&gt; é que elas podem compartilhar o acesso a variáveis. Como &lt;code&gt;Threads&lt;/code&gt; são definidas
+por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
+ assim por diante) estão no escopo do bloco:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Thread e Variavel
+x = 0&lt;/p&gt;
+
+&lt;p&gt;t1 = Thread.new do
+  # Esta Thread pode consultar e definir a variável x
+end&lt;/p&gt;
+
+&lt;p&gt;t2 = Thread.new do
+  # Esta Thread e também consulta e seta x
+  # E pode consultar e definir T1 e T2 também.
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Quando dois ou mais `Thread` de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
+fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de `threads` abaixo.
+
+#### Thread-privadas variáveis
+
+Variáveis ​​definidas dentro do bloco de uma `thread` são particulares para essa `thread` e não são visíveis para qualquer
+outra `thread`. Isto é simplesmente consequência de regras de variáveis de escopo ​​Ruby.
+
+Muitas vezes queremos uma `Thread` tenha sua própria cópia privada de uma variável de modo a que o seu comportamento não se
+altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
+respectivamente) os números 1, 2 e 3:
+
+``` ruby Threads Privadas
+n = 1
+while n &amp;lt;= 3
+  Thread.new { puts n }
+  n += 1
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
+3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
+criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da
+variável n, e o valor ds mudanças de variáveis ​​como o loop é executado. O valor impresso pela &lt;code&gt;thread&lt;/code&gt; depende de quando esse
+segmento é executado em relação para a thread pai.&lt;/p&gt;
+
+&lt;p&gt;Para resolver este problema, passamos o valor atual de n para o método &lt;code&gt;Thread.new&lt;/code&gt;, e atribuimos o atual valor da variável a
+um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Threads Privadas
+n = 1
+while n &amp;lt;= 3
+  # Obtem uma cópia privada do valor atual de n em x
+  Thread.new(n) {|x| puts x }
+  n += 1
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop `while`. Neste
+caso, o valor de `n` é modificado para particular para o bloco externo e nunca durante a execução desse bloco:
+
+```ruby Thread Privada com Interator
+1.upto (3) {| n | Thread.new {puts n}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;variáveis-de-threads-locais&#34;&gt;Variáveis ​​de Threads locais&lt;/h4&gt;
+
+&lt;p&gt;Algumas das variáveis especiais globais de Ruby são &lt;code&gt;thread&lt;/code&gt; local: elas podem ter valores diferentes em &lt;code&gt;threads&lt;/code&gt; diferentes.
+&lt;code&gt;$SAFE&lt;/code&gt; e &lt;code&gt;$~&lt;/code&gt; são exemplos. Isto significa que, se dois &lt;code&gt;thread&lt;/code&gt; estão realizando conconrrencia de expressão regular ao mesmo
+tempo, eles vão ver diferentes valores de &lt;code&gt;$~&lt;/code&gt;, e a realização de um jogo em um fio não irá interferir com os resultados de
+um jogo executado na outra discussão.&lt;/p&gt;
+
+&lt;p&gt;A classe &lt;code&gt;Thread&lt;/code&gt; provê &lt;code&gt;hash-like&lt;/code&gt; como o comportamento. Ele define métodos de instância &lt;code&gt;[]&lt;/code&gt; e &lt;code&gt;[]=&lt;/code&gt; que permitem associar
+valores arbitrários com qualquer símbolo. (Se você usar uma cadeia de caracteres em vez disso, ele será convertido em um
+símbolo. Ao contrário &lt;code&gt;hashs&lt;/code&gt; de verdade, a classe &lt;code&gt;Thread&lt;/code&gt; só permite símbolos como chaves.) Os valores associados a estes
+símbolos comportam-se como variáveis ​​de &lt;code&gt;Thread&lt;/code&gt; locais. Eles não são privados como variáveis de block ​​locais porque qualquer
+&lt;code&gt;Thread&lt;/code&gt; pode pesquisar um valor em qualquer outra &lt;code&gt;Thread&lt;/code&gt;. Mas eles não são variáveis partilhadas, uma vez que cada Thread
+pode ter a sua própria cópia.&lt;/p&gt;
+
+&lt;p&gt;Como exemplo, suponha que nós criamos &lt;code&gt;thread&lt;/code&gt; para download de arquivos de um servidor web. A &lt;code&gt;Thread&lt;/code&gt; principal pode querer
+monitorar o progresso do download. Para permitir isso, cada &lt;code&gt;Thread&lt;/code&gt; pode fazer o seguinte:&lt;/p&gt;
+
+&lt;p&gt;```ruby Thread de progresso
+Thread.current[:progress] = bytes_received&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+A `Thread` principal poderia, então, determinar o total de bytes baixado com um código como este:
+
+```ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Junto com &lt;code&gt;[]&lt;/code&gt; e &lt;code&gt;[]=&lt;/code&gt;, &lt;code&gt;Thread&lt;/code&gt; também define um método &lt;code&gt;key?&lt;/code&gt; para testar se uma determinada chave existe para uma discussão
+. Os métodos &lt;code&gt;keys&lt;/code&gt; retorna uma matriz de símbolos que representam as chaves definidas para a &lt;code&gt;Thread&lt;/code&gt;. Este código pode ser
+melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
+:progress ainda:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a proxima galera! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>encadeamento de alias number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</link>
+      <pubDate>Tue, 18 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Encadeamento de Alias&lt;/b&gt;...&lt;/p&gt;
+
+&lt;h1&gt;Encadeamento de Alias&lt;/h1&gt;
+
+&lt;p&gt;Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
+Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
+a versão não modificada do método.
+
+* Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
+através dos alias, mas pode adicionar qualquer funcionalidade que for necessário, antes e depois de que
+faz isso.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que estes passos podem ser aplicados repetidamente (desde que um alias diferente é usado de cada vez), criando uma cadeia de métodos e aliases.&lt;/p&gt;
+
+&lt;p&gt;Este post inclui três exemplos de encadeamento de alias. O primeiro realiza o encadeamento de apelido estaticamente, ou seja, usando pseudônimo
+regulares e declarações &lt;code&gt;def&lt;/code&gt;. Os segundo e terceiro exemplos são mais dinâmicos; eles são apelidos que acorrentam métodos arbitrariamente nomeados
+utilizando &lt;code&gt;alias_method&lt;/code&gt;, &lt;code&gt;define_method&lt;/code&gt; e &lt;code&gt;class_eval&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Rastreando Arquivos Carregados e Classes Definidas&lt;/h3&gt;
+
+&lt;p&gt;O &lt;code&gt;Exemplo 1-1&lt;/code&gt; é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
+ele imprime um relatório. Você pode usar este código para &amp;ldquo;instrumento&amp;rdquo; de um existente programa para que você entenda melhor o que está fazendo. Uma
+maneira de usar este código é inserir esta linha no começo do programa:&lt;/p&gt;
+
+&lt;p&gt;``` ruby classtrace
+require &amp;lsquo;classtrace&amp;rsquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Uma solução mais fácil, no entanto, é usar a opção -r para o seu intérprete Ruby(`irb`):
+
+``` ruby Opção -r
+ruby -rclasstrace my_program.rb  --traceout /tmp/trace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A opção -r carrega a biblioteca especificado antes de começar a executar o programa.&lt;/p&gt;
+
+&lt;p&gt;O &lt;code&gt;Exemplo 1-1&lt;/code&gt; usa apelido de encadeamento estático para rastrear todas as chamadas dos métodos &lt;code&gt;Kernel.require&lt;/code&gt; e &lt;code&gt;Kernel.load&lt;/code&gt;. Ele define um hook
+&lt;code&gt;Object.inherited&lt;/code&gt; para rastrear as definições de novas classes. E ele usa &lt;code&gt;Kernel.at_exit&lt;/code&gt; para executar um bloco de código quando o programa termina.
+Além dos encadeamentos de alias &lt;code&gt;require&lt;/code&gt; e &lt;code&gt;load&lt;/code&gt; e defini &lt;code&gt;Object.inherited&lt;/code&gt;, a única modificação do espaço global feita por este código é a
+definição de um módulo chamado &lt;code&gt;ClassTrace&lt;/code&gt;. Todo o estado necessário para o rastreio é armazenado em constantes dentro deste módulo, de modo que não
+poluem o &lt;code&gt;namespace&lt;/code&gt; com variáveis globais.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-1. Rastreando Arquivos Carregados e Classes Definidas&lt;/p&gt;
+
+&lt;h1 id=&#34;definimos-este-módulo-para-manter-o-estado-global-do-require-de-modo-que&#34;&gt;Definimos este módulo para manter o estado global do require, de modo que&lt;/h1&gt;
+
+&lt;h1 id=&#34;nós-não-alteramos-o-espaço-global-mais-do-que-o-necessário&#34;&gt;Nós não alteramos o espaço global mais do que o necessário.&lt;/h1&gt;
+
+&lt;p&gt;module ClassTrace
+   # Esta matriz mantém a nossa lista de arquivos carregados e classes definidas.
+   # Cada elemento é um subarray segurando a classe definida ou o
+   # Arquivo carregado e o quadro de pilha onde ele foi definido ou carregado.
+   T = []  # Array para armazenar os arquivos carregados&lt;/p&gt;
+
+&lt;p&gt;   # Agora defini a constante OUT para especificar onde saída do rastreamento vai.
+   # O padrão é stderr, mas também pode vir a partir de argumentos na linha de comando
+   if x = ARGV.index(&amp;ldquo;&amp;ndash;traceout&amp;rdquo;)    # Se existe argumento
+     OUT = File.open(ARGV[x+1], &amp;ldquo;w&amp;rdquo;)  # Abre o arquivo especificado
+     ARGV[x,2] = nil                  # E remova os argumentos
+   else
+     OUT = STDERR                     # Caso contrário, o padrão para STDERR
+   end
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;passo-1-encadeamento-alias-definir-aliases-para-os-métodos-originais&#34;&gt;Passo 1 encadeamento Alias: definir aliases para os métodos originais&lt;/h1&gt;
+
+&lt;p&gt;alias original_require require
+alias original_load load&lt;/p&gt;
+
+&lt;h1 id=&#34;passo-2-encadeamento-alias-2-definir-novas-versões-dos-métodos&#34;&gt;Passo 2 encadeamento Alias 2: definir novas versões dos métodos&lt;/h1&gt;
+
+&lt;p&gt;def require(file)
+  ClassTrace::T &amp;lt;&amp;lt; [file,caller[0]]     # Lembre-se de onde que estava carregado
+  original_require(file)                # Chame o método original
+end&lt;/p&gt;
+
+&lt;p&gt;def load(*args)
+  ClassTrace::T &amp;lt;&amp;lt; [args[0],caller[0]]  # Lembre-se de onde que estava carregado
+  original_load(*args)                  # Chame o método original
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;este-método-hook-é-chamado-de-cada-vez-que-uma-nova-classe-é-definida&#34;&gt;Este método hook é chamado de cada vez que uma nova classe é definida&lt;/h1&gt;
+
+&lt;p&gt;def Object.inherited&amp;copy;
+  ClassTrace::T &amp;lt;&amp;lt; [c,caller[0]]        # Lembre-se onde que foi definido
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;kernel-at-exit-registra-um-bloco-a-ser-executado-quando-o-programa-sai&#34;&gt;Kernel.at_exit registra um bloco a ser executado quando o programa sai&lt;/h1&gt;
+
+&lt;h1 id=&#34;vamos-utilizá-lo-para-comunicar-os-dados-de-arquivo-e-de-classe-que-recolhemos&#34;&gt;Vamos utilizá-lo para comunicar os dados de arquivo e de classe que recolhemos&lt;/h1&gt;
+
+&lt;p&gt;at_exit {
+  o = ClassTrace::OUT
+  o.puts &amp;ldquo;=&amp;rdquo;*60
+  o.puts &amp;ldquo;Files Loaded and Classes Defined:&amp;rdquo;
+  o.puts &amp;ldquo;=&amp;rdquo;*60
+  ClassTrace::T.each do |what,where|
+    if what.is_a? Class  # Report class (with hierarchy) defined
+      o.puts &amp;ldquo;Defined: #{what.ancestors.join(&amp;rsquo;&amp;lt;-&amp;lsquo;)} at #{where}&amp;rdquo;
+    else                 # Report file loaded
+      o.puts &amp;ldquo;Loaded: #{what} at #{where}&amp;rdquo;
+    end
+  end
+}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Métodos encadeamento de segurança da Thread&amp;lt;/h3&amp;gt;
+
+O alias de encadeamento é feito pelo método `Module.synchronize_method`, o qual, por sua vez usa um método auxiliar `Module.create_alias` para definir
+um alias adequado para qualquer método dado (incluindo métodos como o operador +).
+
+Depois de definir estes novo métodos `Module`, Exemplo 1-2 redefine o método `synchronized` novamente. Quando o método é invocado dentro de uma classe
+ou de um módulo, ele chama `synchronize_method` em cada um dos símbolos que é passado. Curiosamente, contudo, pode também ser chamado sem argumentos,
+quando utilizado desta forma, acrescenta sincronização para qualquer método de instância é definido a seguir. (Utiliza o `hook` para receber
+notificação quando um novo método `method_added` é adicionado.) Note que o código deste exemplo depende do método `Object.mutex` e a classe
+`SynchronizedObject`.
+
+``` ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread
+# Define um alias corrente Module.synchronize_method de métodos de instância
+# Assim que sincronizar a instância antes da execução.
+class Module
+  # Esta é uma função auxiliar para o encadeamento alias.
+  # Dado o nome de um método (como uma string ou símbolo) e um prefixo, cria
+  # Um alias exclusivo para o método, e retornar o nome do alias
+  # Como um símbolo. Quaisquer caracteres de pontuação em nome método original
+  # Serão convertidos em números para que os operadores podem ser alias.
+  def create_alias(original, prefix=&amp;quot;alias&amp;quot;)
+    # Cole o prefixo do nome original e converter pontuação
+    aka = &amp;quot;#{prefix}_#{original}&amp;quot;
+    aka.gsub!(/([\=\|\&amp;amp;\+\-\*\/\^\!\?\~\%\&amp;lt;\&amp;gt;\[\]])/) {
+      num = $1[0]                       # Ruby 1.8 character -&amp;gt; ordinal
+      num = num.ord if num.is_a? String # Ruby 1.9 character -&amp;gt; ordinal
+      &#39;_&#39; + num.to_s
+    }
+    
+    # Mantenha acrescentando ressalta até chegarmos a um nome que não está em uso
+    aka += &amp;quot;_&amp;quot; while method_defined? aka or private_method_defined? aka
+
+    aka = aka.to_sym           # Converter o nome de alias de um símbolo
+    alias_method aka, original # Na verdade criar o alias
+    aka 											 # Retorna o nome do alias
+  end
+
+  # Alias correntam o método nomeado para adicionar sincronização
+  def synchronize_method(m)
+    # Primeiro, fazemos um alias para a versão dessincronizado do método.
+    aka = create_alias(m, &amp;quot;unsync&amp;quot;)
+    # Agora redefini o original para invocar o alias em um bloco sincronizado.
+    # Queremos o método definido como sendo capaz de aceitar os blocos, de modo que
+    # Não pode usar define_method, e deve avaliar vez uma string com
+    # Class_eval. Note-se que tudo entre% Q {} e da correspondência
+    # É uma string entre aspas, e não um bloco.
+    class_eval %Q{
+      def #{m}(*args, &amp;amp;block)
+        synchronized(self) { #{aka}(*args, &amp;amp;block) }
+      end
+    }
+  end
+end
+
+# Este método global sincronizado agora pode ser usado de três maneiras diferentes.
+def synchronized(*args)
+  # Caso 1: com um argumento e um bloco, sincronizar sobre o objeto
+  # E executar o bloco
+	if args.size == 1 &amp;amp;&amp;amp; block_given?
+    args[0].mutex.synchronize { yield }
+
+  # Caso dois: com um argumento que não é um símbolo e nenhum bloco
+  # Devolve um invólucro de SynchronizedObject
+  elsif args.size == 1 and not args[0].is_a? Symbol and not block_given?
+    SynchronizedObject.new(args[0])
+
+  # Caso três: quando invocado em um módulo com nenhum bloco, alias a cadeia
+  # Chamado métodos para adicionar sincronização. Ou, se não há argumentos,
+  # Então apelido acorrentam o próximo método definido.
+  elsif self.is_a? Module and not block_given?
+    if (args.size &amp;gt; 0) # Synchronize the named methods
+      args.each {|m| self.synchronize_method(m) }
+    else
+      # Se nenhum método é especificado pelo synchronize o método seguinte define
+      eigenclass = class&amp;lt;&amp;lt;self; self; end
+      eigenclass.class_eval do # Use eigenclass para definir métodos de classe
+        # Define method_added para notificação quando próximo método é definido
+        define_method :method_added do |name|
+          # Primeiro remover esse método hook
+          eigenclass.class_eval { remove_method :method_added }
+          # Em seguida, sincronize o método que acabou de ser adicionado
+          self.synchronize_method name
+        end
+      end
+    end
+
+  # Caso 4: qualquer outra invocação é um erro
+  else
+    raise ArgumentError, &amp;quot;Invalid arguments to synchronize()&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Métodos de encadeamento para Rastreamento&lt;/h3&gt;
+
+&lt;p&gt;O Exemplo 1-3 suporta o rastreio de métodos denominados de um objeto. Ele define &lt;code&gt;trace!&lt;/code&gt; e &lt;code&gt;untrace!&lt;/code&gt; a cadeia e desencadeiam métodos chamados de um
+objeto.&lt;/p&gt;
+
+&lt;p&gt;A coisa interessante sobre esse exemplo é que ele faz o seu encadeamento de um modo diferente a partir do Exemplo 1-2. Ele simplesmente define métodos
+únicos no objeto e usa &lt;code&gt;super&lt;/code&gt; dentro do &lt;code&gt;singleton&lt;/code&gt; para a cadeia de definição do método original de exemplo. Nenhum método são criado aliases.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 8-10. Encadeamento com métodos singleton para rastrear&lt;/p&gt;
+
+&lt;h1 id=&#34;define-métodos-trace-e-untrace-de-instância-para-todos-os-objetos&#34;&gt;Define métodos trace! e untrace! de instância para todos os objetos.&lt;/h1&gt;
+
+&lt;h1 id=&#34;trace-cadeias-os-métodos-chamados-por-definir-métodos-singleton&#34;&gt;trace! &amp;ldquo;Cadeias&amp;rdquo; os métodos chamados por definir métodos singleton&lt;/h1&gt;
+
+&lt;h1 id=&#34;que-adiciona-a-funcionalidade-de-rastreamento-e-use-super-para-chamar-o-original&#34;&gt;Que adiciona a funcionalidade de rastreamento e use super para chamar o original.&lt;/h1&gt;
+
+&lt;h1 id=&#34;untrace-exclui-os-métodos-singleton-para-remover-o-rastreamento&#34;&gt;untrace! exclui os métodos singleton para remover o rastreamento.&lt;/h1&gt;
+
+&lt;p&gt;classe Object
+  # os métodos trace especificados, enviando a saída para STDERR.
+  def trace!(*methods)
+    @_traced = @_traced || []    # Lembre-se o conjunto de métodos traçados&lt;/p&gt;
+
+&lt;p&gt;    # Se nenhum método foi especificado, use todos os métodos públicos definidos
+    # Diretamente (não herdado) pela classe deste objeto
+    methods = public_methods(false) if methods.size == 0&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;methods.map! {|m| m.to_sym }    # Converta qualquer cordas para símbolos
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;    methods -= @_traced                     # remove métodos que já estão traçadas
+    return if methods.empty?        # Voltar mais cedo se não há nada a fazer
+    @_traced |= methods           # Adiciona métodos para definir métodos de traçados&lt;/p&gt;
+
+&lt;p&gt;    # Trace o fato de que estamos começando a traçar estes métodos
+    STDERR &amp;lt;&amp;lt; &amp;ldquo;Tracing #{methods.join(&amp;lsquo;, &amp;lsquo;)} on #{object_id}\n&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    # Singleton métodos são definidos na eigenclass
+eigenclass = class &amp;lt;&amp;lt; self; self; end
+
+    methods.each do |m| # Para cada método m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;      # Define uma versão trace singleton do método m.
+      # Saída de informações de rastreamento e usar super para invocar o
+      # Método de instância que é o rastreamento.
+      # Queremos que os métodos definidos para ser capaz de aceitar blocos, de modo que
+      # Não pode usar define_method, e deve avaliar, em vez de uma string.
+      # Note que tudo entre %Q{} e a correspondência é uma
+      # Entre aspas de string, não um bloco. Observe também que há
+      # Dois níveis de interpolações de string aqui. # {} É interpolada
+      # Quando o método singleton é definida. E \ # {} é interpolada
+      # Quando o método singleton é invocado.
+      eigenclass.class_eval %Q{
+        def #{m}(*args, &amp;amp;block)
+          begin
+            STDERR &amp;lt;&amp;lt; &amp;ldquo;Entering: #{m}(#{args.join(&amp;lsquo;, &amp;lsquo;)})\n&amp;rdquo;
+            result = super
+            STDERR &amp;lt;&amp;lt; &amp;ldquo;Exiting: #{m} with #{result}\n&amp;rdquo;
+            result
+          rescue
+            STDERR &amp;lt;&amp;lt; &amp;ldquo;Aborting: #{m}: #{$!.class}: #{$!.message}&amp;rdquo;
+            raise
+          end
+        end
+      }
+    end
+  end&lt;/p&gt;
+
+&lt;p&gt;  # Untrace os métodos especificados ou todos os métodos rastreados
+    def untrace!(*methods)
+    if methods.size == 0    # Se nenhuma métodos especificados untrace
+      methods = @_traced    # todos os métodos atualmente rastreados
+      STDERR &amp;lt;&amp;lt; &amp;ldquo;Untracing all methods on #{object_id}\n&amp;rdquo;
+    else                    # Caso contrário, untrace
+      methods.map! {|m| m.to_sym }  # Converter string para símbolos
+      methods &amp;amp;= @_traced   # todos os métodos especificados que são rastreados
+      STDERR &amp;lt;&amp;lt; &amp;ldquo;Untracing #{methods.join(&amp;lsquo;, &amp;lsquo;)} on #{object_id}\n&amp;rdquo;
+    end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    @_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
+
+    # Remove os métodos traçados únicos do eigenclass
+    # Note que nós class_eval um bloco aqui, não uma string
+    (class &amp;lt;&amp;lt; self; self; end).class_eval do
+      methods.each do |m|
+        remove_method m     # undef_method não funciona corretamente
+      end
+    end
+
+    # Se nenhum método são traçados mais, remover o nosso exemplo var
+    if @_traced.empty?
+      remove_instance_variable :@_traced
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;end
+end
+```&lt;/p&gt;
+
+&lt;p&gt;É isso ai galera! Até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>criando metodos dinamicamente number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</link>
+      <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Criando Métodos Dinamicamente&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Criando Métodos Dinamicamente&lt;/h1&gt;
+
+&lt;p&gt;Uma técnica importante em metaprogramação é a utilização de métodos que criam métodos. Os métodos &lt;code&gt;attr_reader&lt;/code&gt; e &lt;code&gt;attr_accessor&lt;/code&gt; são exemplos. Estes
+métodos de instância privados do &lt;code&gt;Module&lt;/code&gt; são usados como palavras-chave dentro de definições de classe. Eles aceitam nomes de atributos como seus
+argumentos, e dinamicamente criam métodos com esses nomes. Os exemplos que se seguem são variantes sobre essa criação de atributos assessores dos
+métodos e demonstra duas formas diferentes de criar dinamicamente métodos como este.&lt;/p&gt;
+
+&lt;h3&gt;Métodos definidos com class_eval&lt;/h3&gt;
+
+&lt;p&gt;O Exemplo 1-1 define métodos privados de instância do &lt;code&gt;Module&lt;/code&gt; chamado &lt;code&gt;readonly&lt;/code&gt; e &lt;code&gt;readwrite&lt;/code&gt;. Estes métodos funcionam como &lt;code&gt;attr_reader&lt;/code&gt;
+e &lt;code&gt;attr_accessor&lt;/code&gt;, e eles estão aqui para demonstrar como esses métodos são implementados. A implementação é na verdade muito simples: &lt;code&gt;readonly&lt;/code&gt; e
+&lt;code&gt;readwrite&lt;/code&gt; primeiro construi uma seqüência de código Ruby contendo as instruções necessárias para definir &lt;code&gt;def&lt;/code&gt; os métodos de acesso apropriados.
+Em seguida, eles avaliam que a seqüência de código usando &lt;code&gt;class_eval&lt;/code&gt;. Usando &lt;code&gt;class_eval&lt;/code&gt; como esta gera a sobrecarga de analisar a cadeia de código.
+A vantagem, contudo, é que os métodos que definem não precisa usar as APIs reflexivas, pois eles podem consultar ou definir o valor de uma variável de
+instância diretamente.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-1. Métodos de atributos com class_eval&lt;/p&gt;
+
+&lt;p&gt;class Module
+  private # Os métodos que se seguem são todos privados&lt;/p&gt;
+
+&lt;p&gt;  # Este método funciona como attr_reader, mas tem um nome mais curto
+  def readonly(*syms)
+    return if syms.size == 0  # Se nenhum argumento, não faz nada
+    code = &amp;ldquo;&amp;rdquo;                 # Comece com uma cadeia vazia de código
+    # Gera uma seqüência de código Ruby para definir métodos leitores de atributos.
+    # Observe como o símbolo é interpolado para a seqüência de código.
+    syms.each do |s|                     # Para cada símbolo
+      code &amp;lt;&amp;lt; &amp;ldquo;def #{s}; @#{s}; end\n&amp;rdquo;   # O método de definição
+    end
+    # Finalmente, class_eval o código gerado para criar métodos de instância.
+    class_eval code
+  end&lt;/p&gt;
+
+&lt;p&gt;  # Este método funciona como attr_accessor, mas tem um nome mais curto.
+  def readwrite(*syms)
+    return if syms.size == 0
+    code = &amp;ldquo;&amp;rdquo;
+    syms.each do |s|
+      code &amp;lt;&amp;lt; &amp;ldquo;def #{s}; @#{s} end\n&amp;rdquo;
+      code &amp;lt;&amp;lt; &amp;ldquo;def #{s}=(value); @#{s} = value; end\n&amp;rdquo;
+    end
+    class_eval code
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Métodos definidos com define_method&amp;lt;/h3&amp;gt;
+
+O Exemplo 1-2 é uma posição diferente sobre os assessores de atributos. O método `attributes` é algo como o método `readwrite` definido no `Exemplo
+1-1`. Em vez de tomar qualquer número de nomes de atributos como argumentos, que espera um único objeto `hash`. Este `hash` deve ter nomes de atributos
+como suas chaves, e deve mapear os nomes de atributos para os valores padrões para os atributos. O método `class_attrs` funciona como atributos, mas
+define os atributos de classe em vez de atributos de instância.
+
+Lembre-se que Ruby permite que as chaves para ser omitidas em torno de `hash` literais quando eles são o argumento final em uma invocação de método.
+Assim, o método `attributes` pode ser chamado com um código como este:
+
+``` ruby Metodo attributes
+class Point
+  attributes :x =&amp;gt; 0, :y =&amp;gt; 0
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No Ruby 1.9, podemos usar a sintaxe do &lt;code&gt;hash&lt;/code&gt; é mais sucinta:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Attibutes
+class Point
+  attributes x:0, y:0
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Este é outro exemplo que utiliza sintaxe flexível de Ruby para criar métodos que se comportam como palavras-chave de linguagem.
+
+A implementação do método de `attributes` no `Exemplo 1-2` é um pouco diferente do que a do método `readwrite` no `Exemplo 1-1`. Em vez de definir uma
+seqüência de código Ruby e avaliá-lo com `class_eval`, o método `attributes` define o corpo dos acessos de atributos de um bloco e define os métodos
+que utilizam `define_method`. Uma vez que este método técnico de definição não nos permitem identificadores interpolares diretamente no corpo do
+método, temos de confiar em métodos reflexivos, como `instance_variable_get`. Devido a isso, os assessores definidos com `attributes` são susceptíveis
+de ser menos eficientes do que os definidos com `readwrite`.
+
+Um ponto interessante sobre o método `attributes` é que não armazena explicitamente os valores padrões para os atributos em uma variável de classe de
+qualquer tipo. Em vez disso, o valor por defeito para cada atributo é capturado pelo âmbito de bloquear o método usado para definir.
+
+O método `class_attrs` define os atributos de classe muito simples: ele invoca `attributes` na &amp;lt;a href=&amp;quot;http://blog.caelum.com.br/metaprogramacao-eigenclass-em-ruby/&amp;quot;&amp;gt;eigenclass&amp;lt;/a&amp;gt; da classe. Este
+significa que os métodos resultantes usam variáveis de instância de classe em vez de variáveis de classe regular.
+
+``` ruby Exemplo 1-2. Métodos de atributos com define_method
+
+class Module
+  # Este método define os atributos de métodos de reader e writer de nomeado
+  # attributes, mas aguarda um argumento de attributes de nomes em hash mapeado para
+  # Valores padrões. Os métodos de reader gerados atributos retorna o
+  # Valor padrão se a variável de instância ainda não foi definido.
+  def attributes(hash)
+    hash.each_pair do |symbol, default|   # Para cada par de atributo/default
+      getter = symbol                     # Nome do método getter
+      setter = :&amp;quot;#{symbol}=&amp;quot;              # nome do método setter
+      variable = :&amp;quot;@#{symbol}&amp;quot;            # nome da variável de instância
+      define_method getter do             # Definir o método getter
+        if instance_variable_defined? variable
+          instance_variable_get variable  # Retorna variável, se definido
+        else
+          default                         # Caso contrário retornar padrão
+        end
+      end
+
+      define_method setter do |value|     # Defini método setter
+        instance_variable_set variable,   # Defina a variável de instância
+                              value       # Para o valor do argumento
+      end
+    end
+  end
+
+  # Este método funciona como atributos, mas define métodos de classe em vez de
+  # Invocar atributos no eigenclass em vez de em si mesmo.
+  # Note que os métodos definidos usam variáveis de instância de classe
+  # Em vez de variáveis de classe regulares.
+  def class_attrs(hash)
+    eigenclass = class &amp;lt;&amp;lt; self; self; end
+    eigenclass.class_eval { attributes(hash) }
+  end
+
+  # Ambos os métodos são privados
+  private :attributes, :class_attrs
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos, até o proximo post!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>missing methods e missing constants number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</link>
+      <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Missing Methods e Missing Constants&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Missing Methods e Missing Constants&lt;/h1&gt;
+
+&lt;p&gt;O método &lt;code&gt;method_missing&lt;/code&gt; é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
+invocações arbitrárias sobre um objeto. O método &lt;code&gt;const_missing&lt;/code&gt; de &lt;code&gt;Module&lt;/code&gt; executa uma função similar para o algoritmo de pesquisa constante e que
+nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.&lt;/p&gt;
+
+&lt;h3&gt;Constantes Unicode Codepoint com const_missing&lt;/h3&gt;
+
+&lt;p&gt;O Exemplo 1-1 define um módulo &lt;code&gt;Unicode&lt;/code&gt; que aparece para definir uma constante (uma string UTF-8) para cada &lt;code&gt;Unicode codepoint&lt;/code&gt; de &lt;code&gt;U+0000&lt;/code&gt; a
+&lt;code&gt;U+10FFFF&lt;/code&gt;. O único modo prático para suportar estas muitas constantes é a utilização do método &lt;code&gt;const_missing&lt;/code&gt;. O código faz a suposição de que se uma
+constante é referenciada uma vez, é susceptível de ser utilizado de novo, de modo que o método &lt;code&gt;const_missing&lt;/code&gt; chama &lt;code&gt;Module.const_set&lt;/code&gt; para definir
+uma constante real para se referir a cada valor calculado.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-1. Constantes Unicode codepoint com const_missing&lt;/p&gt;
+
+&lt;h1 id=&#34;todo-codepoints-unicode-ele-usa-const-missing-para-defini-los-lazily&#34;&gt;Todo codepoints Unicode. Ele usa const_missing para defini-los lazily.&lt;/h1&gt;
+
+&lt;h1 id=&#34;exemplos&#34;&gt;Exemplos:&lt;/h1&gt;
+
+&lt;h1 id=&#34;copyright-unicode-u00a9&#34;&gt;copyright = Unicode::U00A9&lt;/h1&gt;
+
+&lt;h1 id=&#34;euro-unicode-u20ac&#34;&gt;euro = Unicode::U20AC&lt;/h1&gt;
+
+&lt;h1 id=&#34;infinity-unicode-u221e&#34;&gt;infinity = Unicode::U221E&lt;/h1&gt;
+
+&lt;p&gt;module Unicode
+  # Este método permite-nos definir constantes Unicode codepoint lazily.
+  def self.const_missing(name)  # constante indefinida passada como um símbolo
+    # Verifique se o nome da constante é da forma certa.
+    # Capital U seguido de um número hexadecimal entre 0000 e 10FFFF.
+    if name.to_s =~ /^U([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4})$/
+      # $1 é o número hexadecimal correspondente. Converte em um inteiro.
+      codepoint = $1.to_i(16)
+      # Converte o número para uma string UTF-8 com a magia do Array.pack.
+      utf8 = [codepoint].pack(&amp;ldquo;U&amp;rdquo;)
+      # Faz a imutável string UTF-8.
+      utf8.freeze
+      # Define uma constante real para pesquisa mais rápida da próxima vez, e retorna
+      # O texto UTF-8 para este tempo.
+      const_set(name, utf8)
+    else
+      # Eleva um erro para constantes do formulário errado.
+      raise NameError, &amp;ldquo;Uninitialized constant: Unicode::#{name}&amp;rdquo;
+    end
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Rastreamento Invocações de método com method_missing&amp;lt;/h3&amp;gt;
+
+No início deste post, demonstrei uma extensão para a classe `Hash` usando `method_missing`. Agora, no `Exemplo 1-2`, temos que demonstrar o uso de
+`method_missing` delega as chamadas arbitrárias em um objeto para outro objeto. Neste exemplo, o que fazemos nesta ordem para a saída de rastreamento
+de mensagens para o objeto.
+
+`Exemplo 1-2` define um método de instância `Object.trace` e uma classe `TracedObject`. O método `trace` retorna uma instância de `TracedObject` que
+usa `method_missing` para pegar invocações, rastreá-las, e delegá-las ao objeto que está sendo rastreado. Você pode usar como este:
+
+``` ruby Rastrear Metodos
+a = [1,2,3]
+a.reverse
+puts a[2]
+puts a.fetch(3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso produz a seguinte saída de rastreamento:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Retorno
+Invocando: a.reverse()
+Volta: [3, 2, 1] a partir de a.reverse
+Invocando: a.fetch(3)
+Raising: IndexError: índice de 3 de matriz de a.fetch&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que, além de demonstrar `method_missing`, o `Exemplo 1-2` demonstra também `Module.instance_methods`, `Module.undef_method` e `Kernel.caller`.
+
+``` ruby Exemplo 1-2. Rastreamento invocações de método com method_missing
+
+# Se comporta exatamente como o original, mas que traça todas as chamadas de método
+# No objeto. Se rastreamento mais de um objeto, especifique um nome para
+# Aparecer na saída. Por padrão, as mensagens serão enviadas para STDERR,
+# Mas você pode especificar qualquer stream (ou qualquer objeto que aceita strings
+# Como argumentos para &amp;lt;&amp;lt;).
+classe Object
+  def trace(name=&amp;quot;&amp;quot;, stream=STDERR)
+    # Retorna um TracedObject que traços e delegados tudo mais para nós.
+    TracedObject.new(self, name, stream)
+  end
+end
+
+# Esta classe usa method_missing para rastrear chamadas de método e
+# Então delega ele para algum outro objeto. Ele exclui a maioria de seus próprios
+# Métodos de instância para que eles não ficam no caminho de method_missing.
+# Note que apenas métodos invocados através da TracedObject será rastreado.
+# Se o objeto delegado chama métodos em si, aquelas invocações
+# Não será rastreado.
+class TracedObject
+  # Indefine todos os nossos métodos de instância públicos não críticos.
+  # Observe o uso do Module.instance_methods e Module.undef_method.
+  instance_methods.each do |m|
+    m = m.to_sym   # Ruby 1.8 retorna string, em vez de símbolos
+    next if m == :object_id || m == :__id__ || m == :__send__
+    undef_method m
+  end
+
+  # Inicializa esta instancia do TracedObject.
+  def initialize(o, name, stream)
+    @o = o            # objeto que delegar
+    @n = name         # O nome do objeto a aparecer no rastreamento de mensagens
+    @trace = stream   # Onde essas mensagens de rastreamento são enviados
+  end
+
+  # Este é o principal método de TracedObject. Ele é invocado por apenas
+  # Sobre qualquer invocação de método em um TracedObject.
+  def method_missing(*args, &amp;amp;block)
+    m = args.shift         # O primeiro é o nome do método
+    begin
+      # Acompanhe a invocação do método.
+      arglist = args.map {|a| a.inspect}.join(&#39;, &#39;)
+      @trace &amp;lt;&amp;lt; &amp;quot;Invoking: #{@n}.#{m}(#{arglist}) at #{caller[0]}\n&amp;quot;
+      # Invoque o método em nosso objeto de delegação e obtem o valor de retorno.
+      r = @o.send m, *args, &amp;amp;block
+      # Traça um retorno normal do método.
+      @trace &amp;lt;&amp;lt; &amp;quot;Returning: #{r.inspect} from #{@n}.#{m} to #{caller[0]}\n&amp;quot;
+      # Retorna o valor que o objeto delegado retornado.
+      r
+    rescue Exception =&amp;gt; e
+      # Traçar um retorno anormal do método.
+      @trace &amp;lt;&amp;lt; &amp;quot;Raising: #{e.class}:#{e} from #{@n}.#{m}\n&amp;quot;
+      # E re-envia qualquer exceção que o objeto delegado levantada.
+      raise
+    end
+  end
+
+  # Retorna o objeto que delegou.
+  def __delegate
+    @o
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Objetos sincronizados por delegação&lt;/h3&gt;
+
+&lt;p&gt;No post anterior, vimos um método global sincronizado, que aceita um objeto e executa um bloco sob a proteção do &lt;code&gt;Mutex&lt;/code&gt; associado a esse objeto.
+A maior parte do exemplo consistiu na aplicação do método &lt;code&gt;Object.mutex&lt;/code&gt;. O método sincronizado foi trivial:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Mutex
+def synchronized(o)
+  o.mutex.synchronize { yield }
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O Exemplo 1-3 modifica este método de modo que, quando chamado sem um bloco, ele retorna um invólucro em torno do objeto `SynchronizedObject`.
+`SynchronizedObject` é uma classe que delega com base em `method_missing`. É muito parecido com a classe `TracedObject`, Exemplo 1-2, mas Ruby 1.9 está
+escrito com uma subclasse de `BasicObject`, por isso não há necessidade de excluir explicitamente os métodos de instância de objeto. Note que o código
+deste exemplo não está sozinho, que exige o método `Object.mutex` definido anteriormente.
+
+``` ruby Exemplo 1-3. Métodos de sincronização com method_missing
+
+def synchronized(o)
+  if block_given?
+    o.mutex.synchronize { yield }
+  else
+    SynchronizedObject.new(o)
+  end
+end
+
+# A classe delega usando method_missing de segurança da thread
+# Em vez de estender objetos e excluir nossos métodos que acabamos de estender de
+# BasicObject, que é definido no Ruby 1.9. BasicObject não
+# Herda do Object ou do Kernel, de modo que os métodos de uma BasicObject não pode
+# Chamar os métodos de nível superior: eles não são apenas lá.
+class SynchronizedObject  &amp;lt; BasicObject
+  def initialize(o); @delegate = o;  end
+  def __delegate; @delegate; end
+
+  def method_missing(*args, &amp;amp;block)
+    @delegate.mutex.synchronize {
+      @delegate.send *args, &amp;amp;block
+    }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos&amp;hellip; :)&lt;/p&gt;
+
+&lt;p&gt;Até o proximo! :D&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

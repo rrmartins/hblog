@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Pfsense on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/pfsense/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sun, 22 Apr 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>number flisol 2012 um evento latino americano</title>
+      <link>http://rodij.me/post/2012/04/22/number-flisol-2012-um-evento-latino-americano/</link>
+      <pubDate>Sun, 22 Apr 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/04/22/number-flisol-2012-um-evento-latino-americano/</guid>
+      <description>&lt;p&gt;&lt;h2&gt;
+    &lt;a href=&#34;http://flisol-es.heroku.com/&#34;&gt;FLISOL - ES&lt;/a&gt; # Um evento Latino-Americano
+&lt;/h2&gt;
+{% img center /images/flisol.png FLISOL %}&lt;br/&gt;
+&lt;p&gt; Olá amigos&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Semana que vem, no dia &lt;sup&gt;28&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt;, irá acontecer em Vitória-ES, um dos maiores eventos de Tecnologia da
+&lt;a href=&#34;http://softwarelivre.org/&#34;&gt;Comunidade de Software Livre&lt;/a&gt;, o &lt;a href=&#34;http://flisol.net/&#34;&gt;FLISOL&lt;/a&gt;
+é um evento que acontece simultaneamente em varios locais da America Latina. &lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;A grade completa você pode conferir &lt;a href=&#34;http://flisol-es.heroku.com/schedule&#34;&gt;AQUI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tentando descrever o evento com poucas palavras, copiarei um trecho do site do FLISOL...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;O FLISOL (Festival Latinoamericano de Instalação de Software Livre) é o maior evento de divulgação de
+Software Livre da América Latina. Ele acontece desde 2005 e seu principal objetivo é promover o uso de
+software livre, apresentando sua filosofia, seu alcance, avanços e desenvolvimento ao público em geral.
+Com esta finalidade, diversas comunidades locais de software livre
+(em cada país, em cada cidade/localidade),
+organizam simultaneamente eventos em que se instala gratuitamente e totalmente legal,
+software livre nos computadores
+levados pelos participantes. Também, paralelamente, são oferecidas apresentações, palestras e oficinas,
+sobre temas locais, nacionais e latinoamericanos sobre Software Livre,
+com toda sua variedade de expressões: artística, acadêmica, empresarial e social.
+O FLISOL 2012 acontece no dia 28 de Abril em diversas cidades.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Será um evento muito bom. Estará lá grandes nomes da &lt;a href=&#34;http://www.tux-es.org/portal/&#34;&gt;Comunidade Local , TUX-ES&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como o &lt;a href=&#34;http://www.leohackin.com.br/2012/04/flisoles-212-e-pomodoros/&#34;&gt;&#34;Mestre&#34; Leo Hackin&lt;/a&gt; disse:&lt;/p&gt;
+    &#34;Será um dia de muitas instalações de Linux, muita nerdisse, bate papo,
+    networking e muita troca de experiência.&#34;
+
+&lt;p&gt;E é isso ai galera... o evento terá muitas paradas legais.. :D&lt;/p&gt;
+
+&lt;p&gt;E eu estarei palestrando sobre &lt;a href=&#34;http://flisol-es.heroku.com/ruby&#34;&gt;&#34;Ruby, Simples e Expressivo!&#34;&lt;/a&gt;,&lt;br/&gt;
+estarei falando um pouco de &lt;a href=&#34;http://www.ruby-lang.org/&#34;&gt;Ruby&lt;/a&gt;, como uma linguagem de uma facil e rapida aprendizagem.&lt;br/&gt;
+Hoje trabalho com &lt;a href=&#34;http://www.ruby-lang.org/&#34;&gt;Ruby&lt;/a&gt; na veia, e a cada dia eu e os membros do #TEAMFLEXA estamos evoluindo&lt;br/&gt;
+na tecnologia com todo o apoio desta forte ferramenta.&lt;/p&gt;
+
+&lt;p&gt;Além da minha palestra, que irá abrir o evento, terá outras palestras muito legais, confira a grade do evento: &lt;a href=&#34;http://flisol-es.heroku.com/schedule&#34;&gt;Programação do FLISOL&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Galera é isso ai... &lt;/p&gt;
+
+&lt;p&gt;Não poderia de deixar de parabenizar aos organizadores do Evento, &lt;a href=&#34;http://twitter.com/#!/m3nd3s&#34;&gt;Almir M3nd3s&lt;/a&gt; e &lt;a href=&#34;http://twitter.com/#!/jvrmaia&#34;&gt;João Víctor&lt;/a&gt;, &lt;br/&gt;
+Parabens amigos... Bora fazer outros eventos, para fazer a tecnologia crescer no ES. :D&lt;/p&gt;
+
+&lt;p&gt;Bora Codar e apreender.. :D&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

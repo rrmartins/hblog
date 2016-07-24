@@ -1,0 +1,194 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> criando combobox com rails 3 &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>criando combobox com rails 3</h1>
+          <span class="post-date">Wed, Feb 15, 2012</span>
+          <p><p>
+Para todos aqueles que conhecem o <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html">Form_for</a>,
+ e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de <a href="http://api.rubyonrails.org/">Rails</a>, e
+ estudem logo, o mercado esta precisando de programadores bons.. :D
+ </p>
+<p>
+Então, vamos ao contexto do post, para gerar um combo box semelhante a este abaixo: </p>
+<select name="estado">
+<option value="AL">AL</option>
+<option value="AP">AP</option>
+<option value="AM">AM</option>
+<option value="BA">BA</option>
+<option value="CE">CE</option>
+<option value="ES">ES</option>
+</select>
+<p>
+Faça assim:
+</p>
+<code>ruby Criando Combobox em Rails
+&lt;%= f.select :estado, ([[&quot;AC&quot;, &quot;AC&quot;], [&quot;AL&quot;, &quot;AL&quot;], [&quot;AP&quot;, &quot;AP&quot;],
+[&quot;AM&quot;, &quot;AM&quot;], [&quot;BA&quot;, &quot;BA&quot;], [&quot;CE&quot;, &quot;CE&quot;], [&quot;DF&quot;, &quot;DF&quot;], [&quot;ES&quot;, &quot;ES&quot;],
+[&quot;GO&quot;, &quot;GO&quot;], [&quot;MA&quot;, &quot;MA&quot;], [&quot;MT&quot;, &quot;MT&quot;], [&quot;MS&quot;, &quot;MS&quot;], [&quot;MG&quot;, &quot;MG&quot;],
+[&quot;PA&quot;, &quot;PA&quot;], [&quot;PB&quot;, &quot;PB&quot;], [&quot;PR&quot;, &quot;PR&quot;], [&quot;PE&quot;, &quot;PE&quot;], [&quot;PI&quot;, &quot;PI&quot;],
+[&quot;RJ&quot;, &quot;RJ&quot;], [&quot;RN&quot;, &quot;RN&quot;], [&quot;RS&quot;, &quot;RS&quot;], [&quot;RO&quot;, &quot;RO&quot;], [&quot;RR&quot;, &quot;RR&quot;],
+[&quot;SC&quot;, &quot;SC&quot;], [&quot;SP&quot;, &quot;SP&quot;], [&quot;SE&quot;, &quot;SE&quot;], [&quot;TO&quot;, &quot;TO&quot;]]) %&gt;
+</code>
+<p>
+Até a próxima rubistas&hellip; :D</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=criando%20combobox%20com%20rails%203-http%3a%2f%2frodij.me%2fpost%2f2012%2f02%2f15%2fcriando-combobox-com-rails-3%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f02%2f15%2fcriando-combobox-com-rails-3%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f02%2f15%2fcriando-combobox-com-rails-3%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f02%2f15%2fcriando-combobox-com-rails-3%2f&title=criando%20combobox%20com%20rails%203" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f02%2f15%2fcriando-combobox-com-rails-3%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f02%2f15%2fcriando-combobox-com-rails-3%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

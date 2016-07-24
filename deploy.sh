@@ -17,5 +17,13 @@ git commit -m "Updating site"
 
 git push origin master
 
+cd public
+
+git add -A
+
+git commit -m "Updating site"
+
+git push origin gh-pages
+
 # Push the public subtree to the gh-pages branch
 git subtree push --prefix=public git@github.com:rrmartins/rodij.me.git gh-pages

@@ -1,0 +1,1541 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Kernel on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/kernel/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Tue, 18 Sep 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>encadeamento de alias number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</link>
+      <pubDate>Tue, 18 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Encadeamento de Alias&lt;/b&gt;...&lt;/p&gt;
+
+&lt;h1&gt;Encadeamento de Alias&lt;/h1&gt;
+
+&lt;p&gt;Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
+Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
+a versão não modificada do método.
+
+* Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
+através dos alias, mas pode adicionar qualquer funcionalidade que for necessário, antes e depois de que
+faz isso.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que estes passos podem ser aplicados repetidamente (desde que um alias diferente é usado de cada vez), criando uma cadeia de métodos e aliases.&lt;/p&gt;
+
+&lt;p&gt;Este post inclui três exemplos de encadeamento de alias. O primeiro realiza o encadeamento de apelido estaticamente, ou seja, usando pseudônimo
+regulares e declarações &lt;code&gt;def&lt;/code&gt;. Os segundo e terceiro exemplos são mais dinâmicos; eles são apelidos que acorrentam métodos arbitrariamente nomeados
+utilizando &lt;code&gt;alias_method&lt;/code&gt;, &lt;code&gt;define_method&lt;/code&gt; e &lt;code&gt;class_eval&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Rastreando Arquivos Carregados e Classes Definidas&lt;/h3&gt;
+
+&lt;p&gt;O &lt;code&gt;Exemplo 1-1&lt;/code&gt; é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
+ele imprime um relatório. Você pode usar este código para &amp;ldquo;instrumento&amp;rdquo; de um existente programa para que você entenda melhor o que está fazendo. Uma
+maneira de usar este código é inserir esta linha no começo do programa:&lt;/p&gt;
+
+&lt;p&gt;``` ruby classtrace
+require &amp;lsquo;classtrace&amp;rsquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Uma solução mais fácil, no entanto, é usar a opção -r para o seu intérprete Ruby(`irb`):
+
+``` ruby Opção -r
+ruby -rclasstrace my_program.rb  --traceout /tmp/trace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A opção -r carrega a biblioteca especificado antes de começar a executar o programa.&lt;/p&gt;
+
+&lt;p&gt;O &lt;code&gt;Exemplo 1-1&lt;/code&gt; usa apelido de encadeamento estático para rastrear todas as chamadas dos métodos &lt;code&gt;Kernel.require&lt;/code&gt; e &lt;code&gt;Kernel.load&lt;/code&gt;. Ele define um hook
+&lt;code&gt;Object.inherited&lt;/code&gt; para rastrear as definições de novas classes. E ele usa &lt;code&gt;Kernel.at_exit&lt;/code&gt; para executar um bloco de código quando o programa termina.
+Além dos encadeamentos de alias &lt;code&gt;require&lt;/code&gt; e &lt;code&gt;load&lt;/code&gt; e defini &lt;code&gt;Object.inherited&lt;/code&gt;, a única modificação do espaço global feita por este código é a
+definição de um módulo chamado &lt;code&gt;ClassTrace&lt;/code&gt;. Todo o estado necessário para o rastreio é armazenado em constantes dentro deste módulo, de modo que não
+poluem o &lt;code&gt;namespace&lt;/code&gt; com variáveis globais.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-1. Rastreando Arquivos Carregados e Classes Definidas&lt;/p&gt;
+
+&lt;h1 id=&#34;definimos-este-módulo-para-manter-o-estado-global-do-require-de-modo-que&#34;&gt;Definimos este módulo para manter o estado global do require, de modo que&lt;/h1&gt;
+
+&lt;h1 id=&#34;nós-não-alteramos-o-espaço-global-mais-do-que-o-necessário&#34;&gt;Nós não alteramos o espaço global mais do que o necessário.&lt;/h1&gt;
+
+&lt;p&gt;module ClassTrace
+   # Esta matriz mantém a nossa lista de arquivos carregados e classes definidas.
+   # Cada elemento é um subarray segurando a classe definida ou o
+   # Arquivo carregado e o quadro de pilha onde ele foi definido ou carregado.
+   T = []  # Array para armazenar os arquivos carregados&lt;/p&gt;
+
+&lt;p&gt;   # Agora defini a constante OUT para especificar onde saída do rastreamento vai.
+   # O padrão é stderr, mas também pode vir a partir de argumentos na linha de comando
+   if x = ARGV.index(&amp;ldquo;&amp;ndash;traceout&amp;rdquo;)    # Se existe argumento
+     OUT = File.open(ARGV[x+1], &amp;ldquo;w&amp;rdquo;)  # Abre o arquivo especificado
+     ARGV[x,2] = nil                  # E remova os argumentos
+   else
+     OUT = STDERR                     # Caso contrário, o padrão para STDERR
+   end
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;passo-1-encadeamento-alias-definir-aliases-para-os-métodos-originais&#34;&gt;Passo 1 encadeamento Alias: definir aliases para os métodos originais&lt;/h1&gt;
+
+&lt;p&gt;alias original_require require
+alias original_load load&lt;/p&gt;
+
+&lt;h1 id=&#34;passo-2-encadeamento-alias-2-definir-novas-versões-dos-métodos&#34;&gt;Passo 2 encadeamento Alias 2: definir novas versões dos métodos&lt;/h1&gt;
+
+&lt;p&gt;def require(file)
+  ClassTrace::T &amp;lt;&amp;lt; [file,caller[0]]     # Lembre-se de onde que estava carregado
+  original_require(file)                # Chame o método original
+end&lt;/p&gt;
+
+&lt;p&gt;def load(*args)
+  ClassTrace::T &amp;lt;&amp;lt; [args[0],caller[0]]  # Lembre-se de onde que estava carregado
+  original_load(*args)                  # Chame o método original
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;este-método-hook-é-chamado-de-cada-vez-que-uma-nova-classe-é-definida&#34;&gt;Este método hook é chamado de cada vez que uma nova classe é definida&lt;/h1&gt;
+
+&lt;p&gt;def Object.inherited&amp;copy;
+  ClassTrace::T &amp;lt;&amp;lt; [c,caller[0]]        # Lembre-se onde que foi definido
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;kernel-at-exit-registra-um-bloco-a-ser-executado-quando-o-programa-sai&#34;&gt;Kernel.at_exit registra um bloco a ser executado quando o programa sai&lt;/h1&gt;
+
+&lt;h1 id=&#34;vamos-utilizá-lo-para-comunicar-os-dados-de-arquivo-e-de-classe-que-recolhemos&#34;&gt;Vamos utilizá-lo para comunicar os dados de arquivo e de classe que recolhemos&lt;/h1&gt;
+
+&lt;p&gt;at_exit {
+  o = ClassTrace::OUT
+  o.puts &amp;ldquo;=&amp;rdquo;*60
+  o.puts &amp;ldquo;Files Loaded and Classes Defined:&amp;rdquo;
+  o.puts &amp;ldquo;=&amp;rdquo;*60
+  ClassTrace::T.each do |what,where|
+    if what.is_a? Class  # Report class (with hierarchy) defined
+      o.puts &amp;ldquo;Defined: #{what.ancestors.join(&amp;rsquo;&amp;lt;-&amp;lsquo;)} at #{where}&amp;rdquo;
+    else                 # Report file loaded
+      o.puts &amp;ldquo;Loaded: #{what} at #{where}&amp;rdquo;
+    end
+  end
+}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Métodos encadeamento de segurança da Thread&amp;lt;/h3&amp;gt;
+
+O alias de encadeamento é feito pelo método `Module.synchronize_method`, o qual, por sua vez usa um método auxiliar `Module.create_alias` para definir
+um alias adequado para qualquer método dado (incluindo métodos como o operador +).
+
+Depois de definir estes novo métodos `Module`, Exemplo 1-2 redefine o método `synchronized` novamente. Quando o método é invocado dentro de uma classe
+ou de um módulo, ele chama `synchronize_method` em cada um dos símbolos que é passado. Curiosamente, contudo, pode também ser chamado sem argumentos,
+quando utilizado desta forma, acrescenta sincronização para qualquer método de instância é definido a seguir. (Utiliza o `hook` para receber
+notificação quando um novo método `method_added` é adicionado.) Note que o código deste exemplo depende do método `Object.mutex` e a classe
+`SynchronizedObject`.
+
+``` ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread
+# Define um alias corrente Module.synchronize_method de métodos de instância
+# Assim que sincronizar a instância antes da execução.
+class Module
+  # Esta é uma função auxiliar para o encadeamento alias.
+  # Dado o nome de um método (como uma string ou símbolo) e um prefixo, cria
+  # Um alias exclusivo para o método, e retornar o nome do alias
+  # Como um símbolo. Quaisquer caracteres de pontuação em nome método original
+  # Serão convertidos em números para que os operadores podem ser alias.
+  def create_alias(original, prefix=&amp;quot;alias&amp;quot;)
+    # Cole o prefixo do nome original e converter pontuação
+    aka = &amp;quot;#{prefix}_#{original}&amp;quot;
+    aka.gsub!(/([\=\|\&amp;amp;\+\-\*\/\^\!\?\~\%\&amp;lt;\&amp;gt;\[\]])/) {
+      num = $1[0]                       # Ruby 1.8 character -&amp;gt; ordinal
+      num = num.ord if num.is_a? String # Ruby 1.9 character -&amp;gt; ordinal
+      &#39;_&#39; + num.to_s
+    }
+    
+    # Mantenha acrescentando ressalta até chegarmos a um nome que não está em uso
+    aka += &amp;quot;_&amp;quot; while method_defined? aka or private_method_defined? aka
+
+    aka = aka.to_sym           # Converter o nome de alias de um símbolo
+    alias_method aka, original # Na verdade criar o alias
+    aka 											 # Retorna o nome do alias
+  end
+
+  # Alias correntam o método nomeado para adicionar sincronização
+  def synchronize_method(m)
+    # Primeiro, fazemos um alias para a versão dessincronizado do método.
+    aka = create_alias(m, &amp;quot;unsync&amp;quot;)
+    # Agora redefini o original para invocar o alias em um bloco sincronizado.
+    # Queremos o método definido como sendo capaz de aceitar os blocos, de modo que
+    # Não pode usar define_method, e deve avaliar vez uma string com
+    # Class_eval. Note-se que tudo entre% Q {} e da correspondência
+    # É uma string entre aspas, e não um bloco.
+    class_eval %Q{
+      def #{m}(*args, &amp;amp;block)
+        synchronized(self) { #{aka}(*args, &amp;amp;block) }
+      end
+    }
+  end
+end
+
+# Este método global sincronizado agora pode ser usado de três maneiras diferentes.
+def synchronized(*args)
+  # Caso 1: com um argumento e um bloco, sincronizar sobre o objeto
+  # E executar o bloco
+	if args.size == 1 &amp;amp;&amp;amp; block_given?
+    args[0].mutex.synchronize { yield }
+
+  # Caso dois: com um argumento que não é um símbolo e nenhum bloco
+  # Devolve um invólucro de SynchronizedObject
+  elsif args.size == 1 and not args[0].is_a? Symbol and not block_given?
+    SynchronizedObject.new(args[0])
+
+  # Caso três: quando invocado em um módulo com nenhum bloco, alias a cadeia
+  # Chamado métodos para adicionar sincronização. Ou, se não há argumentos,
+  # Então apelido acorrentam o próximo método definido.
+  elsif self.is_a? Module and not block_given?
+    if (args.size &amp;gt; 0) # Synchronize the named methods
+      args.each {|m| self.synchronize_method(m) }
+    else
+      # Se nenhum método é especificado pelo synchronize o método seguinte define
+      eigenclass = class&amp;lt;&amp;lt;self; self; end
+      eigenclass.class_eval do # Use eigenclass para definir métodos de classe
+        # Define method_added para notificação quando próximo método é definido
+        define_method :method_added do |name|
+          # Primeiro remover esse método hook
+          eigenclass.class_eval { remove_method :method_added }
+          # Em seguida, sincronize o método que acabou de ser adicionado
+          self.synchronize_method name
+        end
+      end
+    end
+
+  # Caso 4: qualquer outra invocação é um erro
+  else
+    raise ArgumentError, &amp;quot;Invalid arguments to synchronize()&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Métodos de encadeamento para Rastreamento&lt;/h3&gt;
+
+&lt;p&gt;O Exemplo 1-3 suporta o rastreio de métodos denominados de um objeto. Ele define &lt;code&gt;trace!&lt;/code&gt; e &lt;code&gt;untrace!&lt;/code&gt; a cadeia e desencadeiam métodos chamados de um
+objeto.&lt;/p&gt;
+
+&lt;p&gt;A coisa interessante sobre esse exemplo é que ele faz o seu encadeamento de um modo diferente a partir do Exemplo 1-2. Ele simplesmente define métodos
+únicos no objeto e usa &lt;code&gt;super&lt;/code&gt; dentro do &lt;code&gt;singleton&lt;/code&gt; para a cadeia de definição do método original de exemplo. Nenhum método são criado aliases.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 8-10. Encadeamento com métodos singleton para rastrear&lt;/p&gt;
+
+&lt;h1 id=&#34;define-métodos-trace-e-untrace-de-instância-para-todos-os-objetos&#34;&gt;Define métodos trace! e untrace! de instância para todos os objetos.&lt;/h1&gt;
+
+&lt;h1 id=&#34;trace-cadeias-os-métodos-chamados-por-definir-métodos-singleton&#34;&gt;trace! &amp;ldquo;Cadeias&amp;rdquo; os métodos chamados por definir métodos singleton&lt;/h1&gt;
+
+&lt;h1 id=&#34;que-adiciona-a-funcionalidade-de-rastreamento-e-use-super-para-chamar-o-original&#34;&gt;Que adiciona a funcionalidade de rastreamento e use super para chamar o original.&lt;/h1&gt;
+
+&lt;h1 id=&#34;untrace-exclui-os-métodos-singleton-para-remover-o-rastreamento&#34;&gt;untrace! exclui os métodos singleton para remover o rastreamento.&lt;/h1&gt;
+
+&lt;p&gt;classe Object
+  # os métodos trace especificados, enviando a saída para STDERR.
+  def trace!(*methods)
+    @_traced = @_traced || []    # Lembre-se o conjunto de métodos traçados&lt;/p&gt;
+
+&lt;p&gt;    # Se nenhum método foi especificado, use todos os métodos públicos definidos
+    # Diretamente (não herdado) pela classe deste objeto
+    methods = public_methods(false) if methods.size == 0&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;methods.map! {|m| m.to_sym }    # Converta qualquer cordas para símbolos
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;    methods -= @_traced                     # remove métodos que já estão traçadas
+    return if methods.empty?        # Voltar mais cedo se não há nada a fazer
+    @_traced |= methods           # Adiciona métodos para definir métodos de traçados&lt;/p&gt;
+
+&lt;p&gt;    # Trace o fato de que estamos começando a traçar estes métodos
+    STDERR &amp;lt;&amp;lt; &amp;ldquo;Tracing #{methods.join(&amp;lsquo;, &amp;lsquo;)} on #{object_id}\n&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    # Singleton métodos são definidos na eigenclass
+eigenclass = class &amp;lt;&amp;lt; self; self; end
+
+    methods.each do |m| # Para cada método m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;      # Define uma versão trace singleton do método m.
+      # Saída de informações de rastreamento e usar super para invocar o
+      # Método de instância que é o rastreamento.
+      # Queremos que os métodos definidos para ser capaz de aceitar blocos, de modo que
+      # Não pode usar define_method, e deve avaliar, em vez de uma string.
+      # Note que tudo entre %Q{} e a correspondência é uma
+      # Entre aspas de string, não um bloco. Observe também que há
+      # Dois níveis de interpolações de string aqui. # {} É interpolada
+      # Quando o método singleton é definida. E \ # {} é interpolada
+      # Quando o método singleton é invocado.
+      eigenclass.class_eval %Q{
+        def #{m}(*args, &amp;amp;block)
+          begin
+            STDERR &amp;lt;&amp;lt; &amp;ldquo;Entering: #{m}(#{args.join(&amp;lsquo;, &amp;lsquo;)})\n&amp;rdquo;
+            result = super
+            STDERR &amp;lt;&amp;lt; &amp;ldquo;Exiting: #{m} with #{result}\n&amp;rdquo;
+            result
+          rescue
+            STDERR &amp;lt;&amp;lt; &amp;ldquo;Aborting: #{m}: #{$!.class}: #{$!.message}&amp;rdquo;
+            raise
+          end
+        end
+      }
+    end
+  end&lt;/p&gt;
+
+&lt;p&gt;  # Untrace os métodos especificados ou todos os métodos rastreados
+    def untrace!(*methods)
+    if methods.size == 0    # Se nenhuma métodos especificados untrace
+      methods = @_traced    # todos os métodos atualmente rastreados
+      STDERR &amp;lt;&amp;lt; &amp;ldquo;Untracing all methods on #{object_id}\n&amp;rdquo;
+    else                    # Caso contrário, untrace
+      methods.map! {|m| m.to_sym }  # Converter string para símbolos
+      methods &amp;amp;= @_traced   # todos os métodos especificados que são rastreados
+      STDERR &amp;lt;&amp;lt; &amp;ldquo;Untracing #{methods.join(&amp;lsquo;, &amp;lsquo;)} on #{object_id}\n&amp;rdquo;
+    end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    @_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
+
+    # Remove os métodos traçados únicos do eigenclass
+    # Note que nós class_eval um bloco aqui, não uma string
+    (class &amp;lt;&amp;lt; self; self; end).class_eval do
+      methods.each do |m|
+        remove_method m     # undef_method não funciona corretamente
+      end
+    end
+
+    # Se nenhum método são traçados mais, remover o nosso exemplo var
+    if @_traced.empty?
+      remove_instance_variable :@_traced
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;end
+end
+```&lt;/p&gt;
+
+&lt;p&gt;É isso ai galera! Até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>criando metodos dinamicamente number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</link>
+      <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Criando Métodos Dinamicamente&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Criando Métodos Dinamicamente&lt;/h1&gt;
+
+&lt;p&gt;Uma técnica importante em metaprogramação é a utilização de métodos que criam métodos. Os métodos &lt;code&gt;attr_reader&lt;/code&gt; e &lt;code&gt;attr_accessor&lt;/code&gt; são exemplos. Estes
+métodos de instância privados do &lt;code&gt;Module&lt;/code&gt; são usados como palavras-chave dentro de definições de classe. Eles aceitam nomes de atributos como seus
+argumentos, e dinamicamente criam métodos com esses nomes. Os exemplos que se seguem são variantes sobre essa criação de atributos assessores dos
+métodos e demonstra duas formas diferentes de criar dinamicamente métodos como este.&lt;/p&gt;
+
+&lt;h3&gt;Métodos definidos com class_eval&lt;/h3&gt;
+
+&lt;p&gt;O Exemplo 1-1 define métodos privados de instância do &lt;code&gt;Module&lt;/code&gt; chamado &lt;code&gt;readonly&lt;/code&gt; e &lt;code&gt;readwrite&lt;/code&gt;. Estes métodos funcionam como &lt;code&gt;attr_reader&lt;/code&gt;
+e &lt;code&gt;attr_accessor&lt;/code&gt;, e eles estão aqui para demonstrar como esses métodos são implementados. A implementação é na verdade muito simples: &lt;code&gt;readonly&lt;/code&gt; e
+&lt;code&gt;readwrite&lt;/code&gt; primeiro construi uma seqüência de código Ruby contendo as instruções necessárias para definir &lt;code&gt;def&lt;/code&gt; os métodos de acesso apropriados.
+Em seguida, eles avaliam que a seqüência de código usando &lt;code&gt;class_eval&lt;/code&gt;. Usando &lt;code&gt;class_eval&lt;/code&gt; como esta gera a sobrecarga de analisar a cadeia de código.
+A vantagem, contudo, é que os métodos que definem não precisa usar as APIs reflexivas, pois eles podem consultar ou definir o valor de uma variável de
+instância diretamente.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-1. Métodos de atributos com class_eval&lt;/p&gt;
+
+&lt;p&gt;class Module
+  private # Os métodos que se seguem são todos privados&lt;/p&gt;
+
+&lt;p&gt;  # Este método funciona como attr_reader, mas tem um nome mais curto
+  def readonly(*syms)
+    return if syms.size == 0  # Se nenhum argumento, não faz nada
+    code = &amp;ldquo;&amp;rdquo;                 # Comece com uma cadeia vazia de código
+    # Gera uma seqüência de código Ruby para definir métodos leitores de atributos.
+    # Observe como o símbolo é interpolado para a seqüência de código.
+    syms.each do |s|                     # Para cada símbolo
+      code &amp;lt;&amp;lt; &amp;ldquo;def #{s}; @#{s}; end\n&amp;rdquo;   # O método de definição
+    end
+    # Finalmente, class_eval o código gerado para criar métodos de instância.
+    class_eval code
+  end&lt;/p&gt;
+
+&lt;p&gt;  # Este método funciona como attr_accessor, mas tem um nome mais curto.
+  def readwrite(*syms)
+    return if syms.size == 0
+    code = &amp;ldquo;&amp;rdquo;
+    syms.each do |s|
+      code &amp;lt;&amp;lt; &amp;ldquo;def #{s}; @#{s} end\n&amp;rdquo;
+      code &amp;lt;&amp;lt; &amp;ldquo;def #{s}=(value); @#{s} = value; end\n&amp;rdquo;
+    end
+    class_eval code
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Métodos definidos com define_method&amp;lt;/h3&amp;gt;
+
+O Exemplo 1-2 é uma posição diferente sobre os assessores de atributos. O método `attributes` é algo como o método `readwrite` definido no `Exemplo
+1-1`. Em vez de tomar qualquer número de nomes de atributos como argumentos, que espera um único objeto `hash`. Este `hash` deve ter nomes de atributos
+como suas chaves, e deve mapear os nomes de atributos para os valores padrões para os atributos. O método `class_attrs` funciona como atributos, mas
+define os atributos de classe em vez de atributos de instância.
+
+Lembre-se que Ruby permite que as chaves para ser omitidas em torno de `hash` literais quando eles são o argumento final em uma invocação de método.
+Assim, o método `attributes` pode ser chamado com um código como este:
+
+``` ruby Metodo attributes
+class Point
+  attributes :x =&amp;gt; 0, :y =&amp;gt; 0
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No Ruby 1.9, podemos usar a sintaxe do &lt;code&gt;hash&lt;/code&gt; é mais sucinta:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Attibutes
+class Point
+  attributes x:0, y:0
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Este é outro exemplo que utiliza sintaxe flexível de Ruby para criar métodos que se comportam como palavras-chave de linguagem.
+
+A implementação do método de `attributes` no `Exemplo 1-2` é um pouco diferente do que a do método `readwrite` no `Exemplo 1-1`. Em vez de definir uma
+seqüência de código Ruby e avaliá-lo com `class_eval`, o método `attributes` define o corpo dos acessos de atributos de um bloco e define os métodos
+que utilizam `define_method`. Uma vez que este método técnico de definição não nos permitem identificadores interpolares diretamente no corpo do
+método, temos de confiar em métodos reflexivos, como `instance_variable_get`. Devido a isso, os assessores definidos com `attributes` são susceptíveis
+de ser menos eficientes do que os definidos com `readwrite`.
+
+Um ponto interessante sobre o método `attributes` é que não armazena explicitamente os valores padrões para os atributos em uma variável de classe de
+qualquer tipo. Em vez disso, o valor por defeito para cada atributo é capturado pelo âmbito de bloquear o método usado para definir.
+
+O método `class_attrs` define os atributos de classe muito simples: ele invoca `attributes` na &amp;lt;a href=&amp;quot;http://blog.caelum.com.br/metaprogramacao-eigenclass-em-ruby/&amp;quot;&amp;gt;eigenclass&amp;lt;/a&amp;gt; da classe. Este
+significa que os métodos resultantes usam variáveis de instância de classe em vez de variáveis de classe regular.
+
+``` ruby Exemplo 1-2. Métodos de atributos com define_method
+
+class Module
+  # Este método define os atributos de métodos de reader e writer de nomeado
+  # attributes, mas aguarda um argumento de attributes de nomes em hash mapeado para
+  # Valores padrões. Os métodos de reader gerados atributos retorna o
+  # Valor padrão se a variável de instância ainda não foi definido.
+  def attributes(hash)
+    hash.each_pair do |symbol, default|   # Para cada par de atributo/default
+      getter = symbol                     # Nome do método getter
+      setter = :&amp;quot;#{symbol}=&amp;quot;              # nome do método setter
+      variable = :&amp;quot;@#{symbol}&amp;quot;            # nome da variável de instância
+      define_method getter do             # Definir o método getter
+        if instance_variable_defined? variable
+          instance_variable_get variable  # Retorna variável, se definido
+        else
+          default                         # Caso contrário retornar padrão
+        end
+      end
+
+      define_method setter do |value|     # Defini método setter
+        instance_variable_set variable,   # Defina a variável de instância
+                              value       # Para o valor do argumento
+      end
+    end
+  end
+
+  # Este método funciona como atributos, mas define métodos de classe em vez de
+  # Invocar atributos no eigenclass em vez de em si mesmo.
+  # Note que os métodos definidos usam variáveis de instância de classe
+  # Em vez de variáveis de classe regulares.
+  def class_attrs(hash)
+    eigenclass = class &amp;lt;&amp;lt; self; self; end
+    eigenclass.class_eval { attributes(hash) }
+  end
+
+  # Ambos os métodos são privados
+  private :attributes, :class_attrs
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos, até o proximo post!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>missing methods e missing constants number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</link>
+      <pubDate>Sat, 15 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Missing Methods e Missing Constants&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Missing Methods e Missing Constants&lt;/h1&gt;
+
+&lt;p&gt;O método &lt;code&gt;method_missing&lt;/code&gt; é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
+invocações arbitrárias sobre um objeto. O método &lt;code&gt;const_missing&lt;/code&gt; de &lt;code&gt;Module&lt;/code&gt; executa uma função similar para o algoritmo de pesquisa constante e que
+nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.&lt;/p&gt;
+
+&lt;h3&gt;Constantes Unicode Codepoint com const_missing&lt;/h3&gt;
+
+&lt;p&gt;O Exemplo 1-1 define um módulo &lt;code&gt;Unicode&lt;/code&gt; que aparece para definir uma constante (uma string UTF-8) para cada &lt;code&gt;Unicode codepoint&lt;/code&gt; de &lt;code&gt;U+0000&lt;/code&gt; a
+&lt;code&gt;U+10FFFF&lt;/code&gt;. O único modo prático para suportar estas muitas constantes é a utilização do método &lt;code&gt;const_missing&lt;/code&gt;. O código faz a suposição de que se uma
+constante é referenciada uma vez, é susceptível de ser utilizado de novo, de modo que o método &lt;code&gt;const_missing&lt;/code&gt; chama &lt;code&gt;Module.const_set&lt;/code&gt; para definir
+uma constante real para se referir a cada valor calculado.&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-1. Constantes Unicode codepoint com const_missing&lt;/p&gt;
+
+&lt;h1 id=&#34;todo-codepoints-unicode-ele-usa-const-missing-para-defini-los-lazily&#34;&gt;Todo codepoints Unicode. Ele usa const_missing para defini-los lazily.&lt;/h1&gt;
+
+&lt;h1 id=&#34;exemplos&#34;&gt;Exemplos:&lt;/h1&gt;
+
+&lt;h1 id=&#34;copyright-unicode-u00a9&#34;&gt;copyright = Unicode::U00A9&lt;/h1&gt;
+
+&lt;h1 id=&#34;euro-unicode-u20ac&#34;&gt;euro = Unicode::U20AC&lt;/h1&gt;
+
+&lt;h1 id=&#34;infinity-unicode-u221e&#34;&gt;infinity = Unicode::U221E&lt;/h1&gt;
+
+&lt;p&gt;module Unicode
+  # Este método permite-nos definir constantes Unicode codepoint lazily.
+  def self.const_missing(name)  # constante indefinida passada como um símbolo
+    # Verifique se o nome da constante é da forma certa.
+    # Capital U seguido de um número hexadecimal entre 0000 e 10FFFF.
+    if name.to_s =~ /^U([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4})$/
+      # $1 é o número hexadecimal correspondente. Converte em um inteiro.
+      codepoint = $1.to_i(16)
+      # Converte o número para uma string UTF-8 com a magia do Array.pack.
+      utf8 = [codepoint].pack(&amp;ldquo;U&amp;rdquo;)
+      # Faz a imutável string UTF-8.
+      utf8.freeze
+      # Define uma constante real para pesquisa mais rápida da próxima vez, e retorna
+      # O texto UTF-8 para este tempo.
+      const_set(name, utf8)
+    else
+      # Eleva um erro para constantes do formulário errado.
+      raise NameError, &amp;ldquo;Uninitialized constant: Unicode::#{name}&amp;rdquo;
+    end
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Rastreamento Invocações de método com method_missing&amp;lt;/h3&amp;gt;
+
+No início deste post, demonstrei uma extensão para a classe `Hash` usando `method_missing`. Agora, no `Exemplo 1-2`, temos que demonstrar o uso de
+`method_missing` delega as chamadas arbitrárias em um objeto para outro objeto. Neste exemplo, o que fazemos nesta ordem para a saída de rastreamento
+de mensagens para o objeto.
+
+`Exemplo 1-2` define um método de instância `Object.trace` e uma classe `TracedObject`. O método `trace` retorna uma instância de `TracedObject` que
+usa `method_missing` para pegar invocações, rastreá-las, e delegá-las ao objeto que está sendo rastreado. Você pode usar como este:
+
+``` ruby Rastrear Metodos
+a = [1,2,3]
+a.reverse
+puts a[2]
+puts a.fetch(3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso produz a seguinte saída de rastreamento:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Retorno
+Invocando: a.reverse()
+Volta: [3, 2, 1] a partir de a.reverse
+Invocando: a.fetch(3)
+Raising: IndexError: índice de 3 de matriz de a.fetch&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que, além de demonstrar `method_missing`, o `Exemplo 1-2` demonstra também `Module.instance_methods`, `Module.undef_method` e `Kernel.caller`.
+
+``` ruby Exemplo 1-2. Rastreamento invocações de método com method_missing
+
+# Se comporta exatamente como o original, mas que traça todas as chamadas de método
+# No objeto. Se rastreamento mais de um objeto, especifique um nome para
+# Aparecer na saída. Por padrão, as mensagens serão enviadas para STDERR,
+# Mas você pode especificar qualquer stream (ou qualquer objeto que aceita strings
+# Como argumentos para &amp;lt;&amp;lt;).
+classe Object
+  def trace(name=&amp;quot;&amp;quot;, stream=STDERR)
+    # Retorna um TracedObject que traços e delegados tudo mais para nós.
+    TracedObject.new(self, name, stream)
+  end
+end
+
+# Esta classe usa method_missing para rastrear chamadas de método e
+# Então delega ele para algum outro objeto. Ele exclui a maioria de seus próprios
+# Métodos de instância para que eles não ficam no caminho de method_missing.
+# Note que apenas métodos invocados através da TracedObject será rastreado.
+# Se o objeto delegado chama métodos em si, aquelas invocações
+# Não será rastreado.
+class TracedObject
+  # Indefine todos os nossos métodos de instância públicos não críticos.
+  # Observe o uso do Module.instance_methods e Module.undef_method.
+  instance_methods.each do |m|
+    m = m.to_sym   # Ruby 1.8 retorna string, em vez de símbolos
+    next if m == :object_id || m == :__id__ || m == :__send__
+    undef_method m
+  end
+
+  # Inicializa esta instancia do TracedObject.
+  def initialize(o, name, stream)
+    @o = o            # objeto que delegar
+    @n = name         # O nome do objeto a aparecer no rastreamento de mensagens
+    @trace = stream   # Onde essas mensagens de rastreamento são enviados
+  end
+
+  # Este é o principal método de TracedObject. Ele é invocado por apenas
+  # Sobre qualquer invocação de método em um TracedObject.
+  def method_missing(*args, &amp;amp;block)
+    m = args.shift         # O primeiro é o nome do método
+    begin
+      # Acompanhe a invocação do método.
+      arglist = args.map {|a| a.inspect}.join(&#39;, &#39;)
+      @trace &amp;lt;&amp;lt; &amp;quot;Invoking: #{@n}.#{m}(#{arglist}) at #{caller[0]}\n&amp;quot;
+      # Invoque o método em nosso objeto de delegação e obtem o valor de retorno.
+      r = @o.send m, *args, &amp;amp;block
+      # Traça um retorno normal do método.
+      @trace &amp;lt;&amp;lt; &amp;quot;Returning: #{r.inspect} from #{@n}.#{m} to #{caller[0]}\n&amp;quot;
+      # Retorna o valor que o objeto delegado retornado.
+      r
+    rescue Exception =&amp;gt; e
+      # Traçar um retorno anormal do método.
+      @trace &amp;lt;&amp;lt; &amp;quot;Raising: #{e.class}:#{e} from #{@n}.#{m}\n&amp;quot;
+      # E re-envia qualquer exceção que o objeto delegado levantada.
+      raise
+    end
+  end
+
+  # Retorna o objeto que delegou.
+  def __delegate
+    @o
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Objetos sincronizados por delegação&lt;/h3&gt;
+
+&lt;p&gt;No post anterior, vimos um método global sincronizado, que aceita um objeto e executa um bloco sob a proteção do &lt;code&gt;Mutex&lt;/code&gt; associado a esse objeto.
+A maior parte do exemplo consistiu na aplicação do método &lt;code&gt;Object.mutex&lt;/code&gt;. O método sincronizado foi trivial:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Mutex
+def synchronized(o)
+  o.mutex.synchronize { yield }
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O Exemplo 1-3 modifica este método de modo que, quando chamado sem um bloco, ele retorna um invólucro em torno do objeto `SynchronizedObject`.
+`SynchronizedObject` é uma classe que delega com base em `method_missing`. É muito parecido com a classe `TracedObject`, Exemplo 1-2, mas Ruby 1.9 está
+escrito com uma subclasse de `BasicObject`, por isso não há necessidade de excluir explicitamente os métodos de instância de objeto. Note que o código
+deste exemplo não está sozinho, que exige o método `Object.mutex` definido anteriormente.
+
+``` ruby Exemplo 1-3. Métodos de sincronização com method_missing
+
+def synchronized(o)
+  if block_given?
+    o.mutex.synchronize { yield }
+  else
+    SynchronizedObject.new(o)
+  end
+end
+
+# A classe delega usando method_missing de segurança da thread
+# Em vez de estender objetos e excluir nossos métodos que acabamos de estender de
+# BasicObject, que é definido no Ruby 1.9. BasicObject não
+# Herda do Object ou do Kernel, de modo que os métodos de uma BasicObject não pode
+# Chamar os métodos de nível superior: eles não são apenas lá.
+class SynchronizedObject  &amp;lt; BasicObject
+  def initialize(o); @delegate = o;  end
+  def __delegate; @delegate; end
+
+  def method_missing(*args, &amp;amp;block)
+    @delegate.mutex.synchronize {
+      @delegate.send *args, &amp;amp;block
+    }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos&amp;hellip; :)&lt;/p&gt;
+
+&lt;p&gt;Até o proximo! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>estruturas de controle personalizados number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/</link>
+      <pubDate>Thu, 13 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Estruturas de Controle Personalizados&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Estruturas de Controle Personalizados&lt;/h1&gt;
+
+&lt;p&gt;Uso de blocos em Ruby, juntamente com sua sintaxe de parênteses opcional, tornam muito fácil de definir métodos que parecem &lt;code&gt;iterator&lt;/code&gt; e se comportam
+como estruturas de controle. O método &lt;code&gt;loop&lt;/code&gt; do &lt;code&gt;Kernel&lt;/code&gt; é um exemplo simples. Neste post, desenvolvo mais três exemplos. Os exemplos aqui usam
+segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência para compreender todos os detalhes.&lt;/p&gt;
+
+&lt;h3&gt;Executando Delaying e Repeating: `after` e `every`&lt;/h3&gt;
+
+&lt;p&gt;O exemplo 1-1 define métodos globais nomeados após os dias. Cada um leva um argumento numérico que representa um número de segundos e devem ter um
+bloco associado. Depois cria um novo segmento e retorna o objeto &lt;code&gt;Thread&lt;/code&gt; imediatamente. O segmento recém-criado dorme para o número especificado de
+segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, &amp;ldquo;dorme&amp;rdquo; o número
+especificado de segundos entre chamadas. O segundo argumento para todos é um valor para passar para a primeira chamada do bloco. O valor de retorno de
+cada invocação se torna o valor que passou para a próxima invocação. O bloco associado a cada intervalo pode ser usado para prevenir qualquer
+invocações futuras.&lt;/p&gt;
+
+&lt;p&gt;Aqui está um exemplo de código que usa &lt;code&gt;after&lt;/code&gt; e &lt;code&gt;every&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby after e every
+require &amp;lsquo;afterevery&amp;rsquo;&lt;/p&gt;
+
+&lt;p&gt;1.upto(5) {|i| after i { puts i} }  # Lentamente imprimir os números 1-5
+sleep(5)                            # Aguarde cinco segundos
+every 1, 6 do |count|               # Agora, lentamente, imprimir 6-10
+    puts count
+    break if count == 10
+  count + 1                         # O valor próximo de contagem
+end
+sleep(6)                            # Dê um tempo acima para executar&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Chamando o `sleep` no final deste código, evita o programa de sair antes que a `thread` seja criada por poder todas completar sua contagem. Com esse
+exemplo de como `after` e `every` são usadas, agora estamos prontos para apresentar a sua implementação.
+
+``` ruby Exemplo 1-1. Os métodos after e every
+
+#
+# Defini métodos de kernel after e every por adiar blocos de código.
+# Exemplos:
+#
+#   after 1 { puts &amp;quot;done&amp;quot; }
+#   every 60 { redraw_clock }
+#
+# Ambos os métodos retornam objetos Thread. Chame kill sobre os objetos devolvidos
+# Para cancelar a execução do código.
+#
+# Note que essa é uma implementação muito ingênua. A mais robusta
+# Implementação usaria uma Thread timer para todas as tarefas globais,
+# Permitiria uma maneira de recuperar o valor de um bloco diferido, e iria
+# Fornecer uma maneira de esperar por todas as tarefas pendentes para ser concluído.
+#
+
+# Executar o bloco after depois de esperar o número especificado de segundos.
+def after(seconds, &amp;amp;block)
+  Thread.new do       # Em um novo segmento ...
+    sleep(seconds)    # Primeiro espera
+    block.call        # Em seguida, chamar o bloco
+  end # Retorna o objeto Thread de imediato
+end
+
+# Repete sleep e after executando o bloco.
+# Passa valor para o bloco na primeira chamada.
+# Em chamadas subseqüentes, passar o valor da chamada anterior.
+def every(seconds, value=nil, &amp;amp;block)
+  Thread.new do                 # Em um novo segmento ...
+    loop do                     # loop para sempre (ou até ruptura no bloco)
+      sleep(seconds)            # sleep
+      value = block.call(value) # E invocar bloco
+    end # Em seguida, repita ..
+  end # cada retorna o Tópico
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Thread de segurança com blocos sincronizados&lt;/h3&gt;
+
+&lt;p&gt;Ao escrever programas que usam várias &lt;code&gt;Threads&lt;/code&gt;, é importante que duas &lt;code&gt;threads&lt;/code&gt; não tente modificar o mesmo objeto, ao mesmo tempo. Uma maneira de
+fazer isto é colocar o código que deve ser feito em uma &lt;code&gt;thread&lt;/code&gt; segura em um bloco associado a uma chamada para o método de &lt;code&gt;synchronize&lt;/code&gt; de um objeto
+&lt;code&gt;Mutex&lt;/code&gt;. No Exemplo 1-2 que levar isso a um passo adiante, e emula a palavra-chave &lt;code&gt;synchronized&lt;/code&gt; do Java com um método global chamado &lt;code&gt;synchronized&lt;/code&gt;.
+Este método &lt;code&gt;synchronized&lt;/code&gt; espera um único objeto como argumento e um bloco. Ele obtém um &lt;code&gt;Mutex&lt;/code&gt; associado ao objeto, e usa &lt;code&gt;Mutex.synchronize&lt;/code&gt; para
+invocar o bloco. A parte complicada é que o objeto de Ruby, ao contrário de objetos Java, não tem um &lt;code&gt;Mutex&lt;/code&gt; que lhes estão associados. Então o Exemplo
+1-2 também define um método de instância chamado &lt;code&gt;mutex&lt;/code&gt; em Object. Curiosamente, a implementação deste método &lt;code&gt;mutex&lt;/code&gt; usa &lt;code&gt;synchoronized&lt;/code&gt; na sua forma
+de palavras-chave novo estilo!&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Mutex&lt;/code&gt; -&amp;gt; &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Mutex.html&#34;&gt;http://www.ruby-doc.org/core-1.9.2/Mutex.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;``` ruby Exemplo 1-2. Simples blocos sincronizados&lt;/p&gt;
+
+&lt;p&gt;require &amp;lsquo;thread&amp;rsquo;&lt;/p&gt;
+
+&lt;h1 id=&#34;ruby-1-8-mantém-mutex-nesta-biblioteca&#34;&gt;Ruby 1.8 mantém Mutex nesta biblioteca&lt;/h1&gt;
+
+&lt;h1 id=&#34;obter-o-mutex-associado-com-o-objeto-o-e-então-avalia&#34;&gt;Obter o Mutex associado com o objeto o, e então avalia&lt;/h1&gt;
+
+&lt;h1 id=&#34;bloco-sob-a-proteção-do-mutex&#34;&gt;Bloco sob a proteção do Mutex.&lt;/h1&gt;
+
+&lt;h1 id=&#34;este-funciona-como-a-palavra-chave-synchronized-do-java&#34;&gt;Este funciona como a palavra-chave synchronized do Java.&lt;/h1&gt;
+
+&lt;p&gt;def synchronized(o)
+  o.mutex.synchronize { yield }
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;object-mutex-na-verdade-não-existe-temos-que-definir-isso&#34;&gt;Object.mutex na verdade não existe. Temos que definir isso.&lt;/h1&gt;
+
+&lt;h1 id=&#34;este-método-retorna-um-mutex-único-para-cada-objeto-e&#34;&gt;Este método retorna um Mutex único para cada objeto, e&lt;/h1&gt;
+
+&lt;h1 id=&#34;sempre-retorna-o-mesmo-mutex-para-qualquer-objeto-particular&#34;&gt;Sempre retorna o mesmo Mutex para qualquer objeto particular.&lt;/h1&gt;
+
+&lt;h1 id=&#34;cria-mutexes-lazily-o-que-requer-sincronização-para&#34;&gt;Cria Mutexes lazily, o que requer sincronização para&lt;/h1&gt;
+
+&lt;h1 id=&#34;segurança-da-thread&#34;&gt;Segurança da Thread.&lt;/h1&gt;
+
+&lt;p&gt;class Object
+  # Retorna o Mutex para este objeto, criando, se necessário.
+  # A parte difícil é ter certeza de que duas threads não chamam
+  # Isso ao mesmo tempo e acabam por criar dois mutexes diferentes.
+  def mutex
+    # Se este objeto já tem um mutex, basta devolvê-lo
+    return @&lt;strong&gt;mutex if @&lt;/strong&gt;mutex&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Caso contrário, nós temos que criar um mutex para o objeto.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;    # Para fazer isso com segurança que temos para sincronizar em nosso objeto de classe.
+    synchronized(self.class) {
+      # Verifique novamente: no momento em que entrar neste bloco sincronizado,
+      # Alguma outra thread pode já ter criado o mutex.
+      @&lt;strong&gt;mutex = @&lt;/strong&gt;mutex || Mutex.new
+    }
+    # O valor de retorno é @__mutex
+  end
+end&lt;/p&gt;
+
+&lt;h1 id=&#34;o-método-object-mutex-definido-acima-necessita-para-bloquear-a-classe&#34;&gt;O método Object.mutex definido acima, necessita para bloquear a classe&lt;/h1&gt;
+
+&lt;h1 id=&#34;se-o-objeto-não-tiver-um-mutex-ainda-se-a-classe-não-tem&#34;&gt;Se o objeto não tiver um Mutex ainda. Se a classe não tem&lt;/h1&gt;
+
+&lt;h1 id=&#34;mutex-próprio-ainda-então-a-classe-da-classe-a-class-do-object&#34;&gt;Mutex próprio ainda, então a classe da classe (a Class do Object)&lt;/h1&gt;
+
+&lt;h1 id=&#34;será-bloqueada-a-fim-de-evitar-recursão-infinita-devemos&#34;&gt;Será bloqueada. A fim de evitar recursão infinita, devemos&lt;/h1&gt;
+
+&lt;h1 id=&#34;garantir-que-o-objeto-da-classe-tem-um-mutex&#34;&gt;Garantir que o objeto da classe tem um mutex.&lt;/h1&gt;
+
+&lt;p&gt;Class.instance_eval { @__mutex = Mutex.new }
+```&lt;/p&gt;
+
+&lt;p&gt;É isso ai amigos, até o proximo! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao objectspace e gc number ruby 1 dot 9 part vii</title>
+      <link>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/</link>
+      <pubDate>Mon, 10 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;ObjectSpace e GC&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;ObjectSpace e GC&lt;/h1&gt;
+
+&lt;p&gt;O módulo &lt;code&gt;ObjectSpace&lt;/code&gt; define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação.
+O método mais notável é &lt;code&gt;each_object&lt;/code&gt;, um iterador que pode render cada objeto (ou a cada instância de uma classe especificada) que o intérprete sabe
+sobre:&lt;/p&gt;
+
+&lt;p&gt;``` ruby ObjectSpace&lt;/p&gt;
+
+&lt;h1 id=&#34;imprima-uma-lista-de-todas-as-classes-conhecidas&#34;&gt;Imprima uma lista de todas as classes conhecidas&lt;/h1&gt;
+
+&lt;p&gt;ObjectSpace.each_object(Class) {|c| puts c }
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ObjectSpace._id2ref&lt;/code&gt; é o inverso da &lt;code&gt;Object.object_id:&lt;/code&gt; leva um objeto como seu argumento ID e retorna ao objeto correspondente, ou levanta uma
+RangeError se não há nenhum objeto com que ID.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ObjectSpace.define_finalizer&lt;/code&gt; permite o registo de uma &lt;code&gt;Proc&lt;/code&gt; ou um bloco de código a ser chamado quando um objeto especificado é &lt;code&gt;garbage collected&lt;/code&gt;.
+Você deve ter cuidado ao registar um finalizador tal, no entanto, como o bloco não tem permissão de &lt;code&gt;finalizer&lt;/code&gt; usar o objeto lixo coletado. Quaisquer
+valores necessários para finalizar o objeto deve ser capturados no âmbito do bloco &lt;code&gt;finalizer&lt;/code&gt;, de modo a que estejam disponíveis sem desreferência do
+objeto. Use &lt;code&gt;ObjectSpace.undefine_finalizer&lt;/code&gt; para excluir todos os blocos inscritos para um objeto &lt;code&gt;finalizer&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;O final método &lt;code&gt;ObjectSpace&lt;/code&gt; é &lt;code&gt;ObjectSpace.garbage_collect&lt;/code&gt;, que força o &lt;code&gt;garbage collected&lt;/code&gt; de Ruby para ser executado. Funcionalidade de &lt;code&gt;garbage
+collected&lt;/code&gt; também está disponível através do módulo &lt;code&gt;GC&lt;/code&gt;. &lt;code&gt;GC.start&lt;/code&gt; é sinônimo de &lt;code&gt;ObjectSpace.garbage_collect&lt;/code&gt;. &lt;code&gt;garbage collected&lt;/code&gt; pode ser
+desativado temporariamente com &lt;code&gt;GC.disable&lt;/code&gt;, e ele pode ser ativado novamente com &lt;code&gt;GC.enable&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A combinação do &lt;code&gt;_id2ref&lt;/code&gt; e métodos &lt;code&gt;define_finalizer&lt;/code&gt; permite a definição de &amp;ldquo;fracos&amp;rdquo; objetos de referência, que possuem uma referência a um valor sem
+impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte a classe &lt;code&gt;weakref&lt;/code&gt; na biblioteca padrão (em lib/weakref.rb) para um exemplo.&lt;/p&gt;
+
+&lt;p&gt;Até o proximo post amigos&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Conhecimento nunca é d+ ! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao tracing number ruby 1 dot 9 part vi</title>
+      <link>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/</link>
+      <pubDate>Mon, 10 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Tracing&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Tracing&lt;/h1&gt;
+
+&lt;p&gt;Ruby define uma série de características para rastrear a execução de um programa. Estes principalmente são os úteis para a depuração do código e
+imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: &lt;code&gt;__FILE__&lt;/code&gt; e &lt;code&gt;__LINE__&lt;/code&gt;.
+Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
+para especificar o local exato em que ela foi gerado:&lt;/p&gt;
+
+&lt;p&gt;``` ruby &lt;strong&gt;FILE&lt;/strong&gt; e &lt;strong&gt;LINE&lt;/strong&gt;
+STDERR.puts &amp;ldquo;#{&lt;strong&gt;FILE&lt;/strong&gt;}:#{&lt;strong&gt;LINE&lt;/strong&gt;): invalid data&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Como um aparte, note que os métodos `Kernel.eval`, `Object.instance_eval`, e `Module.class_eval` todos aceitam um nome de arquivo (ou outra seqüência) e
+um número de linha como os seus dois últimos argumentos. Se você está avaliando o código que você tenha extraído de um arquivo de algum tipo, você pode
+usar esses argumentos para especificar os valores de `__FILE__` e `__LINE__` para a avaliação.
+
+Você, sem dúvida, notou que quando uma exceção não tratada, a mensagem de erro impressa no console contém nome e informações de número de linha. Esta
+informação é baseada em __FILE__ e __LINE__, é claro. Cada Objeto de exceção tem um backtrace associado a ele que mostra exatamente onde ele foi criado,
+onde o método que levantou a exceção foi invocado, onde esse método foi chamado, e assim por diante. O método `Exception.backtrace` retorna um `array` de
+`strings` contendo essa informação. O primeiro elemento do `array` é este o local em que ocorreu a excepção, e cada elemento subsequente é um quadro de
+pilha maior.
+
+Você não precisa levantar uma exceção para obter um rastreamento da pilha atual, no entanto. O método `Kernel.caller` retorna o estadp atual na pilha de
+chamadas da mesma forma como `Exception.backtrace`. Com nenhum argumento, o `caller` retorna um rastreamento de pilha, cujo primeiro elemento é o método
+que chamou o método que chama de `caller`. Isto é, `caller[0]` especifica o local a partir do qual o método atual foi chamado. Você também pode chamar
+de `caller` com um argumento que especifica quantos quadros de pilha a cair a partir do início do registo de `caller`. O padrão é `1`, e do
+`caller(0)[0]` especifica o local em que o método `caller` é invocado. Isto significa, por exemplo, que o `caller[0]` é a mesma coisa que o
+`caller(0)[1]` e que o `caller(2)` é o mesmo como `caller[1 .. -1]`.
+
+Rastreamentos de pilha devolvidos por `Exception.backtrace` e `Kernel.caller` também incluem nomes de métodos. Antes de Ruby 1.9, você deve analisar as
+seqüências de rastreamento de pilha para extrair nomes de métodos. No Ruby 1.9, no entanto, você pode obter o nome (como um símbolo) da execução
+atual do método com `Kernel.__method__` ou seu sinônimo `Kernel.__callee__`. `__method__` é útil em conjunção com __FILE__ e __LINE__:
+
+``` ruby raise
+raise &amp;quot;Assertion failed in #{__method__} at #{__FILE__}:#{__LINE__}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que &lt;code&gt;__method__&lt;/code&gt; retorna o nome pelo qual um método foi originalmente definido, mesmo que o método foi invocado por um alias.&lt;/p&gt;
+
+&lt;p&gt;Em vez de simplesmente imprimi o nome e número em que ocorre um erro, você pode dar um passo adiante e mostrar a linha real de código. Se o seu programa
+define uma constante global &lt;code&gt;SCRIPT_LINES__&lt;/code&gt; e define-a igual a um &lt;code&gt;hash&lt;/code&gt;, então os requisitos e métodos de carregar, adicionar uma entrada para este
+&lt;code&gt;hash&lt;/code&gt; para cada arquivo que carregar. As chaves de hash são nomes de arquivos e os valores associados com essas chaves são &lt;code&gt;arrays&lt;/code&gt; que contêm as
+linhas destes arquivos. Se você quiser incluir o arquivo principal (em vez que apenas incluir os arquivos que ele necessita), no &lt;code&gt;hash&lt;/code&gt;, inicializá-lo
+assim:&lt;/p&gt;
+
+&lt;p&gt;``` ruby SCRIPT_LINES__
+SCRIPT_LINES__ = {&lt;strong&gt;FILE&lt;/strong&gt; =&amp;gt; File.readlines(&lt;strong&gt;FILE&lt;/strong&gt;)}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Se você fizer isso, então você pode obter a linha atual de código-fonte em qualquer lugar em seu programa com esta expressão:
+
+``` ruby SCRIPT_LINES__
+SCRIPT_LINES__[__FILE__][__LINE__-1]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ruby permite rastrear atribuições para variáveis globais com &lt;code&gt;Kernel.trace_var&lt;/code&gt;. Passe este método um símbolo que dá nome a uma variável global e uma
+&lt;code&gt;string&lt;/code&gt; ou bloco de código. Quando o valor das alterações de nomes de variáveis, a cadeia de caracteres será avaliada ou o bloco será invocado. Quando
+um bloco é especificado, o novo valor da variável é passado como um argumento. Para parar o rastreamento da variável, chame &lt;code&gt;Kernel.untrace_var&lt;/code&gt;. No
+seguinte exemplo, notar o uso de &lt;code&gt;caller[1]&lt;/code&gt;, para determinar o local do programa em que o bloco de rastreamento da variável foi invocado:&lt;/p&gt;
+
+&lt;p&gt;``` ruby variavies globais&lt;/p&gt;
+
+&lt;h1 id=&#34;imprime-a-mensagem-de-cada-vez-mudanças-safe&#34;&gt;Imprime a mensagem de cada vez $ mudanças SAFE&lt;/h1&gt;
+
+&lt;p&gt;trace_var(:$SAFE) {|v|
+  puts &amp;ldquo;$SAFE set to #{v} at #{caller[1]}&amp;rdquo;
+}
+```&lt;/p&gt;
+
+&lt;p&gt;O último método de rastreamento é &lt;code&gt;Kernel.set_trace_func&lt;/code&gt;, que registra um &lt;code&gt;Proc&lt;/code&gt; a ser chamado após cada linha de um programa Ruby. &lt;code&gt;set_trace_func&lt;/code&gt;
+é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.&lt;/p&gt;
+
+&lt;p&gt;Até a proxima amigos&amp;hellip; =D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>metodos de visibilidade public</title>
+      <link>http://rodij.me/post/2012/09/09/metodos-de-visibilidade-public/</link>
+      <pubDate>Sun, 09 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/09/metodos-de-visibilidade-public/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Metodos de Visibilidade: Public, Protected, Private&lt;/b&gt;...&lt;/p&gt;
+
+&lt;h1&gt;Metodos de Visibilidade: Public, Protected, Private&lt;/h1&gt;
+
+&lt;p&gt;Métodos de instância podem ser &lt;code&gt;public&lt;/code&gt;, &lt;code&gt;private&lt;/code&gt; ou &lt;code&gt;protected&lt;/code&gt;. Se você já programou com outras linguagens orientadas a objeto, você já pode estar
+familiarizado com esses termos. Preste atenção de qualquer maneira, porque estas palavras têm um significado um pouco diferente em Ruby do que em
+outras Linguagens.&lt;/p&gt;
+
+&lt;p&gt;Métodos são normalmente &lt;code&gt;public&lt;/code&gt; a menos que explicitamente declarado ser &lt;code&gt;private&lt;/code&gt; ou &lt;code&gt;protected&lt;/code&gt;. Uma exceção é o método &lt;code&gt;initialize&lt;/code&gt;, que é sempre
+implicitamente privada. Outra exceção é qualquer método &amp;ldquo;global&amp;rdquo; declarado fora de uma definição de classe desses métodos são definidos como métodos
+privados de instância de objeto. Um método &lt;code&gt;public&lt;/code&gt; pode ser chamado em qualquer lugar, não há restrições sobre seu uso.&lt;/p&gt;
+
+&lt;p&gt;Um método &lt;code&gt;private&lt;/code&gt; é uma implementação interna de uma classe, e que só pode ser chamada por métodos de outra instância da classe (ou, como veremos
+mais tarde, as suas subclasses). Métodos &lt;code&gt;private&lt;/code&gt; são implicitamente invocado em si mesmo, e não podem ser explicitamente chamado em um objeto. Se &lt;code&gt;m&lt;/code&gt;
+é um método &lt;code&gt;private&lt;/code&gt;, então você deve chamá-lo em estilo funcional como &lt;code&gt;m&lt;/code&gt;. Você não pode escrever &lt;code&gt;o.m&lt;/code&gt; ou mesmo &lt;code&gt;self.m&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Um método &lt;code&gt;protected&lt;/code&gt; é como um método &lt;code&gt;private&lt;/code&gt; em que só pode ser chamado de dentro da implementação de uma classe ou suas subclasses. Ela difere de
+um método &lt;code&gt;private&lt;/code&gt; na medida em que pode ser explicitamente chamado em qualquer instância da classe, e ele não se restringe a invocação implícita em
+si mesmo. Um método &lt;code&gt;protected&lt;/code&gt; pode ser usado, por exemplo, para definir um acessor que permite que instâncias de uma classe podem compartilhar o
+estado interno com o outro, mas não permite que os utilizadores de classe possam acessar esse estado.&lt;/p&gt;
+
+&lt;p&gt;Métodos &lt;code&gt;protected&lt;/code&gt; são os menos comumente definido e também o mais difícil de entender. A regra sobre quando um método &lt;code&gt;protected&lt;/code&gt; pode ser invocado
+pode ser mais formalmente descritos como segue: um método &lt;code&gt;protected&lt;/code&gt; definido por uma classe C pode ser invocado em um &lt;code&gt;objeto o&lt;/code&gt; através de um método
+em um &lt;code&gt;objeto p&lt;/code&gt; se e somente se as classes de &lt;code&gt;o&lt;/code&gt; e &lt;code&gt;p&lt;/code&gt; são ambos subclasses ou iguais para, a classe C.&lt;/p&gt;
+
+&lt;p&gt;Métodos de visibilidade é declarado com três métodos chamados &lt;code&gt;public&lt;/code&gt;, &lt;code&gt;private&lt;/code&gt; e &lt;code&gt;protected&lt;/code&gt;. Estes são os métodos de instância da Classe do módulo.
+Todas as classes são módulos, e dentro de uma definição de classe, a classe auto-refere-se ao que está sendo definido. Assim, &lt;code&gt;public&lt;/code&gt;, &lt;code&gt;private&lt;/code&gt; e
+&lt;code&gt;protected&lt;/code&gt; pode ser usado como se fossem palavras-chave da linguagem. Em fato, no entanto, são chamadas de método em si. Há duas maneiras para chamar
+esses métodos. Sem argumentos, eles especificam que todas as definições de método subsequentes terão a visibilidade especificada. Uma classe pode
+usá-los como este:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Visibilidade de Metodos
+class Point
+  # Métodos públicos aqui&lt;/p&gt;
+
+&lt;p&gt;  # Os seguintes métodos são protegidos
+  protected&lt;/p&gt;
+
+&lt;p&gt;  # Métodos protegidos aqui&lt;/p&gt;
+
+&lt;p&gt;  # Os seguintes métodos são privados
+  private&lt;/p&gt;
+
+&lt;p&gt;  # Métodos privadas aqui
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Os métodos também podem ser invocados com os nomes de um ou mais métodos (como `symbols` ou `strings`) como argumentos. Quando chamado assim, eles
+alteram a visibilidade dos métodos chamados. Neste uso, a declaração de visibilidade deve vir após a definição do método. Uma abordagem consiste em
+declarar todos os métodos `private` e `protected` de uma só vez, no final de uma classe. Outra abordagem é declarar a visibilidade de cada método
+`private` ou `protected` imediatamente após sua definição. Aqui, por exemplo, é uma classe com um método de utilidade `private` e um método de acesso
+`protected`:
+
+``` ruby Visibilidade de Metodos
+class Widget
+  def x                       # método de acesso para @x
+    @x
+  end
+  protected :x                # Faça-o protegido
+
+  def utility_method          # Define um método
+    nil
+  end
+  private :utility_method     # E torná-lo privado
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lembre-se que &lt;code&gt;public&lt;/code&gt;, &lt;code&gt;private&lt;/code&gt; e &lt;code&gt;protected&lt;/code&gt; aplicam-se apenas aos métodos em Ruby. Variáveis de instância e de classe são encapsuladas e
+efetivamente &lt;code&gt;private&lt;/code&gt;, e constantes são efetivamente &lt;code&gt;public&lt;/code&gt;. Não há nenhuma maneira de fazer uma variável de instância acessível a partir de fora de
+uma classe (exceto pela definição de um método de acesso, é claro). E não há maneira de definir uma constante que é inacessível para uso externo.&lt;/p&gt;
+
+&lt;p&gt;Ocasionalmente, é útil para especificar que um método de classe deve ser privado. Se sua classe define métodos de fábrica, por exemplo, você pode
+querer fazer o novo método &lt;code&gt;private&lt;/code&gt;. Para fazer isso, use o método &lt;code&gt;private_class_method&lt;/code&gt;, especificando um ou mais nomes de métodos como símbolos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby private_class_method
+private_class_method :new&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você pode tornar público um método `private` de classe novamente com `public_class_method`. Nenhum método pode ser chamado sem argumentos na forma que
+o `public`, `protected` e `private` pode ser.
+
+Ruby é, por definição, uma linguagem muito aberta. A capacidade de especificar que alguns métodos são `private` e `protected` encoraja p bom estilo de
+programação, e evita o uso inadvertido de métodos que não fazem parte da API pública de uma classe. É importante entender, no entanto, que os recursos
+de metaprogramação de Ruby tornam trivial para invocar métodos `private` e `protected` e até mesmo para acessar variáveis de instância encapsuladas.
+Para chamar o método `private` `utility` definida no código anterior, você pode usar o método de envio, ou você pode usar `instance_eval` para avaliar
+um bloco no contexto do objeto:
+
+``` ruby instance_eval
+w = Widget.new                      # Criar um Widget
+w.send :utility_method              # Invoke método privado!
+w.instance_eval { utility_method }  # Outra forma de invocá-lo
+w.instance_eval { @x }              # Ler variável de instância de w
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se você quiser chamar um método pelo nome, mas você não quer inadvertidamente invocar um método &lt;code&gt;private&lt;/code&gt; que você não sabe aproximadamente, você pode
+(no Ruby 1.9) usar &lt;code&gt;public_send&lt;/code&gt; em vez de &lt;code&gt;send&lt;/code&gt;. Ele funciona como &lt;code&gt;send&lt;/code&gt;, mas não invoca métodos &lt;code&gt;private&lt;/code&gt; quando chamado com um receptor
+específico.&lt;/p&gt;
+
+&lt;p&gt;É isso ai amigos&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Até o proximo.. =D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao hooks number ruby 1 dot 9 part v</title>
+      <link>http://rodij.me/post/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/</link>
+      <pubDate>Wed, 05 Sep 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Hooks&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Hooks&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;Class&lt;/code&gt;, &lt;code&gt;Module&lt;/code&gt;, e os vários métodos de retorno da chamada do &lt;code&gt;Objectimplement&lt;/code&gt;, ou &lt;code&gt;hooks&lt;/code&gt;. Estes métodos não são definidos por padrão, mas se você
+defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
+estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
+&lt;code&gt;hook&lt;/code&gt; (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &amp;ldquo;ed&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como
+argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são
+herdados, de modo que a um método herdado será chamado se ele é definido por qualquer um dos antepassados da nova classe. Definir &lt;code&gt;Object.inherited&lt;/code&gt;
+para receber a notificação de todas as novas classes que são definidas:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Object.inherited
+def Object.inherited&amp;copy;
+  puts &amp;ldquo;class #{c} &amp;lt; #{self}&amp;rdquo;
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Quando um módulo é incluído numa classe ou em outro módulo, o método da classe incluída do módulo incluído é chamado com o objeto de classe ou módulo
+em que foi incluído como um argumento. Isto dá o módulo incluído uma oportunidade para aumentar ou alterar a classe da maneira que ele efetivamente
+quer ser permitido que um módulo define o seu próprio significado para incluir. Além da adição de métodos para a classe em que se insere, um módulo com
+um método incluído também que pode alterar os métodos existentes dessa classe, por exemplo:
+
+``` ruby
+module Final             # Uma classe que inclui Final não pode ser uma subclasse
+  def self.included(c)   # Quando incluídos na classe C
+    c.instance_eval do   # Defini um método de classe de c
+      def inherited(sub) # Para detectar subclasses
+        raise Exception, # E abortar com uma exceção
+              &amp;quot;Tentativa de criar subclasse #{sub} da classe final #{self}&amp;quot;
+      end
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Da mesma forma, se um módulo de classe define um método chamado &lt;code&gt;extended&lt;/code&gt;, este método será invocado em qualquer momento que o módulo é utilizado para
+estender um objeto (com &lt;code&gt;Object.extend&lt;/code&gt;). O argumento para o método de extensão será o objeto que foi estendido, é claro, e do método estendido pode
+tomar quaisquer ações que quer o objeto.&lt;/p&gt;
+
+&lt;p&gt;Além de &lt;code&gt;hooks&lt;/code&gt; para rastreiar as classes e os módulos que incluem, também existem &lt;code&gt;hooks&lt;/code&gt; para rastrear os métodos de classes e módulos e os únicos
+métodos de objetos arbitrários. Defini um método de classe chamado &lt;code&gt;method_added&lt;/code&gt; para qualquer classe ou módulo e ele será chamado quando um método de
+instância é definido para essa classe ou módulo:&lt;/p&gt;
+
+&lt;p&gt;``` ruby method_added
+def String.method_added(name)
+  puts &amp;ldquo;New instance method #{name} added to String&amp;rdquo;
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que o método da classe `method_added` é herdado pelas subclasses da classe em que ele está definido. Mas nenhum argumento de classe é passado
+para o `hook`, pelo que não há maneira de dizer se o método chamado foi adicionado à classe que define `method_added` ou se ela foi adicionada a uma
+subclasse desta classe. A solução para este problema é definir um `hook` que herda em qualquer classe uma definição de um `hook` `method_added`.
+O método pode então ser herdado um método que defini `method_added` para cada subclasse.
+
+Quando um método `singleton` é definido para qualquer objeto, o método `singleton_method_added` é invocado sobre o objeto, passando o nome do novo
+método. Lembre-se que para as classes, métodos `singleton` são métodos de classe:
+
+``` ruby singleton_method_added
+def String.singleton_method_added(name)
+  puts &amp;quot;New class method #{name} added to String&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Curiosamente, Ruby invoca esse &lt;code&gt;hook&lt;/code&gt; &lt;code&gt;singleton_method_added&lt;/code&gt; quando o método de &lt;code&gt;hook&lt;/code&gt; em si é definido previamente. Aqui é um outro uso do &lt;code&gt;hook&lt;/code&gt;.
+Neste caso, &lt;code&gt;singleton_method_added&lt;/code&gt; é definido como um método de instância de uma classe que inclui um módulo. É notificado de qualquer métodos
+&lt;code&gt;singleton&lt;/code&gt; adicionados a instâncias da classe:&lt;/p&gt;
+
+&lt;p&gt;``` ruby singleton_method_added&lt;/p&gt;
+
+&lt;h1 id=&#34;incluindo-este-módulo-em-uma-classe-impede-que-instâncias-da-classe&#34;&gt;Incluindo este módulo em uma classe impede que instâncias da classe&lt;/h1&gt;
+
+&lt;h1 id=&#34;de-ter-métodos-singleton-adicionados-a-eles-quaisquer-métodos-singleton-acrescentados&#34;&gt;De ter métodos singleton adicionados a eles. Quaisquer métodos singleton acrescentados&lt;/h1&gt;
+
+&lt;h1 id=&#34;são-imediatamente-removidos-novamente&#34;&gt;São imediatamente removidos novamente.&lt;/h1&gt;
+
+&lt;p&gt;module Strict
+  def singleton_method_added(name)
+    STDERR.puts &amp;ldquo;Warning: singleton #{name} added to a Strict object&amp;rdquo;
+    eigenclass = class &amp;lt;&amp;lt; self; self; end
+    eigenclass.class_eval { remove_method name }
+  end
+end
+```&lt;/p&gt;
+
+&lt;p&gt;Além de &lt;code&gt;method_added&lt;/code&gt; e &lt;code&gt;singleton_method_added&lt;/code&gt;, há &lt;code&gt;hook&lt;/code&gt; para rastreamento quando os métodos de instância e métodos &lt;code&gt;singleton&lt;/code&gt; são removidos ou
+indefinidos. Quando um método de instância é removido ou indefinido em uma classe ou módulo, os métodos de classe &lt;code&gt;method_removed&lt;/code&gt; e &lt;code&gt;method_undefined&lt;/code&gt;
+são invocados nesse módulo. Quando um método &lt;code&gt;singleton&lt;/code&gt; é removido ou indefinido em um objeto, os métodos &lt;code&gt;singleton_method_removed&lt;/code&gt; e
+&lt;code&gt;singleton_method_undefined&lt;/code&gt; são invocados nesse objeto.&lt;/p&gt;
+
+&lt;p&gt;Por fim, note que os métodos &lt;code&gt;method_missing&lt;/code&gt; e &lt;code&gt;const_missing&lt;/code&gt; também se comportam como métodos de &lt;code&gt;hook&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Até o proximos amigos!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao metodos number ruby 1 dot 9 part iv</title>
+      <link>http://rodij.me/post/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/</link>
+      <pubDate>Fri, 31 Aug 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Métodos&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Métodos&lt;/h1&gt;
+
+&lt;p&gt;As classes de &lt;code&gt;Object&lt;/code&gt; e &lt;code&gt;Module&lt;/code&gt; de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar
+cada categoria, por sua vez.&lt;/p&gt;
+
+&lt;h3&gt;Listagem e Teste para Métodos&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Object&lt;/code&gt; define métodos para listar os nomes dos métodos definidos no objeto. Estes métodos retornam &lt;code&gt;arrays&lt;/code&gt; de nomes de métodos. Aqueles nomes são
+&lt;code&gt;strings&lt;/code&gt; em &lt;code&gt;Ruby 1.8&lt;/code&gt; e &lt;code&gt;symbols&lt;/code&gt; no &lt;code&gt;Ruby 1.9&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Listagem de Metodos
+o = &amp;ldquo;a string&amp;rdquo;
+o.methods                # =&amp;gt; [nomes de todos os métodos públicos]
+o.public_methods         # =&amp;gt; é a mesma coisa
+o.public_methods(false)  # Excluir métodos herdados
+o.protected_methods      # =&amp;gt; []: não há qualquer
+o.private_methods        # =&amp;gt; array de todos os métodos privados
+o.private_methods(false) # Excluir herdados métodos privados
+def o.single; 1; end     # Definir um método singleton
+o.singleton_methods      # =&amp;gt; &lt;a href=&#34;ou: em 1,9 [único]&#34;&gt;&amp;ldquo;single&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Também é possível consultar uma classe para os métodos que ele define em vez de consultar uma instância da classe. A seguir os métodos são definidos
+por módulo. Como os métodos de objeto, eles retornam `arrays` de `strings` em `Ruby 1.8` e `arrays` de `symbols` em `Ruby 1.9`:
+
+``` ruby Consultando uma Class
+String.instance_methods == &amp;quot;s&amp;quot;.public_methods                # =&amp;gt; true
+String.instance_methods(false) == &amp;quot;s&amp;quot;.public_methods(false)  # =&amp;gt; true
+String.public_instance_methods == String.instance_methods    # =&amp;gt; true
+String.protected_instance_methods       										 # =&amp;gt; []
+String.private_instance_methods(false)  										 # =&amp;gt; [:initialize, :initialize_copy]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lembre-se que os métodos de classe de uma &lt;code&gt;class&lt;/code&gt; ou &lt;code&gt;module&lt;/code&gt; são métodos &lt;code&gt;singleton&lt;/code&gt; do objeto de &lt;code&gt;class&lt;/code&gt; ou &lt;code&gt;module&lt;/code&gt;. Então, para listar métodos de
+classe, usa &lt;code&gt;Object.singleton_methods&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Singleton
+Math.singleton_methods # =&amp;gt; [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,
+                                                         :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt,
+                                                         :cbrt, :frexp, :ldexp, :hypot, :erf, :erfc, :gamma, :lgamma]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Para além destes métodos de listagem, a classe `Module` define alguns predicados para testar se uma classe especificada ou módulo define um método de
+instância nomeada:
+
+``` ruby Testando metodo de classe
+String.public_method_defined? :reverse     # =&amp;gt; true
+String.protected_method_defined? :reverse  # =&amp;gt; false
+String.private_method_defined? :initialize # =&amp;gt; true
+String.method_defined? :upcase!            # =&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Module.method_defined?&lt;/code&gt; verifica se o método chamado é definido como um método público ou protegido. Ele serve, essencialmente, com mesma finalidade
+que &lt;code&gt;Object.respond_to?&lt;/code&gt;. No &lt;code&gt;Ruby 1.9&lt;/code&gt;, você pode passar &lt;code&gt;false&lt;/code&gt; como o segundo argumento para especificar que os métodos herdados não deve ser
+considerados.&lt;/p&gt;
+
+&lt;h3&gt;Obtenção de método de objetos&lt;/h3&gt;
+
+&lt;p&gt;Para consultar um método específico nomeado, chamar o método em qualquer objeto ou &lt;code&gt;instance_method&lt;/code&gt; em qualquer módulo. O primeiro retorna um
+objeto do Método exigído pelo receptor, e o último retorna um &lt;code&gt;UnboundMethod&lt;/code&gt;. No &lt;code&gt;Ruby 1.9&lt;/code&gt;, você pode limitar sua pesquisa aos métodos públicos
+métodos chamando &lt;code&gt;public_method&lt;/code&gt; e &lt;code&gt;public_instance_method&lt;/code&gt;. Nós cobrimos esses métodos e os objetos que eles voltam no Método do Objeto:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;&amp;quot;s&amp;quot;.method(:reverse)             # =&amp;gt; objeto Método
+String.instance_method(:reverse) # =&amp;gt; objeto UnboundMethod
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Invocando Métodos&lt;/h3&gt;
+
+&lt;p&gt;Como observado anteriormente, e em métodos de objetos, você pode usar o método &lt;code&gt;method&lt;/code&gt; de qualquer objeto para obter um objeto que representa
+&lt;code&gt;Method&lt;/code&gt; de objeto. Objetos &lt;code&gt;Method&lt;/code&gt; têm um método &lt;code&gt;call&lt;/code&gt; assim como objetos &lt;code&gt;Proc&lt;/code&gt; fazem, você pode usá-lo para chamar o método.&lt;/p&gt;
+
+&lt;p&gt;Normalmente, é mais simples para invocar um método chamado de um objeto especificado com &lt;code&gt;send&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Send
+&amp;ldquo;hello&amp;rdquo;.send :upcase        # =&amp;gt; &amp;ldquo;hello&amp;rdquo;: invocar um método de instância
+Math.send(:sin, Math::PI/2) # =&amp;gt; 1.0: invocar um método de classe&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`send` invoca em seu receptor o método nomeado pelo seu primeiro argumento, passando quaisquer argumentos restantes a esse método. O nome `send`
+deriva da linguagem orientada a objetos em que invocando um método é chamado, enviando uma mensagem, a um objeto.
+
+`send` pode invocar qualquer método chamando um objeto, incluindo métodos privados e protegidos. Vimos `send` utilizado anteriormente para invocar o
+método privado `remove_const` de um objeto `Module`. Porque funções globais são realmente métodos privados de `Object`, podemos usar `send` para
+chamar esses métodos em qualquer objeto (embora isso não é algo que nós, nunca realmente queremos fazer):
+
+``` ruby Send
+&amp;quot;hello&amp;quot;.send :puts, &amp;quot;world&amp;quot;         # imprime &amp;quot;world&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ruby 1.9 define &lt;code&gt;public_send&lt;/code&gt; como uma alternativa para &lt;code&gt;send&lt;/code&gt;. Este método funciona como &lt;code&gt;send&lt;/code&gt;, mas só irá chamar os métodos públicos, não
+métodos privados ou protegidos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby public&lt;em&gt;send&lt;/em&gt;
+&amp;ldquo;hello&amp;rdquo;.public_send :puts, &amp;ldquo;world&amp;rdquo;  # raises NoMethodError&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`send` é um método fundamental do objeto, mas tem um nome comum que pode ser substituído em subclasses. Portanto, Ruby
+define `__send__` como um sinônimo, e emite um aviso se você tentar excluir ou redefinir `__send__`.
+
+
+&amp;lt;h3&amp;gt;Definindo, Indefinindo e Métodos Alias&amp;lt;/h3&amp;gt;
+
+Se você quiser definir um novo método de instância de uma classe ou módulo, utilize `define_method`. Este método de instância de `Module` leva o
+nome do novo método (como um `symbol`), como seu primeiro argumento. O corpo do método é fornecido seja por um método importante que entendemos o
+`define_method` que é privado. Você deve estar dentro da classe ou módulo que pretende usá-lo para chamá-lo:
+
+``` ruby define_method
+# Adicione um método de instância chamado m para a Classe C com o corpo b
+def add_method(c, m, &amp;amp;b)
+  c.class_eval {
+    define_method(m, &amp;amp;b)
+  }
+end
+
+add_method(String, :greet) { &amp;quot;Hello, &amp;quot; + self }
+
+&amp;quot;world&amp;quot;.greet   # =&amp;gt; &amp;quot;Hello, world&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Para definir um método de classe (ou qualquer método &lt;code&gt;singleton&lt;/code&gt;) com &lt;code&gt;define_method&lt;/code&gt;, invocá-lo no &lt;code&gt;eigenclass&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby eigenclass
+def add_class_method(c, m, &amp;amp;b)
+  eigenclass = class &amp;lt;&amp;lt; c; self; end
+  eigenclass.class_eval {
+    define_method(m, &amp;amp;b)
+  }
+end&lt;/p&gt;
+
+&lt;p&gt;add_class_method(String, :greet) {|name| &amp;ldquo;Hello, &amp;rdquo; + name }&lt;/p&gt;
+
+&lt;p&gt;String.greet(&amp;ldquo;world&amp;rdquo;)  # =&amp;gt; &amp;ldquo;Hello, world&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+No Ruby 1.9, você pode usar mais facilmente `define_singleton_method`, que é um método de objeto:
+
+``` ruby define_singleton_method
+String.define_singleton_method(:greet) {|name| &amp;quot;Hello, &amp;quot; + name }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uma deficiência do &lt;code&gt;define_method&lt;/code&gt; é que ele não permite que você especifique um corpo de método que espera um bloco. Se você precisar dinamicamente
+criar um método que aceita um bloco, você vai precisar usar a instrução &lt;code&gt;def&lt;/code&gt; com &lt;code&gt;class_eval&lt;/code&gt;. E se o método que está criando é suficientemente
+dinâmico, você pode não ser capaz de passar um bloco para o &lt;code&gt;class_eval&lt;/code&gt; e em vez disso tem de especificar a definição do método como uma seqüência
+a ser avaliada.&lt;/p&gt;
+
+&lt;p&gt;Para criar um sinônimo ou um &lt;code&gt;alias&lt;/code&gt; para um método existente, normalmente você pode usar a declaração &lt;code&gt;alias&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` ruby alias
+alias &amp;ldquo;plus&amp;rdquo; +         # &amp;ldquo;plus&amp;rdquo; é um sinônimo para o operador +&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Ao programar dinamicamente, no entanto, às vezes você precisa usar `alias_method`. Como `define_method`, `alias_method` é um método particular do
+`Module`. Como método, ele pode aceitar duas expressões arbitrárias como seus argumentos, em vez de exigir dois identificadores para ser codificado
+em seu código fonte. Como método, também requer uma vírgula entre seus argumentos. É `alias_method` muitas vezes utilizados para métodos de
+encadeamento de alias existentes. Aqui está um exemplo simples:
+
+``` ruby alias_method
+# Crie um alias para o método m da classe (ou módulo) c
+def backup(c, m, prefix=&amp;quot;original&amp;quot;)
+  n = :&amp;quot;#{prefix}_#{m}&amp;quot;    # Calcule o alias
+  c.class_eval {           # Porque alias_method é privado
+    alias_method n, m      # Fazer n um alias para m
+  }
+end
+
+backup(String, :reverse)
+&amp;quot;test&amp;quot;.original_reverse # =&amp;gt; &amp;quot;tset&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Você pode usar a declaração &lt;code&gt;undef&lt;/code&gt; para indefinir um método. Isso só funciona se você pode expressar o nome de um método como um identificador
+codificado no programa. Se você precisar excluir dinamicamente um método cujo nome tem sido calculado pelo seu programa, você tem duas opções: ou
+&lt;code&gt;remove_method&lt;/code&gt; ou &lt;code&gt;undef_method&lt;/code&gt;. Ambos são métodos privados de Módulo. &lt;code&gt;remove_method&lt;/code&gt; remove a definição do método a partir da classe corrente.
+Se existe uma versão definida por uma superclasse, que a versão vai agora ser herdada. &lt;code&gt;undef_method&lt;/code&gt; é mais grave, que impede qualquer invocação do
+método especificado por meio de uma instância da classe, mesmo se houver uma versão herdada do método.&lt;/p&gt;
+
+&lt;p&gt;Se você definir uma classe e quer evitar alterações dinâmicas para ele, simplesmente chame o método &lt;code&gt;freeze&lt;/code&gt; da classe. Uma vez &amp;ldquo;congelado&amp;rdquo;, a classe
+não pode ser alterada.&lt;/p&gt;
+
+&lt;h3&gt;Manipulação de métodos indefinidos&lt;/h3&gt;
+
+&lt;p&gt;Quando o método do algoritmo de resolução de nomes não consegue encontrar um método, ele procura um método chamado &lt;code&gt;method_missing&lt;/code&gt; em vez disso.
+Quando este método é chamado, o primeiro argumento é um &lt;code&gt;simbol&lt;/code&gt; que dá nome ao método que não pôde ser encontrado. Este &lt;code&gt;simbol&lt;/code&gt; é seguido por todos
+os argumentos que deveriam ser passados para o método original. Se houver um bloqueio associado com o método de invocação, que também é passado para
+ o bloco &lt;code&gt;method_missing&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A implementação padrão de &lt;code&gt;method_missing&lt;/code&gt;, no módulo de &lt;code&gt;Kernel&lt;/code&gt;, simplesmente levanta um &lt;code&gt;NoMethodError&lt;/code&gt;. Essa exceção, se não detectada, faz com
+que o programa possa sair com uma mensagem de erro, que é o que você normalmente espera que aconteça quando você tenta invocar um que método não
+existe.&lt;/p&gt;
+
+&lt;p&gt;Definindo seu próprio método &lt;code&gt;method_missing&lt;/code&gt; para uma classe que permite a você uma oportunidade de lidar com qualquer tipo de chamada em casos da
+classe. O gancho &lt;code&gt;method_missing&lt;/code&gt; é um dos mais poderosos do Ruby com capacidades dinâmicas, e um dos mais vulgarmente utilizado nas técnicas
+de metaprogramação. O código de exemplo a seguir adiciona um método &lt;code&gt;method_missing&lt;/code&gt; à classe &lt;code&gt;Hash&lt;/code&gt;. Ela nos permite consultar ou definir o valor de
+qualquer chave chamada como se a chave fosse o nome de um método:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Hash Class
+class Hash
+  # Permiti valores de hash para ser consultado e definido como se fossem atributos.
+  # Simulamos getters e setters para atributos de qualquer tecla.
+  def method_missing(key, *args)
+    text = key.to_s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if text[-1,1] == &amp;quot;=&amp;quot;               # Se termina com chave = definir um valor
+  self[text.chop.to_sym] = args[0] # Faixa de chave
+else # Caso contrário ...
+  self[key]                        # ... apenas retornar o valor da chave
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;end
+end&lt;/p&gt;
+
+&lt;p&gt;h = {}               # Criar um objeto vazio de hash
+h.one = 1        # O mesmo que h[:one] = 1
+puts h.one     # Imprime 1. Mesmo que põe h[:one]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Definir Visibilidade do Método&amp;lt;/h3&amp;gt;
+
+Visibilidades de método: `Public`, `Protected`, `Private` introduzindo o `public`, `protected`, e `private`. Parecem palavras-chave da linguagem, mas
+são na verdade métodos de instância privados definidos pelo módulo. Estes métodos são geralmente utilizados como uma parte estática da definição de
+uma classe. Mas, com `class_eval`, eles também podem ser usados dinamicamente:
+
+``` ruby class_eval com Visibilidade de Metodo
+String.class_eval { private :reverse }
+&amp;quot;hello&amp;quot;.reverse  # NoMethodError: private method &#39;reverse&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;private_class_method&lt;/code&gt;&lt;code&gt;e&lt;/code&gt;public_class_method` são semelhantes, exceto que eles operam em métodos de classe e são eles métodos públicos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Matematica&lt;/p&gt;
+
+&lt;h1 id=&#34;fazer-todos-os-métodos-de-matemática-privados&#34;&gt;Fazer todos os métodos de Matemática privados&lt;/h1&gt;
+
+&lt;h1 id=&#34;agora-temos-que-incluem-matemática-a-fim-de-chamar-seus-métodos&#34;&gt;Agora temos que incluem matemática, a fim de chamar seus métodos&lt;/h1&gt;
+
+&lt;p&gt;Math.private_class_method *Math.singleton_methods
+```&lt;/p&gt;
+
+&lt;p&gt;É isso ai amigos, um post, para introduzir o #StartupDevRumble .. =D&lt;/p&gt;
+
+&lt;p&gt;Até o proximo!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao number ruby 1 dot 9 part iii</title>
+      <link>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/</link>
+      <pubDate>Wed, 29 Aug 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Variáveis e constantes&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Variáveis e Constantes&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;Kernel&lt;/code&gt;, &lt;code&gt;Object&lt;/code&gt;, &lt;code&gt;Module&lt;/code&gt; definem métodos reflexivos para listar os nomes (como &lt;code&gt;strings&lt;/code&gt;) de todas as variáveis definidas globais, atualmente
+variáveis locais definidas, todas as variáveis de instância de um objeto, todas as variáveis de classe de uma classe ou módulo, e todas as constantes
+de uma classe ou módulo:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Variaveis e Constantes
+global_variables   # =&amp;gt; [&amp;ldquo;$DEBUG&amp;rdquo;, &amp;ldquo;$SAFE&amp;rdquo;, &amp;hellip;]
+x = 1              # Define uma variável local
+local_variables    # =&amp;gt; [&amp;ldquo;x&amp;rdquo;]&lt;/p&gt;
+
+&lt;h1 id=&#34;define-uma-classe-simples&#34;&gt;Define uma classe simples&lt;/h1&gt;
+
+&lt;p&gt;class Point
+  def initialize(x,y); @x,@y = x,y; end # define variáveis de instância
+  @@classvar = 1                        # Define uma variável de classe
+  ORIGIN = Point.new(0,0)               # Define uma constante
+end&lt;/p&gt;
+
+&lt;p&gt;Point::ORIGIN.instance_variables # =&amp;gt; [&amp;ldquo;@y&amp;rdquo;, &amp;ldquo;@x&amp;rdquo;]
+Point.class_variables            # =&amp;gt; [&amp;ldquo;@@classvar&amp;rdquo;]
+Point.constants                  # =&amp;gt; [&amp;ldquo;ORIGIN&amp;rdquo;]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Os `global_variables`, `local_variables`, `instance_variables`, `class_variables` e métodos constantes retornam `arrays` de `strings` em Ruby 1.8 e
+`arrays` de símbolos no Ruby 1.9.
+
+&amp;lt;h3&amp;gt;Consultando, Configuração e testando Variáveis&amp;lt;/h3&amp;gt;
+
+Além das variáveis listadas definidos e constantes, `object` e `Module` em Ruby também definem métodos de reflexão para consultas, a criação e
+remoção de variáveis de instância, variáveis de classe e constantes. Não há métodos de propósito específico para consultar ou definir as variáveis
+locais ou variáveis globais, mas você pode usar o método `eval` para esta finalidade:
+
+``` ruby Configurando Variavel
+x = 1
+varname = &amp;quot;x&amp;quot;
+eval(varname)           # =&amp;gt; 1
+eval(&amp;quot;varname = &#39;$g&#39;&amp;quot;)  # Ajuste o &amp;quot;$g&amp;quot;
+eval(&amp;quot;#{varname} = x&amp;quot;)  # Seta $g a 1
+eval(varname)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que &lt;code&gt;eval&lt;/code&gt; avalia o seu código em um âmbito temporário. &lt;code&gt;eval&lt;/code&gt; pode alterar o valor das variáveis locais que já existem. Mas qualquer nova
+variável local definida pelo código avaliado, são locais para a invocação do &lt;code&gt;eval&lt;/code&gt; e deixam de existir quando ele retorna. (É como se o código
+avaliado é executado no corpo de um bloco de variáveis-locais para um bloco não existem fora do bloco.)&lt;/p&gt;
+
+&lt;p&gt;Você pode consultar, definir e testar a existência de variáveis de instância em qualquer objeto e de variáveis de classe e constantes em qualquer
+classe ou módulo:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Consultar Variavel
+o = Object.new
+o.instance_variable_set(:@x, 0)   # Nota exigido o prefixo @
+o.instance_variable_get(:@x)      # =&amp;gt; 0
+o.instance_variable_defined?(:@x) # =&amp;gt; true&lt;/p&gt;
+
+&lt;p&gt;Object.class_variable_set(:@@x, 1)   # Privado no Ruby 1.8
+Object.class_variable_get(:@@x)      # Privado no Ruby 1.8
+Object.class_variable_defined?(:@@x) # =&amp;gt; true; Ruby 1.9 e versões mais novas&lt;/p&gt;
+
+&lt;p&gt;Math.const_set(:EPI, Math::E*Math::PI)
+Math.const_get(:EPI)             # =&amp;gt; 8,53973422267357
+Math.const_defined? :EPI         # =&amp;gt; true&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+No Ruby 1.9, você pode passar `false` como o segundo argumento para `const_get` e `const_defined?` para especificar que esses métodos devem olhar
+apenas para a classe atual ou módulo e não deve considerar constantes herdadas.
+
+Os métodos para consultar e configurar as variáveis de classe são privadas no Ruby 1.8. Nessa versão, você pode invocá-las com `class_eval`:
+
+``` ruby class_eval
+String.class_eval { class_variable_set(:@@x, 1) }  # Seta @@x em String
+String.class_eval { class_variable_get(:@@x) }     # =&amp;gt; 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Object&lt;/code&gt; e &lt;code&gt;Module&lt;/code&gt; definem métodos privados para variáveis de instância indefinidas, variáveis de classe e constantes. Todos eles retornam o valor
+da variável ou constante removida. Como esses métodos são privados, não pode invocá-los diretamente em um objeto, classe ou módulo, e você deve usar
+um método eval ou o método de envio:&lt;/p&gt;
+
+&lt;p&gt;``` ruby instance_eval
+o.instance_eval { remove_instance_variable :@x }
+String.class_eval { remove_class_variable(:@@x) }
+Math.send :remove_const, :EPI  # Usa send para chamar o método privado&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O método `const_missing` de um módulo é invocado, se houver um, quando uma referência é feita a uma constante indefinida. Você pode definir este
+método para retornar o valor da constante chamada. (Esta característica pode ser usada, por exemplo, para implementar uma facilidade autoload em que
+as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais simples:
+
+``` ruby cons_missing
+def Symbol.const_missing(name)
+  name # Retorna o nome da constante como um símbolo
+end
+Symbol::Test   # =&amp;gt;: Teste: constante indefinida avalia um símbolo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos&amp;hellip; Bora continuar estudando!&lt;/p&gt;
+
+&lt;p&gt;Em breve, irei postar um pouco sobre Engenharia! :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

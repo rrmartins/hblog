@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Rails 3 on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/rails-3/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Wed, 15 Feb 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>criando combobox com rails 3</title>
+      <link>http://rodij.me/post/2012/02/15/criando-combobox-com-rails-3/</link>
+      <pubDate>Wed, 15 Feb 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/02/15/criando-combobox-com-rails-3/</guid>
+      <description>&lt;p&gt;&lt;p&gt;
+Para todos aqueles que conhecem o &lt;a href=&#34;http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html&#34;&gt;Form_for&lt;/a&gt;,
+ e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de &lt;a href=&#34;http://api.rubyonrails.org/&#34;&gt;Rails&lt;/a&gt;, e
+ estudem logo, o mercado esta precisando de programadores bons.. :D
+ &lt;/p&gt;
+&lt;p&gt;
+Então, vamos ao contexto do post, para gerar um combo box semelhante a este abaixo: &lt;/p&gt;
+&lt;select name=&#34;estado&#34;&gt;
+&lt;option value=&#34;AL&#34;&gt;AL&lt;/option&gt;
+&lt;option value=&#34;AP&#34;&gt;AP&lt;/option&gt;
+&lt;option value=&#34;AM&#34;&gt;AM&lt;/option&gt;
+&lt;option value=&#34;BA&#34;&gt;BA&lt;/option&gt;
+&lt;option value=&#34;CE&#34;&gt;CE&lt;/option&gt;
+&lt;option value=&#34;ES&#34;&gt;ES&lt;/option&gt;
+&lt;/select&gt;
+&lt;p&gt;
+Faça assim:
+&lt;/p&gt;
+&lt;code&gt;ruby Criando Combobox em Rails
+&amp;lt;%= f.select :estado, ([[&amp;quot;AC&amp;quot;, &amp;quot;AC&amp;quot;], [&amp;quot;AL&amp;quot;, &amp;quot;AL&amp;quot;], [&amp;quot;AP&amp;quot;, &amp;quot;AP&amp;quot;],
+[&amp;quot;AM&amp;quot;, &amp;quot;AM&amp;quot;], [&amp;quot;BA&amp;quot;, &amp;quot;BA&amp;quot;], [&amp;quot;CE&amp;quot;, &amp;quot;CE&amp;quot;], [&amp;quot;DF&amp;quot;, &amp;quot;DF&amp;quot;], [&amp;quot;ES&amp;quot;, &amp;quot;ES&amp;quot;],
+[&amp;quot;GO&amp;quot;, &amp;quot;GO&amp;quot;], [&amp;quot;MA&amp;quot;, &amp;quot;MA&amp;quot;], [&amp;quot;MT&amp;quot;, &amp;quot;MT&amp;quot;], [&amp;quot;MS&amp;quot;, &amp;quot;MS&amp;quot;], [&amp;quot;MG&amp;quot;, &amp;quot;MG&amp;quot;],
+[&amp;quot;PA&amp;quot;, &amp;quot;PA&amp;quot;], [&amp;quot;PB&amp;quot;, &amp;quot;PB&amp;quot;], [&amp;quot;PR&amp;quot;, &amp;quot;PR&amp;quot;], [&amp;quot;PE&amp;quot;, &amp;quot;PE&amp;quot;], [&amp;quot;PI&amp;quot;, &amp;quot;PI&amp;quot;],
+[&amp;quot;RJ&amp;quot;, &amp;quot;RJ&amp;quot;], [&amp;quot;RN&amp;quot;, &amp;quot;RN&amp;quot;], [&amp;quot;RS&amp;quot;, &amp;quot;RS&amp;quot;], [&amp;quot;RO&amp;quot;, &amp;quot;RO&amp;quot;], [&amp;quot;RR&amp;quot;, &amp;quot;RR&amp;quot;],
+[&amp;quot;SC&amp;quot;, &amp;quot;SC&amp;quot;], [&amp;quot;SP&amp;quot;, &amp;quot;SP&amp;quot;], [&amp;quot;SE&amp;quot;, &amp;quot;SE&amp;quot;], [&amp;quot;TO&amp;quot;, &amp;quot;TO&amp;quot;]]) %&amp;gt;
+&lt;/code&gt;
+&lt;p&gt;
+Até a próxima rubistas&amp;hellip; :D&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

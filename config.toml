@@ -4,7 +4,7 @@ title = "Rodrigo Martins"
 theme = "hugo-uno"
 
 contentdir = "content"
-publishdir = "public"
+publishdir = "_public"
 builddrafts = false
 canonifyurls = true
 author = "Rodrigo Martins"
