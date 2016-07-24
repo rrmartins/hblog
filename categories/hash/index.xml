@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Hash on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/hash/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sun, 04 Nov 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>threads e concorrencia exemplos de threads part iv number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 04 Nov 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Exemplos de Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h4 id=&#34;exemplos-de-threads&#34;&gt;Exemplos de Threads&lt;/h4&gt;
+
+&lt;p&gt;Agora que já passamos alguns post falando do modelo &lt;code&gt;Thread&lt;/code&gt; e da API de &lt;code&gt;Thread&lt;/code&gt; em Ruby, vamos dar uma olhada em alguns
+exemplos reais de vários códigos de &lt;code&gt;threads&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;leitura-de-arquivos-simultaneamente&#34;&gt;Leitura de arquivos simultaneamente&lt;/h3&gt;
+
+&lt;p&gt;O uso mais comum de &lt;code&gt;threads&lt;/code&gt; de Ruby é em programas que são IO. Eles permitem que os programas mantenham ocupado até
+mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
+define um método &lt;code&gt;conread&lt;/code&gt; (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de &lt;code&gt;hash&lt;/code&gt;
+com esses nomes para o conteúdo desses arquivos. Ele usa &lt;code&gt;thread&lt;/code&gt; para ler esses arquivos ao mesmo tempo, e é realmente
+destinado a ser utilizado com o módulo &lt;code&gt;open-uri&lt;/code&gt;, que permite que as URL&amp;rsquo;s &lt;code&gt;HTTP&lt;/code&gt; e &lt;code&gt;FTP&lt;/code&gt; possam ser abertas com
+&lt;code&gt;Kernel.open&lt;/code&gt; e ler como se fossem arquivos:&lt;/p&gt;
+
+&lt;p&gt;```ruby Lendo arquivos&lt;/p&gt;
+
+&lt;h1 id=&#34;ler-arquivos-simultaneamente-use-com-o-módulo-open-uri-para-buscar-urls&#34;&gt;Ler arquivos simultaneamente. Use com o módulo &amp;ldquo;open-uri&amp;rdquo; para buscar URLs.&lt;/h1&gt;
+
+&lt;h1 id=&#34;passe-uma-matriz-de-nomes-de-arquivos-retorna-um-mapa-de-nomes-de-arquivos-de-hash-para-o-conteúdo&#34;&gt;Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.&lt;/h1&gt;
+
+&lt;p&gt;def conread(filenames)
+  h = {}            # hash vazio de resultados&lt;/p&gt;
+
+&lt;p&gt;# Crie uma linha para cada arquivo
+  filenames.each do |filename|      # Para cada arquivo chamado
+    h[filename] = Thread.new do     # Criar um fio, mapa para filename
+      open(filename) {|f| f.read }  # Abra e leia o arquivo
+    end                             # valor da linha é o conteúdo do arquivo
+  end&lt;/p&gt;
+
+&lt;p&gt;  # Percorre o hash, à espera de cada thread para completar.
+  # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
+  h.each_pair do |filename, thread|
+    begin
+      h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
+    rescue
+      h[filename] = $!              # Ou a exceção levantada
+    end
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+### Servidor A Multithreads
+
+Outra, quase canônico caso, o uso de `threads` é para escrever servidores que podem comunicar com mais do que um cliente
+de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
+possivelmente menos escalável) solução usa `threads`:
+
+```ruby Servidor a Multithreads
+require &#39;socket&#39;
+
+# Este método espera um socket ligado a um cliente.
+# Ele lê as linhas do cliente, inverte-los e envia-los de volta.
+# Múltiplas Threads podem executar este método, ao mesmo tempo.
+def handle_client(c)
+  while true
+    input = c.gets.chop     # Ler uma linha de entrada do cliente
+    break if !input         # sai se tem muitas entradas
+    break if input==&amp;quot;quit&amp;quot;  # ou se o cliente pede
+    c.puts(input.reverse)   # Caso contrário, responde ao cliente.
+    c.flush                 # Força a saída para fora
+  end
+  c.close                   # Fecha o socket cliente
+end
+
+server = TCPServer.open(2000) # Ouve na porta 2000
+
+while true                    # Laço de servidores para sempre
+  client = server.accept      # Espere um cliente para conectar
+  Thread.start(client) do |c| # Inicia uma nova thread
+    handle_client(c)          # E Lida com o clinete nessa Thread
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;iteradores-simultâneas&#34;&gt;Iteradores simultâneas&lt;/h3&gt;
+
+&lt;p&gt;Embora tarefas IO são o caso de uso típico para &lt;code&gt;threads&lt;/code&gt; de Ruby, eles não se restringem aos que usam. O código a seguir
+adiciona um método &lt;code&gt;conmap&lt;/code&gt; (por mapa concorrente) para o modulo &lt;code&gt;Enumerável&lt;/code&gt;. Ele funciona como mapa, mas processa cada
+elemento da matriz de entrada com uma distinta &lt;code&gt;Thread&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```ruby Iterador Simultâneo
+module Enumerable           # Abre o módulo Enumerable
+  def conmap(&amp;amp;block)        # Define um novo método que espera um block
+    threads = []            # Começa com uma matriz vazia de threads
+    self.each do |item|     # Para cada item enumerable
+      # Chama o bloco em uma nova Thread, e lembra da Thread
+      threads &amp;lt;&amp;lt; Thread.new { block.call(item) }
+    end
+    # Agora mapea o conjunto de Threads para os seus valores
+    threads.map {|t| t.value } # E retorna a matriz de valores
+  end
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+E aqui está uma versão concorrente similar do iterador de cada um:
+
+```ruby Módulo Enumerable
+module Enumerable
+  def concurrently
+    map {|item| Thread.new { yield item }}.each {|t| t.join }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
+Ruby e iteradores Ruby.&lt;/p&gt;
+
+&lt;p&gt;Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
+que, dado o método &lt;code&gt;concurrently&lt;/code&gt; definido mais cedo e um objeto &lt;code&gt;Hash h&lt;/code&gt;, podemos escrever:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Método Concurrently
+h.each_pair.concurrently {|*pair| process(pair)}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Até o proximo amigos!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia escalando threads part iii number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Escalando Threads&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;threads-e-concorrência&#34;&gt;Threads e Concorrência&lt;/h2&gt;
+
+&lt;h3 id=&#34;escalando-threads&#34;&gt;Escalando Threads&lt;/h3&gt;
+
+&lt;p&gt;Intérpretes do Ruby(irb), muitas vezes têm mais &lt;code&gt;threads&lt;/code&gt; para executar do que há CPU tem disponível para executá-los. Quando
+o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre &lt;code&gt;threads&lt;/code&gt;. O processo para
+a partilha de uma CPU entre as &lt;code&gt;threads&lt;/code&gt; é chamado de escalonamento de &lt;code&gt;threads&lt;/code&gt;. Dependendo da implementação e plataforma,
+agendamento de &lt;code&gt;threads&lt;/code&gt; pode ser feito pelo Intérprete do Ruby(irb), ou pode ser tratado pelo sistema operacional.&lt;/p&gt;
+
+&lt;h4 id=&#34;prioridades-da-thread&#34;&gt;Prioridades da Thread&lt;/h4&gt;
+
+&lt;p&gt;O primeiro fator que afeta o agendamento de &lt;code&gt;threads&lt;/code&gt; é prioridades de &lt;code&gt;thread&lt;/code&gt;: com a alta prioridade da &lt;code&gt;thread&lt;/code&gt; são
+agendadas antes de baixa prioridade de &lt;code&gt;thread&lt;/code&gt;. Mais precisamente, uma &lt;code&gt;thread&lt;/code&gt; só vai ficar o tempo de CPU, se não houver
+maior prioridade de &lt;code&gt;thread&lt;/code&gt; aguardando para ser executada.&lt;/p&gt;
+
+&lt;p&gt;Definir e consultar a prioridade de um objeto Ruby &lt;code&gt;Thread&lt;/code&gt; com &lt;code&gt;priority=&lt;/code&gt; e &lt;code&gt;priority&lt;/code&gt;. Note-se que não há nenhuma maneira
+de definir a prioridade de uma &lt;code&gt;thread&lt;/code&gt; antes que ela comece a funcionar. Uma &lt;code&gt;thread&lt;/code&gt; pode, no entanto, aumentar ou diminuir
+sua própria prioridade como a primeira ação que toma.&lt;/p&gt;
+
+&lt;p&gt;Uma &lt;code&gt;thread&lt;/code&gt; recém-criada começa com a mesma prioridade que a &lt;code&gt;thread&lt;/code&gt; que a criou. A &lt;code&gt;thread&lt;/code&gt; principal começa na prioridade
+ 0.&lt;/p&gt;
+
+&lt;p&gt;Como muitos aspectos de &lt;code&gt;threading&lt;/code&gt;, prioridades de &lt;code&gt;threads&lt;/code&gt; são depende da implementação do &lt;code&gt;Ruby&lt;/code&gt; e do subjacente sistema
+operacional. No Linux, por exemplo, &lt;code&gt;threads&lt;/code&gt; não privilegiadas não pode ter as suas prioridades levantada ou abaixada. Assim,
+no Ruby 1.9 (que usa &lt;code&gt;threads&lt;/code&gt; nativas) no &lt;code&gt;Linux&lt;/code&gt;, a definição de prioridades de &lt;code&gt;Thread&lt;/code&gt; é ignorada.&lt;/p&gt;
+
+&lt;h4 id=&#34;aquisição-de-thread-e-thread-pass&#34;&gt;Aquisição de Thread e Thread.pass&lt;/h4&gt;
+
+&lt;p&gt;Quando várias &lt;code&gt;Threads&lt;/code&gt; com a mesma prioridade precisam compartilhar a CPU, cabe a &lt;code&gt;thread&lt;/code&gt; programada para decidir quando e
+por quanto tempo, cada &lt;code&gt;thread&lt;/code&gt; é executada. Alguns escalonadores são antecipadas, o que significa que elas permitem a &lt;code&gt;thread&lt;/code&gt;
+a ser executada apenas por um determinado período de tempo antes de permitir outra &lt;code&gt;thread&lt;/code&gt; da mesma prioridade para ser
+executada. Outros programadores não são preempção: uma vez que uma &lt;code&gt;thread&lt;/code&gt; começa a correr, ela continua funcionando a menos
+que durma, blocos para I/O, ou uma &lt;code&gt;thread&lt;/code&gt; de maior prioridade acorda.&lt;/p&gt;
+
+&lt;p&gt;Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
+não preemptivo, ela vai &amp;ldquo;morrer de fome&amp;rdquo; as outras &lt;code&gt;threads&lt;/code&gt; com a mesma prioridade, e elas nunca tem a chance de correr.
+Para evitar esse problema, de longa duração &lt;code&gt;compute-bound&lt;/code&gt; &lt;code&gt;threads&lt;/code&gt; devem chamar periodicamente &lt;code&gt;Thread.pass&lt;/code&gt; para pedir o
+programador para produzir a CPU para outra &lt;code&gt;thread&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Até a proxima amigos! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia part i number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Thread Lifecycle&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;threads-e-concorrência&#34;&gt;Threads e Concorrência&lt;/h2&gt;
+
+&lt;p&gt;Programas tradicionais têm uma única &amp;ldquo;thread de execução&amp;rdquo;: as declarações ou instruções que compõem o programa são executadas
+sequencialmente até que o programa termina. Um programa multithread tem mais de uma &lt;code&gt;thread&lt;/code&gt; de execução. Dentro de cada &lt;code&gt;
+thread&lt;/code&gt;, os comandos são executados sequencialmente, mas as próprias &lt;code&gt;threads&lt;/code&gt; podem ser executadas em paralelo em uma
+CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias &lt;code&gt;Threads&lt;/code&gt; não são na
+realidade executadas em paralelo, mas o paralelismo é simulada intercalando a execução das &lt;code&gt;threads&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Programas como o software de processamento de imagem que fazem um monte de cálculos estão a ser dito &lt;code&gt;compute-bound&lt;/code&gt;. Eles só
+podem beneficiar de multithreading, se há realmente múltiplas CPUs para executar os cálculos em paralelo. A maioria dos
+programas não são totalmente vinculados a computação, no entanto. Muitos, como navegadores web, passam a maior parte de seu
+tempo de espera para a rede ou arquivo &lt;code&gt;I/O&lt;/code&gt;. Programas como estes estão a ser dito &lt;code&gt;IO-bound&lt;/code&gt;. Programas &lt;code&gt;IO-bound&lt;/code&gt; pode ser
+útil mesmo quando várias &lt;code&gt;threads&lt;/code&gt; há apenas uma única CPU disponível. Um navegador pode tornar uma imagem em uma &lt;code&gt;thread&lt;/code&gt;
+enquanto outra &lt;code&gt;thread&lt;/code&gt; está à espera para a próxima imagem para ser baixada da rede.&lt;/p&gt;
+
+&lt;p&gt;Ruby faz com que seja fácil de escrever programas &lt;code&gt;multi-threaded&lt;/code&gt; com a &lt;code&gt;Class Thread&lt;/code&gt;. Para iniciar uma nova &lt;code&gt;thread&lt;/code&gt;,
+apenas associa um bloco com uma chamada para &lt;code&gt;Thread.new&lt;/code&gt;. Uma nova &lt;code&gt;thread&lt;/code&gt; será criada para executar o código no bloco, e a
+&lt;code&gt;thread&lt;/code&gt; original retornará do &lt;code&gt;Thread.new&lt;/code&gt; imediatamente e continuar a execução com a afirmação seguinte:&lt;/p&gt;
+
+&lt;p&gt;```ruby Iniciando um thread&lt;/p&gt;
+
+&lt;h1 id=&#34;thread-1-está-sendo-executado-aqui&#34;&gt;Thread #1 está sendo executado aqui&lt;/h1&gt;
+
+&lt;p&gt;Thread.new {
+  # Thread #2 executa esse código
+}&lt;/p&gt;
+
+&lt;h1 id=&#34;thread-1-executa-esse-código&#34;&gt;Thread #1 executa esse código&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Vamos começar nossa cobertura de `threads` explicando o modelo `Thread` de Ruby e API em alguns detalhes. Estas seções
+introdutórias explicam as coisas como ciclo de vida da `thread`, agendamento de threads, e os estados da `thread`. Com que o
+material introdutório como pré-requisito, passamos a apresentar código de exemplo e para cobrir `threads` avançadas como
+sincronização de `threads`.
+
+Finalmente, é importante notar que os programas de Ruby também pode alcançar simultaneidade ao nível do processo de sistema
+operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do
+sistema operacional. Para mais informações, use `ri` para procurar os métodos `Kernel.system`, `Kernel.exec`, `Kernel.fork`,
+`IO.popen`, e o módulo `Process`.
+
+### Lifecycle Tópico
+
+Como descrito acima, novas `threads` são criados com `Thread.new`. Você também pode usar os sinónimos `Thread.start` e
+`Thread.fork`. Não há necessidade de se iniciar uma `thread` depois de criá-la, ele começa a ser executado automaticamente
+quando os recursos da CPU estejam disponíveis. O valor da invocação `Thread.new` é um objeto `Thread`. A classe `Thread`
+define um número de métodos para consultar e manipular a `thread` enquanto ela está sendo executada.
+
+Uma `thread` é executa o código do bloco associado à chamada para `Thread.new` e depois pára execução. O valor da última
+expressão em que o bloco é o valor da `thread`, e pode ser obtido chamando o método do valor do objeto `Thread`. Se a `thread`
+foi executado para conclusão, então o valor retorna o valor da `thread` de imediato. Caso contrário, os blocos de valor do
+método e não retorna até que a `threado` for concluída.
+
+O método de classe `Thread.current` retorna o objeto `Thread` que representa o atual `thread`. Isso permite que as `threads`
+manipulam-se. O método da classe `Thread.main` retorna o objeto `Thread` que representa a principal `thread`, este é a
+`thread` inicial de execução que começou quando o Programa Ruby foi iniciado.
+
+#### A Thread principal
+
+A `Thread` principal é especial: o interpretador Ruby pára de correr quando a `thread` principal é feita. Ele faz isso mesmo
+que a `thread` principal criou outras `threads` que ainda estão em execução. Você deve garantir, portanto, que a sua princial
+`thread` não termina enquanto outras `threads` ainda estão em execução. Uma maneira de fazer isso é escrever sua `thread`
+principal sob a forma de um `loop` infinito. Outra maneira é explicitamente esperar para as `threads` ser concluída. Já
+mencionamos que você pode chamar o método `value` de uma `thread` que espera que ela termine. Se você não se importa com o
+valor de suas `threads`, você pode esperar com o método de instancia `join`.
+
+O seguinte método espera até que todas as linhas, com excepção da `thread` principal e a `thread` atual (que pode ser a mesma
+coisa), ter saído:
+
+``` ruby Thread Principal
+def join_all
+  main = Thread.main        # Thread Principal
+  current = Thread.current  # Thread atual
+  all = Thread.list         # Todas as threads ainda em execução
+  # Agora chama join em cada thread
+  all.each {|t| t.join unless t == current or t == main }
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;threads-e-exceções-não-tratadas&#34;&gt;Threads e exceções não tratadas&lt;/h4&gt;
+
+&lt;p&gt;Se uma exceção é levantada na &lt;code&gt;thread&lt;/code&gt; principal, e não é tratada em qualquer lugar, o interpretador Ruby imprime uma
+mensagem e sai. Em outras &lt;code&gt;threads&lt;/code&gt; que a &lt;code&gt;thread&lt;/code&gt; principal, exceções não tratadas causam a &lt;code&gt;thread&lt;/code&gt; para parar de executar.
+Por defeito, no entanto, isto não faz o intérprete para imprimir uma mensagem ou saída. Se uma &lt;code&gt;thread&lt;/code&gt; &lt;code&gt;t&lt;/code&gt; sai por causa de
+uma exceção não tratada, e outra &lt;code&gt;thread&lt;/code&gt; de chamadas &lt;code&gt;t.join&lt;/code&gt; ou &lt;code&gt;t.value&lt;/code&gt;, então a exceção que ocorreu em &lt;code&gt;t&lt;/code&gt; é levantada
+na &lt;code&gt;thread&lt;/code&gt; de &lt;code&gt;s&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se você gostaria de qualquer exceção não tratada em qualquer &lt;code&gt;thread&lt;/code&gt; para fazer com que o intérprete saia, use o método de
+classe &lt;code&gt;Thread.abort_on_exception=&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```ruby Thread
+Thread.abort_on_exception = true&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Se você quer uma exceção não tratada em uma `thread` específica faz com que o intérprete saia, utilizando o método de
+exemplo, através do mesmo nome:
+
+```ruby Thread abort
+t = Thread.new { ... }
+t.abort_on_exception = true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai amigos.. até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar em um pouco de &lt;strong&gt;Threads e Concorrência&lt;/strong&gt; agora &lt;strong&gt;Threads e Variáveis&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;threads-e-concorrência&#34;&gt;Threads e Concorrência&lt;/h2&gt;
+
+&lt;h3 id=&#34;threads-e-variáveis&#34;&gt;Threads e Variáveis&lt;/h3&gt;
+
+&lt;p&gt;Uma das características-chave de &lt;code&gt;Thread&lt;/code&gt; é que elas podem compartilhar o acesso a variáveis. Como &lt;code&gt;Threads&lt;/code&gt; são definidas
+por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
+ assim por diante) estão no escopo do bloco:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Thread e Variavel
+x = 0&lt;/p&gt;
+
+&lt;p&gt;t1 = Thread.new do
+  # Esta Thread pode consultar e definir a variável x
+end&lt;/p&gt;
+
+&lt;p&gt;t2 = Thread.new do
+  # Esta Thread e também consulta e seta x
+  # E pode consultar e definir T1 e T2 também.
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Quando dois ou mais `Thread` de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
+fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de `threads` abaixo.
+
+#### Thread-privadas variáveis
+
+Variáveis ​​definidas dentro do bloco de uma `thread` são particulares para essa `thread` e não são visíveis para qualquer
+outra `thread`. Isto é simplesmente consequência de regras de variáveis de escopo ​​Ruby.
+
+Muitas vezes queremos uma `Thread` tenha sua própria cópia privada de uma variável de modo a que o seu comportamento não se
+altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
+respectivamente) os números 1, 2 e 3:
+
+``` ruby Threads Privadas
+n = 1
+while n &amp;lt;= 3
+  Thread.new { puts n }
+  n += 1
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
+3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
+criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da
+variável n, e o valor ds mudanças de variáveis ​​como o loop é executado. O valor impresso pela &lt;code&gt;thread&lt;/code&gt; depende de quando esse
+segmento é executado em relação para a thread pai.&lt;/p&gt;
+
+&lt;p&gt;Para resolver este problema, passamos o valor atual de n para o método &lt;code&gt;Thread.new&lt;/code&gt;, e atribuimos o atual valor da variável a
+um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Threads Privadas
+n = 1
+while n &amp;lt;= 3
+  # Obtem uma cópia privada do valor atual de n em x
+  Thread.new(n) {|x| puts x }
+  n += 1
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop `while`. Neste
+caso, o valor de `n` é modificado para particular para o bloco externo e nunca durante a execução desse bloco:
+
+```ruby Thread Privada com Interator
+1.upto (3) {| n | Thread.new {puts n}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;variáveis-de-threads-locais&#34;&gt;Variáveis ​​de Threads locais&lt;/h4&gt;
+
+&lt;p&gt;Algumas das variáveis especiais globais de Ruby são &lt;code&gt;thread&lt;/code&gt; local: elas podem ter valores diferentes em &lt;code&gt;threads&lt;/code&gt; diferentes.
+&lt;code&gt;$SAFE&lt;/code&gt; e &lt;code&gt;$~&lt;/code&gt; são exemplos. Isto significa que, se dois &lt;code&gt;thread&lt;/code&gt; estão realizando conconrrencia de expressão regular ao mesmo
+tempo, eles vão ver diferentes valores de &lt;code&gt;$~&lt;/code&gt;, e a realização de um jogo em um fio não irá interferir com os resultados de
+um jogo executado na outra discussão.&lt;/p&gt;
+
+&lt;p&gt;A classe &lt;code&gt;Thread&lt;/code&gt; provê &lt;code&gt;hash-like&lt;/code&gt; como o comportamento. Ele define métodos de instância &lt;code&gt;[]&lt;/code&gt; e &lt;code&gt;[]=&lt;/code&gt; que permitem associar
+valores arbitrários com qualquer símbolo. (Se você usar uma cadeia de caracteres em vez disso, ele será convertido em um
+símbolo. Ao contrário &lt;code&gt;hashs&lt;/code&gt; de verdade, a classe &lt;code&gt;Thread&lt;/code&gt; só permite símbolos como chaves.) Os valores associados a estes
+símbolos comportam-se como variáveis ​​de &lt;code&gt;Thread&lt;/code&gt; locais. Eles não são privados como variáveis de block ​​locais porque qualquer
+&lt;code&gt;Thread&lt;/code&gt; pode pesquisar um valor em qualquer outra &lt;code&gt;Thread&lt;/code&gt;. Mas eles não são variáveis partilhadas, uma vez que cada Thread
+pode ter a sua própria cópia.&lt;/p&gt;
+
+&lt;p&gt;Como exemplo, suponha que nós criamos &lt;code&gt;thread&lt;/code&gt; para download de arquivos de um servidor web. A &lt;code&gt;Thread&lt;/code&gt; principal pode querer
+monitorar o progresso do download. Para permitir isso, cada &lt;code&gt;Thread&lt;/code&gt; pode fazer o seguinte:&lt;/p&gt;
+
+&lt;p&gt;```ruby Thread de progresso
+Thread.current[:progress] = bytes_received&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+A `Thread` principal poderia, então, determinar o total de bytes baixado com um código como este:
+
+```ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Junto com &lt;code&gt;[]&lt;/code&gt; e &lt;code&gt;[]=&lt;/code&gt;, &lt;code&gt;Thread&lt;/code&gt; também define um método &lt;code&gt;key?&lt;/code&gt; para testar se uma determinada chave existe para uma discussão
+. Os métodos &lt;code&gt;keys&lt;/code&gt; retorna uma matriz de símbolos que representam as chaves definidas para a &lt;code&gt;Thread&lt;/code&gt;. Este código pode ser
+melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
+:progress ainda:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a proxima galera! :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao number ruby 1 dot 9 part ii</title>
+      <link>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</link>
+      <pubDate>Wed, 29 Aug 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de continuar nos aprofundando um pouco mais de
+&lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt; agora &lt;b&gt;Avaliando Strings e Blocos&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Avaliando Strings e Blocos&lt;/h1&gt;
+
+&lt;p&gt;Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método &lt;code&gt;eval&lt;/code&gt;. Se o seu programa Ruby pode gerar uma seqüência de código
+válido Ruby, o método &lt;code&gt;Kernel.eval&lt;/code&gt; pode avaliar que o código:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Kernel.eval
+x = 1
+eval &amp;ldquo;x + 1&amp;rdquo;  # =&amp;gt; 2&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`eval` é uma função poderosa, mas ao menos que você realmente está escrevendo um programa `shell` (como irb) que executa as linhas de códigos Ruby
+inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar `eval` no texto recebido
+de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que
+usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos `eval` e `eval-like`.
+
+&amp;lt;h3&amp;gt;Associações e eval&amp;lt;/h3&amp;gt;
+
+Um objeto de Associação, representa o estado de variáveis `bindings` de Ruby em algum momento. O objeto `Kernel.binding` retorna as ligações em vigor
+no local da chamada. Você pode passar um objeto de associação como o segundo argumento para `eval`, e a `String` especificada será avaliada no
+contexto dessas ligações. Se, por exemplo, definir um método de instância que retorna um objeto `Binding` que representa a variável de ligações
+dentro de um objeto, então nós podemos usar essas ligações para consultar e definir as variáveis de instância do objeto. Podemos conseguir isso como segue:
+
+``` ruby Binding
+class Object # Abre objeto para adicionar um novo método
+  def bindings # Nota plural sobre este método
+    binding # Este é o método de Kernel predefinido
+  end
+end
+
+class Test # Uma classe simples com uma variável de instância
+  def initialize(s); @x = s; end
+end
+
+t = Test.new(10) # Criar um objeto test
+eval(&amp;quot;@x&amp;quot;, t.bindings)  # =&amp;gt; 10: Espia dentro t
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que não é realmente necessário definir um método de &lt;code&gt;Object.bindings&lt;/code&gt; deste tipo para observar nas variáveis de instância de um objeto. Vários
+outros métodos descritos logo oferecem maneiras mais fáceis de consulta (e de conjunto) do valor das variáveis de instância de um objeto.&lt;/p&gt;
+
+&lt;p&gt;Os objetos &lt;code&gt;Proc&lt;/code&gt; definem um método público de ligação que retorna uma Associação de objeto que representa a variável ligação em vigor para o corpo
+do &lt;code&gt;Proc&lt;/code&gt;. Além disso, o método &lt;code&gt;eval&lt;/code&gt; permite que você passe um objeto &lt;code&gt;Proc&lt;/code&gt; em vez de um objeto de associação como o segundo argumento.&lt;/p&gt;
+
+&lt;p&gt;Ruby 1.9 define um método &lt;code&gt;eval&lt;/code&gt; em objetos de associação, de modo em vez de passar uma associação como o segundo argumento para o &lt;code&gt;eval&lt;/code&gt; global,
+você pode, em vez de invocar o método &lt;code&gt;eval&lt;/code&gt; em uma ligação. Qual você escolhe é puramente uma questão de estética, as duas técnicas são equivalentes.&lt;/p&gt;
+
+&lt;h3&gt;instance_eval e class_eval&lt;/h3&gt;
+
+&lt;p&gt;A classe &lt;code&gt;Object&lt;/code&gt; define um método chamado &lt;code&gt;instance_eval&lt;/code&gt;, e a classe &lt;code&gt;Module&lt;/code&gt; define um método chamado &lt;code&gt;class_eval&lt;/code&gt;. &lt;code&gt;module_eval&lt;/code&gt; é um sinônimo
+para &lt;code&gt;class_eval&lt;/code&gt;. Ambos os métodos avaliam código Ruby, como o &lt;code&gt;eval&lt;/code&gt; faz, mas existem duas diferenças importantes. A primeira diferença é a que eles
+avaliam o código no contexto do objecto específico ou no contexto especificado de cada módulo do objecto ou é o valor enquanto o código está sendo
+avaliado. Aqui estão alguns exemplos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby instance_eval e class_eval
+o.instance_eval(&amp;ldquo;@x&amp;rdquo;)  # Retorna o valor da variável de instância o @x&lt;/p&gt;
+
+&lt;h1 id=&#34;define-um-len-método-de-instância-de-string-para-retornar-comprimento-da-string&#34;&gt;Define um len método de instância de String para retornar comprimento da String&lt;/h1&gt;
+
+&lt;p&gt;String.class_eval(&amp;ldquo;def len; size; end&amp;rdquo;)&lt;/p&gt;
+
+&lt;h1 id=&#34;aqui-está-outra-maneira-de-fazer-isso&#34;&gt;Aqui está outra maneira de fazer isso&lt;/h1&gt;
+
+&lt;h1 id=&#34;o-código-citado-se-comporta-como-se-fosse-dentro-da-class-string-e-end&#34;&gt;O código citado se comporta como se fosse dentro da &amp;ldquo;class String&amp;rdquo; e &amp;ldquo;end&amp;rdquo;&lt;/h1&gt;
+
+&lt;p&gt;String.class_eval(&amp;ldquo;alias len size&amp;rdquo;)&lt;/p&gt;
+
+&lt;h1 id=&#34;use-instance-eval-para-definir-método-de-classe-string-empty&#34;&gt;Use instance_eval para definir método de classe String.Empty&lt;/h1&gt;
+
+&lt;h1 id=&#34;note-que-as-aspas-dentro-da-aspas-fica-um-pouco-complicado&#34;&gt;Note que as aspas dentro da aspas fica um pouco complicado &amp;hellip;&lt;/h1&gt;
+
+&lt;p&gt;String.instance_eval (&amp;ldquo;def vazio;&amp;rdquo;; fim&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Observe a diferença sutil, mas crucial entre `instance_eval` e `class_eval` quando o código que está sendo avaliado contém uma definição de método.
+`instance_eval` define métodos únicos do objeto (e isso resulta em métodos de classe quando for chamado em uma classe de objeto). `class_eval` define métodos de instância regulare.
+
+A segunda diferença importante entre estes dois métodos e o eval global é que `instance_eval` e `class_eval` pode aceitar um bloco de código para
+avaliar. Quando passa um bloco em vez de uma `String`, o código do bloco é executado no contexto apropriado. Aqui, por conseguinte, são alternativas
+para as invocações anteriorment mostrada:
+
+``` ruby instance_eval e class_eval
+o.instance_eval { @x }
+String.class_eval {
+  def len
+    size
+  end
+}
+String.class_eval { alias len size }
+String.instance_eval { def empty; &amp;quot;&amp;quot;; end }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;instance_exec e class_exec&lt;/h3&gt;
+
+&lt;p&gt;Ruby 1.9 define dois métodos de avaliação a mais: &lt;code&gt;instance_exec&lt;/code&gt; e &lt;code&gt;class_exec&lt;/code&gt; (e seu alias, &lt;code&gt;module_exec&lt;/code&gt;). Estes métodos de avaliação de um bloco
+(Mas não uma cadeia) de código, no contexto do objeto receptor, como fazem &lt;code&gt;instance_eval&lt;/code&gt; e &lt;code&gt;class_eval&lt;/code&gt;. A diferença é que o métodos &lt;code&gt;exec&lt;/code&gt; aceita
+argumentos e passá para o bloco. Assim, o bloco do código é avaliado no contexto de um objeto determinado, com parâmetros cujos valores vêm a partir
+do exterior do objecto.&lt;/p&gt;
+
+&lt;p&gt;Até o proximo post amigos! :P&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reflexao e metaprogramacao number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 26 Aug 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de &lt;b&gt;Reflexão e Metaprogramação&lt;/b&gt;... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Reflexão e Metaprogramação&lt;/h1&gt;
+
+&lt;p&gt;Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
+para métodos existentes, e até mesmo definir métodos em objetos individuais. Além disso, ele tem uma rica API para a reflexão.
+Reflexão, também chamado de introspecção, significa simplesmente que um programa pode examinar seu estado e sua estrutura. Um
+programa Ruby pode, por exemplo, obter a lista de métodos definidos pela classe &lt;code&gt;Hash&lt;/code&gt;, consultar o valor de uma variável de
+instância nomeada dentro de um objeto especificado, ou percorrer todos os objetos &lt;code&gt;Regexp&lt;/code&gt; atualmente definidos pelo intérprete.
+A API de reflexão, na verdade, vai além e permite que um programa para alterar o seu estado e estrutura. Um programa Ruby pode
+definir dinamicamente variáveis chamadas, invocar métodos nomeados, e até mesmo definir novas classes e novos métodos.&lt;/p&gt;
+
+&lt;p&gt;API Reflexão Ruby, juntamente com a sua natureza geral, dinâmica, seu controle de estrutura de blocos iteradores, e a sintaxe
+dos seus parênteses opcionais sintaxe torna uma linguagem ideal para metaprogramação. Vagamente definida, metaprogramação está
+escrevendo programas (ou frameworks) que ajudam a escrever programas. Para colocar de outra forma, a metaprogramação é um
+conjunto de técnicas para estender a sintaxe de Ruby de uma forma que facilita a programação. Metaprogramação está intimamente
+ligada à idéia de escrever linguagens específicas de domínio, ou &lt;code&gt;DSL&#39;s&lt;/code&gt;. &lt;code&gt;DSL&#39;s&lt;/code&gt; em Ruby normalmente usam invocações de métodos e
+blocos, como se fossem palavras-chave em uma extensão de tarefas específicas para a linguagem.&lt;/p&gt;
+
+&lt;p&gt;Neste post começo com várias seções que introduzem a API de reflexão do Ruby. Esta API é surpreendentemente rica e consiste de
+poucos métodos. Estes métodos são definidos, para a maior parte, pelo &lt;code&gt;Kernel&lt;/code&gt;, &lt;code&gt;Module&lt;/code&gt; e &lt;code&gt;Object&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Enquanto você lê estas seções introdutórias, tenha em mente que reflexão não é, por si só, a metaprogramação. Metaprogramação
+tipicamente estende a sintaxe ou o comportamento de Ruby, de alguma forma, e com frequência envolve mais do que um tipo de
+reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post demonstrarei, por exemplo, técnicas comuns de
+metaprogramação que usam essa API.&lt;/p&gt;
+
+&lt;p&gt;Note-se que este post aborda tópicos avançados. Você pode ser um programador Ruby produtivo sem nunca ler este post. Você pode
+encontrar que é útil para ler os próximos post&amp;rsquo;s deste primeiro livro, e depois retornar a este capítulo. Considere este
+post uma espécie de exame final: se você entender os exemplos (especialmente os mais queridos no final), então você domina Ruby!&lt;/p&gt;
+
+&lt;h3&gt;Tipos, classes e módulos&lt;/h3&gt;
+
+&lt;p&gt;Os métodos mais utilizados são aqueles mais reflexivos para determinar o tipo de um objeto que classe é uma instância e quais
+métodos ele responde. Para rever:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Metaprogramming
+o.class&lt;/p&gt;
+
+&lt;h1 id=&#34;retorna-a-classe-de-do-objeto-o&#34;&gt;Retorna a classe de do objeto &amp;lsquo;o&amp;rsquo;.&lt;/h1&gt;
+
+&lt;p&gt;c.superclass&lt;/p&gt;
+
+&lt;h1 id=&#34;retorna-a-superclasse-de-uma-classe-c&#34;&gt;Retorna a superclasse de uma classe &amp;lsquo;c&amp;rsquo;.&lt;/h1&gt;
+
+&lt;p&gt;o.instance_of? c&lt;/p&gt;
+
+&lt;h1 id=&#34;determina-se-o-objeto-o-class-c&#34;&gt;Determina se o objeto &amp;lsquo;o.class == c&amp;rsquo;.&lt;/h1&gt;
+
+&lt;p&gt;o.is_a? c&lt;/p&gt;
+
+&lt;h1 id=&#34;determina-se-o-é-um-exemplo-de-c-ou-de-qualquer-das-suas-subclasses-se-c-for-um-módulo-este-método-testa-se-o-class-ou-qualquer-um-de-seus-ancestrais-inclui-o-módulo&#34;&gt;Determina se &amp;lsquo;o&amp;rsquo; é um exemplo de &amp;lsquo;c&amp;rsquo;, ou de qualquer das suas subclasses. Se &amp;lsquo;c&amp;rsquo; for um módulo, este método testa se &amp;lsquo;o.class&amp;rsquo; (ou qualquer um de seus ancestrais) inclui o módulo.&lt;/h1&gt;
+
+&lt;p&gt;o.kind_of? c&lt;/p&gt;
+
+&lt;h1 id=&#34;kind-of-é-um-sinônimo-para-is-a&#34;&gt;kind_of? é um sinônimo para is_a?.&lt;/h1&gt;
+
+&lt;p&gt;c === o&lt;/p&gt;
+
+&lt;h1 id=&#34;para-qualquer-classe-c-ou-módulo-determina-se-o-is-a-c&#34;&gt;Para qualquer classe &amp;lsquo;c&amp;rsquo; ou módulo, determina se &amp;lsquo;o.is_a? &amp;copy;&amp;rsquo;&lt;/h1&gt;
+
+&lt;p&gt;o.respond_to? nome&lt;/p&gt;
+
+&lt;h1 id=&#34;determina-se-o-objeto-o-tem-um-método-público-ou-protegido-com-o-nome-especificado-passar-true-como-o-segundo-argumento-para-verificar-métodos-privados-também&#34;&gt;Determina se o objeto &amp;lsquo;o&amp;rsquo; tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Ancestralidade e Módulos&amp;lt;/h3&amp;gt;
+
+Além desses métodos que você já viu, há mais alguns métodos relacionados reflexivos para determinar os ancestrais de uma
+classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
+entender quando demonstrado:
+
+``` ruby Alguns demonstrações
+module A; end                # Modulo vazio
+module B; include A; end;    # Módulo B inclui A
+class C; include B; end;     # Classe C inclui o módulo B
+
+C &amp;lt; B                # =&amp;gt; true: C inclui B
+B &amp;lt; A                # =&amp;gt; true: B inclui A
+C &amp;lt; A                # =&amp;gt; true
+Fixnum &amp;lt; Integer     # =&amp;gt; true: todos os fixnums são inteiros
+Integer &amp;lt; Comparable # =&amp;gt; true: inteiros são comparáveis
+Integer &amp;lt; Fixnum     # =&amp;gt; false: nem todos os números inteiros são fixnums
+String &amp;lt; Numeric     # =&amp;gt; nil: cordas não são números
+
+A.ancestors          # =&amp;gt; [A]
+B.ancestors          # =&amp;gt; [B, A]
+C.ancestors          # =&amp;gt; [C, B, A, Object, Kernel]
+String.ancestors     # =&amp;gt; [String, Enumerable, Comparable, Object, Kernel]
+                     # Nota: em Ruby 1.9, String não é mais Enumerable
+
+C.include?(B) # =&amp;gt; true
+C.include?(A) # =&amp;gt; true
+B.include?(A) # =&amp;gt; true
+A.include?(A) # =&amp;gt; false
+A.include?(B) # =&amp;gt; false
+
+A.included_modules # =&amp;gt; []
+B.included_modules # =&amp;gt; [A]
+C.included_modules # =&amp;gt; [B, A, Kernel]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Este código demonstra &lt;code&gt;include?&lt;/code&gt;, que é um método público de instância definido pela classe &lt;code&gt;Module&lt;/code&gt;. Mas ele também possui duas
+invocações do método &lt;code&gt;include&lt;/code&gt; (Sem o sinal de interrogação), que é um método de instância particular de &lt;code&gt;Module&lt;/code&gt;. Como um
+método particular, pode apenas ser chamado implicitamente em si, o que limita a sua utilização para o corpo de uma definição de
+&lt;code&gt;class&lt;/code&gt; ou &lt;code&gt;module&lt;/code&gt;. Este uso do método &lt;code&gt;include&lt;/code&gt;, como se tratasse de uma palavra-chave, é um exemplo de metaprogramação no
+núcleo da sintaxe de Ruby.&lt;/p&gt;
+
+&lt;p&gt;Um método relacionado com o método &lt;code&gt;include&lt;/code&gt;, particular é o público &lt;code&gt;Object.extend&lt;/code&gt;. Este método estende um objeto por tornar
+os métodos de instância de cada um dos módulos específicos em métodos &lt;code&gt;singleton&lt;/code&gt; do objeto:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Singleton
+module Greeter; def hi; &amp;ldquo;hello&amp;rdquo;; end; end # módulo Greeter
+s = &amp;ldquo;objeto de string&amp;rdquo;
+s.extend(Greeter)       # Adicione &amp;ldquo;hello&amp;rdquo; como um método singleton para s
+s.hi
+String.extend(Greeter)  # Adicione &amp;ldquo;hello&amp;rdquo; como método de classe de String
+String.hi               # =&amp;gt; &amp;ldquo;hello&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O método `Module.nesting` de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
+`array` que especifica o assentamento de módulos da localização atual. `Module.nesting[0]` é a classe atual ou módulo, `Module.nesting[1]` é o quem contém a `class` ou `module` e assim por diante:
+
+```ruby Module e Class
+module M
+  class C
+    Module.nesting   # =&amp;gt; [M::C, M]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Definindo Classes e Módulos&lt;/h3&gt;
+
+&lt;p&gt;Classes e módulos são instâncias das classes de &lt;code&gt;Class&lt;/code&gt; e &lt;code&gt;Module&lt;/code&gt;. Como tal, você pode criá-los dinamicamente:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Class e Module dinamicamente
+M = Module.new      # Define um novo módulo M
+C = Class.new       # Define uma nova classe C
+D = Class.new(C) {  # Definir uma subclasse de C
+  include M         # inclui o módulo M
+}
+D.to_s              # =&amp;gt; &amp;quot;D&amp;quot;: classe recebe o nome da constante por magia
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Um recurso interessante do Ruby é que, quando um criado dinamicamente um módulo anónimo ou classe é atribuído a uma constante,
+o nome dessa constante é usado como o nome do módulo ou classe (e é retornado pelo seu nome e método to_s).&lt;/p&gt;
+
+&lt;p&gt;É isso ai amigos&amp;hellip;
+Hora de dar um &lt;code&gt;break&lt;/code&gt;&amp;hellip; :)&lt;/p&gt;
+
+&lt;p&gt;Até o proximo!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>blocos em number ruby 1 dot 9</title>
+      <link>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</link>
+      <pubDate>Sun, 19 Aug 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/08/19/blocos-em-number-ruby-1-dot-9/</guid>
+      <description>
+
+&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!&lt;/p&gt;
+
+&lt;h1&gt;Blocos em #Ruby 1.9&lt;/h1&gt;
+
+&lt;p&gt;O uso de blocos é fundamental para o uso de iteradores. As subseções a seguir explicam:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A sintaxe para associar um bloco com uma invocação de método&lt;/li&gt;
+&lt;li&gt;O &amp;ldquo;valor de retorno&amp;rdquo; de um bloco&lt;/li&gt;
+&lt;li&gt;O escopo de variáveis ​​em blocos&lt;/li&gt;
+&lt;li&gt;A diferença entre os parâmetros dos blocos e parâmetros de método&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Sintaxe bloco&lt;/h3&gt;
+
+&lt;p&gt;Os &lt;code&gt;Blocos&lt;/code&gt; não podem ser autônomo, pois eles são apenas legal após uma chamada de método. Você pode, no entanto, colocar um
+bloco depois de qualquer invocação método, se o método não é um iterador e nunca invoca o bloco com a produção, o bloco será
+ignorado. Blocos são delimitados por chaves ou com palavras-chave &lt;code&gt;do/end&lt;/code&gt;. A abertura de chave ou a palavra-chave deve ser na
+mesma linha com a invocação de método, ou então Ruby interpreta a linha como um terminador de instrução e invoca o método sem
+o bloco:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Blocos&lt;/p&gt;
+
+&lt;h1 id=&#34;imprima-os-números-1-a-10&#34;&gt;Imprima os números 1 a 10&lt;/h1&gt;
+
+&lt;p&gt;1.upto(10) {|x| puts x } # Invocação e bloco em uma linha com aparelho
+1.upto(10) do |x|        # Delimitado bloco com do/end
+  puts x
+end
+1.upto(10)               # Bloco não especificado
+  {|x| puts x }          # Erro na Sintaxe: bloco é permitido não depois de uma invocação&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Uma convenção comum é a utilização de chaves quando um bloco se encaixa em uma única linha, e para usar `do/end` quando o bloco
+se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente
+para o símbolo que precede. Se você omitir os parênteses em torno de argumentos de método e usar delimitadores de chaves para
+um bloco, em seguida, o bloco vai ser associado com o último argumento do método em vez do método em si, o que não é,
+provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses os argumentos ou delimite o bloco com `do` e
+`end`:
+
+``` ruby Blocks
+1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
+1.upto 3 do |x| puts x end
+1.upto 3 {|x| puts x} # erro de sintaxe: tentando passar um bloco para 3!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados
+com um par de barra vertical (&lt;code&gt;|&lt;/code&gt;), mas eles são de outra maneira muito parecida com os parâmetros do método:&lt;/p&gt;
+
+&lt;p&gt;```ruby Blocks&lt;/p&gt;
+
+&lt;h1 id=&#34;o-iterador-hash-each-passa-dois-argumentos-para-seu-bloco&#34;&gt;O iterador Hash.each passa dois argumentos para seu bloco&lt;/h1&gt;
+
+&lt;p&gt;hash.each do |chave, valor| # Para cada par (chave, valor) no hash
+  puts &amp;ldquo;#{chave}: #{valor}&amp;rdquo; # Imprimir a chave eo valor
+end # Fim do bloco&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+É uma convenção comum para escrever os parâmetros do bloco, na mesma linha, como a invocação do método e da chave de abertura
+ou fazer palavra-chave, mas isto não é requerido pela sintaxe.
+
+
+&amp;lt;h3&amp;gt;O Valor de um Bloco&amp;lt;/h3&amp;gt;
+
+Considerando o método `Array.sort`. Se você associar um bloco com uma invocação deste método, ele irá produzir pares de
+elementos para o bloco, e é o trabalho do bloco para classificá-los.
+
+O valor do bloco de retorno `(-1, 0 ou 1)` indica a ordem dos dois argumentos. O &amp;quot;valor de retorno&amp;quot; do bloco está disponível
+com o método `iterator` como o valor da declaração `yield`.
+
+O &amp;quot;valor de retorno&amp;quot; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um `array` de palavras maior de a menor, poderíamos escrever:
+
+```ruby Metodo sort
+# O bloco tem duas palavras e &amp;quot;retorna&amp;quot; a sua ordem relativa
+words.sort! {| X, y | y.length &amp;lt;=&amp;gt; x.length}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nós estamos colocando a expressão &amp;ldquo;valor de retorno&amp;rdquo; entre aspas por uma razão muito importante: você não deve usar normalmente
+a palavra-chave &lt;code&gt;return&lt;/code&gt; para retornar um bloco. Um &lt;code&gt;return&lt;/code&gt; dentro de um bloco faz com que o método que o contém (não o método
+iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
+bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o &lt;code&gt;return&lt;/code&gt; se você quer apenas
+voltar de um bloco para o método que chamou &lt;code&gt;yield&lt;/code&gt;. Se você precisar forçar um bloco para voltar ao método invocando antes que
+ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar &lt;code&gt;next&lt;/code&gt; em vez de retorno. Aqui é um
+exemplo que usa &lt;code&gt;next&lt;/code&gt; para voltar a partir do bloco:&lt;/p&gt;
+
+&lt;p&gt;```ruby Usando next
+array.collect do |x|
+  next 0 if x == nil  # Retorna se x é nulo
+  next x, x*x         # Retorna dois valores
+end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Note-se que não é particularmente comum usar `next` desta maneira, e o código acima é facilmente reescrito assim:
+
+``` ruby Reescrevendo bloco
+array.collect do |x|
+  if x == nil
+    0
+  else
+    [x, x*x]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Blocos e escopo de variáveis&lt;/h3&gt;
+
+&lt;p&gt;Blocos que definem um novo escopo de variáveis: variáveis ​​criadas dentro de um bloco só existem dentro desse bloco e estão são
+indefinidas fora do bloco. Seja cauteloso, no entanto, as variáveis ​​locais em um método estão disponíveis para todos os blocos
+dentro desse método. Então, se um bloco atribui um valor a uma variável que já está definida fora do bloco, este não cria uma
+variável local nova, mas em vez disso, atribui um novo valor para a variável já existente. Às vezes, isso é exatamente o
+comportamento que queremos:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Escopos
+total = 0
+data.each {|x| total += x }  # Some os elementos da matriz de dados
+puts total                   # Impressão do total da soma&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Às vezes, no entanto, nós não queremos alterar as variáveis ​​no escopo delimitador, mas fazemos acidentalmente. Este problema é
+uma preocupação particular para os parâmetros dos blocos em Ruby 1.8. No Ruby 1.8, se um parâmetro do bloco compartilha o nome
+de uma variável existente, então invocações do bloco simplesmente atribuir um valor a essa variável já existente em vez de
+criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador `i`
+como o parâmetro para dois blocos nested blocos:
+
+``` ruby Usando mesma variavel, Ruby 1.8
+1.upto(10) do |i|         # 10 linhas
+  1.upto(10) do |i|       # Cada um tem 10 colunas
+    print &amp;quot;#{i}&amp;quot;         # Imprimi o número de colunas
+  end
+  print &amp;quot; ==&amp;gt; Row #{i}\n&amp;quot; # Número de linhas
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ruby 1.9 é diferente: os parâmetros dos blocos são sempre locais para o seu bloco, e invocações do bloco nunca atribuem valores
+a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de
+uma variável existente. Isso ajuda a evitar escrever código que funciona de forma diferente em 1.8 e 1.9.&lt;/p&gt;
+
+&lt;p&gt;Ruby 1.9 é diferente de outra maneira importante, também. Sintaxe do bloco foi estendida para permitir que você declare
+variáveis de blocos locais ​​que são garantidas para ser local, mesmo se uma variável com o mesmo nome já existe no escopo
+delimitador. Para fazer, siga a lista de parâmetros do bloco com um ponto e vírgula e uma lista separada por vírgulas de
+variáveis ​​do bloco local. Aqui está um exemplo:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Variaveis
+x = y = 0            # variáveis ​​locais
+1.upto(4) do |x;y|   # x e y são locais para bloquear
+                     # x e y são &amp;ldquo;sombra&amp;rdquo; das variáveis ​​externas
+  y = x + 1          # Usa y como uma variável que vai receber valores
+  puts y*y           # imprime 4, 9, 16, 25
+end
+[x,y]                # =&amp;gt; [0,0]: o bloco não altera essas variaveis.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Neste código, x é um parâmetro de bloco: ele recebe um valor quando o bloco é invocado com a produtividade. y é uma variável de
+bloco-local. Ele não receber qualquer valor a partir de uma chamada `yield`, mas tem o valor nil até que o bloco de fato
+atribui outro valor a ele. O ponto de declarar essas variáveis locais no ​​bloco é garantir que você não vai acidentalmente
+sub-escrever o valor de alguma variável existente. Se você chamar Ruby 1.9 com o flag -w, ele irá avisá-lo se um bloco de
+variável local de uma variável existente.
+
+Os blocos podem ter mais do que um parâmetro e mais de uma variável local, é claro. Aqui é um bloco com dois parâmetros e
+três variáveis ​​locais:
+
+``` ruby Variavel Local
+hash.each {|key,value; i,j,k| ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Passando argumentos para um bloco&lt;/h3&gt;
+
+&lt;p&gt;Nós dissemos anteriormente que os parâmetros para um bloco são muito parecidos com os parâmetros de um método. Eles não são
+rigorosamente iguais, no entanto. Os valores de argumento que seguem a palavra-chave &lt;code&gt;yield&lt;/code&gt; são designados para bloquear
+parâmetros seguindo as regras que estão mais próximos as regras para a atribuição de variável do que as regras para a invocação
+de método. Assim, quando um iterador executa &lt;code&gt;yield k,v&lt;/code&gt;, para invocar um bloco declarado com parâmetros &lt;code&gt;|key, value|&lt;/code&gt;, é
+equivalente a esta instrução de atribuição:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição de parametros
+key,value = k,v&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O iterador `Hash.each_pair` produz um par `key/value` como este:
+
+``` ruby Hash.each_pair
+{:one=&amp;gt;1}.each_pair {|key,value| ... } # key=:one, value=1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros
+são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são
+variáveis locais, em seguida, eles são simplesmente atribuídos. Na verdade, Ruby 1.8 permite que qualquer tipo de variável seja
+utilizada como um parâmetro de bloco, incluindo variáveis ​​globais e variáveis ​​de instância:&lt;/p&gt;
+
+&lt;p&gt;```ruby Variaveis Locais e de Instância
+{:one=&amp;gt;1}.each_pair {|$key, @value| &amp;hellip; } # Não funciona mais no Ruby 1.9&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Este iterator define a variável global `$key` para `:one` e define a variável de instância `@value` para `1`. Como já
+mencionado, o Ruby 1.9 faz os parâmetros dos blocos locais para o bloco. Isto também significa que os parâmetros dos blocos não
+podem mais ser variáveis ​​globais ou de instância.
+
+Os iteradores `Hash.each` segue um pares de `key/value` como dois elementos de uma única matriz. É muito comum, no entanto,
+para ver o código como esta:
+
+```ruby Hash.each
+hash.each {|k,v| ... }  # Chave e valor atribuído a params k e v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso também funciona por atribuição paralela. O valor cedido, um conjunto de dois elementos, é atribuído às variáveis ​​k e v:&lt;/p&gt;
+
+&lt;p&gt;```ruby Atribuição
+k, v = [value, key]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Pelas regras de atribuição paralela (ver &amp;lt;a href=&amp;quot;{{ root_url }}/blog/2012/06/11/atribuicao-paralela-number-ruby/&amp;quot;&amp;gt;Atribuição Paralela&amp;lt;/a&amp;gt;), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.
+
+Bloco de invocação não funciona exatamente como atribuição paralela. Imagine um iterador que passa dois valores ao seu bloco.
+Por as regras de atribuição paralela, podemos esperar para ser capaz de declarar um bloco com um único parâmetro e ter os dois
+valores automaticamente preenchido em uma matriz para nós. Mas não é assim que funciona:
+
+``` ruby Parametros
+def two; yield 1,2; end # Um iterador que produz dois valores
+two {|x| p x }          # Ruby 1.8: avisa e impressões [1,2],
+two {|x| p x }     		# Ruby 1.9: imprime 1, nenhum aviso
+two {|*x| p x }    		# versão Ou: impressões [1,2]; nenhum aviso
+two {|x,| p x }    		# versão Ou: impressões 1; nenhum aviso
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No Ruby 1.8, vários argumentos são embalados em uma matriz, quando existe um parâmetro único no bloco, mas isso é obsoleto e
+gera uma mensagem de aviso. No Ruby 1.9, o primeiro valor é atribuído ao parâmetro do bloco e o segundo valor é descartado. Se
+queremos que vários valores podem a ser embalado em uma matriz e atribuído a um único parâmetro do bloco, nós devemos indicar
+explicitamente que estamos prefixando o parâmetro com um &lt;code&gt;*&lt;/code&gt;, exatamente como faríamos em uma declaração de método. Observe
+também que podemos descartar explicitamente o segundo valor ao declarar uma lista de parâmetros de bloco, que termina com uma
+vírgula, como se dissesse:
+    &amp;ldquo;Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Embora invocação de bloco não se comporta como a atribuição paralela, neste caso, não se comportam como uma chamada de método,
+também. Se declarar um método com um argumento e depois passar dois argumentos para ele, o Ruby não vai apenas imprimir um
+aviso, vai também gerar um erro.&lt;/p&gt;
+
+&lt;p&gt;A declaração do &lt;code&gt;yield&lt;/code&gt; permite que &lt;code&gt;hashes&lt;/code&gt; &amp;ldquo;nus&amp;rdquo; como o valor do último argumento, assim como invocações de métodos. Isto é,
+se o último argumento para produzir é um literal de &lt;code&gt;hash&lt;/code&gt;, você pode omitir as chaves. Porque não é comum para iteradores para
+produzir &lt;code&gt;hashes&lt;/code&gt;, temos que maquinar um exemplo para demonstrar isto:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Hashes sem chaves
+def hashiter; yield :a=&amp;gt;1, :b=&amp;gt;2; end  # Nota final sem chaves
+hashiter {|hash| puts hash[:a] }       # Imprime 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;h3&amp;gt;Bloquear Parâmetros no Ruby 1.9&amp;lt;/h3&amp;gt;
+
+No Ruby 1.8, apenas o último parâmetro do bloco pode ter um prefixo `*`. Ruby 1.9 levanta essa restrição e permite qualquer
+parâmetro do bloco, independentemente da sua posição na lista, para ter um prefixo `*`:
+
+``` ruby Prefixo *
+def five; yield 1,2,3,4,5; end     # Seguindo os 5 valores
+five do |head, *body, tail|        # Valores extras entrar em matriz corpo
+  print head, body, tail           # Mostra &amp;quot;1 [2,3,4] 5&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No Ruby 1.9 parâmetros do bloco podem ter valores padrões, apenas como parâmetros de método pode. Suponha, por exemplo, que
+você deseja iterar os valores de um objeto, mas o que você não sabe se o obejeto é um &lt;code&gt;array&lt;/code&gt; ou um &lt;code&gt;hash&lt;/code&gt;. Você pode usar um
+bloco como este:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Variavel com um valor pré determinado
+o.each {|key=nil,value| puts value}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Se cada iterador produz um único valor, é atribuído ao segundo parâmetro do bloco. Se cada um produz um par de valores,
+são atribuídos a ambos os parâmetros.&lt;/p&gt;
+
+&lt;p&gt;No Ruby 1.9, o parâmetro do bloco final pode ser prefixado com e para indicar que vai receber qualquer bloco associado com a
+invocação do bloco. Lembre, no entanto, que a invocação &lt;code&gt;yield&lt;/code&gt; pode não ter um bloco associado.&lt;/p&gt;
+
+&lt;p&gt;Até o proximo assunto amigos.. :P&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>invocacoes de metodo</title>
+      <link>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</link>
+      <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/02/invocacoes-de-metodo/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
+
+&lt;h1&gt;Invocações de método&lt;/h1&gt;
+
+&lt;p&gt;Uma expressão de invocação de método tem quatro partes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Uma expressão arbitrária cujo valor é o objeto no qual o método é chamado. Esta expressão é seguido por . ou :: para separá-lo a partir
+do nome do método que se segue. A expressão e o separador são opcionais; se omitido, o método é invocada em si mesmo.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;O nome do método a ser invocado. Este é o único pedaço exigido de uma expressão chamada de método.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Valores com o argumento passado para o método. A lista de argumentos podem ser colocados entre parênteses, mas estes são geralmente
+opcionais. Se há mais de um argumento, eles são separados uns dos outros com vírgulas. O número e tipo de argumentos necessários
+dependem da definição do método. Alguns métodos podem ser chamodos sem argumentos.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Um bloco opcional de código delimitado por chaves ou por um par &lt;code&gt;do/end&lt;/code&gt;. O método pode invocar esse código usando a palavra-chave de
+&lt;code&gt;yield&lt;/code&gt;. Esta capacidade de associar código arbitrário com qualquer invocação de método é a base para métodos poderosos em Ruby.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Um nome do método é normalmente separado do objeto sobre o qual é chamado com um &lt;code&gt;..&lt;/code&gt;, e com o &lt;code&gt;::&lt;/code&gt;, que também é permitido, mas é raramente
+usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.&lt;/p&gt;
+
+&lt;p&gt;Quando o interpretador Ruby tem o nome de um método e um objeto em que deve ser invocado, ele encontra a definição adequada do método
+chamado usando um processo conhecido como &amp;ldquo;método de pesquisa&amp;rdquo; ou &amp;ldquo;resolução de nome do método.&amp;rdquo; Os detalhes não são importantes aqui,
+mas eles são explicados completamente no método de pesquisa.&lt;/p&gt;
+
+&lt;p&gt;O valor de uma invocação expressão de método é o valor da expressão avaliada pelo último método no corpo do código. Aqui, no entanto, são
+alguns exemplos de invocações de método:&lt;/p&gt;
+
+&lt;p&gt;```ruby Ruby
+puts &amp;ldquo;Olá mundo&amp;rdquo; # &amp;ldquo;puts&amp;rdquo; invocado em auto, com uma seqüência de arg
+Math.sqrt(2) # &amp;ldquo;sqrt&amp;rdquo; invocado em Matemática objeto com uma arg
+message.length # &amp;ldquo;comprimento&amp;rdquo; invocado em mensagem objeto; não args
+a.each{|x| p x} # &amp;ldquo;cada&amp;rdquo; chamado em um objeto, com um bloco associado&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Um dos exemplos do método de invocação mostradas anteriormente foi &amp;lt;code&amp;gt;message.length&amp;lt;/code&amp;gt;. Você pode ser tentado a pensar-lo como uma variável
+de expressão de referência, avaliando para o valor do comprimento da variável do objeto mensage. Este não é o caso, no entanto, Ruby tem
+um modelo de programação muito orientada a objetos: objetos em Ruby podem encapsular qualquer número de variáveis ​​de instância interna,
+mas expõem métodos apenas para o mundo exterior. Como o método &amp;lt;code&amp;gt;length&amp;lt;/code&amp;gt; não espera argumentos e é chamado sem os parênteses opcionais,
+parece que referência uma variável. Na verdade, isso é intencional. Métodos como estes são chamados para atribuir métodos de acesso, e
+dizemos que o objeto da &amp;lt;code&amp;gt;mensage&amp;lt;/code&amp;gt; tem um atributo de &amp;lt;code&amp;gt;lenght&amp;lt;/code&amp;gt;. Como veremos, é possível que o objeto de &amp;lt;code&amp;gt;mensage&amp;lt;/code&amp;gt;
+para definir um método chamado &amp;lt;code&amp;gt;length=&amp;lt;/code&amp;gt;. Se este método espera um único argumento, então é um método setter do atributo e
+Ruby invoca em resposta a atribuição. Se um tal método é definido, então estas duas linhas de código seria tanto chamar o mesmo método:
+
+```ruby Length
+message.length=(3) # invocação do método tradicional
+message.length = 3 # invocação Método como a atribuição
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora, considere a seguinte linha de código, assumindo que uma variável contém um &lt;code&gt;Array&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```ruby Array
+a[0]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você pode pensar novamente que este é um tipo especial de variável de referência, onde a variável em questão é na verdade um elemento do
+&amp;lt;code&amp;gt;Array&amp;lt;/code&amp;gt;. Novamente, no entanto, esta é invocação do método. O intérprete Ruby converte o acesso ao &amp;lt;code&amp;gt;Array&amp;lt;/code&amp;gt; para isso:
+
+```ruby Array
+a.[](0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O acesso ao &lt;code&gt;Array&lt;/code&gt; torna-se uma invocação do método chamado &lt;code&gt;[]&lt;/code&gt;, com o índice do &lt;code&gt;Array&lt;/code&gt; como seu
+argumento. Esta sintaxe de acesso de &lt;code&gt;Array&lt;/code&gt; não se limita a &lt;code&gt;Arrays&lt;/code&gt;. Qualquer objeto é permitido para definir um
+método chamado &lt;code&gt;[]&lt;/code&gt;. Quando o objeto é &amp;ldquo;indexado&amp;rdquo;, com o indix entre parênteses, os valores dentro dos parênteses será passado
+para o método. Se o método &lt;code&gt;[]&lt;/code&gt; é escrito para esperar três argumentos, então você deve colocar três expressões separados por
+vírgula dentro dos colchetes.&lt;/p&gt;
+
+&lt;p&gt;Atribuição de &lt;code&gt;Arrays&lt;/code&gt; também é feito através de invocação de método. Se o objeto o define um método chamado &lt;code&gt;[]=&lt;/code&gt;, então a expressão &lt;code&gt;o[x] = y&lt;/code&gt; torna-se &lt;code&gt;o.[] = (x, y)&lt;/code&gt;, e a expressão &lt;code&gt;o[x, y] = z&lt;/code&gt; se torna &lt;code&gt;o.[] = (x , y, z)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Muitos operadores do Ruby são definidos como métodos, e expressões como &lt;code&gt;x + y&lt;/code&gt; são avaliados como &lt;code&gt;x.+(y)&lt;/code&gt;, onde o
+nome de método é &lt;code&gt;+&lt;/code&gt;. O fato de que muitos dos operadores do Ruby são definidos como métodos que significa você pode redefinir
+esses operadores na sua próprias classes.&lt;/p&gt;
+
+&lt;p&gt;Agora, vamos considerar esta expressão muito simples:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Ruby
+x
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Se uma variável x nomeada existe (Isto é, se o interpretador Ruby tem visto uma atribuição a x), então esta é uma variável de referência.
+Se nenhuma variável existe, então esta é uma invocação do método x, sem argumentos.&lt;/p&gt;
+
+&lt;p&gt;A palavra &lt;code&gt;super&lt;/code&gt; em Ruby é um tipo especial de invocação de método. Esta palavra é usada ao criar uma subclasse de outra
+classe. Por si só, &lt;code&gt;super&lt;/code&gt; passa os argumentos do método corrente para o método com o mesmo nome na superclasse. Ele também
+pode ser usado como se fosse realmente o nome de um método e pode ser seguido por uma lista de argumentos arbitrários. A palavra-chave
+&lt;code&gt;super&lt;/code&gt; é abordada em detalhes no Aumentando Comportamento por encadeamento.&lt;/p&gt;
+
+&lt;p&gt;Até a Proxima&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>variaveis nao inicializadas</title>
+      <link>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</link>
+      <pubDate>Sat, 02 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/02/variaveis-nao-inicializadas/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas&lt;/p&gt;
+
+&lt;h1&gt;Variáveis ​​não inicializadas&lt;/h1&gt;
+
+&lt;p&gt;Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
+no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;Variáveis ​​de classe&lt;/h4&gt;
+    Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se
+    referir a uma variável de classe à qual nenhum valor foi atribuído.&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;Variáveis ​​de instância&lt;/h4&gt;
+    Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de
+    contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la
+    com a opção -w.&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;As variáveis ​​globais&lt;/h4&gt;
+    Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra
+    um aviso quando o Ruby é executado com o flag do -w.&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;As variáveis ​​locais&lt;/h4&gt;
+    Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo.
+    Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o
+    interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método,
+    e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma
+    invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe
+uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa
+variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi
+atribuído um valor, é dado o valor nulo como padrão. Por exemplo:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Variaveis
+a = 0.0 if false # atribuição Isso nunca é executado
+puts a # Imprime nulo: a variável existe mas não é atribuída
+puts b # NameError: nenhuma variável ou método chamado existe b
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html&#34;&gt;Variaveis Ruby 1.9.2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a próxima.. :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>variaveis de referencia</title>
+      <link>http://rodij.me/post/2012/06/01/variaveis-de-referencia/</link>
+      <pubDate>Fri, 01 Jun 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/06/01/variaveis-de-referencia/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Variáveis de Referência&lt;/p&gt;
+
+&lt;h1&gt;Variáveis de Referência&lt;/h1&gt;
+
+&lt;p&gt;Uma variável é simplesmente um nome para um valor. As variáveis ​​são criadas e os valores que lhes são atribuídos por expressões
+de atribuição. Quando o nome de uma variável aparece num programa em qualquer lugar que não seja o lado esquerdo de uma atribuição, é uma
+variável de referência à expressão e avaliado como o valor da variável:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Referência
+one = 1.0 # Esta é uma atribuição de expressão
+one # Essa referência de expressão da variável, que imprimi 1.0
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Existem quatro tipos de variáveis ​​em Ruby, e regras &lt;a href=&#34;http://pt.wikipedia.org/wiki/Item_lexical&#34;&gt;lexicais&lt;/a&gt; para governar seus nomes. Variáveis que começam com $ são variáveis ​​globais, visível ao longo de um programa Ruby. Variáveis ​​que começam com @ e @@ são
+variáveis ​​de instância e variáveis ​​de classe, usado em programação orientada a objeto. E as variáveis ​​cujos nomes começam com um sublinhado
+ou uma letra minúscula são variáveis ​​locais, definidas apenas dentro do atual método ou bloco.&lt;/p&gt;
+
+&lt;p&gt;Variáveis ​​sempre são simples, nomes não qualificados. Se um . ou :: aparece em uma expressão, em seguida, que a expressão é ou um
+uma referência a uma constante ou uma invocação de método. Por exemplo, Math::PI é uma referência a uma constante, e a expressão
+item.preco é uma invocação do método chamado preco (preço) sobre o valor realizado pela variável item.&lt;/p&gt;
+
+&lt;p&gt;O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.&lt;/p&gt;
+
+&lt;p&gt;Até a próxima.. :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>literais e palavras chaves literais</title>
+      <link>http://rodij.me/post/2012/05/27/literais-e-palavras-chaves-literais/</link>
+      <pubDate>Sun, 27 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/27/literais-e-palavras-chaves-literais/</guid>
+      <description>&lt;p&gt;Hoje vamos continuar falando de &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/&#34;&gt;Ruby&lt;/a&gt;, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais&lt;/p&gt;
+
+&lt;h1&gt;Literais e Plavras-chaves literais&lt;/h1&gt;
+
+&lt;p&gt;Literais são valores como 1.0, &amp;ldquo;Hello world&amp;rdquo;, e [] que são incorporados diretamente em seu texto do programa.&lt;/p&gt;
+
+&lt;p&gt;É interessante notar que muitos literais, tais como números, são as principais expressões - as expressões mais simples possíveis não
+compostas de expressões simples. Literais, tais como Array e literais de hash e strings duplas citadas que usam interpolação, incluem
+sub-expressões e são, portanto, expressões não primárias.&lt;/p&gt;
+
+&lt;p&gt;Determinadas palavras-chave em Ruby são expressões primárias e podem ser considerados palavras-chave literais ou formas especializadas
+de referência da variável:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nil            -&amp;gt;   Avalia o valor nulo, de NilClass classe.
+true           -&amp;gt;   Avalia-se à instância singleton da Classe TrueClass, que um objeto representa o valor booleano
+                    verdadeiro.
+false          -&amp;gt;   Avalia-se à instância singleton da Classe FalseClass, que um objeto representa os valores booleanos
+                    falsos.
+self           -&amp;gt;   Auto avalia o objeto atual.
+__FILE__       -&amp;gt;   Avalia a uma string que nomeia o arquivo que o Ruby Intérprete (IRB) está em execução. Isto pode ser
+                    útil em erro de mensagens.
+__LINE__       -&amp;gt;   Avalia como um inteiro que especifica o número da linha dentro da linha do código atual do __FILE__.
+__ENCODING__   -&amp;gt;   Avalia a um objeto Encoding que especifica a codificação do arquivo atual. (Ruby 1.9 apenas.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;É isso ai galera, até o proximo post.. :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>o mundo hash no ruby 1 dot 9 2 parte iii hashs codes</title>
+      <link>http://rodij.me/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</link>
+      <pubDate>Thu, 10 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</guid>
+      <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
+&lt;p&gt;Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.&lt;/p&gt;
+
+&lt;h3&gt;Códigos de Hash, Igualdade e mutáveis Chaves&lt;/h3&gt;
+
+&lt;p&gt;Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
+estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Fixnum.html&#34;&gt;Fixnum&lt;/a&gt; hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
+hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash&amp;rsquo;s de tabelas são mais eficientes quando hashcodes duplicados são raros.&lt;/p&gt;
+
+&lt;p&gt;A classe Hash compara chaves igualdade com o método &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-eql-3F&#34;&gt;eql?&lt;/a&gt;. Para
+outras classes Ruby, eql? obras como o operador == . Se você definir uma nova classe que
+substitui o método eql?, você deve também substituir o método &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-hash&#34;&gt;hash&lt;/a&gt;, ou se não as instâncias de sua classe não vam funcionar como chaves em um hash.&lt;/p&gt;
+
+&lt;p&gt;Se você definir uma classe e não sobreescrever o método eql?, em seguida, as instâncias dessa classe são
+comparadas com a identidade do objeto quando usado como chave de hash. Duas instâncias distintas de sua classe são distintas chaves de hash mesmo que eles representam o mesmo conteúdo. Neste caso, o método padrão hash é apropriado: retorna a única object_id do objeto.&lt;/p&gt;
+
+&lt;p&gt;Note-se que objetos mutáveis ​​são problemáticos como chaves de hash. Mudar o conteúdo de um objeto geralmente muda seu hashcode. Se você usar um objeto como uma chave e então alterar esse objeto, a tabela de hash ficará corrompida, e o hash não funciona corretamente.&lt;/p&gt;
+
+&lt;p&gt;Porque strings são mutáveis, mas comumente usamos chaves de hash, Ruby trata eles como um caso especial e faz cópias privadas de todas as cadeias utilizadas como chaves. Este é o único caso especial, no entanto, você deve ser muito cuidado ao usar qualquer outro objeto mutável como uma chave hash. Considera fazendo uma cópia privada ou chamando o método &lt;a href=&#34;http://ruby-doc.org/core-1.9.2/Object.html#method-i-freeze&#34;&gt;freeze&lt;/a&gt;.
+Se você deve usar chaves de hash mutável, chame o método &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-rehash&#34;&gt;rehash&lt;/a&gt; do Hash cada vez que você alterar uma chave.&lt;/p&gt;
+
+&lt;p&gt;-&amp;gt; &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html&#34;&gt;Hash&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>o mundo hash no ruby 1 dot 9 2</title>
+      <link>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</link>
+      <pubDate>Tue, 08 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</guid>
+      <description>
+
+&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
+
+&lt;p&gt;Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
+como chaves, e associa um valor com cada chave. Hashs são também conhecidos como mapas porque mapeam as chaves para
+valores. Eles às vezes são chamados de matrizes associativas, porque eles
+associam valores com cada uma das chaves, e pode ser pensado como matrizes
+em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
+exemplo torna isso mais claro:&lt;/p&gt;
+
+&lt;p&gt;```ruby Hash&lt;/p&gt;
+
+&lt;h1 id=&#34;este-hash-irá-mapear-os-nomes-dos-dígitos-para-os-dígitos-se&#34;&gt;Este hash irá mapear os nomes dos dígitos para os dígitos se&lt;/h1&gt;
+
+&lt;p&gt;números = Hash.new # Criar um novo objeto, vazio de hash
+números[&amp;ldquo;um&amp;rdquo;] = 1 # Mapa do String &amp;ldquo;um&amp;rdquo; para o Fixnum 1
+números[&amp;ldquo;dois&amp;rdquo;] = 2 # Note que estamos usando a notação de matriz aqui
+números[&amp;ldquo;três&amp;rdquo;] = 3&lt;/p&gt;
+
+&lt;p&gt;soma = números[&amp;ldquo;um&amp;rdquo;] + números[&amp;ldquo;dois&amp;rdquo;] # soma os valores e resulta em &amp;ldquo;3&amp;rdquo;
+```&lt;/p&gt;
+
+&lt;p&gt;Esta introdução à sintaxe hashes de hash documentos Ruby literal
+e explica os requisitos para um objeto a ser usado como uma chave hash.
+Mais informações sobre a API definida pela classe Hash é fornecido em &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html&#34;&gt;Hashes&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Em breve, mais conteudo de Hash!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>o mundo hash no ruby 1 dot 9 2 parte ii hashs literais</title>
+      <link>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/</link>
+      <pubDate>Tue, 08 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/</guid>
+      <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
+
+&lt;p&gt;Na primeira parte eu fiz uma introdução do Hash:
+-&amp;gt; &lt;a href=&#34;{{root_url}}/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/&#34;&gt;O Mundo Hash no Ruby 1.9.2 - Parte I&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Vamos lá!&lt;/p&gt;
+
+&lt;p&gt;Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de
+pares, colocados dentro de chaves. Chaves e valores são separados
+com um caractere de dois &amp;ldquo;arrow&amp;rdquo;: &amp;lsquo;=&amp;gt;&amp;rsquo;. O objeto Hash criado anteriormente também pode ser
+criado com o literal seguinte:&lt;/p&gt;
+
+&lt;p&gt;```ruby Hash Literal
+números = {&amp;ldquo;um&amp;rdquo; =&amp;gt; 1, &amp;ldquo;dois&amp;rdquo; =&amp;gt; 2, &amp;ldquo;três&amp;rdquo; =&amp;gt; 3}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em geral, objetos &amp;lt;a href=&amp;quot;http://www.ruby-doc.org/core-1.9.2/Symbol.html&amp;quot;&amp;gt;Símbolos&amp;lt;/a&amp;gt; trabalham mais eficientemente como chaves de hash de strings, fazem assim:
+
+```ruby Hash Literal
+números = {:um =&amp;gt; 1,:dois =&amp;gt; 2,:três =&amp;gt; 3}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Os &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Symbol.html&#34;&gt;Símbolos&lt;/a&gt; são imutáveis, escrito como
+prefixados identificadores, que serão explicados em maior detalhe em um outro post.&lt;/p&gt;
+
+&lt;p&gt;Ruby 1.8 permite vírgulas em lugar de setas, mas isso não teve a sintaxe substituída, mais suportado no Ruby 1.9:&lt;/p&gt;
+
+&lt;p&gt;```ruby Hash Literal
+ numeros = {:um, 1, :dois, 2, :tres, 3} # Igual, mas mais difícil de ler&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Tanto Ruby 1.8 quanto no Ruby 1.9 permite uma única vírgula à direita do
+final da lista de chave / valor:
+
+```ruby Hash Literal
+números = {: um =&amp;gt; 1,: dois =&amp;gt; 2} # vírgula extra ignorado
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ruby 1.9 suporta muito útil e sucinto a sintaxe literal de Hash
+quando as chaves são símbolos. Neste caso, move-se para o fim da chave de hash e substitui a seta:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby Hash Literal
+números = {um: 1, dois: 2, tres: 3}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Note-se que pode não haver qualquer espaço entre a chave Hash
+identificador e dos dois pontos.&lt;/p&gt;
+
+&lt;p&gt;Até breve!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

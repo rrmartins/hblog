@@ -1,0 +1,275 @@
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title> threads e concorrencia threads e variaveis part ii number ruby 1 dot 9 &middot; Rodrigo Martins </title>
+    
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/uno.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://rodij.me//css/lightGallery.css" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rodij.me/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="http://rodij.me/favicon.ico">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Rodrigo Martins" />
+    
+    <script src="http://rodij.me//js/jquery.min.js"></script>
+    <script src="http://rodij.me//js/main.min.js">
+    </script>
+</head>
+
+  <body>
+    <div id="scriptHeader">
+    <span class="mobile btn-mobile-menu">
+            <i class="fa fa-bars btn-mobile-menu__icon"></i>
+            <i class="fa fa-times btn-mobile-close__icon hidden"> </i>
+    </span>
+    <header class="
+        
+            panel-cover panel-cover--collapsed
+        "  style="background-image: url(/images/pedraazul.jpg)" >
+    <div class="panel-main">
+        <div class="panel-main__inner panel-inverted">
+            <div class="panel-main__content"> 
+                <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                <h1 class="panel-cover__title panel-title">
+                    <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                </h1>
+                <hr class="panel-cover__divider" />
+                <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)  </p>
+                <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                <div class="navigation-wrapper">
+                    <nav class="cover-navigation cover-navigation--primary">
+                        <ul class="navigation">
+                            <li class="navigation__item"><a href="http://rodij.me/#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                            
+                            
+                       </ul>
+                    </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+            </div>
+        </div>
+        <div class="panel-cover--overlay"></div>
+    </div>
+</header>
+</div>
+<noscript>
+    <style>
+        #scriptHeader {display:none;}
+        .navigation-wrapper{
+            display: block;
+            top: 0;
+        }
+    </style>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/pedraazul.jpg)">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content"> 
+                    <a href="http://rodij.me//" title="link to homepage for Rodrigo Martins"> <img src="http://rodij.me/images/logo.jpg" width="80" alt="Rodrigo Martins logo" class="panel-cover__logo logo" /> </a> 
+                    <h1 class="panel-cover__title panel-title">
+                        <a href="http://rodij.me//"  title="link to homepage for Rodrigo Martins">Rodrigo Martins</a>
+                    </h1>
+                    <hr class="panel-cover__divider" />
+                    <p class="panel-cover__description">  I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)  </p>
+                    <hr class="panel-cover__divider panel-cover__divider--secondary" />
+                    <div class="navigation-wrapper">
+                        <nav class="cover-navigation cover-navigation--primary">
+                            <ul class="navigation">
+                                <li class="navigation__item"><a href="http://rodij.me//#blog" title="link to Rodrigo Martins blog" class="blog-button">Blog</a> </li></br>
+                                
+                                
+                           </ul>
+                        </nav> <nav class="cover-navigation navigation--social">
+    <ul class="navigation"> 
+        
+        <li class="navigation__item">
+            <a href="http://twitter.com/rodijme" title="@rodijme on Twitter"> <i class='fa fa-twitter'></i> <span class="label">Twitter</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://bitbucket.org/rrmartins" title="rrmartins on bitbucket"> <i class='fa fa-bitbucket'></i> <span class="label">Bitbucket</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="https://github.com/rrmartins" title="rrmartins on github"> <i class='fa fa-github'></i> <span class="label">Github</span> </a>
+        </li>  </br>  
+        
+        <li class="navigation__item">
+            <a href="http://no.linkedin.com/in/rrmartins/en" title="Linkedin"> <i class='fa fa-linkedin'></i> <span class="label">Linkedin</span> </a>
+        </li>  
+        
+        <li class="navigation__item">
+            <a href="mailto:rrmartinsjg@gmail.com" title="Email rrmartinsjg@gmail.com"> <i class='fa fa-envelope-o'></i> <span class="label">Email</span> </a>
+        </li>  </ul>
+</nav>
+ </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay"></div>
+        </div>
+    </header>
+</noscript>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="post">
+          <h1>threads e concorrencia threads e variaveis part ii number ruby 1 dot 9</h1>
+          <span class="post-date">Sun, Oct 28, 2012</span>
+          
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&hellip;</p>
+
+<h2 id="threads-e-concorrência">Threads e Concorrência</h2>
+
+<h3 id="threads-e-variáveis">Threads e Variáveis</h3>
+
+<p>Uma das características-chave de <code>Thread</code> é que elas podem compartilhar o acesso a variáveis. Como <code>Threads</code> são definidas
+por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
+ assim por diante) estão no escopo do bloco:</p>
+
+<p>``` ruby Thread e Variavel
+x = 0</p>
+
+<p>t1 = Thread.new do
+  # Esta Thread pode consultar e definir a variável x
+end</p>
+
+<p>t2 = Thread.new do
+  # Esta Thread e também consulta e seta x
+  # E pode consultar e definir T1 e T2 também.
+end</p>
+
+<pre><code>
+Quando dois ou mais `Thread` de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
+fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de `threads` abaixo.
+
+#### Thread-privadas variáveis
+
+Variáveis ​​definidas dentro do bloco de uma `thread` são particulares para essa `thread` e não são visíveis para qualquer
+outra `thread`. Isto é simplesmente consequência de regras de variáveis de escopo ​​Ruby.
+
+Muitas vezes queremos uma `Thread` tenha sua própria cópia privada de uma variável de modo a que o seu comportamento não se
+altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
+respectivamente) os números 1, 2 e 3:
+
+``` ruby Threads Privadas
+n = 1
+while n &lt;= 3
+  Thread.new { puts n }
+  n += 1
+end
+</code></pre>
+
+<p>Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
+3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
+criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da
+variável n, e o valor ds mudanças de variáveis ​​como o loop é executado. O valor impresso pela <code>thread</code> depende de quando esse
+segmento é executado em relação para a thread pai.</p>
+
+<p>Para resolver este problema, passamos o valor atual de n para o método <code>Thread.new</code>, e atribuimos o atual valor da variável a
+um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:</p>
+
+<p>``` ruby Threads Privadas
+n = 1
+while n &lt;= 3
+  # Obtem uma cópia privada do valor atual de n em x
+  Thread.new(n) {|x| puts x }
+  n += 1
+end</p>
+
+<pre><code>
+Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop `while`. Neste
+caso, o valor de `n` é modificado para particular para o bloco externo e nunca durante a execução desse bloco:
+
+```ruby Thread Privada com Interator
+1.upto (3) {| n | Thread.new {puts n}}
+</code></pre>
+
+<h4 id="variáveis-de-threads-locais">Variáveis ​​de Threads locais</h4>
+
+<p>Algumas das variáveis especiais globais de Ruby são <code>thread</code> local: elas podem ter valores diferentes em <code>threads</code> diferentes.
+<code>$SAFE</code> e <code>$~</code> são exemplos. Isto significa que, se dois <code>thread</code> estão realizando conconrrencia de expressão regular ao mesmo
+tempo, eles vão ver diferentes valores de <code>$~</code>, e a realização de um jogo em um fio não irá interferir com os resultados de
+um jogo executado na outra discussão.</p>
+
+<p>A classe <code>Thread</code> provê <code>hash-like</code> como o comportamento. Ele define métodos de instância <code>[]</code> e <code>[]=</code> que permitem associar
+valores arbitrários com qualquer símbolo. (Se você usar uma cadeia de caracteres em vez disso, ele será convertido em um
+símbolo. Ao contrário <code>hashs</code> de verdade, a classe <code>Thread</code> só permite símbolos como chaves.) Os valores associados a estes
+símbolos comportam-se como variáveis ​​de <code>Thread</code> locais. Eles não são privados como variáveis de block ​​locais porque qualquer
+<code>Thread</code> pode pesquisar um valor em qualquer outra <code>Thread</code>. Mas eles não são variáveis partilhadas, uma vez que cada Thread
+pode ter a sua própria cópia.</p>
+
+<p>Como exemplo, suponha que nós criamos <code>thread</code> para download de arquivos de um servidor web. A <code>Thread</code> principal pode querer
+monitorar o progresso do download. Para permitir isso, cada <code>Thread</code> pode fazer o seguinte:</p>
+
+<p>```ruby Thread de progresso
+Thread.current[:progress] = bytes_received</p>
+
+<pre><code>
+A `Thread` principal poderia, então, determinar o total de bytes baixado com um código como este:
+
+```ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] }
+</code></pre>
+
+<p>Junto com <code>[]</code> e <code>[]=</code>, <code>Thread</code> também define um método <code>key?</code> para testar se uma determinada chave existe para uma discussão
+. Os métodos <code>keys</code> retorna uma matriz de símbolos que representam as chaves definidas para a <code>Thread</code>. Este código pode ser
+melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
+:progress ainda:</p>
+
+<p><code>ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
+</code></p>
+
+<p>Até a proxima galera! :D</p>
+
+        </div>
+        <div class="sharing">
+<a href="https://twitter.com/intent/tweet?status=threads%20e%20concorrencia%20threads%20e%20variaveis%20part%20ii%20number%20ruby%201%20dot%209-http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9%2f" target="_blank" title="Follow me on Twitter" class="twitter">
+<span class="fa fa-twitter-square fa-3x"></span></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9%2f" target="_blank" title="Join me on Facebook" class="facebook">
+<span class="fa fa-facebook-square fa-3x"></span></a>
+<a href="https://plus.google.com/share?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9%2f" target="_blank" title="Google+" class="googleplus">
+<span class="fa fa-google-plus-square fa-3x"></span></a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9%2f&title=threads%20e%20concorrencia%20threads%20e%20variaveis%20part%20ii%20number%20ruby%201%20dot%209" target="_blank" title="LinkedIn" class="linkedin">
+<span class="fa fa-linkedin-square fa-3x"></span></a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9%2f" target="_blank" title="Reddit" class="reddit"><span class="fa fa-reddit-square fa-3x"></span></a>
+<a href="http://www.stumbleupon.com/submit?url=http%3a%2f%2frodij.me%2fpost%2f2012%2f10%2f28%2fthreads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9%2f" target="_blank" title="StumbleUpon" class="stumbleupon"><span class="fa fa-stumbleupon fa-3x">
+</span></a>
+</div>
+        
+
+
+
+      </div>
+    </div>
+
+  </body>
+  
+</html>

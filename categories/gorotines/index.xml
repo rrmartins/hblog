@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Gorotines on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/gorotines/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Sat, 16 Apr 2016 00:00:00 UTC</updated>
+    
+    <item>
+      <title>go what is goroutines</title>
+      <link>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;The first question is &lt;strong&gt;&lt;em&gt;What is goroutines?&lt;/em&gt;&lt;/strong&gt; Ok! Let&amp;rsquo;s go!&lt;/p&gt;
+
+&lt;p&gt;Goroutines is lightweight threads of execution, that is capable of running concurrently with other functions. More used in Concurrency Programming.&lt;/p&gt;
+
+&lt;h2 id=&#34;an-example-basic&#34;&gt;An example basic&lt;/h2&gt;
+
+&lt;h3 id=&#34;goroutines-in-the-main-body-of-the-main-func&#34;&gt;Goroutines in the main body of the main func&lt;/h3&gt;
+
+&lt;p&gt;Create a main.go file in your folder. We write the beginning:
+``` go Beginnig of main.go
+    package main&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;time&amp;quot;
+)
+
+func main() {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+This is the scope default of our file. How the gorotines run in background, let&#39;s put a break on progress. we will add the codes below at the end of the main function in the file.
+
+``` go Input a break
+  var input string
+  fmt.Scanln(&amp;amp;input)
+  fmt.Println(&amp;quot;done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok! We make a calculation and print anything every 500 milliseconds. Add the codes below after of &lt;code&gt;func main() {&lt;/code&gt;, called of main func.&lt;/p&gt;
+
+&lt;p&gt;``` go Call gorotines
+  index := 0&lt;/p&gt;
+
+&lt;p&gt;go func(){
+    for index &amp;lt; 10 {
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; index is %d\n&amp;rdquo;, index)
+      var result float64 = 2.5 * float64(index)
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; result is %.2f\n&amp;rdquo;, result)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  time.Sleep(500 * time.Millisecond)
+  index++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}()&lt;/p&gt;
+
+&lt;p&gt;go fmt.Printf(&amp;ldquo;print in the background\n&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+The end, our file `main.go` it&#39;s:
+
+``` go File complete
+  package main
+
+  import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+  )
+
+  func main() {
+    index := 0
+
+    go func(){
+      for index &amp;lt; 6 {
+        fmt.Printf(&amp;quot;&#39;go func()&#39; index %d\n&amp;quot;, index)
+        var result float64 = 2.5 * float64(index)
+        fmt.Printf(&amp;quot;&#39;go func()&#39; result %.2f\n&amp;quot;, result)
+
+        time.Sleep(500 * time.Millisecond)
+        index++
+      }
+    }()
+
+
+    go fmt.Printf(&amp;quot;print in the background\n&amp;quot;)
+
+    // press ENTER to exit
+    var input string
+    fmt.Scanln(&amp;amp;input)
+    fmt.Println(&amp;quot;done!&amp;quot;)
+  }
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now run in terminal and your folder of project:&lt;/p&gt;
+
+&lt;p&gt;``` bash run package
+  ❯ go run main.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And output is:
+
+``` bash Output in terminal
+  print in the background
+  &#39;go func()&#39; index 0
+  &#39;go func()&#39; result 0.00
+  &#39;go func()&#39; index 1
+  &#39;go func()&#39; result 2.50
+  &#39;go func()&#39; index 2
+  &#39;go func()&#39; result 5.00
+  &#39;go func()&#39; index 3
+  &#39;go func()&#39; result 7.50
+  &#39;go func()&#39; index 4
+  &#39;go func()&#39; result 10.00
+  &#39;go func()&#39; index 5
+  &#39;go func()&#39; result 12.50
+
+  done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;gorotines-with-functions&#34;&gt;Gorotines with functions&lt;/h3&gt;
+
+&lt;p&gt;The example with even above file.&lt;/p&gt;
+
+&lt;p&gt;To execute gorotines of other function, it is only pass &lt;code&gt;go &amp;lt;name_func&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We create an function, call &lt;code&gt;Add()&lt;/code&gt; in file.&lt;/p&gt;
+
+&lt;p&gt;``` go New function Add()
+  func Add(a, b int){
+    fmt.Printf(&amp;ldquo;Add() result is %d\n&amp;rdquo;, a + b)
+  }&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Then, we call `Add()` func, with `go Add(&amp;lt;number_1&amp;gt;, &amp;lt;number_2&amp;gt;)`, within the `main()` func.
+
+``` go Call Add() func
+  go Add(8,3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;main()&lt;/code&gt; func will look like this:&lt;/p&gt;
+
+&lt;p&gt;``` go main() func complete
+  go Add(8,3)&lt;/p&gt;
+
+&lt;p&gt;index := 0&lt;/p&gt;
+
+&lt;p&gt;go func(){
+    for index &amp;lt; 6 {
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; index %d\n&amp;rdquo;, index)
+      var result float64 = 2.5 * float64(index)
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; result %.2f\n&amp;rdquo;, result)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  time.Sleep(500 * time.Millisecond)
+  index++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}()&lt;/p&gt;
+
+&lt;p&gt;go fmt.Printf(&amp;ldquo;print in the background\n&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;// press ENTER to exit
+  var input string
+  fmt.Scanln(&amp;amp;input)
+  fmt.Println(&amp;ldquo;done!&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And the output is:
+
+``` bash
+  ❯ go run main.go
+  Add() result is 11
+  print in the background
+  &#39;go func()&#39; index 0
+  &#39;go func()&#39; result 0.00
+  &#39;go func()&#39; index 1
+  &#39;go func()&#39; result 2.50
+  &#39;go func()&#39; index 2
+  &#39;go func()&#39; result 5.00
+  &#39;go func()&#39; index 3
+  &#39;go func()&#39; result 7.50
+  &#39;go func()&#39; index 4
+  &#39;go func()&#39; result 10.00
+  &#39;go func()&#39; index 5
+  &#39;go func()&#39; result 12.50
+
+  done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

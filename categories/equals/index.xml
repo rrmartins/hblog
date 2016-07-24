@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Equals on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/categories/equals/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 10 May 2012 00:00:00 UTC</updated>
+    
+    <item>
+      <title>o mundo hash no ruby 1 dot 9 2 parte iii hashs codes</title>
+      <link>http://rodij.me/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</link>
+      <pubDate>Thu, 10 May 2012 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/</guid>
+      <description>&lt;p&gt;Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language&lt;/p&gt;
+&lt;p&gt;Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.&lt;/p&gt;
+
+&lt;h3&gt;Códigos de Hash, Igualdade e mutáveis Chaves&lt;/h3&gt;
+
+&lt;p&gt;Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
+estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Fixnum.html&#34;&gt;Fixnum&lt;/a&gt; hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
+hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash&amp;rsquo;s de tabelas são mais eficientes quando hashcodes duplicados são raros.&lt;/p&gt;
+
+&lt;p&gt;A classe Hash compara chaves igualdade com o método &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-eql-3F&#34;&gt;eql?&lt;/a&gt;. Para
+outras classes Ruby, eql? obras como o operador == . Se você definir uma nova classe que
+substitui o método eql?, você deve também substituir o método &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-hash&#34;&gt;hash&lt;/a&gt;, ou se não as instâncias de sua classe não vam funcionar como chaves em um hash.&lt;/p&gt;
+
+&lt;p&gt;Se você definir uma classe e não sobreescrever o método eql?, em seguida, as instâncias dessa classe são
+comparadas com a identidade do objeto quando usado como chave de hash. Duas instâncias distintas de sua classe são distintas chaves de hash mesmo que eles representam o mesmo conteúdo. Neste caso, o método padrão hash é apropriado: retorna a única object_id do objeto.&lt;/p&gt;
+
+&lt;p&gt;Note-se que objetos mutáveis ​​são problemáticos como chaves de hash. Mudar o conteúdo de um objeto geralmente muda seu hashcode. Se você usar um objeto como uma chave e então alterar esse objeto, a tabela de hash ficará corrompida, e o hash não funciona corretamente.&lt;/p&gt;
+
+&lt;p&gt;Porque strings são mutáveis, mas comumente usamos chaves de hash, Ruby trata eles como um caso especial e faz cópias privadas de todas as cadeias utilizadas como chaves. Este é o único caso especial, no entanto, você deve ser muito cuidado ao usar qualquer outro objeto mutável como uma chave hash. Considera fazendo uma cópia privada ou chamando o método &lt;a href=&#34;http://ruby-doc.org/core-1.9.2/Object.html#method-i-freeze&#34;&gt;freeze&lt;/a&gt;.
+Se você deve usar chaves de hash mutável, chame o método &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-rehash&#34;&gt;rehash&lt;/a&gt; do Hash cada vez que você alterar uma chave.&lt;/p&gt;
+
+&lt;p&gt;-&amp;gt; &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.2/Hash.html&#34;&gt;Hash&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a proxima!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

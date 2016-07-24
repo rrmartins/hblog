@@ -1,0 +1,1624 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title> on Rodrigo Martins </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://rodij.me/</link>
+    <language>en-us</language>
+    
+    <copyright>I&#39;m a Catholic Christian, software developer, passionate about life, codes, questions, theories and theorems. :)</copyright>
+    <updated>Thu, 12 May 2016 00:00:00 UTC</updated>
+    
+    <item>
+      <title>go difference between map</title>
+      <link>http://rodij.me/post/2016/05/12/go-difference-between-map/</link>
+      <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/05/12/go-difference-between-map/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s talk a little about &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;slice&lt;/code&gt; and &lt;code&gt;array&lt;/code&gt; in &lt;a href=&#34;https://golang.org/&#34;&gt;Go language&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#map&#34;&gt;Map&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#slice&#34;&gt;Slice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#array&#34;&gt;Array&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I go start talk with &lt;a href=&#34;https://golang.org/pkg/go/types/#Map&#34;&gt;map&lt;/a&gt;:&lt;/p&gt;
+
+&lt;h2 id=&#34;a-name-map-maps-a&#34;&gt;&lt;a name=&#34;map&#34;&gt;Maps&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gobyexample.com/maps&#34;&gt;Maps are Go’s built-in associative data type (sometimes called hashes or dicts in other languages).&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go create a map empty, use the structure &lt;code&gt;make(map[key-type]val-type)&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` go map empty
+  m := make(map[string]int)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+By setting the key and value:
+
+``` go set key/value
+  m[&amp;quot;one&amp;quot;] = 12
+  m[&amp;quot;two&amp;quot;] = 05
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get a value of key:&lt;/p&gt;
+
+&lt;p&gt;``` go get valeu
+value := m[&amp;ldquo;one&amp;rdquo;]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Easy!
+
+To return size the map:
+
+``` go size map
+len := len(m)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Deleted a key:&lt;/p&gt;
+
+&lt;p&gt;``` go delete key
+delete(m, &amp;ldquo;two&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+If want get `m[&amp;quot;two&amp;quot;]` after delete key, the return is `0`, but can use `_` (blank identifier).
+
+``` go get value deleted
+_, can_valeu := m[&amp;quot;two&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then the value of &lt;code&gt;can_valeu&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create map with key type integer:&lt;/p&gt;
+
+&lt;p&gt;``` go key integer
+m := make(map[int]int)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+``` go set key/value of type integer
+  m[1] = 12
+  m[2] = 05
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using a map in a loop:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;for i := range m {
+    fmt.Println(&amp;quot;i:&amp;quot;, i)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/cefa8dc31c20f6face293846316ac9f3.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;a-name-slice-slice-a&#34;&gt;&lt;a name=&#34;slice&#34;&gt;Slice&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Go talk about &lt;a href=&#34;https://golang.org/pkg/go/types/#Slice&#34;&gt;Slice&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gobyexample.com/slices&#34;&gt;Slices are a key data type in Go, giving a more powerful interface to sequences than arrays.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a slice the values of string type and with the length 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;myslice := make([]string, 3)
+fmt.Println(&amp;quot;myslice:&amp;quot;, myslice)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;myslice&lt;/code&gt; slice is &lt;code&gt;[   ]&lt;/code&gt;, initially zero valued. Now go set values.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;myslice[0] = &amp;quot;a&amp;quot;
+myslice[1] = &amp;quot;b&amp;quot;
+myslice[2] = &amp;quot;c&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get value, use &lt;code&gt;slice[key]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;myslice[2]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When create a slice, the default type of key is integer.&lt;/p&gt;
+
+&lt;p&gt;Get length is equal the &lt;code&gt;map&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;``` go length slice
+len(myslice)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+To add new values in our slice, use `append(slice, value[s])`:
+
+``` go append
+myslice = append(myslice, &amp;quot;d&amp;quot;)
+myslice = append(myslice, &amp;quot;e&amp;quot;)
+myslice = append(myslice, &amp;quot;f&amp;quot;, &amp;quot;g&amp;quot;, &amp;quot;h&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can cut a slice from one location to another:&lt;/p&gt;
+
+&lt;p&gt;``` go cut a slice
+myslice[1:4] // from position 1 to the position 4
+myslice[1:] // from position 1 to the end
+myslice[:4] // from position 0 to the position 4&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+We have other ways of working with slice.
+
+&amp;lt;script src=&amp;quot;https://gist.github.com/rrmartins/359fba134ae3937efd802d36b0028f72.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+## &amp;lt;a name=&amp;quot;array&amp;quot;&amp;gt;Array&amp;lt;/a&amp;gt;
+Go talk about [Array](https://golang.org/pkg/go/types/#Array).
+
+[In Go, an array is a numbered sequence of elements of a specific length.](https://gobyexample.com/arrays)
+
+Array is most simple.
+
+Create a array with position 10, of type string:
+
+``` go create a array
+var arr [10]string
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The default valeu an array is zero-valued, which for string means &amp;ldquo;&amp;rdquo;, if the array were of type integer, then the default values would be 0.&lt;/p&gt;
+
+&lt;p&gt;To set value, is need speak key of array.&lt;/p&gt;
+
+&lt;p&gt;``` go set value
+arr[0] = &amp;ldquo;one str&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Get is equal `map` and `slice`:
+
+``` go get value
+arr[0] // easy! :)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get the length of array, &lt;code&gt;len()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;go len()
+len(arr)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/5d6a97199a631bcefc91e492d206e53e.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Many other functions of &lt;code&gt;array&lt;/code&gt; are similar of &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;slices&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gobyexample.com/&#34;&gt;gobyexample.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.golang.org/go-maps-in-action&#34;&gt;blog.golang.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://golang.org/pkg/go/types/&#34;&gt;golang.org/pkg/go/types/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rss collector in ruby and go</title>
+      <link>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</link>
+      <pubDate>Thu, 12 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/05/12/rss-collector-in-ruby-and-go/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;My idea is to do a project in Go and Ruby, to make a simple parse the same url to an rss feed, and check how long it takes each run of languages.&lt;/p&gt;
+
+&lt;p&gt;Come on!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#ruby&#34;&gt;Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#go&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;a-name-ruby-ruby-a&#34;&gt;&lt;a name=&#34;ruby&#34;&gt;Ruby&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s first talk about the project in &lt;a href=&#34;https://www.ruby-lang.org/en/&#34;&gt;Ruby&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We will have a class called &lt;code&gt;Parse::Rss&lt;/code&gt;, with some methods, as: &lt;code&gt;get_title()&lt;/code&gt;, &lt;code&gt;get_description()&lt;/code&gt;, &lt;code&gt;get_link()&lt;/code&gt;, &lt;code&gt;get_categories()&lt;/code&gt;, &lt;code&gt;get_total_items()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We used the &lt;a href=&#34;https://rubygems.org/gems/rrsimple-rss&#34;&gt;rrsimple-rss&lt;/a&gt; and &lt;a href=&#34;http://ruby-doc.org/stdlib-2.2.0/libdoc/open-uri/rdoc/OpenURI.html&#34;&gt;open-uri&lt;/a&gt; gem. Below is ready class. I do not do anything different, but to do the get the fields that the gem returns.&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/a29a2251e411d0d93d77ac376ba36a25.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The main file, start the url variable with a value already set and start the Parse :: Rss class. initializing the class will already run parse the url and return the object that the gem returns.&lt;/p&gt;
+
+&lt;p&gt;``` ruby initializing url and Parse with url
+url = &amp;ldquo;&lt;a href=&#34;http://golangweekly.com/rss/1g2bo910&amp;quot;&#34;&gt;http://golangweekly.com/rss/1g2bo910&amp;quot;&lt;/a&gt;
+parserss = Parse::Rss.new(url)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Now is print the returns.
+
+&amp;lt;script src=&amp;quot;https://gist.github.com/rrmartins/dcc47cd10d4c17ec04fd3add6563033a.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+We run `bundle install` to install the gems of `Gemfile`:
+
+``` bash
+$ bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When running &lt;code&gt;main.rb&lt;/code&gt; file return of the &lt;code&gt;Parse::Rss&lt;/code&gt; class and execution of time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ruby main.rb
+The Title is: Go Newsletter
+The Description is: A weekly newsletter about the Go programming language
+The Link is: http://golangweekly.com/
+The Categories is No have Categories
+The total of Items is: 4
+
+  0.360000   0.020000   0.380000 (  4.406442)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Project on github: &lt;a href=&#34;https://github.com/rrmartins/parserssrb&#34;&gt;parserssrb&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;a-name-go-go-a&#34;&gt;&lt;a name=&#34;go&#34;&gt;Go&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s talk about the project in &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We use go from the standard libraries, as: &lt;a href=&#34;https://godoc.org/fmt&#34;&gt;fmt&lt;/a&gt;, &lt;a href=&#34;https://godoc.org/time&#34;&gt;time&lt;/a&gt; and &lt;a href=&#34;github.com/mmcdole/gofeed&#34;&gt;gofeed&lt;/a&gt;, only this.&lt;/p&gt;
+
+&lt;p&gt;As we have an external package, you will need to install using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go get github.com/mmcdole/gofeed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok!&lt;/p&gt;
+
+&lt;p&gt;Now create the file &lt;code&gt;parse/rss.go&lt;/code&gt;, in package &lt;code&gt;parse&lt;/code&gt;:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/8947db95092780edf3be7f717690b89f.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;We create &lt;code&gt;main.go&lt;/code&gt; in root path, this file we used &lt;a href=&#34;https://godoc.org/time&#34;&gt;time&lt;/a&gt; to calculate time run the project.&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/780fcd02e7fa4a8646fbf3ef256195ec.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;When running &lt;code&gt;main.go&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ go run main.go                                                              
+Starting get
+The Title is: Go Newsletter
+The Description is: A weekly newsletter about the Go programming language
+The Link is: http://golangweekly.com/
+The Categories is No have Categories
+The total of Items is: 4
+
+Benchmark: 2.20670856s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Project on github: &lt;a href=&#34;https://github.com/rrmartins/grfeed&#34;&gt;grfeed&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In a quick comparison with the &amp;ldquo;same&amp;rdquo; functionality, &lt;code&gt;Go&lt;/code&gt; was faster than &lt;code&gt;Ruby&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks! Until next time!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>go simple tests number testing number go</title>
+      <link>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</link>
+      <pubDate>Tue, 19 Apr 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/04/19/go-simple-tests-number-testing-number-go/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s talk about simple tests using Go with &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; package.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s get a file &lt;code&gt;simplemath.go&lt;/code&gt; by my gist:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/237ce663485d7c961a74af61e95cc3a4.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;our-test&#34;&gt;Our test&lt;/h2&gt;
+
+&lt;p&gt;With this file basic, go to our test.&lt;/p&gt;
+
+&lt;p&gt;Create test folder, and simplemath_test.go in this folder.&lt;/p&gt;
+
+&lt;p&gt;We will need of &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; package.&lt;/p&gt;
+
+&lt;p&gt;``` go Import testing
+import (
+  &amp;ldquo;testing&amp;rdquo;
+)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And import the `simplemath` package.
+
+``` go Import simplemath package
+import (
+  &amp;quot;testing&amp;quot;
+  &amp;quot;imartins/modulesimple/simplemodule/simplemath&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember of put in this file the first line the code: &lt;code&gt;package simplemath&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;``` go Package simplemath in simplemath_test
+package simplemath&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+### Add()
+
+Let&#39;s test the `Add()` function.
+
+Under the import of packets add the func.
+
+``` go Test Add() function
+func TestAdd(t *testing.T) {
+	t.Log(&amp;quot;Called simplemath class and Add() method&amp;quot;)
+  c := simplemath.Add(5,8)
+
+	if c != 13 {
+		t.Errorf(&amp;quot;Expected c of 13, but it was %d instead.&amp;quot;, c)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running the test:
+``` bash running
+$ go test test/simplemath_test.go
+ok      command-line-arguments  0.013s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Running the verbose format:
+``` bash verbose
+$ go test -v test/simplemath_test.go
+=== RUN   TestAdd
+--- PASS: TestAdd (0.00s)
+	simplemath_test.go:9: Called simplemath class and Add() method
+PASS
+ok  	command-line-arguments	0.011s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;news-tests-with-multiply-and-subtract&#34;&gt;News tests with Multiply() and Subtract()&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;simplemath_test.go&lt;/code&gt; file completed this down with the other test functions&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/rrmartins/80384f827c799adaae2cc8c3beb706a5.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Thanks guys! To the next post!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>go what is goroutines</title>
+      <link>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2016/04/16/go-what-is-goroutines/</guid>
+      <description>
+
+&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;The first question is &lt;strong&gt;&lt;em&gt;What is goroutines?&lt;/em&gt;&lt;/strong&gt; Ok! Let&amp;rsquo;s go!&lt;/p&gt;
+
+&lt;p&gt;Goroutines is lightweight threads of execution, that is capable of running concurrently with other functions. More used in Concurrency Programming.&lt;/p&gt;
+
+&lt;h2 id=&#34;an-example-basic&#34;&gt;An example basic&lt;/h2&gt;
+
+&lt;h3 id=&#34;goroutines-in-the-main-body-of-the-main-func&#34;&gt;Goroutines in the main body of the main func&lt;/h3&gt;
+
+&lt;p&gt;Create a main.go file in your folder. We write the beginning:
+``` go Beginnig of main.go
+    package main&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import (
+  &amp;quot;fmt&amp;quot;
+  &amp;quot;time&amp;quot;
+)
+
+func main() {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+This is the scope default of our file. How the gorotines run in background, let&#39;s put a break on progress. we will add the codes below at the end of the main function in the file.
+
+``` go Input a break
+  var input string
+  fmt.Scanln(&amp;amp;input)
+  fmt.Println(&amp;quot;done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok! We make a calculation and print anything every 500 milliseconds. Add the codes below after of &lt;code&gt;func main() {&lt;/code&gt;, called of main func.&lt;/p&gt;
+
+&lt;p&gt;``` go Call gorotines
+  index := 0&lt;/p&gt;
+
+&lt;p&gt;go func(){
+    for index &amp;lt; 10 {
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; index is %d\n&amp;rdquo;, index)
+      var result float64 = 2.5 * float64(index)
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; result is %.2f\n&amp;rdquo;, result)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  time.Sleep(500 * time.Millisecond)
+  index++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}()&lt;/p&gt;
+
+&lt;p&gt;go fmt.Printf(&amp;ldquo;print in the background\n&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+The end, our file `main.go` it&#39;s:
+
+``` go File complete
+  package main
+
+  import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+  )
+
+  func main() {
+    index := 0
+
+    go func(){
+      for index &amp;lt; 6 {
+        fmt.Printf(&amp;quot;&#39;go func()&#39; index %d\n&amp;quot;, index)
+        var result float64 = 2.5 * float64(index)
+        fmt.Printf(&amp;quot;&#39;go func()&#39; result %.2f\n&amp;quot;, result)
+
+        time.Sleep(500 * time.Millisecond)
+        index++
+      }
+    }()
+
+
+    go fmt.Printf(&amp;quot;print in the background\n&amp;quot;)
+
+    // press ENTER to exit
+    var input string
+    fmt.Scanln(&amp;amp;input)
+    fmt.Println(&amp;quot;done!&amp;quot;)
+  }
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now run in terminal and your folder of project:&lt;/p&gt;
+
+&lt;p&gt;``` bash run package
+  ❯ go run main.go&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And output is:
+
+``` bash Output in terminal
+  print in the background
+  &#39;go func()&#39; index 0
+  &#39;go func()&#39; result 0.00
+  &#39;go func()&#39; index 1
+  &#39;go func()&#39; result 2.50
+  &#39;go func()&#39; index 2
+  &#39;go func()&#39; result 5.00
+  &#39;go func()&#39; index 3
+  &#39;go func()&#39; result 7.50
+  &#39;go func()&#39; index 4
+  &#39;go func()&#39; result 10.00
+  &#39;go func()&#39; index 5
+  &#39;go func()&#39; result 12.50
+
+  done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;gorotines-with-functions&#34;&gt;Gorotines with functions&lt;/h3&gt;
+
+&lt;p&gt;The example with even above file.&lt;/p&gt;
+
+&lt;p&gt;To execute gorotines of other function, it is only pass &lt;code&gt;go &amp;lt;name_func&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We create an function, call &lt;code&gt;Add()&lt;/code&gt; in file.&lt;/p&gt;
+
+&lt;p&gt;``` go New function Add()
+  func Add(a, b int){
+    fmt.Printf(&amp;ldquo;Add() result is %d\n&amp;rdquo;, a + b)
+  }&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Then, we call `Add()` func, with `go Add(&amp;lt;number_1&amp;gt;, &amp;lt;number_2&amp;gt;)`, within the `main()` func.
+
+``` go Call Add() func
+  go Add(8,3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;main()&lt;/code&gt; func will look like this:&lt;/p&gt;
+
+&lt;p&gt;``` go main() func complete
+  go Add(8,3)&lt;/p&gt;
+
+&lt;p&gt;index := 0&lt;/p&gt;
+
+&lt;p&gt;go func(){
+    for index &amp;lt; 6 {
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; index %d\n&amp;rdquo;, index)
+      var result float64 = 2.5 * float64(index)
+      fmt.Printf(&amp;ldquo;&amp;lsquo;go func()&amp;rsquo; result %.2f\n&amp;rdquo;, result)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  time.Sleep(500 * time.Millisecond)
+  index++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}()&lt;/p&gt;
+
+&lt;p&gt;go fmt.Printf(&amp;ldquo;print in the background\n&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;// press ENTER to exit
+  var input string
+  fmt.Scanln(&amp;amp;input)
+  fmt.Println(&amp;ldquo;done!&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+And the output is:
+
+``` bash
+  ❯ go run main.go
+  Add() result is 11
+  print in the background
+  &#39;go func()&#39; index 0
+  &#39;go func()&#39; result 0.00
+  &#39;go func()&#39; index 1
+  &#39;go func()&#39; result 2.50
+  &#39;go func()&#39; index 2
+  &#39;go func()&#39; result 5.00
+  &#39;go func()&#39; index 3
+  &#39;go func()&#39; result 7.50
+  &#39;go func()&#39; index 4
+  &#39;go func()&#39; result 10.00
+  &#39;go func()&#39; index 5
+  &#39;go func()&#39; result 12.50
+
+  done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>comparando auto increments ruby x golang</title>
+      <link>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/10/08/comparando-auto-increments-ruby-x-golang/</guid>
+      <description>&lt;p&gt;Æ,&lt;/p&gt;
+
+&lt;p&gt;Comparando algumas coisa de duas linguagens, &lt;a href=&#34;http://ruby-doc.org/&#34;&gt;Ruby&lt;/a&gt; e &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;, me deparei com seus &lt;code&gt;Auto Increment&#39;s&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Enquanto em Ruby fazemos assim:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Auto Increment Ruby
+   &amp;gt; a = 0
+   =&amp;gt; 0
+   a += 1
+   =&amp;gt; 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em Go, fazemos de forma um pouco mais simplificado - não sei se era essa a intenção deles.
+
+``` go Auto Increment Golang
+   a := 0
+   a ++
+   fmt.Printf(&amp;quot;a = %d&amp;quot;,a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A saída será: &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;E em caso para decrementar:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Auto Decrement Ruby
+   &amp;gt; a = 0
+   =&amp;gt; 0
+   a -= 1
+   =&amp;gt; -1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Em Go:
+
+``` go Auto Decrement Golang
+   a := 0
+   a --
+   fmt.Printf(&amp;quot;a = %d&amp;quot;,a)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A saída será: &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Rapidinho né?! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>expressao ternaria em go</title>
+      <link>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/10/08/expressao-ternaria-em-go/</guid>
+      <description>&lt;p&gt;Æ galera,&lt;/p&gt;
+
+&lt;p&gt;Então, esses dias fui fazer um post sobre &lt;a href=&#34;http://rodij.me/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/&#34;&gt;como resolver um problema de $PORT em GO&lt;/a&gt;, e queria fazer uma validação com uma &lt;a href=&#34;https://en.wikipedia.org/wiki/%3F:&#34;&gt;Expressão Ternária ( ? : )&lt;/a&gt;, porem explodia um errinho no console.&lt;/p&gt;
+
+&lt;p&gt;Tal erro:&lt;/p&gt;
+
+&lt;p&gt;``` go Error Illegal Character
+    illegal character U+003F &amp;lsquo;?&amp;rsquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Pois bem, no mundo ruby, seria algo assim:
+
+``` ruby Expressão Ternária
+    c = a != &amp;quot;&amp;quot; ? a : &amp;quot;8080&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mas, o jeito &amp;ldquo;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; de ser&amp;rdquo;, ficou assim:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;go &#39;Pseudo-Expressao Ternaria&#39; em Go
+    c = map[bool]string{true: a, false: &amp;quot;8080&amp;quot;}[a != &amp;quot;&amp;quot;]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta forma que escrevemos em Go, já temos os retornos da validação, e ali pode retornar uma &lt;code&gt;func&lt;/code&gt; ou valores quaisquer, dependendo da validação.&lt;/p&gt;
+
+&lt;p&gt;Valeu, abraço.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>resolvendo problema com port com uma app golang no heroku</title>
+      <link>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</link>
+      <pubDate>Mon, 28 Sep 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/</guid>
+      <description>
+
+&lt;p&gt;Æ,&lt;/p&gt;
+
+&lt;p&gt;Já faz um tempo que venho estudando e praticando um pouco com &lt;a href=&#34;https://golang.org&#34;&gt;Golang&lt;/a&gt;. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o &lt;a href=&#34;heroku.com&#34;&gt;Heroku&lt;/a&gt; (não estou ganhando nada para fazer propaganda kkkkk).&lt;/p&gt;
+
+&lt;p&gt;Porém ao seguir o seu &lt;a href=&#34;https://devcenter.heroku.com/articles/getting-started-with-go#introduction&#34;&gt;Getting Started with Go&lt;/a&gt;, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.&lt;/p&gt;
+
+&lt;p&gt;Como resolver?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Não vou entrar nos detalhes para colocar a app no ar, pois o &#39;passo-a-passo&#39;
+do Heroku da uma boa ajuda quanto a isso.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Um dos &lt;a href=&#34;https://golang.org/pkg/&#34;&gt;packages&lt;/a&gt; nativos de Go, que é bem útil para usar no
+Heroku, é o package &lt;a href=&#34;https://golang.org/pkg/os/&#34;&gt;os&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&#34;https://golang.org/doc/effective_go.html#functions&#34;&gt;func&lt;/a&gt; que vamos usar aqui será a &lt;a href=&#34;https://golang.org/pkg/os/#Getenv&#34;&gt;Getenv&lt;/a&gt; do pacote &lt;code&gt;os&lt;/code&gt;, ela lê uma variavel de ambiente que é passada como parametro do tipo &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;``` go e sua chamada será algo como:
+  os.Getenv(&amp;ldquo;&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+``` go A assinatura da func
+  func Getenv(key string) string
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok! Bora para o problema.&lt;/p&gt;
+
+&lt;p&gt;Sem a declaração desta chamada, para que a app possa saber qual será a porta que ela vai iniciar. Iremos observar nos logs do Heroku o seguinte erro:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  2015-09-28T21:57:58.411180+00:00 heroku[web.1]: Error R10 (Boot timeout) -&amp;gt; \
+  Web process failed to bind to $PORT within 60 seconds of launch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Já se torna visivel que esta reclamando de algo com relação a variavel de ambiente &lt;code&gt;$PORT&lt;/code&gt;, e por isso o processo &lt;code&gt;web&lt;/code&gt; não foi iniciado, recebendo na cara um &lt;code&gt;SIGKILL&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ao ler a app de apresentação que foi publicada para ajuda pelo Heroku, &lt;a href=&#34;https://github.com/heroku/go-getting-started/&#34;&gt;app Go Getting Started on Github&lt;/a&gt; e ler mais afinco sobre este erro e sobre &amp;lsquo;o como o Heroku Apps precisa desta declaração :)&amp;lsquo;, saiu algo assim:&lt;/p&gt;
+
+&lt;p&gt;``` go Declaração com a variavel de ambiente $PORT
+  os.Getenv(&amp;ldquo;PORT&amp;rdquo;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Lembrem, como estamos usando o pacote `os`, temos que fazer seu `import`.
+
+``` go Importando pacote os
+   import &amp;quot;os&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Caso, não faça este &lt;code&gt;import&lt;/code&gt;, verá um erro ao compilar o codigo, algo como:&lt;/p&gt;
+
+&lt;p&gt;``` go Erro de compilação
+$ go build&lt;/p&gt;
+
+&lt;h1 id=&#34;heroku-com-rrmartins-rrtempo&#34;&gt;heroku.com/rrmartins/rrtempo&lt;/h1&gt;
+
+&lt;p&gt;./servidor.go:15: undefined: os
+./servidor.go:16: undefined: os&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Então, faça o `import &amp;quot;os&amp;quot;`. :)
+
+Sabendo a declaração, podemos iniciar o server:
+
+``` go Levantando o server
+   port := os.Getenv(&amp;quot;PORT&amp;quot;)
+   http.ListenAndServe(fmt.Sprintf(&amp;quot;:%s&amp;quot;, port),nil)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Na segunda linha do codígo acima, vemos mais dois pacotes nativos Go, &lt;code&gt;http&lt;/code&gt; e &lt;code&gt;fmt&lt;/code&gt;, para fazer funcionar é importante tambem fazer o &lt;code&gt;import&lt;/code&gt; deles, ficando algo parecido com isso:&lt;/p&gt;
+
+&lt;p&gt;``` go Importando mais pacotes
+import (
+  &amp;ldquo;fmt&amp;rdquo;
+  &amp;ldquo;os&amp;rdquo;
+  &amp;ldquo;net/http&amp;rdquo;
+)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Mas, como o problema a ser resolvido não é &#39;o como levantar o servidor&#39;, mas sim &#39;o que é preciso para tal&#39;, então vamos voltar ao caso aqui. :)
+
+Declarando só com `port := os.Getenv(&amp;quot;PORT&amp;quot;)`, é obrigatório que nas configurações da app no Heroku tenha a variavel `$PORT` declarada, e se não tiver? Quem poderá nos defender?
+
+Para não fazer um `if` deste modo:
+
+``` go if desnecessario
+  if os.Getenv(&amp;quot;PORT&amp;quot;) != &amp;quot;&amp;quot; {
+    port = os.Getenv(&amp;quot;PORT&amp;quot;)
+  } else {
+    port = &amp;quot;8080&amp;quot;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Fazemos uma condicional de uma linha só: :)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;go Condicional lindão
+  port := map[bool]string{true: os.Getenv(&amp;quot;PORT&amp;quot;), \
+  false: &amp;quot;8080&amp;quot;}[ os.Getenv(&amp;quot;PORT&amp;quot;) != &amp;quot;&amp;quot;]
+  http.ListenAndServe(fmt.Sprintf(&amp;quot;:%s&amp;quot;, port),nil)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Vejam só, se não tem a declaração da variavel &lt;code&gt;$PORT&lt;/code&gt;, assumo a porta &lt;code&gt;8080&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;É isso ai.&lt;/p&gt;
+
+&lt;p&gt;O codígo deste post esta em &lt;a href=&#34;https://github.com/rrmartins/rrtime&#34;&gt;Github rrtime&lt;/a&gt;, e rodando no Heroku &lt;a href=&#34;https://rrtime.herokuapp.com/tempo&#34;&gt;Heroku rrtime&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Creditos pela ajuda da condicional mais simples ao &lt;a href=&#34;https://twitter.com/iamvsouza&#34;&gt;Vinicius Souza Twitter&lt;/a&gt; | &lt;a href=&#34;https://github.com/vsouza&#34;&gt;Vinicius Souza Github&lt;/a&gt; contribuidor da comunidade brasileira &lt;a href=&#34;http://www.golangbr.org/&#34;&gt;Golang BR&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Valeu!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ser importante ou famoso</title>
+      <link>http://rodij.me/post/2015/09/21/ser-importante-ou-famoso/</link>
+      <pubDate>Mon, 21 Sep 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2015/09/21/ser-importante-ou-famoso/</guid>
+      <description>&lt;p&gt;Este é um dos pensamentos mais legais que já vi sobre este tema. Em uma correria do nossos dias, vejo muitos querendo ser famoso e tal, quando em uma breve realização, e pronto. Mas, vejo que a importancia que damos ao ser famoso é em demasia grande. Quando podemos olhar e viver para ser simples e importante. Nesse sentido, transcrevo abaixo um texto muito bom para esta reflexão do filosofo brasileiro Mario Sergio Cortella.&lt;/p&gt;
+
+&lt;p&gt;Destaco para o inicio desta boa leitura:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Aliás, felicidade não é um estado contínuo,
+felicidade é uma ocorrência eventual.
+por Mario Sergio Cortella
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Segue a reflexão completa.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Felicidade é uma vibração intensa, um momento em que eu sinto a vida
+em plenitude dentro de mim, e quero que aquilo se eternize.
+Felicidade é a capacidade de você ser inundado por uma alegria imensa
+por aquele instante, por aquela situação. Aliás, felicidade não é
+um estado contínuo, felicidade é uma ocorrência eventual.
+
+A felicidade é sempre episódica. Você sentir a vida vibrando, seja num
+abraço, seja na realização de uma obra, seja numa situação, por exemplo,
+em que seu time vence, seja porque algo que você fez deu certo, seja porque
+você ouviu algo que você queria ouvir. É claro que aquilo não tem
+perenidade, aliás, a felicidade se marcada pela perenidade seria impossível.
+Afinal de contas nós só temos a noção de felicidade pela carência.
+
+Se eu tivesse a felicidade como algo contínuo, eu não a perceberia. Nós só
+sentimos a felicidade porque ela não é contínua. Isto é, ela não é o que
+acontece o tempo todo, de todos os modos. A ideia de felicidade sozinha ela
+teria que ter uma questão anterior: se é possível viver sozinho. Que como a
+felicidade pelo óbvio só acontece com alguém que viu ou está e viver é viver
+com outros e outras, como não é possível viver sozinho?
+
+A possibilidade da felicidade isolada, solitária é nenhuma. Pra que eu possa
+ser feliz sozinho eu teria que ser capaz de viver sozinho. Mesmo a literatura,
+como Robson Crusoé, por exemplo, que lida com um homem que está só, mas ele
+está só depois de ter vivido com outros. Ele trás as outras pessoas na sua
+memória, na sua história, no seu desejo, no seu horizonte. Não há, não há
+história de ser humano em que ele tenha sido sozinho da geração até o término.
+Se assim não há, não há possibilidade de se ser feliz sozinho.
+
+Nos últimos 50 anos do século XX, nós tivemos mais desenvolvimento tecnológico
+do que em toda história anterior da humanidade. Todos os 39.950 anos anteriores,
+desde que o homo-sapiens era sapiens, sapiens sapiens na classificação científica,
+foram menos do que os 50 anos finais do século XX. Seria a redenção da humanidade.
+Uma questão: as questões centrais permaneceram. Quem sou eu?, pra que tudo isso?,
+porque eu não sou feliz apenas quando possuo objeto?, porque o mal existe?, porque
+que eu não tenho paz em meio a tanta convivência? Nesta hora, não só a religiosidade,
+ela sofreu um revival, como a filosofia passou, de novo, a ser interessante. E
+aí claro, a filosofia como autoajuda, a filosofia como autoconhecimento, a filosofia
+como auto capacidade, a filosofia como prática sistemática. E de repente a gente
+tem no final do século XX, em vários lugares do mundo e no Brasil também, casas
+pra estudar filosofia; procura de cursos de filosofia.
+
+Nós somos o único animal que é mortal. Todos os outros animais são imortais. Embora
+todos morram, nós somos o único que além de morrer, sabe que vai morrer. Teu
+cachorro tá dormindo sossegado a essa hora. Teu gato tá tranquilo. Você e eu
+sabemos que vamos morrer. Desse ponto de vista, não é a morte que me importa,
+porque ela é um fato. O que me importa é o que eu faço da minha vida enquanto
+minha morte não acontece, pra que essa vida não seja banal, superficial, fútil,
+pequena. Nesta hora, eu preciso ser capaz de fazer falta.
+
+No dia que eu me for, e eu me vou, quero fazer falta. Fazer falta não significa ser
+famoso, significa ser importante. Há uma diferença entre ser famoso e importante.
+Muita gente não é famosa e é absolutamente importante. Importar; quando alguém me
+leva pra dentro, importa. Ele me porta pra dentro, ele me carrega.
+
+Eu quero ser importante. Por isso, pra ser importante, eu preciso não ter uma vida
+que seja pequena. E uma vida se torna pequena quando ela é uma vida que é apoiada
+só em si mesmo, fechada em si. Eu preciso transbordar, ir além da minha borda,
+preciso me comunicar, preciso me juntar, preciso me repartir. Nesta hora, minha
+vida que, sem dúvida, ela é curta, eu desejo que ela não seja pequena.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Por Mario Sergio Cortella&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ditado chines do pao</title>
+      <link>http://rodij.me/post/2014/12/10/ditado-chines-do-pao/</link>
+      <pubDate>Wed, 10 Dec 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2014/12/10/ditado-chines-do-pao/</guid>
+      <description>&lt;p&gt;Hoje, escutei de um amigo um ditado Chinês.
+Que achei muito massa ser repassado!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Se dois homens vêm andando por uma estrada,
+cada um com um pão, e, ao se encontrarem,
+trocarem os pães, cada um vai embora com um pão.
+
+Se dois homens vêm andando por uma estrada,
+cada um com uma idéia, e, ao se encontrarem,
+trocarem as idéias,
+cada um vai embora com duas idéias.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sempre crescemos com algo, ao partilhar o que de bom temos.&lt;/p&gt;
+
+&lt;p&gt;Abraços.&lt;/p&gt;
+
+&lt;p&gt;Paz e Bem&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>brincando com chicagoboss</title>
+      <link>http://rodij.me/post/2014/05/18/brincando-com-chicagoboss/</link>
+      <pubDate>Sun, 18 May 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2014/05/18/brincando-com-chicagoboss/</guid>
+      <description>&lt;p&gt;Uma pequena Introdução:&lt;/p&gt;
+
+&lt;p&gt;Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
+anos atrás, Erlang é a mais avançada plataforma de servidor de código aberto em
+existência, mas parece que quase ninguém sabe sobre isso. Erlang pode lidar com
+centenas de milhares de conexões simultâneas; ele pode gerar
+milhões de processos simultâneos em menos de um segundo; código do servidor pode ser
+atualizado, em produção, sem qualquer interrupção do serviço; e erros
+são tratados de tal forma que falhas do servidor são extremamente raros.&lt;/p&gt;
+
+&lt;p&gt;O que não gostar? Por que não é todo o mundo de programação em Erlang?
+Bem, Erlang é uma linguagem funcional, o que significa que, para implementar qualquer
+algoritmo, você deve usar a recursividade em vez dos laços familiares &amp;ldquo;for&amp;rdquo; e &amp;ldquo;while&amp;rdquo;.
+Ao contrário de todas as grandes linguagem de script, não há sintaxe embutida
+para dicionários ou mapas de hash. E para realmente escrever um servidor funcionando,
+você deve aprender com uma camada adicional de magia conhecida como OTP. Estas
+barreiras, na minha opinião, têm impedido Erlang de ganhar muita tração fora da Scandinavia.&lt;/p&gt;
+
+&lt;p&gt;Mas ChicagoBoss muda tudo isso. O faz Erlang acessível para hackers
+que só querem escrever um site confiável em uma linguagem bacana. Usuários do ChicagoBoss
+geram código para contornar o histórico hash , e tem o
+cuidado com todos os negócios OTP para que você possa se ​​concentrar em escrever as características
+o que precisa para o seu site. Quanto aos supostos encargos da programação funcional, acho que a recursividade
+raramente é necessária em um dia de trabalho de programação; Eu diria que 99% do código de um aplicativo de servidor
+simplesmente transporta dados para e de um banco de dados, de modo que no curso da construção de um
+website, o programador processual caminhe dificilmente perca o seu laço &amp;ldquo;do/while&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Se você é um programador web experiente, você provavelmente vai desfrutar de toda a
+amenidades que CB tem para oferecer: um ORM avançado com suporte para
+associações de bancos de dados, sharding e caches; modelos velozes compilado até Erlang bytecode;
+recompilação automática e no navegador, relatório de erros; directivas simples para recargas e redirecionamentos;
+rotas para construção de URLs e tratamento dos pedidos; quadros completos para envio
+e recebimento de e-mail; uma fila de mensagens embutida; um quadro para a escrita
+e execução de testes funcionais.&lt;/p&gt;
+
+&lt;p&gt;No final, através da combinação da plataforma de Erlang com as suas próprias inovações,
+ChicagoBoss faz sites um deleite para desenvolver e implantar uma alegria.
+Aplicações saliência pode ser escrito no mesmo tempo ou menos equivalentes
+Rails aplicações , e eles quase nunca irá travar ou perda de memória . desde
+a rede subjacente é tudo assíncrona, você pode facilmente escrever
+serviços concorrentes , como o bate-papo , que antes eram só é possível em
+estruturas à base de retorno de chamada (como Nginx , Node.js , Torcido, ou Perlbal ) .&lt;/p&gt;
+
+&lt;p&gt;A importância deste avanço não pode ser exagerada . É agora
+viável para uma pequena equipe para desenvolver e operar um banco de dados -driven,
+site altamente interativo , com muito trânsito , com muito pouco investimento de capital .
+Embora Chicago chefe não posso te dizer como adquirir os usuários , o resto desta
+manual irá mostrar-lhe tudo o que você precisa fazer para lidar com os seus pedidos
+e (com sorte) cumprir seus desejos.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>tenho sede</title>
+      <link>http://rodij.me/post/2014/02/26/tenho-sede/</link>
+      <pubDate>Wed, 26 Feb 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2014/02/26/tenho-sede/</guid>
+      <description>&lt;p&gt;Tenho Sede&lt;/p&gt;
+
+&lt;p&gt;
+Minha alma pede ajuda&lt;br/&gt;
+Sinto sede, Senhor&lt;br/&gt;
+Sou como um violão sem corda&lt;br/&gt;
+Repleto de silêncio e dor
+&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;
+Lançai-me, Senhor&lt;br/&gt;
+Teu Espírito de Amor&lt;br/&gt;
+E minha alma reviverá&lt;br/&gt;
+Tira toda tristeza&lt;br/&gt;
+Que há em mim, Senhor&lt;br/&gt;
+Renova-me com Teu Espírito de Amor
+&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;
+Carrega-me nos Teus braços&lt;br/&gt;
+Não me deixe jamais&lt;br/&gt;
+Sou como um filho&lt;br/&gt;
+Precisando de um Pai
+&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;
+Ass,
+Rodrigo Martins
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>as duas faces de string</title>
+      <link>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/as-duas-faces-de-string/</guid>
+      <description>&lt;p&gt;Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string &amp;ldquo;dog&amp;rdquo; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &amp;ldquo;d&amp;rdquo;, um &amp;ldquo;o&amp;rdquo;, e &amp;ldquo;g&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book = Book.find(:all)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O argumento para o método &lt;code&gt;find&lt;/code&gt; é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para &lt;code&gt;Book.find&lt;/code&gt; realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do &lt;code&gt;ActiveRecord&lt;/code&gt; e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book = Book.find(&#39;all&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de &lt;code&gt;:all&lt;/code&gt; exige um keystroke menos
+do que digitar &lt;code&gt;&#39;all&#39;&lt;/code&gt;, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?&lt;/p&gt;
+
+&lt;p&gt;Continuando no post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/nao-e-bem-uma-string/&#34;&gt;Não é bem uma String&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Até mais galera! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>expressoes regulares em ruby</title>
+      <link>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/expressoes-regulares-em-ruby/</guid>
+      <description>
+
+&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.&lt;/p&gt;
+
+&lt;p&gt;Volto falando um pouco de &lt;code&gt;Expressão Regular&lt;/code&gt; em Ruby(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão &lt;a href=&#34;http://ruby-doc.org/core-2.0/&#34;&gt;2.0&lt;/a&gt; é a que estou usando, e não esta me deixando na mão.&lt;/p&gt;
+
+&lt;p&gt;Em Ruby, a expressão regular, ou &lt;code&gt;Regexp&lt;/code&gt;(&lt;a href=&#34;http://ruby-doc.org/core-1.9.3/Regexp.html&#34;&gt;1.9.3&lt;/a&gt;, &lt;a href=&#34;http://ruby-doc.org/core-2.0/Regexp.htm&#34;&gt;2.0&lt;/a&gt;), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp
+/\d\d:\d\d (AM|PM)/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Você usa o operador `=~` para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts /\d\d:\d\d (AM|PM)/ =~ &#39;10:24 PM&#39;
+=&amp;gt; 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:&lt;/p&gt;
+
+&lt;p&gt;``` ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts /PM/ =~ &amp;lsquo;10:24 PM&amp;rsquo;
+=&amp;gt; 6&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:
+
+``` ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; /May/ =~ &#39;Sometime in June&#39;
+=&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Voltará &lt;code&gt;nil&lt;/code&gt;. Desde o operador &lt;code&gt;=~&lt;/code&gt; retorna um número quando se encontra uma correspondência e &lt;code&gt;nil&lt;/code&gt; se não, você pode usar
+conjuntos de expressões regulares como booleanos:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-1&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the_time = &amp;lsquo;10:24 AM&amp;rsquo;
+puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/ =~ the_time
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+O operador `=~` também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:
+
+```ruby Regexp
+# 1.9.3 e 2.0
+ &amp;gt; puts &amp;quot;É de manhã!&amp;quot; if &#39;10:24 AM&#39; =~ /AM/
+=&amp;gt; É de manhã!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Como disse, as expressões regulares são por padrão &lt;code&gt;case sensitive&lt;/code&gt;: &lt;code&gt;/AM/&lt;/code&gt; não corresponde &lt;code&gt;/am/&lt;/code&gt;. Felizmente, você pode
+transformar esse &lt;code&gt;case sensitive&lt;/code&gt; colocando um i no fim de sua expressão, de modo que este:&lt;/p&gt;
+
+&lt;p&gt;```ruby Regexp&lt;/p&gt;
+
+&lt;h1 id=&#34;1-9-3-e-2-0-2&#34;&gt;1.9.3 e 2.0&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;puts &amp;ldquo;É de manhã!&amp;rdquo; if /AM/i =~ &amp;lsquo;am&amp;rsquo;
+=&amp;gt; É de manhã!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Irá imprimir algo!
+
+Além de seu uso mais ou menos independente com o operador `=~`, expressões regulares também entram em jogo nos métodos de `string`
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método [gsub](http://ruby-doc.org/core-2.0/String.html#method-i-gsub) da classe `string`, talvez para apagar todo o conteúdo de um documento:
+
+```ruby Regexp
+class Document
+  # A maioria da classe omitida...
+
+  def obscure_times!
+    @content.gsub!( /\d\d:\d\d (AM|PM)/, &#39;**:** **&#39; )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.&lt;/p&gt;
+
+&lt;p&gt;Até mais&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nao e bem uma string</title>
+      <link>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/04/28/nao-e-bem-uma-string/</guid>
+      <description>&lt;p&gt;Continuando o ultimo post &lt;a href=&#34;{{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/&#34;&gt;As Duas Faces de String&lt;/a&gt;
+que finaliza com a pergunta:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Então, por que o Ruby nos fornece tanto?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de &lt;code&gt;strings&lt;/code&gt; é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+&lt;code&gt;string&lt;/code&gt;, coisas como o título do livro, o autor, o nome do AOS, e o texto real.&lt;/p&gt;
+
+&lt;p&gt;A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar &lt;code&gt;:all&lt;/code&gt; registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de &lt;code&gt;Books&lt;/code&gt; é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e &lt;code&gt;:all&lt;/code&gt; é um flag que diz que ele deve retornar cada um. O bom de usar algo como &lt;code&gt;:all&lt;/code&gt; para esse
+tipo de &amp;ldquo;significa&amp;rdquo; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que &lt;code&gt;:all&lt;/code&gt; quando você se depara com ele do que &lt;code&gt;0&lt;/code&gt;, ou &lt;code&gt;-1&lt;/code&gt;, ou mesmo &lt;code&gt;0x29ef&lt;/code&gt;(Deus me perdoe!).&lt;/p&gt;
+
+&lt;p&gt;Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de &lt;code&gt;string&lt;/code&gt; na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é a forma rápida e confiável.&lt;/p&gt;
+
+&lt;p&gt;Até mais galera! :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>traducao ruby 2 dot 0 por exemplos</title>
+      <link>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</link>
+      <pubDate>Tue, 26 Feb 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://rodij.me/post/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</guid>
+      <description>&lt;p&gt;Olá amigos,&lt;/p&gt;
+
+&lt;p&gt;Tudo tranquilo?&lt;/p&gt;
+
+&lt;p&gt;Estava conversando com o &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc-Andre Lafortune&lt;/a&gt;, do blog &lt;a href=&#34;http://blog.marc-andre.ca/&#34;&gt;Marc Andre&lt;/a&gt;, sobre a nova versão do &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0&lt;/a&gt;, e ele me permitiu traduzir o &lt;a href=&#34;http://blog.marc-andre.ca/2013/02/23/ruby-2-by-example/&#34;&gt;post dele&lt;/a&gt; e ai vai.. :)&lt;/p&gt;
+
+&lt;p&gt;Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no &lt;a href=&#34;https://twitter.com/yukihiro_matz/statuses/305334327938519040&#34;&gt;twitter&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;{% blockquote @yukihiro_matz &lt;a href=&#34;https://twitter.com/yukihiro_matz/status/305334327938519040&#34;&gt;https://twitter.com/yukihiro_matz/status/305334327938519040&lt;/a&gt; %}&lt;/p&gt;
+
+&lt;p&gt;20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!&lt;/p&gt;
+
+&lt;p&gt;{% endblockquote %}&lt;/p&gt;
+
+&lt;p&gt;Neste trecho, &lt;a href=&#34;https://twitter.com/yukihiro_matz&#34;&gt;Matz&lt;/a&gt; diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.&lt;/p&gt;
+
+&lt;p&gt;Vamos a tradução&amp;hellip; :D&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tradução&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Um rápido resumo de alguns dos novos recursos do &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;###Alterações na Linguagem&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;	# Ruby 1.9:
+  # (Do action_view/helpers/text_helper.rb)
+def cycle(first_value, *values)
+  options = values.extract_options!
+  name = options.fetch(:name, &#39;default&#39;)
+  # ...
+end
+
+# Ruby 2.0:
+def cycle(first_value, *values, name: &#39;default&#39;)
+  # ...
+end
+
+# ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:
+cycle(&#39;odd&#39;, &#39;even&#39;, nme: &#39;foo&#39;)
+# =&amp;gt; ArgumentError: unknown keyword: nme
+
+# Para obter o mesmo resultado e melhor exato:
+def cycle(first_value, *values, name: &#39;default&#39;, **ignore_extra)
+  # ...
+end
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso faz com que as definições de método seja muito flexível. Em resumo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;def name({required_arguments, ...}
+         {optional_arguments, ...}
+         {*rest || additional_required_arguments...} # Você Sabia?
+         {keyword_arguments: &amp;quot;with_defaults&amp;quot;...}
+         {**rest_of_keyword_arguments}
+         {&amp;amp;block_capture})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Em &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;, argumentos devem ter padrões, ou então deve ser capturado por &lt;code&gt;**extra&lt;/code&gt; no final. Próxima versão &lt;a href=&#34;https://bugs.ruby-lang.org/issues/7701&#34;&gt;permitirá&lt;/a&gt; argumentos obrigatórios, por exemplo, &lt;code&gt;def hello(optional: &#39;default&#39;, required:)&lt;/code&gt;, mas há &lt;a href=&#34;http://stackoverflow.com/questions/13250447/can-i-have-required-named-parameters-in-ruby-2-x/15078852#15078852&#34;&gt;maneiras de fazer isso agora&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Padrões, para parâmetros opcionais ou argumentos de palavras-chave, pode ser na maior parte qualquer expressão, incluindo chamadas de método para o objeto atual e pode usar os parâmetros anteriores.&lt;/p&gt;
+
+&lt;p&gt;Um exemplo complexo que mostra a maior parte deste:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;class C
+  def hi(needed, needed2,
+         maybe1 = &amp;quot;42&amp;quot;, maybe2 = maybe1.upcase,
+         *args,
+         named1: &#39;hello&#39;, named2: a_method(named1, needed2),
+         **options,
+         &amp;amp;block)
+  end
+
+  def a_method(a, b)
+    # ...
+  end
+end
+
+C.instance_method(:hi).parameters
+# =&amp;gt; [ [:req, :needed], [:req, :needed2],
+#      [:opt, :maybe1], [:opt, :maybe2],
+#      [:rest, :args],
+#      [:key, :named1], [:key, :named2],
+#      [:keyrest, :options],
+#      [:block, :block] ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bugs.ruby-lang.org/issues/7922&#34;&gt;Bug conhecido&lt;/a&gt;: não é atualmente possível ignorar opções extras sem citar o argumento &lt;code&gt;**&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Criação de lista de Symbol&lt;/p&gt;
+
+&lt;p&gt;Maneira fácil de criar listas de símbolos com &lt;code&gt;%i&lt;/code&gt; e &lt;code&gt;%I&lt;/code&gt; (onde i é para uso interno):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+KEYS = [:foo, :bar, :baz]
+
+# Ruby 2.0:
+KEYS = %i[foo bar baz]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Codificação padrão é UTF-8&lt;/p&gt;
+
+&lt;p&gt;Nenhum comentário magico é necessário caso a codificação for UTF-8.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+# encoding: utf-8
+# ^^^ previous line was needed!
+puts &amp;quot;❤ Rodrigo Martins ❤&amp;quot;
+
+# Ruby 2.0:
+puts &amp;quot;❤ Rodrigo Martins ❤&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Variáveis ​​não utilizadas pode começar com _&lt;/p&gt;
+
+&lt;p&gt;Você sabia que Ruby pode avisá-lo sobre as variáveis ​​utilizadas?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Qualquer versão do Ruby, com aviso em:
+ruby -w -e &amp;quot;
+  def hi
+    hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; warning: assigned but unused variable - hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A maneira de evitar o aviso era usar &lt;code&gt;_&lt;/code&gt;. Agora podemos usar qualquer nome de variável começando com um underscore:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9
+ruby -w -e &amp;quot;
+  def foo
+    _, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; no warning
+
+# Ruby 2.0
+ruby -w -e &amp;quot;
+  def hi
+    _hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)
+    world
+  end&amp;quot;
+# =&amp;gt; no warning either
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##Mudanças das Classes Principais&lt;/p&gt;
+
+&lt;p&gt;###Prepend&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ruby-doc.org/core-2.0/String.html#method-i-prepend&#34;&gt;Module#prepend&lt;/a&gt; insere um módulo no início da cadeia de ligação. Pode muito bem substituir por &lt;code&gt;alias_method_chain&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+class Range
+  # Do active_support/core_ext/range/include_range.rb
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include_with_range?(value)
+    if value.is_a?(::Range)
+      # 1...10 inclue 1..9 mas não inclue 1..10.
+      operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+      include_without_range?(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+    else
+      include_without_range?(value)
+    end
+  end
+
+  alias_method_chain :include?, :range
+end
+
+Range.ancestors # =&amp;gt; [Range, Enumerable, Object...]
+
+# Ruby 2.0
+module IncludeRangeExt
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include?(value)
+    if value.is_a?(::Range)
+      # 1...10 inclue 1..9 mas não inclue 1..10.
+      operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+      super(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+    else
+      super
+    end
+  end
+end
+
+class Range
+  prepend IncludeRangeExt
+end
+
+Range.ancestors # =&amp;gt; [IncludeRangeExt, Range, Enumerable, Object...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Refinamentos [experimental]&lt;/p&gt;
+
+&lt;p&gt;No Ruby 1.9, se você usa um metodo &lt;code&gt;alias_method_chain&lt;/code&gt;, a nova definição ocorre em todos os lugares. Em &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;, você pode fazer esse tipo de mudança apenas para si mesmo utilizando o &lt;a href=&#34;http://ruby-doc.org/core-2.0/Module.html#method-i-refine&#34;&gt;Module#refine&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0
+module IncludeRangeExt
+  refine Range do
+    # Estende o padrão Range#include? para suportar comparações de range
+    def include?(value)
+      if value.is_a?(::Range)
+        # 1...10 inclue 1..9 mas não inclue 1..10.
+        operator = exclude_end? &amp;amp;&amp;amp; !value.exclude_end? ? :&amp;lt; : :&amp;lt;=
+        super(value.first) &amp;amp;&amp;amp; value.last.send(operator, last)
+      else
+        super
+      end
+    end
+  end
+end
+
+def test_before(r)
+  r.include?(2..3)
+end
+(1..4).include?(2..3) # =&amp;gt; false (comportamento padrão)
+
+# Agora liga o refinamento:
+using IncludeRangeExt
+
+(1..4).include?(2..3) # =&amp;gt; true  (comportamento refinado)
+
+def test_after(r)
+  r.include?(2..3)
+end
+test_after(1..4) # =&amp;gt; true (definido depois de usar, o comportamento tão refinado)
+
+3.times.all? do
+  (1..4).include?(2..3)
+end # =&amp;gt; true  (comportamento refinado)
+
+# Mas a versão refinada acontece apenas para chamadas definidas após o uso:
+test_before(1..4) # =&amp;gt; false (definido anteriormente, não afetado)
+require &#39;some_other_file&#39; # =&amp;gt; não afetado, usará o comportamento predefinido
+
+# Note:
+(1..4).send :include?, 2..3 # =&amp;gt; false (por agora, envio ignora refinamentos)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Spec completo está &lt;a href=&#34;http://bugs.ruby-lang.org/projects/ruby-trunk/wiki/RefinementsSpec&#34;&gt;aqui&lt;/a&gt; e está sujeita a mudanças em versões posteriores. Discussão mais aprofundada &lt;a href=&#34;http://benhoskin.gs/2013/02/24/ruby-2-0-by-example#refinements&#34;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Enumeradores Lazy&lt;/p&gt;
+
+&lt;p&gt;Um &lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerable.html&#34;&gt;Enumerable&lt;/a&gt; pode ser transformado em um lazy com o novo método &lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerable.html#method-i-lazy&#34;&gt;Enumerable#lazy&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+lines = File.foreach(&#39;a_very_large_file&#39;)
+            .lazy # por isso só ler as partes necessárias!
+            .select {|line| line.length &amp;lt; 10 }
+            .map(&amp;amp;:chomp)
+            .each_slice(3)
+            .map {|lines| lines.join(&#39;;&#39;).downcase }
+            .take_while {|line| line.length &amp;gt; 20 }
+  # =&amp;gt; Enumerador lazy, ainda não executa nada
+lines.first(3) # =&amp;gt; Lê o arquivo até que ele retornar 3 elementos
+               # ou até que um elemento de length &amp;lt;= 20 é
+               # retornado (por causa da take_while)
+
+# Para consumir o enumerável:
+lines.to_a # ou...
+lines.force # =&amp;gt; Lê o arquivo e retorna uma array
+lines.each{|elem| puts elem } # =&amp;gt; Lê o arquivo e imprime os elementos resultantes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note-se que, muitas vezes, &lt;code&gt;lazy&lt;/code&gt; é mais lento do que uma versão não &lt;code&gt;lazy&lt;/code&gt;. Ele deve ser usado somente quando ele realmente faz sentido, não apenas para evitar a construção de um &lt;code&gt;array&lt;/code&gt; intermediário.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;fruity&#39;
+r = 1..100
+compare do
+  lazy   { r.lazy.map(&amp;amp;:to_s).each_cons(2).map(&amp;amp;:join).to_a }
+  direct { r     .map(&amp;amp;:to_s).each_cons(2).map(&amp;amp;:join)      }
+end
+# =&amp;gt; direto é mais rápida do que por lazy 2x ± 0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Tamanho Lazy&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ruby-doc.org/core-2.0/Enumerator.html#method-i-size&#34;&gt;Enumerator#size&lt;/a&gt; pode ser chamado para obter o tamanho do enumerador sem consumi-lo (se disponível).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+(1..100).to_a.permutation(4).size # =&amp;gt; 94109400
+loop.size # =&amp;gt; Float::INFINITY
+(1..100).drop_while.size # =&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ao criar enumeradores, seja com &lt;code&gt;to_enum&lt;/code&gt;, &lt;code&gt;Enumerator::New&lt;/code&gt; ou &lt;code&gt;Enumerator::Lazy::New&lt;/code&gt; é possível definir um tamanho muito:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+fib = Enumerator.new(Float::INFINITY) do |y|
+  a = b = 1
+  loop do
+    y &amp;lt;&amp;lt; a
+    a, b = b, b+a
+  end
+end
+
+still_lazy = fib.lazy.take(1_000_000).drop(42)
+still_lazy.size # =&amp;gt; 1_000_000 - 42
+
+class Enumerable
+  def skip(every)
+    unless block_given?
+      return to_enum(:skip, every) { size &amp;amp;&amp;amp; (size+every)/(every + 1) }
+    end
+    each_slice(every+1) do |first, *ignore|
+      yield last
+    end
+  end
+end
+
+(1..10).skip(3).to_a # =&amp;gt; [1, 5, 9]
+(1..10).skip(3).size # =&amp;gt; 3, sem executar o loop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Detalhes adicionais e exemplos na doc de &lt;a href=&#34;http://ruby-doc.org/core-2.0/Object.html#method-i-to_enum&#34;&gt;to_enum&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###&lt;strong&gt;dir&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Embora &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-require_relative&#34;&gt;require_relative&lt;/a&gt; torna o uso de &lt;code&gt;File.dirname(__FILE__)&lt;/code&gt; muito menos freqüentes, agora podemos usar &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-__dir__&#34;&gt;&lt;strong&gt;dir&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.8:
+require File.dirname(__FILE__) + &amp;quot;/lib&amp;quot;
+File.read(File.dirname(__FILE__) + &amp;quot;/.Gemfile&amp;quot;)
+
+# Ruby 1.9:
+require_relative &#39;lib&#39;
+File.read(File.dirname(__FILE__) + &#39;/.config&#39;)
+
+# Ruby 2.0
+require_relative &#39;lib&#39; # há necessidade de usar __dir__ por isso!
+File.read(__dir__ + &#39;/.config&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###bsearch&lt;/p&gt;
+
+&lt;p&gt;Pesquisa binária já está disponível, usando &lt;a href=&#34;http://ruby-doc.org/core-2.0/Array.html#method-i-bsearch&#34;&gt;Array#bsearch&lt;/a&gt; ou &lt;a href=&#34;http://ruby-doc.org/core-2.0/Range.html#method-i-bsearch&#34;&gt;Range#bsearch&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+ary = [0, 4, 7, 10, 12]
+ary.bsearch {|x| x &amp;gt;=   6 } #=&amp;gt; 7
+ary.bsearch {|x| x &amp;gt;= 100 } #=&amp;gt; nil
+
+# Também em range, incluindo range de floats:
+(Math::PI * 6 .. Math::PI * 6.5).bsearch{|f| Math.cos(f) &amp;lt;= 0.5}
+# =&amp;gt; Math::PI * (6+1/3.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###to_h&lt;/p&gt;
+
+&lt;p&gt;Existe agora uma forma oficial para converter uma classe a um Hash, utilizando &lt;code&gt;to_h&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 2.0:
+Car = Struct.new(:make, :model, :year) do
+  def build
+    #...
+  end
+end
+car = Car.new(&#39;Toyota&#39;, &#39;Prius&#39;, 2014)
+car.to_h # =&amp;gt; {:make=&amp;gt;&amp;quot;Toyota&amp;quot;, :model=&amp;gt;&amp;quot;Prius&amp;quot;, :year=&amp;gt;2014}
+nil.to_h # =&amp;gt; {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso foi implementado para &lt;code&gt;nil&lt;/code&gt;, &lt;code&gt;Struct&lt;/code&gt; e &lt;code&gt;OpenStruct&lt;/code&gt;, mas não para &lt;code&gt;Array&lt;/code&gt;/&lt;code&gt;Enumerable&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;{hello: &#39;world&#39;}.map{|k, v| [k.to_s, v.upcase]}
+                .to_h # =&amp;gt; NoMethodError:
+# undefined method `to_h&#39; for [[&amp;quot;hello&amp;quot;, &amp;quot;WORLD&amp;quot;]]:Array
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se você acha que isso seria um recurso útil, você deve &lt;a href=&#34;http://bugs.ruby-lang.org/issues/7292&#34;&gt;tentar convencer Matz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;###caller_locations&lt;/p&gt;
+
+&lt;p&gt;É usado para ser difícil saber qual o método chamado apenas. Que não foi muito eficiente, dado que o backtrace todo teve de ser retornado. Cada frames foi uma seqüência que precisava ser computado primeiramento pelo Ruby e provavelmente analisado depois.&lt;/p&gt;
+
+&lt;p&gt;Entra &lt;a href=&#34;http://ruby-doc.org/core-2.0/Kernel.html#method-i-caller_locations&#34;&gt;caller_locations&lt;/a&gt; que retorna a informação de uma forma de objeto e com uma api melhor que pode limitar o número de frames solicitados.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9:
+def whoze_there_using_caller
+  caller[0][/`([^&#39;]*)&#39;/, 1]
+end
+
+# Ruby 2.0:
+def whoze_there_using_locations
+  caller_locations(1,1)[0].label
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Quanto mais rápido é? &lt;a href=&#34;https://gist.github.com/marcandre/5041813&#34;&gt;Um teste simples&lt;/a&gt; me dá um aumento de velocidade de 45x de um stacktrace curto, e 100x para um stacktrace de 100 entradas!&lt;/p&gt;
+
+&lt;p&gt;A informação extra, como o caminho do arquivo, número da linha, ainda são acessíveis, em vez de pedir para o &lt;code&gt;label&lt;/code&gt;, para pedir &lt;code&gt;path&lt;/code&gt; ou &lt;code&gt;lineno&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;###Otimizações&lt;/p&gt;
+
+&lt;p&gt;É difícil mostrar a maioria das otimizações de código, mas algumas otimizações agradáveis que foi feito no &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;. Em particular, o GC foi otimizado, em particular para fazer bifurcar muito mais rápido.&lt;/p&gt;
+
+&lt;p&gt;Uma otimização que podemos demonstrar é fazer de imediatos muitos floats em sistemas de 64 bits. Isso evita a criação de novos objetos em muitos casos:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Ruby 1.9
+4.2.object_id == 4.2.object_id # =&amp;gt; false
+
+# Ruby 2.0
+warn &amp;quot;Optimization only on 64 bit systems&amp;quot; unless 42.size * 8 == 64
+4.2.object_id == 4.2.object_id # =&amp;gt; true (4.2 é imediato)
+4.2e100.object_id == 4.2e100.object_id # =&amp;gt; false (4.2e100 não é)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##O que mais?&lt;/p&gt;
+
+&lt;p&gt;Uma extensa lista de mudanças é o &lt;a href=&#34;https://github.com/marcandre/ruby/blob/news/NEWS.rdoc&#34;&gt;arquivo NEWS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;##Eu quero!&lt;/p&gt;
+
+&lt;p&gt;Experimente hoje:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Instalar com rvm: &lt;code&gt;rvm get head &amp;amp;&amp;amp; rvm install 2.0.0&lt;/code&gt; (note que &lt;code&gt;rvm get stable&lt;/code&gt; não é suficiente!)&lt;/li&gt;
+&lt;li&gt;Instalar com rbenv: &lt;code&gt;rbenv install 2.0.0-p0&lt;/code&gt; (eu acho)&lt;/li&gt;
+&lt;li&gt;Outra instalação: Veja as instruções de &lt;a href=&#34;http://www.ruby-lang.org/en/downloads/&#34;&gt;ruby-lang.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para aqueles que não podem atualizar ainda, você ainda pode ter um pouco da diversão com a minha gem &lt;a href=&#34;https://github.com/marcandre/backports&#34;&gt;backports&lt;/a&gt;. Ele faz &lt;code&gt;bsearch&lt;/code&gt;, &lt;code&gt;lazy&lt;/code&gt; e mais um par disponível para qualquer versão do Ruby. A lista completa está no &lt;a href=&#34;https://github.com/marcandre/backports#ruby-200&#34;&gt;readme&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Aproveite o &lt;a href=&#34;http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/&#34;&gt;Ruby 2.0.0&lt;/a&gt;!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Até a proxima amigos&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;E muito obrigado &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;And thank you very much &lt;a href=&#34;https://twitter.com/malafortune&#34;&gt;Marc&lt;/a&gt;&amp;hellip;&lt;/dt&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;:D&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
